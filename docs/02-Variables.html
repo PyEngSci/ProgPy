@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3&nbsp; Using Variables – Programming in Python</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./03-Functions.html" rel="next">
+<link href="./01-Python_Basics.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-02ae9ba62279b8bbbed70b062340170a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="application/json" class="js-hypothesis-config">
+{
+  "theme": "clean"
+}
+</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+<script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document
+    .querySelectorAll('a[href*="solutions/"]')
+    .forEach(link => {
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+    });
+});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-Variables.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Using Variables</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Programming in Python</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Quick Summary</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-Python_Basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Python Basics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Variables.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Using Variables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-Functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Writing Functions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-If_and_While.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditionals and While Loops</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-Lists-Dictionaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lists and Dictionaries</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-For_Loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Iteration using <code>for</code> Loops</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Numerical_Arrays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical Arrays</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-Data_Analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basics of Plotting Graphs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-Debugging_Code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Debugging Code</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-Writing_Programs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Writing Programs</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="-1">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#variables" id="toc-variables" class="nav-link active" data-scroll-target="#variables"><span class="header-section-number">3.1</span> Variables</a>
+  <ul class="collapse">
+  <li><a href="#assigning-a-value-using-the-equals-operator" id="toc-assigning-a-value-using-the-equals-operator" class="nav-link" data-scroll-target="#assigning-a-value-using-the-equals-operator"><span class="header-section-number">3.1.1</span> <em>Assigning</em> a value using the <strong>equals operator</strong>: <code>=</code></a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise"><span class="header-section-number">3.1.2</span> Exercise:</a></li>
+  <li><a href="#evaluate-w-where" id="toc-evaluate-w-where" class="nav-link" data-scroll-target="#evaluate-w-where"><span class="header-section-number">3.1.3</span> Evaluate <span class="math inline">\(w\)</span> where:</a></li>
+  <li><a href="#evaluate-w-where-1" id="toc-evaluate-w-where-1" class="nav-link" data-scroll-target="#evaluate-w-where-1"><span class="header-section-number">3.1.4</span> Evaluate <span class="math inline">\(w\)</span> where:</a></li>
+  <li><a href="#evaluate-w-where-2" id="toc-evaluate-w-where-2" class="nav-link" data-scroll-target="#evaluate-w-where-2"><span class="header-section-number">3.1.5</span> Evaluate <span class="math inline">\(w\)</span> where:</a></li>
+  <li><a href="#important-assignment-is-not-equals" id="toc-important-assignment-is-not-equals" class="nav-link" data-scroll-target="#important-assignment-is-not-equals"><span class="header-section-number">3.1.6</span> IMPORTANT: Assignment is <strong><em>not</em></strong> equals!</a></li>
+  <li><a href="#allowed-variable-names" id="toc-allowed-variable-names" class="nav-link" data-scroll-target="#allowed-variable-names"><span class="header-section-number">3.1.7</span> Allowed Variable Names</a></li>
+  <li><a href="#example-quadratic-formula" id="toc-example-quadratic-formula" class="nav-link" data-scroll-target="#example-quadratic-formula"><span class="header-section-number">3.1.8</span> Example: Quadratic Formula</a></li>
+  <li><a href="#using-built-in-constants" id="toc-using-built-in-constants" class="nav-link" data-scroll-target="#using-built-in-constants"><span class="header-section-number">3.1.9</span> Using Built-in Constants</a></li>
+  </ul></li>
+  <li><a href="#strings-as-variables" id="toc-strings-as-variables" class="nav-link" data-scroll-target="#strings-as-variables"><span class="header-section-number">3.2</span> Strings as Variables</a>
+  <ul class="collapse">
+  <li><a href="#formatting-output-values-in-strings" id="toc-formatting-output-values-in-strings" class="nav-link" data-scroll-target="#formatting-output-values-in-strings"><span class="header-section-number">3.2.1</span> Formatting Output Values in Strings</a></li>
+  <li><a href="#formatted-f-strings" id="toc-formatted-f-strings" class="nav-link" data-scroll-target="#formatted-f-strings"><span class="header-section-number">3.2.2</span> Formatted <em>“f-strings”</em></a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">3.3</span> Summary</a></li>
+  <li><a href="#pitfalls" id="toc-pitfalls" class="nav-link" data-scroll-target="#pitfalls"><span class="header-section-number">3.4</span> Pitfalls</a></li>
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1"><span class="header-section-number">4</span> Exercise:</a>
+  <ul class="collapse">
+  <li><a href="#projectile-motion" id="toc-projectile-motion" class="nav-link" data-scroll-target="#projectile-motion"><span class="header-section-number">4.0.1</span> Projectile Motion</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/PyEngSci/ProgPy" target="_blank"><i class="bi bi-download"></i>Course Files</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Using Variables</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Run all cells marked <code>In [ ]</code> using the [<span class="math inline">\(\blacktriangleright\)</span> Run] button above and <strong>think about the result you see</strong>. Be sure to do all exercises (in blank cells) and run all completed code cells.</p>
+<p>If anything goes wrong, <strong><span class="math inline">\(\circlearrowright\)</span> restart the kernel</strong> (in the menubar, select Kernel<span class="math inline">\(\rightarrow\)</span>Restart). Or run text cells to get the formatted text back from markdown.</p>
+<hr>
+<section id="variables" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="variables"><span class="header-section-number">3.1</span> Variables</h2>
+<p>In Python we can give a name to an intermediate result. The values assigned to these symbols can be accessed and changed later.</p>
+<section id="assigning-a-value-using-the-equals-operator" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="assigning-a-value-using-the-equals-operator"><span class="header-section-number">3.1.1</span> <em>Assigning</em> a value using the <strong>equals operator</strong>: <code>=</code></h3>
+<p>We give a name to a value using an equals sign <code>=</code> (called the <em>“assignment statement”</em>).</p>
+<p>The name appears on the left hand side of the <code>=</code> and the value (or calculation) appears on the right hand side.</p>
+<p>After a variable is given a value, the value will replace the name <strong>anywhere it is used</strong> in the script <em>below</em> it.</p>
+<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;b663ef86c7132c2b72b4682a65aadae5&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-394d670dcbcdec36&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>distance <span class="op">=</span> <span class="fl">45.6</span>  <span class="co"># assignment of a numerical value to a variable name</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> <span class="fl">0.5</span>  <span class="co"># another assignment statement</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(distance <span class="op">/</span> time)  <span class="co"># Python sees the values assigned to the two names</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>91.2</code></pre>
+</div>
+</div>
+<p>Names are called <em>variables</em>.</p>
+<p>Variables can be useful to make a complicated expression more clear.</p>
+<p>The calculation:</p>
+<div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;3e2c698bfa04f8e18b7a77293057a166&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-c6567b5bc2c35182&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>((<span class="dv">4</span> <span class="op">*</span> <span class="fl">9.81</span> <span class="op">*</span> <span class="fl">0.05</span>) <span class="op">/</span> (<span class="dv">3</span> <span class="op">*</span> <span class="fl">0.47</span>) <span class="op">*</span> (<span class="fl">2650.0</span> <span class="op">-</span> <span class="fl">1000.0</span>) <span class="op">/</span> <span class="fl">1000.0</span>) <span class="op">**</span> <span class="fl">0.5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>1.5152417123378403</code></pre>
+</div>
+</div>
+<p>can be made a lot clearer by giving names to some of the parameters and intermediate results and by adding comments.</p>
+<div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;3a8fb831d54e450846b6142525fea2e0&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-bbd55236447962b2&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Terminal velocity of spherical object</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> <span class="fl">9.81</span>  <span class="co"># acceleration due to gravity (m/s^2^)</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="fl">0.05</span>  <span class="co"># object diameter (m)</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>C_d <span class="op">=</span> <span class="fl">0.47</span>  <span class="co"># drag coefficient (1)</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>rho <span class="op">=</span> <span class="fl">1000.0</span>  <span class="co"># fluid density (kg/m^3^)</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>rho_s <span class="op">=</span> <span class="fl">2650.0</span>  <span class="co"># object density (kg/m^3^)</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>geometry_factor <span class="op">=</span> (<span class="dv">4</span> <span class="op">*</span> g <span class="op">*</span> d) <span class="op">/</span> (<span class="dv">3</span> <span class="op">*</span> C_d)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>buoyancy_factor <span class="op">=</span> (rho_s <span class="op">-</span> rho) <span class="op">/</span> rho</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>V_t <span class="op">=</span> (geometry_factor <span class="op">*</span> buoyancy_factor) <span class="op">**</span> <span class="fl">0.5</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(V_t)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1.5152417123378403</code></pre>
+</div>
+</div>
+<p>This makes it also much easier to make changes or corrections.</p>
+</section>
+<section id="exercise" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="exercise"><span class="header-section-number">3.1.2</span> Exercise:</h3>
+<p>Let <span class="math inline">\(a = 5\)</span>, <span class="math inline">\(b = -1\)</span> and <span class="math inline">\(c=10\)</span>.</p>
+<div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;674ab7a8e4fa2eb21989b160103d1933&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-50b9da9f0ce8dcff&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="evaluate-w-where" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="evaluate-w-where"><span class="header-section-number">3.1.3</span> Evaluate <span class="math inline">\(w\)</span> where:</h3>
+<ul>
+<li><span class="math inline">\(w = 3 a - 5 b + 2 c\)</span></li>
+</ul>
+<div id="cell-12" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;ddf79fe6c1aa60cdadc792f415a19718&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-6d60c253cbcbed35&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set w equal to the mathematical expression</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(w)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Expected Result: <code>40</code></p>
+<p><a href="./solutions/sol0201.html">Click here for Solution</a></p>
+</section>
+<section id="evaluate-w-where-1" class="level3" data-number="3.1.4">
+<h3 data-number="3.1.4" class="anchored" data-anchor-id="evaluate-w-where-1"><span class="header-section-number">3.1.4</span> Evaluate <span class="math inline">\(w\)</span> where:</h3>
+<ul>
+<li><span class="math inline">\(\displaystyle w = \frac{5 a - 2 b}{4 c + 2 a}\)</span></li>
+</ul>
+<p>Result: <code>0.54</code></p>
+<div id="cell-14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;5516081a111cdb15288cde0782c3e4bd&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-cfc9f7d1ddcb0694&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(w)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Expected Result: <code>0.54</code></p>
+<p><a href="./solutions/sol0202.html">Click here for Solution</a></p>
+</section>
+<section id="evaluate-w-where-2" class="level3" data-number="3.1.5">
+<h3 data-number="3.1.5" class="anchored" data-anchor-id="evaluate-w-where-2"><span class="header-section-number">3.1.5</span> Evaluate <span class="math inline">\(w\)</span> where:</h3>
+<ul>
+<li><span class="math inline">\(\displaystyle w = \sqrt{2 a - b}\)</span></li>
+</ul>
+<div id="cell-16" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;9fbfe97b7183bfddec67f00c2d1081f6&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-6c618859726f3be5&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(w)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Expected Result: <code>3.3166247903554</code></p>
+<p><a href="./solutions/sol0203.html">Click here for Solution</a></p>
+<hr>
+<p>The word <em>variable</em> refers to the fact that we can change what value a name refers to.</p>
+<p>The same name can be reused for different values.</p>
+<div id="cell-18" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;7ab5d138dba406b23959b829ba7a50b3&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-3e7d45cd30ef4f09&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">0.618</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">1.618</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.618
+1.618</code></pre>
+</div>
+</div>
+</section>
+<section id="important-assignment-is-not-equals" class="level3" data-number="3.1.6">
+<h3 data-number="3.1.6" class="anchored" data-anchor-id="important-assignment-is-not-equals"><span class="header-section-number">3.1.6</span> IMPORTANT: Assignment is <strong><em>not</em></strong> equals!</h3>
+<p>Note that the use of the equals sign can be confusing at first.<br>
+The equals sign denotes <em>assignment</em> and is <strong>not an equation</strong> in the mathematical sense.<br>
+<code>A = B</code> takes the rigt hand side (B) and <em>assigns</em> it (gives its value) to the variable (A) on the left.</p>
+<section id="notes" class="level4">
+<h4 class="anchored" data-anchor-id="notes">Notes:</h4>
+<ul>
+<li>The following example will generate an error message since this not legal Python code.</li>
+</ul>
+<div id="cell-20" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;6c0f480bc8b4a3f7b58ff1b84f982fcf&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-50a101ecb5c0bdef&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">*</span> <span class="dv">3</span> <span class="op">=</span> a</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-cyan-fg">  File </span><span class="ansi-green-fg">"/tmp/ipykernel_67078/2675703124.py"</span><span class="ansi-cyan-fg">, line </span><span class="ansi-green-fg">1</span>
+<span class="ansi-red-fg">    2 * 3 = a</span>
+    ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> cannot assign to operator
+</pre>
+</div>
+</div>
+</div>
+<ul>
+<li>If one variable is assigned to another, it takes its <em>current value</em> but they do not remain equal forever:</li>
+</ul>
+<div id="cell-22" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;c7eac85a30c54b65faadc50089d34f85&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-bba65c155ca526e5&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">1</span>  <span class="co"># set a to 1</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> a  <span class="co"># b takes the current value of a</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">2</span>  <span class="co"># change the value of a</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a, b)  <span class="co"># note that b does not change</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2 1</code></pre>
+</div>
+</div>
+<ul>
+<li>The right hand side (<strong>RHS</strong>) is evaluated <em>before</em> assignment to the varible on the left (<strong>LHS</strong>), so the following examples are possible in Python:</li>
+</ul>
+<div id="cell-24" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;33ac7975b1702fa79a070bc3645171b4&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-851527b514689664&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1</code></pre>
+</div>
+</div>
+<div id="cell-25" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;d6229ae174db95d5a3aac52840fffc6b&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-5f856b96daf5f43c&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># take the value of a and add 1 to it, assign this back to `a`</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> a <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2</code></pre>
+</div>
+</div>
+<div id="cell-26" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;774efe95da130d5482eb633f33e4cf77&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-5c4cbdc1c8f5a73b&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># multiply the current value of `a` by 2 and overwrite `a`</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> a</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>4</code></pre>
+</div>
+</div>
+<div id="cell-27" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;ad7b40ddd435273ca109e6b1b3b8139e&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-fc66ee82ef406fb2&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># replace the value of the variable `a` with its old value squared</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> a<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>16</code></pre>
+</div>
+</div>
+<p><strong>Note:</strong> in each case the <strong>old value of <code>a</code></strong> is taken and used for the calculation, <strong>before</strong> <em>replacing</em> it using the assignment statement (=).</p>
+</section>
+<section id="example-swapping-two-values" class="level4">
+<h4 class="anchored" data-anchor-id="example-swapping-two-values">Example: Swapping two values</h4>
+<p>Suppose we have assigned the names <code>varA</code> and <code>varB</code> to two different values.<br>
+To swap the values, we have to use a temporary name to refer to one of the values.</p>
+<div id="cell-30" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;555037c3d65c5ee1b6a8a1f0902321b9&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-5867aff6138fac5c&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>varA <span class="op">=</span> <span class="dv">7</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>varB <span class="op">=</span> <span class="op">-</span><span class="dv">99</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(varA, varB)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>tmp <span class="op">=</span> varA</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>varA <span class="op">=</span> varB</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>varB <span class="op">=</span> tmp</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(varA, varB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>7 -99
+-99 7</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="allowed-variable-names" class="level3" data-number="3.1.7">
+<h3 data-number="3.1.7" class="anchored" data-anchor-id="allowed-variable-names"><span class="header-section-number">3.1.7</span> Allowed Variable Names</h3>
+<ul>
+<li>A valid variable name consists of <em>letters</em> (A,a,B,b,…), <em>digits</em> (1,2,3,…) and <em>underscores</em> ( _ )<br>
+but <strong><em>cannot</em> start with a digit</strong>.</li>
+<li><strong>Spaces are <em>NOT</em> allowed</strong> in variable names.</li>
+<li>You should not use an underscore at the start of a variable name, since this has a special meaning in Python.</li>
+<li>Python is <em>case-sensitive</em>, which means that upper and lower case letters are distinct.</li>
+</ul>
+<div id="cell-32" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;19324d73840979c2f719065ca4ac105c&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-2de7530ea04243dd&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>b2 <span class="op">=</span> a <span class="op">+</span> a</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>quite_a_long_variable_name <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> <span class="fl">50.0</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>outerRadius <span class="op">=</span> <span class="fl">5.7</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a, b2, quite_a_long_variable_name, A, outerRadius)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>5 10 0.1 50.0 5.7</code></pre>
+</div>
+</div>
+</section>
+<section id="example-quadratic-formula" class="level3" data-number="3.1.8">
+<h3 data-number="3.1.8" class="anchored" data-anchor-id="example-quadratic-formula"><span class="header-section-number">3.1.8</span> Example: Quadratic Formula</h3>
+<p>The following program finds the solutions of the quadratic equation <span class="math inline">\(a x^2 + b x + c\)</span> using the quadratic formula: <span class="math display">\[x = \frac{-b\pm\sqrt{b^2-4ac}}{2a},\]</span> where <span class="math inline">\(b^2-4ac\)</span> is known as the <span><em>discriminant</em></span>.<br>
+We assume in this example that there are two solutions.</p>
+<div id="cell-34" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;a47382bde523414edde1c8533649a5e7&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-7c6491276aca505c&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># coefficients of the quadratic a*x**2 + b*x + c</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="op">-</span><span class="fl">5.0</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="fl">6.0</span>  <span class="co"># quadratic formula for the equation a*x**2 + b*x + c = 0</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>disc <span class="op">=</span> b<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">4</span> <span class="op">*</span> a <span class="op">*</span> c  <span class="co"># assumed to be positive</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(disc)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> (<span class="op">-</span>b <span class="op">+</span> disc<span class="op">**</span><span class="fl">0.5</span>) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> a)</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> (<span class="op">-</span>b <span class="op">-</span> disc<span class="op">**</span><span class="fl">0.5</span>) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> a)</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x1, x2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1.0
+3.0 2.0</code></pre>
+</div>
+</div>
+<section id="exercise-run-the-quadratic-formula-program-with-different-coefficients" class="level4">
+<h4 class="anchored" data-anchor-id="exercise-run-the-quadratic-formula-program-with-different-coefficients">Exercise run the quadratic formula program with different coefficients</h4>
+<ol type="1">
+<li>Use an equations for which you know what the results should be:
+<ul>
+<li>e.g.: <span class="math inline">\(x^2 - 4 = 0\)</span>.</li>
+</ul></li>
+</ol>
+<div id="cell-36" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;2176cf97341d20ff48e37fcb40a1e0d1&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-298bcea54481f74a&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x1, x2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3.0 2.0</code></pre>
+</div>
+</div>
+<p><a href="./solutions/sol0204.html">Possible Solution</a></p>
+<ol start="2" type="1">
+<li>Find out what happens when the discriminant is negative.</li>
+</ol>
+<div id="cell-38" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;57e5ba16e69b7eff8afe19bb23a59e4c&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-400ace63d00e0846&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x1, x2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3.0 2.0</code></pre>
+</div>
+</div>
+<p><a href="./solutions/sol0205.html">Possible Solution</a></p>
+</section>
+</section>
+<section id="using-built-in-constants" class="level3" data-number="3.1.9">
+<h3 data-number="3.1.9" class="anchored" data-anchor-id="using-built-in-constants"><span class="header-section-number">3.1.9</span> Using Built-in Constants</h3>
+<p>Important constants like <span class="math inline">\(\pi\)</span> and <span class="math inline">\(e\)</span> can be accessed by loading the <code>math</code> library using <code>import</code>.<br>
+The <em>imaginary number</em> <span class="math inline">\(i=\sqrt{-1}\)</span> (called <span class="math inline">\(j\)</span> by electrical engineers) is accessed using <code>1j</code>.</p>
+<div id="cell-41" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;acc26498067a3ab682b8d92ff1c65b0d&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-6792de2cb49e5f5f&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> e, pi</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pi, e, e <span class="op">**</span> (<span class="ot">1j</span> <span class="op">*</span> pi) <span class="op">+</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3.141592653589793 2.718281828459045 1.2246467991473532e-16j</code></pre>
+</div>
+</div>
+<ul>
+<li>Note that the last result is <span class="math inline">\(1.2\times10^{-16}i = 0.00000000000000012i\approx 0\)</span>, due to <a href="./01-Python_Basics.html#Appendix:-A-note-on-floating-point-precision">floating point precision</a>.</li>
+</ul>
+</section>
+</section>
+<section id="strings-as-variables" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="strings-as-variables"><span class="header-section-number">3.2</span> Strings as Variables</h2>
+<p>Strings of characters (words) in quote marks can also be assigned to variable names, and it important to not confuse the two. For example:</p>
+<div id="cell-44" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;2d0ad76e697eb93d9a045a32d5efe4ad&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-a7a86d21a8f33792&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>word1 <span class="op">=</span> <span class="st">"Hello World!"</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"word1"</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(word1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>word1
+Hello World!</code></pre>
+</div>
+</div>
+<p>Notice that in the first instance the string <code>word1</code> that was enclosed in quotes was print ed and in the second the <em>string value</em> <code>hello</code> assigned to the variable named <code>word1</code> was printed.</p>
+<section id="formatting-output-values-in-strings" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="formatting-output-values-in-strings"><span class="header-section-number">3.2.1</span> Formatting Output Values in Strings</h3>
+<p>Integer or floating point numbers can also also be combined with strings in other ways. They can be directly interspersed with text strings by separating them with commas without conversion:</p>
+<div id="cell-47" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;53d6893896b0f0090378a1b46d165f64&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-578a428c7b3988be&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The answer is"</span>, <span class="dv">40</span> <span class="op">+</span> <span class="dv">2</span>, <span class="st">"but not"</span>, <span class="st">"40"</span> <span class="op">+</span> <span class="st">"2"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The answer is 42 but not 402</code></pre>
+</div>
+</div>
+<p>Notice that spaces were automatically added in this case.<br>
+There are other ways of formatting objects including numbers in text output.</p>
+</section>
+<section id="formatted-f-strings" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="formatted-f-strings"><span class="header-section-number">3.2.2</span> Formatted <em>“f-strings”</em></h3>
+<p>From Python 3.6 onwards formatted strings or <em>“f-strings”</em> can be used in Python:</p>
+<div id="cell-50" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;964a19e0e9fbd4971325161e26613d4c&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-8723ddf898d4c081&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> e, pi</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">42</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="co"># the first argument is a plain variable name, .3f gives it to 3 decimal (floating point) places, and the third to 3 digits</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>formatted_string <span class="op">=</span> <span class="ss">f"The answer is </span><span class="sc">{</span>a<span class="sc">}</span><span class="ss">, the number pi is </span><span class="sc">{</span>pi<span class="sc">:.3f}</span><span class="ss"> and the base of natural logarithms is </span><span class="sc">{</span>e<span class="sc">:.3}</span><span class="ss">."</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(formatted_string)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The answer is 42, the number pi is 3.142 and the base of natural logarithms is 2.72.</code></pre>
+</div>
+</div>
+<ul>
+<li>Note the use of <code>:.3f</code> to round to three decimal places and <code>:.3</code> for three significant figures.</li>
+</ul>
+<p>This makes formatting numbers in text very easy. Strings can also be formatted into strings, as the following multi-line string (using three quote marks on either side) shows:</p>
+</section>
+</section>
+<section id="summary" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="summary"><span class="header-section-number">3.3</span> Summary</h2>
+<div id="cell-53" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;f7d7ad0e88e5119e40dd1187dc762c4b&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-20361ff5c6adb848&quot;,&quot;locked&quot;:false,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a comment is ignored</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math  <span class="co"># importing a module</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="dv">999</span>  <span class="co"># an integer</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="fl">0.0999</span>  <span class="co"># a floating point number</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="fl">1.987e-6</span>  <span class="co"># scientific/engineering notation</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">88</span>)  <span class="co"># printing a value</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">9</span>)  <span class="co"># printing multiple values</span></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">10</span> <span class="op">**</span> (<span class="dv">2</span> <span class="op">*</span> <span class="dv">3</span>) <span class="op">-</span> <span class="dv">1</span>)  <span class="co"># integer arithmetic</span></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">7</span> <span class="op">/</span> <span class="dv">2</span>)  <span class="co"># integer arithmetic does what you would expect in real life</span></span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="fl">7.0</span> <span class="op">/</span> <span class="fl">2.0</span>)  <span class="co"># floating point arithmetic</span></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(math.pi <span class="op">*</span> <span class="dv">100</span>)  <span class="co"># built-in constant</span></span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>num1 <span class="op">=</span> <span class="dv">44</span>  <span class="co"># assignment statement</span></span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>num2 <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> <span class="dv">33</span></span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(num1 <span class="op">+</span> num2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>88
+1 4 9
+999999
+3.5
+3.5
+314.1592653589793
+110</code></pre>
+</div>
+</div>
+<ul>
+<li><p>Operations: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>**</code>, <code>%</code></p></li>
+<li><p>Functions: <code>type</code>, <code>int</code>, <code>float</code>, <code>round</code></p></li>
+<li><p>Constants: <code>math.pi</code>, <code>math.e</code></p></li>
+</ul>
+</section>
+<section id="pitfalls" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="pitfalls"><span class="header-section-number">3.4</span> Pitfalls</h2>
+<ul>
+<li><p>The operation <code>*</code> denotes multiplication and cannot be omitted. It can be helpful to read out a formula.<br>
+E.g., <span class="math inline">\(5 (4 + 2)\)</span> reads as five <em>times</em> four plus two.</p></li>
+<li><p>In other programming languages or in in previous Python versions (e.g.&nbsp;Python 2), the symbol <code>/</code> denotes <em>integer</em> division. In them, we have <code>7/2 =&gt; 3</code>, but <code>7.0/2 =&gt; 3.5</code> and <code>7/2.0 =&gt; 3.5</code>. But this is <em>not</em> the case in Python 3.</p></li>
+<li><p>Variable names are case-sensitive.</p></li>
+<li><p>Do not confuse assignment statements and mathematical equations.</p></li>
+</ul>
+</section>
+<section id="exercise-1" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Exercise:</h1>
+<section id="projectile-motion" class="level3" data-number="4.0.1">
+<h3 data-number="4.0.1" class="anchored" data-anchor-id="projectile-motion"><span class="header-section-number">4.0.1</span> Projectile Motion</h3>
+<p>The height of a ball thrown upwards with a velocity <span class="math inline">\(v_0\)</span> is given by <span class="math display">\[y = y_0 + v_0 t - \frac{1}{2} g t^2,\]</span> where time <span class="math inline">\(t=0\)</span> when the ball is released. The ball is released at height <span class="math inline">\(y_0\)</span>. The initial velocity is <span class="math inline">\(v_0\)</span>. Position, velocity and acceleration are all measured as positive upwards. Take <span class="math inline">\(y_0 = 1.5\)</span>, <span class="math inline">\(v_0 = 12.8\)</span> and <span class="math inline">\(g = 9.81\)</span>.</p>
+<ul>
+<li><p>Use Python to calculate the height of the ball at <span class="math inline">\(t = 2\)</span>.</p></li>
+<li><p>Use Python to calculate the time <span class="math inline">\(t\)</span> for which <span class="math inline">\(y = 5\)</span>.<br>
+(Hint: rearrange and use the quadratic formula: <span class="math inline">\(x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}\)</span>)</p></li>
+</ul>
+<div id="cell-56" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;009a6114ea24d23a75a135c1d72f154f&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-42a726e9ace714fd&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"y(2) ="</span>, answer)</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>y_1 <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a><span class="co"># leave this next line as it is</span></span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The ball will be at height y=</span><span class="sc">{</span>y_1<span class="sc">}</span><span class="ss">m at times: t=</span><span class="sc">{</span>t_1<span class="sc">:.2}</span><span class="ss">s and t=</span><span class="sc">{</span>t_2<span class="sc">:.2}</span><span class="ss">s"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Expected Result:</p>
+<pre><code>y(2) = 7.48
+The ball will be at height y=5m at times: t=0.31s and t=2.3s</code></pre>
+<p><a href="./solutions/sol0206.html">Click here for Solution</a></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./01-Python_Basics.html" class="pagination-link" aria-label="Python Basics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Python Basics</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./03-Functions.html" class="pagination-link" aria-label="Writing Functions">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Writing Functions</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

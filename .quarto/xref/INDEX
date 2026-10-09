@@ -1,0 +1,185 @@
+{
+  "index.ipynb": {
+    "index.html": "1c1ee112"
+  },
+  "Lesson01/01-Python_Basics.ipynb": {
+    "01-Python_Basics.html": "9a229c41"
+  },
+  "Lesson02/02-Variables.ipynb": {
+    "02-Variables.html": "f35d6bf1"
+  },
+  "Lesson03/03-Functions.ipynb": {
+    "03-Functions.html": "2c9eedcf"
+  },
+  "Lesson04/04b-If_and_While.ipynb": {
+    "04b-If_and_While.html": "8955728d"
+  },
+  "Lesson05/05-Lists-Dictionaries.ipynb": {
+    "05-Lists-Dictionaries.html": "7eb91eb3"
+  },
+  "Lesson06/06-For_Loops.ipynb": {
+    "06-For_Loops.html": "666d380a"
+  },
+  "Lesson07/07-Numerical_Arrays.ipynb": {
+    "07-Numerical_Arrays.html": "236c4ef8"
+  },
+  "Lesson08/08-Data_Analysis.ipynb": {
+    "08-Data_Analysis.html": "8c4a963b"
+  },
+  "Lesson09/10-Debugging_Code.ipynb": {
+    "10-Debugging_Code.html": "0c801730"
+  },
+  "Lesson10/11-Writing_Programs.ipynb": {
+    "11-Writing_Programs.html": "a58cf145"
+  },
+  "Lesson04/04-If_and_While.ipynb": {
+    "04-If_and_While.html": "733aff9b"
+  },
+  "01-Python_Basics.ipynb": {
+    "01-Python_Basics.html": "5b2c730d"
+  },
+  "02-Variables.ipynb": {
+    "02-Variables.html": "41664327"
+  },
+  "03-Functions.ipynb": {
+    "03-Functions.html": "eb5119c4"
+  },
+  "04-If_and_While.ipynb": {
+    "04-If_and_While.html": "34bce5c9"
+  },
+  "05-Lists-Dictionaries.ipynb": {
+    "05-Lists-Dictionaries.html": "4fd7106b"
+  },
+  "06-For_Loops.ipynb": {
+    "06-For_Loops.html": "d7742af1"
+  },
+  "07-Numerical_Arrays.ipynb": {
+    "07-Numerical_Arrays.html": "015f6cc9"
+  },
+  "08-Data_Analysis.ipynb": {
+    "08-Data_Analysis.html": "52cb2a21"
+  },
+  "10-Debugging_Code.ipynb": {
+    "10-Debugging_Code.html": "2b20eedd"
+  },
+  "11-Writing_Programs.ipynb": {
+    "11-Writing_Programs.html": "05c8dcf5"
+  },
+  "solutions/sol0100.ipynb": {
+    "sol0100.html": "c5149bf5"
+  },
+  "solutions/sol0101.ipynb": {
+    "sol0101.html": "a3780dd6"
+  },
+  "solutions/sol0102.ipynb": {
+    "sol0102.html": "dc44d2d0"
+  },
+  "solutions/sol0103.ipynb": {
+    "sol0103.html": "4ca07e84"
+  },
+  "solutions/sol0104.ipynb": {
+    "sol0104.html": "0ba4ce75"
+  },
+  "solutions/sol0105.ipynb": {
+    "sol0105.html": "38798dbd"
+  },
+  "solutions/sol0106.ipynb": {
+    "sol0106.html": "d447a561"
+  },
+  "solutions/sol0201.ipynb": {
+    "sol0201.html": "e0997220"
+  },
+  "solutions/sol0202.ipynb": {
+    "sol0202.html": "8cc55193"
+  },
+  "solutions/sol0203.ipynb": {
+    "sol0203.html": "b1e006a4"
+  },
+  "solutions/sol0204.ipynb": {
+    "sol0204.html": "2cebbd9c"
+  },
+  "solutions/sol0205.ipynb": {
+    "sol0205.html": "3dbe3f4a"
+  },
+  "solutions/sol0206.ipynb": {
+    "sol0206.html": "5a08e2a5"
+  },
+  "solutions/sol0301.ipynb": {
+    "sol0301.html": "945c640f"
+  },
+  "solutions/sol0302.ipynb": {
+    "sol0302.html": "35062ef7"
+  },
+  "solutions/sol0303.ipynb": {
+    "sol0303.html": "528f5a90"
+  },
+  "solutions/sol0304.ipynb": {
+    "sol0304.html": "094d9545"
+  },
+  "solutions/sol0305.ipynb": {
+    "sol0305.html": "edf6e34f"
+  },
+  "solutions/sol0306.ipynb": {
+    "sol0306.html": "c25ec3a3"
+  },
+  "solutions/sol0401.ipynb": {
+    "sol0401.html": "63867eb1"
+  },
+  "solutions/sol0402.ipynb": {
+    "sol0402.html": "26dc85c4"
+  },
+  "solutions/sol0403.ipynb": {
+    "sol0403.html": "5134a42a"
+  },
+  "solutions/sol0404.ipynb": {
+    "sol0404.html": "df35321b"
+  },
+  "solutions/sol0405.ipynb": {
+    "sol0405.html": "abc0c140"
+  },
+  "solutions/sol0501.ipynb": {
+    "sol0501.html": "cc22a018"
+  },
+  "solutions/sol0601.ipynb": {
+    "sol0601.html": "96c31044"
+  },
+  "solutions/sol0602.ipynb": {
+    "sol0602.html": "88c74d9d"
+  },
+  "solutions/sol0603.ipynb": {
+    "sol0603.html": "6fab2c21"
+  },
+  "solutions/sol0604.ipynb": {
+    "sol0604.html": "69216776"
+  },
+  "solutions/sol1001.ipynb": {
+    "sol1001.html": "3a849ac8"
+  },
+  "solutions/sol1002.ipynb": {
+    "sol1002.html": "82a61b33"
+  },
+  "solutions/sol1003.ipynb": {
+    "sol1003.html": "a2a39a02"
+  },
+  "solutions/sol1004.ipynb": {
+    "sol1004.html": "d740da1c"
+  },
+  "solutions/sol1101.ipynb": {
+    "sol1101.html": "b0342787"
+  },
+  "solutions/sol1102.ipynb": {
+    "sol1102.html": "3b7c144d"
+  },
+  "solutions/sol1103.ipynb": {
+    "sol1103.html": "39d17d3d"
+  },
+  "solutions/sol1104.ipynb": {
+    "sol1104.html": "0e3dfc75"
+  },
+  "solutions/sol1105.ipynb": {
+    "sol1105.html": "70a9228f"
+  },
+  "solutions/task04_model.ipynb": {
+    "task04_model.html": "2f0bd749"
+  }
+}
