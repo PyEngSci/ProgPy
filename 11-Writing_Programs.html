@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>11&nbsp; Writing Programs – Programming in Python</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./solutions/sol0100.html" rel="next">
+<link href="./10-Debugging_Code.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-02ae9ba62279b8bbbed70b062340170a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="application/json" class="js-hypothesis-config">
+{
+  "theme": "clean"
+}
+</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+<script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document
+    .querySelectorAll('a[href*="solutions/"]')
+    .forEach(link => {
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+    });
+});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./11-Writing_Programs.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Writing Programs</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Programming in Python</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Quick Summary</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-Python_Basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Python Basics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Using Variables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-Functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Writing Functions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-If_and_While.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditionals and While Loops</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-Lists-Dictionaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lists and Dictionaries</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-For_Loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Iteration using <code>for</code> Loops</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Numerical_Arrays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical Arrays</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-Data_Analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basics of Plotting Graphs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-Debugging_Code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Debugging Code</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-Writing_Programs.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Writing Programs</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="-1">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">11.1</span> Introduction</a></li>
+  <li><a href="#modelling-the-problem" id="toc-modelling-the-problem" class="nav-link" data-scroll-target="#modelling-the-problem"><span class="header-section-number">11.2</span> Modelling the Problem</a>
+  <ul class="collapse">
+  <li><a href="#mental-models-to-algorithms" id="toc-mental-models-to-algorithms" class="nav-link" data-scroll-target="#mental-models-to-algorithms"><span class="header-section-number">11.2.1</span> Mental Models to Algorithms</a></li>
+  </ul></li>
+  <li><a href="#structuring-your-code" id="toc-structuring-your-code" class="nav-link" data-scroll-target="#structuring-your-code"><span class="header-section-number">11.3</span> Structuring your Code</a>
+  <ul class="collapse">
+  <li><a href="#using-comments" id="toc-using-comments" class="nav-link" data-scroll-target="#using-comments"><span class="header-section-number">11.3.1</span> Using Comments</a></li>
+  <li><a href="#pseudocode" id="toc-pseudocode" class="nav-link" data-scroll-target="#pseudocode"><span class="header-section-number">11.3.2</span> Pseudocode</a></li>
+  <li><a href="#building-your-programme" id="toc-building-your-programme" class="nav-link" data-scroll-target="#building-your-programme"><span class="header-section-number">11.3.3</span> Building Your Programme</a></li>
+  <li><a href="#example-number-guessing-game" id="toc-example-number-guessing-game" class="nav-link" data-scroll-target="#example-number-guessing-game"><span class="header-section-number">11.3.4</span> Example: Number Guessing Game</a></li>
+  <li><a href="#exercise-the-dice-game" id="toc-exercise-the-dice-game" class="nav-link" data-scroll-target="#exercise-the-dice-game"><span class="header-section-number">11.3.5</span> Exercise: The Dice Game</a></li>
+  </ul></li>
+  <li><a href="#practice-exercise-1a" id="toc-practice-exercise-1a" class="nav-link" data-scroll-target="#practice-exercise-1a"><span class="header-section-number">11.4</span> Practice Exercise 1a:</a>
+  <ul class="collapse">
+  <li><a href="#rockpaperscissors" id="toc-rockpaperscissors" class="nav-link" data-scroll-target="#rockpaperscissors"><span class="header-section-number">11.4.1</span> Rock/paper/scissors</a></li>
+  </ul></li>
+  <li><a href="#practice-exercise-1b" id="toc-practice-exercise-1b" class="nav-link" data-scroll-target="#practice-exercise-1b"><span class="header-section-number">11.5</span> Practice exercise 1b:</a>
+  <ul class="collapse">
+  <li><a href="#average-number-of-hands" id="toc-average-number-of-hands" class="nav-link" data-scroll-target="#average-number-of-hands"><span class="header-section-number">11.5.1</span> Average Number of Hands</a></li>
+  </ul></li>
+  <li><a href="#practice-programming-from-scratch" id="toc-practice-programming-from-scratch" class="nav-link" data-scroll-target="#practice-programming-from-scratch"><span class="header-section-number">12</span> Practice Programming from Scratch</a>
+  <ul class="collapse">
+  <li><a href="#worked-example-for-practice-not-assessed" id="toc-worked-example-for-practice-not-assessed" class="nav-link" data-scroll-target="#worked-example-for-practice-not-assessed"><span class="header-section-number">12.0.1</span> Worked Example for practice: NOT assessed</a></li>
+  <li><a href="#euler-method-for-numerical-integration" id="toc-euler-method-for-numerical-integration" class="nav-link" data-scroll-target="#euler-method-for-numerical-integration"><span class="header-section-number">12.1</span> Euler Method for Numerical Integration</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/PyEngSci/ProgPy" target="_blank"><i class="bi bi-download"></i>Course Files</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Writing Programs</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Be sure to do all exercises and run all completed code cells.</p>
+<p>If anything goes wrong, <strong>restart the kernel</strong> (in the menubar, select Kernel<span class="math inline">\(\rightarrow\)</span>Restart).</p>
+<hr>
+<p>See <strong>10. Notes on Debugging</strong> before going through this lesson.</p>
+<p>Adapted in part from <em>The Way of the Program</em> in https://openbookproject.net/thinkcs/python/english3e/way_of_the_program.html</p>
+<section id="introduction" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">11.1</span> Introduction</h2>
+<p>The most important skill using computers in Science and Engineering is <strong>problem solving</strong>.<br>
+Problem solving means the ability to formulate problems, think creatively about solutions, and express a solution clearly and accurately.</p>
+<p>All computer languages include the following core components, which you have now seen:</p>
+<ol type="1">
+<li><strong>inputs</strong>: Getting data from the keyboard, a file, or some other device.</li>
+<li><strong>outputs</strong>: Displaying data on the screen or sending data to a file, etc.</li>
+<li><strong>maths</strong>: Performing mathematical operations.</li>
+<li><strong>conditional execution</strong>: Check if certain conditions are true and execute some code only when this is so.</li>
+<li><strong>repetition</strong>: Perform some action repeatedly, usually with some variation.</li>
+</ol>
+<p>Every program, no matter how complicated, is made up of variations on these core building-blocks.</p>
+<p>Programming is simply the process of breaking a <em>large, complex task</em> into <em>smaller and smaller subtasks</em> until the subtasks are simple enough to be performed with sequences of these basic instructions.</p>
+</section>
+<section id="modelling-the-problem" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="modelling-the-problem"><span class="header-section-number">11.2</span> Modelling the Problem</h2>
+<p>Modelling does not just mean writing a computer simulation of a problem. It can be a mathematical model, a physical model, or just a sketch of the basic features of the situation.</p>
+<p>When you are faced with any task you want to perform, follow the procedure below:</p>
+<ol type="1">
+<li>think what you have and what you want to achieve: what are your (a) <em>inputs</em> and (b) <em>outputs</em></li>
+<li>write down on paper basic steps you would perform by hand to get from (a) to (b): an <em>algorithm</em>.</li>
+<li>Start with a simple working example or, if you can’t find one, a list of commented steps <em>outlining</em> the procedure above that you will follow (<em>“pseudocode”</em>).</li>
+<li>Write the program from the middle out:
+<ul>
+<li>Start with the <em>core</em> components and test they work on a simple case.</li>
+<li>Build more complexity around this, one step at a time, testing as you go.</li>
+</ul></li>
+<li>Experiment, play around, try things (but make back-ups) and debug until it works as required.</li>
+</ol>
+<section id="mental-models-to-algorithms" class="level3" data-number="11.2.1">
+<h3 data-number="11.2.1" class="anchored" data-anchor-id="mental-models-to-algorithms"><span class="header-section-number">11.2.1</span> Mental Models to Algorithms</h3>
+<p>Start by sketching (with a pencil and paper) the process you want to make the computer perform. This can be in the form of a numbered list, a flow chart, a diagram or sketch, or anything else that helps you visualise the problem.<br>
+If there are mathematical steps write the equations and convert them into the form they must be used in a Python script.<br>
+If there are logical steps (such as <code>IF</code>) then write these as a diagram with arrows and options.</p>
+<p>Next think of the <strong>most simple example</strong> you can of the problem. Do the steps by hand and then write what you did in a logical series of steps and instructions. You can then start converting this to <em>Psudocode</em>.</p>
+</section>
+</section>
+<section id="structuring-your-code" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="structuring-your-code"><span class="header-section-number">11.3</span> Structuring your Code</h2>
+<section id="using-comments" class="level3" data-number="11.3.1">
+<h3 data-number="11.3.1" class="anchored" data-anchor-id="using-comments"><span class="header-section-number">11.3.1</span> Using Comments</h3>
+<p>A good program contains a lot of useful comments (any line following a <code>#</code> in the code). These can be to help you understand, modify and debug your code at a later date, or to make it easier for the next person to use it. Good comments can be used to label units, which are not used by Python, and to tell you what different symbols and variables mean, as well as how things link together.</p>
+<p>You can also use comments to add placemarkers for things you want to include later, or to help you build new code from <em>Pseudocode</em> and lists of human-readable steps.</p>
+</section>
+<section id="pseudocode" class="level3" data-number="11.3.2">
+<h3 data-number="11.3.2" class="anchored" data-anchor-id="pseudocode"><span class="header-section-number">11.3.2</span> Pseudocode</h3>
+<p>Pseudocode are the above steps, but with the instructions written in the positions that they would be in a real program. You do not need to use the actual Python syntax here, just instructions such as:</p>
+<pre><code>#1 SET UP MY VARIABLES AND FUNCTIONS
+#2 REPEAT THE NEXT STEPS for 10 INITIAL VALUES:
+    #2.1 DO SOME INITIAL TASK
+    #2.2 SET AN INITIAL VALUE FOR something
+    #2.3 REPEAT THE X METHOD while SOME CONDITION (ABOUT something) IS TRUE:
+        #2.3.1 THE X METHOD GOES HERE
+        #2.3.2 UPDATE THE VALUE OF something
+    #2.4 STORE WHATEVER RESULT WAS FOUND IN 2.3 
+#3 CLEAN UP, DO PLOTS AND SAVE DATA
+#4 HAVE A NICE CUP OF TEA</code></pre>
+</section>
+<section id="building-your-programme" class="level3" data-number="11.3.3">
+<h3 data-number="11.3.3" class="anchored" data-anchor-id="building-your-programme"><span class="header-section-number">11.3.3</span> Building Your Programme</h3>
+<p>The most important thing here is: <strong>do not try to write the whole programme at once!</strong><br>
+Start with the most basic core component (<code>THE X METHOD</code>) and test it works correctly in as many circumstances as you can think of. If there are lots of steps to it, or you will want to use it more than once then write it as a <em>function</em> you can use inside the loops.</p>
+<p>Once the middle part works build the next step around it. Do not forget to make the old part consistent with the alterations you have made. For example, if you used a single initial value in developing <code>THE X METHOD</code>, and are replacing it with a series of values taken from a FOR loop, then you will need to make sure these changes still work in <code>THE X METHOD</code>.</p>
+<p>You will need to constantly <strong>test and debug</strong> for every minor change you make (see the next section).</p>
+</section>
+<section id="example-number-guessing-game" class="level3" data-number="11.3.4">
+<h3 data-number="11.3.4" class="anchored" data-anchor-id="example-number-guessing-game"><span class="header-section-number">11.3.4</span> Example: Number Guessing Game</h3>
+<p>The game: Person A chooses a number from 1 to 10 <em>at random</em> and person B has to guess the number to win. We must simulate the situation and compare it to the result from probability theory that the probability of winning is <span class="math inline">\(\displaystyle P(win)=0.1\)</span>.</p>
+<section id="sketch-model" class="level4">
+<h4 class="anchored" data-anchor-id="sketch-model">Sketch Model:</h4>
+<ol type="1">
+<li>I’ll have to pick a random number X for person A and another Y for person B</li>
+<li>I’ll have to compare if X is equal to Y to see if it a winning game.</li>
+<li>I’ll have to repeat steps 1–3 many times (100? 1000?), and</li>
+<li>look at the proportion of wins.</li>
+<li>To do this I’ll have to keep track of the number of wins from step 2</li>
+</ol>
+</section>
+<section id="pseudo-code" class="level4">
+<h4 class="anchored" data-anchor-id="pseudo-code">Pseudo-code:</h4>
+<p>Note we have to put step 3 logically above 1 and 2 since it <em>includes</em> repeating them. The numbers below refer to the steps above.</p>
+<pre><code>#5.1 Set a win counter at zero
+#3. repeat the process below for 1000 times -- set up a counter from 1 to 1000
+    #1 pick two random integers X and Y in the range 1-10
+    #2 compare X and Y to see if same:
+        #5.2 if true then add 1 to win counter
+#4. print the number of wins/1000 to give the proportion of wins</code></pre>
+<p>I wrote the steps as it occurred to me that it would be necessary. For example step 5.1 only became apparent once I knew I’d have to add 1 to a counter, so it had to start at some value (0).<br>
+Some of these steps will require more thought, but lets start to get something working first.</p>
+</section>
+<section id="building-the-programme" class="level4">
+<h4 class="anchored" data-anchor-id="building-the-programme">Building the Programme:</h4>
+<p>We start by building and testing the core component: the random number generator. For this we will look on the web and in the manuals and find that the <code>random</code> module can generate random numbers. We see that there is a basic <code>random.random</code> function that returns a float in the range zero to one, so we test it.</p>
+<div id="cell-7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;93a587a11f245bc2f43d18b034cec318&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-7876edacf3063888&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> random.random()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.7190027312509474</code></pre>
+</div>
+</div>
+<p>Great! The only problem is we want an integer in the range 1$-$10.<br>
+This is easily done multiplying the result by 10 and using <code>int()</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> <span class="bu">int</span>(<span class="dv">10</span><span class="op">*</span>random.random())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now we test it 50 times (in a FOR loop) to make sure it’s doing the right thing now (<code>i</code> is just a counter that we never use):</p>
+<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;79306db368e28f4a1c0d459135422424&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-e279698a307c633d&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>):</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> <span class="bu">int</span>(<span class="dv">10</span><span class="op">*</span>random.random())</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(X, end<span class="op">=</span><span class="st">' '</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>7 0 1 1 7 1 9 8 5 0 0 5 8 5 8 3 2 4 8 8 5 4 4 2 6 8 3 2 1 3 8 4 7 2 8 0 4 2 8 0 5 1 5 9 6 2 4 6 3 2 </code></pre>
+</div>
+</div>
+<p>But these numbers go from 0,…, 9.</p>
+<ul>
+<li>Remember that <code>int()</code> simply cuts off the decimal point, so we’re getting a value from [0,1,2,3,4,5,6,7,8,9].</li>
+<li>OK, let’s add one:</li>
+</ul>
+<div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;972bb548eef0c9c2de985144c9fe8ec2&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-53d8657067aaa4de&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>):</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> <span class="bu">int</span>(<span class="dv">10</span><span class="op">*</span>random.random()<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(X, end<span class="op">=</span><span class="st">' '</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>9 1 2 1 7 1 3 10 1 9 2 3 10 6 1 4 10 6 8 9 8 10 4 1 9 2 3 3 1 6 9 6 6 4 6 4 8 4 10 5 10 1 1 3 7 10 9 5 8 8 </code></pre>
+</div>
+</div>
+<p>Seems to be working! We might as well leave the FOR loop in now, since we’ll need it in the final programme anyway.</p>
+<p>Now to generate two numbers and compare them (remember <code>==</code> is the question: “is it equal to?”):</p>
+<div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;3cd10ec5c404ac0d9f8305e52130e361&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-0ec2d7c86c23c66e&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>):</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> <span class="bu">int</span>(<span class="dv">10</span><span class="op">*</span>random.random()<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    Y <span class="op">=</span> <span class="bu">int</span>(<span class="dv">10</span><span class="op">*</span>random.random()<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(X, Y, X <span class="op">==</span> Y, <span class="st">';'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>9 3 False ;
+9 10 False ;
+6 6 True ;
+2 9 False ;
+10 5 False ;
+4 6 False ;
+7 3 False ;
+7 7 True ;
+5 9 False ;
+5 9 False ;
+7 4 False ;
+3 5 False ;
+10 1 False ;
+8 2 False ;
+8 4 False ;
+2 10 False ;
+10 5 False ;
+4 3 False ;
+1 4 False ;
+7 10 False ;</code></pre>
+</div>
+</div>
+<p>Right. Now this works we can replace the <code>print</code> function with an IF condition:</p>
+<div id="cell-15" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;aab408f4053409a050ae34bc134ab1d5&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-841a3e2b800bda1e&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>):</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> <span class="bu">int</span>(<span class="dv">10</span><span class="op">*</span>random.random()<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    Y <span class="op">=</span> <span class="bu">int</span>(<span class="dv">10</span><span class="op">*</span>random.random()<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> X <span class="op">==</span> Y:</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        wins <span class="op">=</span> wins<span class="op">+</span><span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">/tmp/ipykernel_73077/1984771417.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg ansi-bold">      5</span>     Y <span class="ansi-blue-fg">=</span> int<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">10</span><span class="ansi-blue-fg">*</span>random<span class="ansi-blue-fg">.</span>random<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">+</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg ansi-bold">      6</span>     <span class="ansi-green-fg">if</span> X <span class="ansi-blue-fg">==</span> Y<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">----&gt; 7</span><span class="ansi-red-fg">         </span>wins <span class="ansi-blue-fg">=</span> wins<span class="ansi-blue-fg">+</span><span class="ansi-cyan-fg">1</span>
+
+<span class="ansi-red-fg">NameError</span>: name 'wins' is not defined</pre>
+</div>
+</div>
+</div>
+<p>Oops! I forgot to give a starting value to <code>wins</code>.</p>
+</section>
+<section id="fix-this-error-cut-and-paste-in-the-cell-below-and-rerun-the-code-before-moving-on." class="level4">
+<h4 class="anchored" data-anchor-id="fix-this-error-cut-and-paste-in-the-cell-below-and-rerun-the-code-before-moving-on.">Fix this error (cut and paste) in the cell below and rerun the code before moving on.</h4>
+<div id="cell-17" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;7b459d60a6d93b23cfea6505c1323f2c&quot;,&quot;grade&quot;:true,&quot;grade_id&quot;:&quot;cell-e0c8aee671eaaa9f&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:true,&quot;task&quot;:false}}">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<pre><code>.
+.
+.
+.
+.
+.
+.
+.
+.</code></pre>
+<p>Only now we think it’s working do we do it for 1000 turns:</p>
+<div id="cell-20" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;5ac0315797189c7ee2a5218bc56779e9&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-b673f714328b24ad&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>wins <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N):</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> <span class="bu">int</span>(<span class="dv">10</span><span class="op">*</span>random.random()<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    Y <span class="op">=</span> <span class="bu">int</span>(<span class="dv">10</span><span class="op">*</span>random.random()<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> X <span class="op">==</span> Y:</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>        wins <span class="op">=</span> wins<span class="op">+</span><span class="dv">1</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(wins, N)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="fl">1.0</span><span class="op">*</span>wins<span class="op">/</span>N)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>95 1000
+0.095</code></pre>
+</div>
+</div>
+<p>Excellent! And the result seems to support the theoretical value.</p>
+<p><strong>Exercise:</strong> Check this with better statistics by changing <span class="math inline">\(N\)</span> to a million (set <code>N=1e6</code>) and see if it agrees.</p>
+<p><strong>Note</strong>: This will introduce an error that you will need to correct by yourself by inspecting the error message.<br>
+Look at the last line <code>TypeError:</code> and try to work out what it means.</p>
+<div id="cell-22" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;76f22bad9b08767a7b737f830688106d&quot;,&quot;grade&quot;:true,&quot;grade_id&quot;:&quot;cell-6fb18d1f40c79ee9&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:true,&quot;task&quot;:false}}">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><a href="./solutions/sol1101.html">Tell me the answer!</a> ___</p>
+<p>One thing to notice here is how many refinements I had to make to get just a simple program working.</p>
+<p>The more experienced you get the more steps you’ll be able to make in one go, but it takes practice to become proficient. The process of debugging and refinement is how most programmers actually program from scratch. Also relying heavily on finding a similar bit of code and editing it to suit their needs.</p>
+<p>See the previous section on <strong>Debugging Code</strong> for details on solving errors and debugging exercises.</p>
+</section>
+</section>
+<section id="exercise-the-dice-game" class="level3" data-number="11.3.5">
+<h3 data-number="11.3.5" class="anchored" data-anchor-id="exercise-the-dice-game"><span class="header-section-number">11.3.5</span> Exercise: The Dice Game</h3>
+<p>A great way of programming is to take an existing code and modify it for your own task.</p>
+<p>Take the working code for the last example above and modify it in the following ways:</p>
+<p><strong>Part 1.</strong> Simulate a person rolling three dice <span class="math inline">\(A, B, C\)</span> (each with numbers from 1 to 6). Scores are calculated according to the following rules. Is the person likely to win on average, or lose? * <strong><span class="math inline">\(A=B=C=N\)</span></strong>: Plus N points. * <strong><span class="math inline">\(A, B, C\)</span> <em>not</em> all same, and <span class="math inline">\(A+B+C=M\leq 6\)</span></strong>: Minus M points. * <strong><span class="math inline">\(A, B, C\)</span> <em>not</em> all same, and <span class="math inline">\(A+B+C=M &gt; 6\)</span></strong>: No points lost/gained.</p>
+<div id="cell-25" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;2c1c46aabf0810d750ed7d652c31b376&quot;,&quot;grade&quot;:true,&quot;grade_id&quot;:&quot;cell-a8c5060a2c96137f&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:true,&quot;task&quot;:false}}">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Part 1: modify the last working code above here</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><a href="./solutions/sol1102.html">Click here to reveal model solution</a></p>
+<p><strong>Part 2.</strong> Simplify the programme by looking up and using the <code>random.choice</code> function.</p>
+<div id="cell-28" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;0aca537e11c570038295f7feb3bbcc7a&quot;,&quot;grade&quot;:true,&quot;grade_id&quot;:&quot;cell-771becd505be8ee2&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:true,&quot;task&quot;:false}}">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Part 2: Copy the code above and modify it here.</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><a href="./solutions/sol1103.html">Click here for model solution</a></p>
+</section>
+</section>
+<section id="practice-exercise-1a" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="practice-exercise-1a"><span class="header-section-number">11.4</span> Practice Exercise 1a:</h2>
+<section id="rockpaperscissors" class="level3" data-number="11.4.1">
+<h3 data-number="11.4.1" class="anchored" data-anchor-id="rockpaperscissors"><span class="header-section-number">11.4.1</span> Rock/paper/scissors</h3>
+<p>For this problem you will need to think through the logical steps of the problem <strong>before</strong> trying to modify your Dice Game code. * Remember to build your code <strong>one step at a time</strong> and print each step as you go along.</p>
+<p>The rules of rock/paper/scissors are:</p>
+<ul>
+<li>Two people randomly choose between “rock”, “paper” and “scissors”.</li>
+<li><strong>Rock</strong> <em>beats</em> <strong>Scissors</strong>;</li>
+<li><strong>Scisors</strong> <em>beats</em> <strong>Paper</strong>;</li>
+<li><strong>Paper</strong> <em>beats</em> <strong>rock</strong>;</li>
+<li><strong>same</strong>: play again.</li>
+</ul>
+<p>Simulate this game and print the result until someone wins 2 hands in a row.</p>
+<p>You will need to use a <code>WHILE</code> loop to keep going until someone wins, and some conditional statements to check who wins each game (if anyone).</p>
+<p>Try to use the <code>.format()</code> method when printing the answer. You will have to replace the FOR loop to make this work properly.</p>
+<p>The output could be something like:</p>
+<pre><code>A chooses Paper,    B Chooses Paper       Draw!      score=(0,0)
+A chooses Paper,    B Chooses Scissors    B Wins!    score=(0,1)
+A chooses Rock,     B Chooses Rock        Draw!      score=(0,0)
+A chooses Paper,    B Chooses Scissors    B Wins!    score=(0,1)
+A chooses Paper,    B Chooses Rock        A Wins!    score=(1,0)
+A chooses Paper,    B Chooses Rock        A Wins!    score=(2,0)</code></pre>
+<div id="cell-31" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;b3f9026f06c35c8a6df65c84ea6cdd45&quot;,&quot;grade&quot;:true,&quot;grade_id&quot;:&quot;cell-daf583bd75f19f96&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:true,&quot;task&quot;:false}}">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><a href="./solutions/sol1104.html">Click here for model answer</a></p>
+<hr>
+</section>
+</section>
+<section id="practice-exercise-1b" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="practice-exercise-1b"><span class="header-section-number">11.5</span> Practice exercise 1b:</h2>
+<section id="average-number-of-hands" class="level3" data-number="11.5.1">
+<h3 data-number="11.5.1" class="anchored" data-anchor-id="average-number-of-hands"><span class="header-section-number">11.5.1</span> Average Number of Hands</h3>
+<p>Can you modify the previous example so that it simulates the game for 1000 separate games and prints the average number of hands per game. Hint: Use a <code>FOR</code> loop for the number of games.</p>
+<ul>
+<li>The answer should be about 6</li>
+</ul>
+<div id="cell-33" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;1b798b129237ebf261e670aef49db330&quot;,&quot;grade&quot;:true,&quot;grade_id&quot;:&quot;cell-e61859c6ea1377a6&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:true,&quot;task&quot;:false}}">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><a href="./solutions/sol1105.html">Click here for model answer</a></p>
+<hr>
+</section>
+</section>
+<section id="practice-programming-from-scratch" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Practice Programming from Scratch</h1>
+<section id="worked-example-for-practice-not-assessed" class="level3" data-number="12.0.1">
+<h3 data-number="12.0.1" class="anchored" data-anchor-id="worked-example-for-practice-not-assessed"><span class="header-section-number">12.0.1</span> Worked Example for practice: NOT assessed</h3>
+</section>
+<section id="euler-method-for-numerical-integration" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="euler-method-for-numerical-integration"><span class="header-section-number">12.1</span> Euler Method for Numerical Integration</h2>
+<section id="background" class="level4">
+<h4 class="anchored" data-anchor-id="background">Background:</h4>
+<ol type="1">
+<li><p>In engineering we often start with a <em>differential equation</em> of the form <span class="math inline">\(\dfrac{\mathrm{d}y}{\mathrm{d}x} = F(x,y)\)</span> and need to <em>integrate</em> <span class="math inline">\(F(x,y)\)</span> with respect to <span class="math inline">\(x\)</span>, to obtain <span class="math inline">\(y(x)\)</span>.</p></li>
+<li><p>The formula for differentiation by small changes: <span class="math inline">\(\dfrac{\mathrm{d}y}{\mathrm{d}x} \approx \dfrac{y(x + \delta x) - y(x)}{\delta x} = F(x,y),\)</span> can be rearranged to <em>reverse differentiate</em> (integrate) the function <span class="math inline">\(F\)</span> with respect to <span class="math inline">\(x\)</span>:</p>
+<ul>
+<li><span class="math inline">\(y(x + \delta x) = y(x) + F\delta x\)</span>, where <span class="math inline">\(\delta x\)</span> is a small change in <span class="math inline">\(x\)</span> (call it <code>dx</code> for simplicity).
+<ul>
+<li>This is <strong>Euler’s Method</strong> of 1770.</li>
+</ul></li>
+<li>This can be used as an <em>iterative</em> scheme for finding the next <span class="math inline">\(x_{i+1}\)</span> from the current <span class="math inline">\(x_i\)</span>.</li>
+<li>We must start with some <em>initial</em> <span class="math inline">\(x_0\)</span> then <em>integrate</em> forwards using the scheme above (<span class="math inline">\(x_0\)</span> relates to the <em>constant of integration</em> and can be any value.)</li>
+</ul></li>
+</ol>
+<p>This can be used to solve engineering problems where we know about forces, which relate to derivatives.<br>
+In the following heat-flow problem <span class="math inline">\(F(u)=-k(u - T)\)</span>, where <span class="math inline">\(u\)</span> is the temperature inside the building, <span class="math inline">\(T\)</span> is the (constant) outside temperature <span class="math inline">\(T=5\)</span> (degrees C, but don’t tell Python the units!) and <span class="math inline">\(k\)</span> is related to the thermal properties of the building.</p>
+<section id="exercise" class="level5">
+<h5 class="anchored" data-anchor-id="exercise">Exercise:</h5>
+<ol type="1">
+<li>Use the Euler Method to plot an integral curve for the integrated function…</li>
+</ol>
+<ul>
+<li><strong>Do this!:</strong>
+<ol type="a">
+<li>a plan of how you would do this by hand,<br>
+</li>
+<li>work through <em>pseudocode</em> and<br>
+</li>
+<li>build your code bit-by-bit, to write a programme to solve the differential equation for heat flow from a building:<br>
+<span class="math inline">\(\dfrac{\mathrm{d}u}{\mathrm{d}t} = -k(u-T),\)</span><br>
+</li>
+</ol>
+<ul>
+<li>Take <code>k=0.1</code> and <code>dt=4</code>.</li>
+</ul></li>
+<li>Draw the curve from <span class="math inline">\(t=0\)</span> to <span class="math inline">\(t=24\)</span> (you can think of being in hours).</li>
+</ul>
+<p>The steps are shown below to compare with the output from your code.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(t\)</span></th>
+<th><span class="math inline">\(u(t)\)</span></th>
+<th><span class="math inline">\(F(u)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(F\delta t\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.0</td>
+<td>20.000</td>
+<td>-1.500</td>
+<td style="text-align: center;">-6.000</td>
+</tr>
+<tr class="even">
+<td>4.0</td>
+<td>14.000</td>
+<td>-0.900</td>
+<td style="text-align: center;">-3.600</td>
+</tr>
+<tr class="odd">
+<td>8.0</td>
+<td>10.400</td>
+<td>-0.540</td>
+<td style="text-align: center;">-2.160</td>
+</tr>
+<tr class="even">
+<td>12.0</td>
+<td>8.240</td>
+<td>-0.324</td>
+<td style="text-align: center;">-1.296</td>
+</tr>
+<tr class="odd">
+<td>16.0</td>
+<td>6.944</td>
+<td>-0.194</td>
+<td style="text-align: center;">-0.778</td>
+</tr>
+<tr class="even">
+<td>20.0</td>
+<td>6.166</td>
+<td>-0.117</td>
+<td style="text-align: center;">-0.467</td>
+</tr>
+<tr class="odd">
+<td>24.0</td>
+<td>5.700</td>
+<td>-0.070</td>
+<td style="text-align: center;">-0.280</td>
+</tr>
+</tbody>
+</table>
+<ol start="2" type="1">
+<li>Try changing the value of <span class="math inline">\(\delta t\)</span> (e.g.: 8, 1, 0.5) and see how it affects the accuracy of the calculation.</li>
+<li>Try different values of the starting temperature and look at how long it takes to reach equilibrium.</li>
+<li><strong>Advanced:</strong> Put in a variable external temperature <span class="math inline">\(T\)</span> (e.g.&nbsp;a sine function) and see how it responds…</li>
+</ol>
+
+
+</section>
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./10-Debugging_Code.html" class="pagination-link" aria-label="Debugging Code">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Debugging Code</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./solutions/sol0100.html" class="pagination-link" aria-label="Why does `print` fail?">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Why does <code>print</code> fail?</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

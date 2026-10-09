@@ -1,0 +1,3490 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>9&nbsp; Basics of Plotting Graphs – Programming in Python</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./10-Debugging_Code.html" rel="next">
+<link href="./07-Numerical_Arrays.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-02ae9ba62279b8bbbed70b062340170a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="application/json" class="js-hypothesis-config">
+{
+  "theme": "clean"
+}
+</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+<script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document
+    .querySelectorAll('a[href*="solutions/"]')
+    .forEach(link => {
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+    });
+});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08-Data_Analysis.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basics of Plotting Graphs</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Programming in Python</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Quick Summary</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-Python_Basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Python Basics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Using Variables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-Functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Writing Functions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-If_and_While.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditionals and While Loops</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-Lists-Dictionaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lists and Dictionaries</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-For_Loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Iteration using <code>for</code> Loops</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Numerical_Arrays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical Arrays</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-Data_Analysis.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basics of Plotting Graphs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-Debugging_Code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Debugging Code</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-Writing_Programs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Writing Programs</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="-1">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#matplotlib" id="toc-matplotlib" class="nav-link active" data-scroll-target="#matplotlib"><span class="header-section-number">9.1</span> Matplotlib</a></li>
+  <li><a href="#simple-plotting" id="toc-simple-plotting" class="nav-link" data-scroll-target="#simple-plotting"><span class="header-section-number">9.2</span> Simple Plotting</a>
+  <ul class="collapse">
+  <li><a href="#creating-a-set-of-figure-axes" id="toc-creating-a-set-of-figure-axes" class="nav-link" data-scroll-target="#creating-a-set-of-figure-axes"><span class="header-section-number">9.2.1</span> Creating a set of Figure <em>axes</em></a></li>
+  <li><a href="#example-sine-wave" id="toc-example-sine-wave" class="nav-link" data-scroll-target="#example-sine-wave"><span class="header-section-number">9.2.2</span> Example: Sine Wave</a></li>
+  </ul></li>
+  <li><a href="#multiple-axes-on-the-same-plot" id="toc-multiple-axes-on-the-same-plot" class="nav-link" data-scroll-target="#multiple-axes-on-the-same-plot"><span class="header-section-number">9.3</span> Multiple axes on the same plot</a></li>
+  <li><a href="#changing-the-plotting-attributes" id="toc-changing-the-plotting-attributes" class="nav-link" data-scroll-target="#changing-the-plotting-attributes"><span class="header-section-number">9.4</span> Changing the Plotting Attributes</a>
+  <ul class="collapse">
+  <li><a href="#plotting-styles" id="toc-plotting-styles" class="nav-link" data-scroll-target="#plotting-styles"><span class="header-section-number">9.4.1</span> Plotting Styles</a></li>
+  <li><a href="#multiple-plots-on-the-same-axis" id="toc-multiple-plots-on-the-same-axis" class="nav-link" data-scroll-target="#multiple-plots-on-the-same-axis"><span class="header-section-number">9.4.2</span> Multiple Plots on the same axis</a></li>
+  <li><a href="#labels-and-legends" id="toc-labels-and-legends" class="nav-link" data-scroll-target="#labels-and-legends"><span class="header-section-number">9.4.3</span> Labels and Legends</a></li>
+  </ul></li>
+  <li><a href="#saving-figures-to-a-file-on-your-hard-drive" id="toc-saving-figures-to-a-file-on-your-hard-drive" class="nav-link" data-scroll-target="#saving-figures-to-a-file-on-your-hard-drive"><span class="header-section-number">9.5</span> Saving Figures to a File on Your Hard Drive</a></li>
+  <li><a href="#data-analysis-using-pandas" id="toc-data-analysis-using-pandas" class="nav-link" data-scroll-target="#data-analysis-using-pandas"><span class="header-section-number">10</span> Data analysis using Pandas</a>
+  <ul class="collapse">
+  <li><a href="#returning-to-dictionaries" id="toc-returning-to-dictionaries" class="nav-link" data-scroll-target="#returning-to-dictionaries"><span class="header-section-number">10.1</span> Returning to dictionaries</a></li>
+  <li><a href="#data-frames-and-pandas" id="toc-data-frames-and-pandas" class="nav-link" data-scroll-target="#data-frames-and-pandas"><span class="header-section-number">10.2</span> Data Frames and Pandas</a>
+  <ul class="collapse">
+  <li><a href="#see-the-comprehensive-cheatsheet-on-moodle-for-full-information-about-pandas" id="toc-see-the-comprehensive-cheatsheet-on-moodle-for-full-information-about-pandas" class="nav-link" data-scroll-target="#see-the-comprehensive-cheatsheet-on-moodle-for-full-information-about-pandas"><span class="header-section-number">10.2.1</span> See the comprehensive cheatsheet on moodle for full information about Pandas</a></li>
+  <li><a href="#importing-spreadsheet-data" id="toc-importing-spreadsheet-data" class="nav-link" data-scroll-target="#importing-spreadsheet-data"><span class="header-section-number">10.2.2</span> Importing spreadsheet data</a></li>
+  <li><a href="#filtering-data" id="toc-filtering-data" class="nav-link" data-scroll-target="#filtering-data"><span class="header-section-number">10.2.3</span> Filtering data:</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+<div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/PyEngSci/ProgPy" target="_blank"><i class="bi bi-download"></i>Course Files</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basics of Plotting Graphs</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Run all cells marked <code>In [ ]</code> using the [<span class="math inline">\(\blacktriangleright\)</span> Run] button above and <strong>think about the result you see</strong>. Be sure to do all exercises (in blank cells) and run all completed code cells.</p>
+<p>If anything goes wrong, <strong>restart the kernel</strong> (in the menubar, select Kernel<span class="math inline">\(\rightarrow\)</span>Restart). Or run text cells to get the formatted text back from markdown.</p>
+<hr>
+<section id="matplotlib" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="matplotlib"><span class="header-section-number">9.1</span> Matplotlib</h2>
+<p>Matplotlib, and particularly its plotting capabilities in <code>pyplot</code>, are used to create publication quality figures of functions and data. The functionality is vast, and you will need to refer to the documentation frequently until you are familiar with what you need from it and the details of how it is used:<br>
+https://matplotlib.org/stable/tutorials/introductory/usage.html.<br>
+Most of the functionality we will be using are contained in the <code>pyplot</code> functionality of Matplotlib, which is normally accessed using:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The various plotting tools and ways of specifying figure attributes are then accessed using the syntax:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>plt.ATTRIBUTE(ARGUMENTS)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Where <code>ATTRIBUTE</code> is replaced by the name of the function or other attribute you wish to access.</p>
+</section>
+<section id="simple-plotting" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="simple-plotting"><span class="header-section-number">9.2</span> Simple Plotting</h2>
+<p>In its simplest terms the <code>plot()</code> function in <code>pyplot</code> takes a list of <span class="math inline">\(x\)</span> values and plots each one on the <span class="math inline">\(x-\)</span>axis against a corresponding <span class="math inline">\(y-\)</span>value from a list of <span class="math inline">\(y\)</span> values of the same length.</p>
+<p>This is demonstrated for the squares of <span class="math inline">\(x=[1,2,3,4]\)</span> below:</p>
+<div id="cell-4" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>xvals <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>])</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>yvals <span class="op">=</span> xvals<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>plt.plot(xvals, yvals)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$x^2$'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="08-Data_Analysis_files/figure-html/cell-2-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Many online examples and AI generated code will use this simple <em>implicit</em> method for plotting, so you should be aware of it. A nice introductory guide can be found here:<br>
+https://matplotlib.org/stable/tutorials/pyplot.html</p>
+<p>These notes will use a more flexible (object oriented) method that allows much more fine control over figures: https://matplotlib.org/stable/users/explain/quick_start.html</p>
+<section id="creating-a-set-of-figure-axes" class="level3" data-number="9.2.1">
+<h3 data-number="9.2.1" class="anchored" data-anchor-id="creating-a-set-of-figure-axes"><span class="header-section-number">9.2.1</span> Creating a set of Figure <em>axes</em></h3>
+<p>The <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html#matplotlib.pyplot.subplots"><code>plt.subplots</code></a> function returns two things: a <strong>fig</strong>ure <em>canvas</em> to construct a figure on, and a set of <em><strong>ax</strong>es</em> to draw specific plots on. * The <code>fig</code> object has <code>.ATTRIBUTES</code> for changing things such as the figure title, axis labels and decorations * The <code>ax</code> object has <code>.ATTRIBUTES</code> such as functions for specific plot types etc.</p>
+<div id="cell-6" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="08-Data_Analysis_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Once you have some axes (on a figure) you can start drawing things directly on them.</p>
+</section>
+<section id="example-sine-wave" class="level3" data-number="9.2.2">
+<h3 data-number="9.2.2" class="anchored" data-anchor-id="example-sine-wave"><span class="header-section-number">9.2.2</span> Example: Sine Wave</h3>
+<p>To plot a sine wave between <span class="math inline">\(0\)</span> and <span class="math inline">\(\pi\)</span>:</p>
+<div id="cell-8" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pi<span class="op">=</span>np.pi</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create a single set of axes on a figure</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>xvals <span class="op">=</span> np.linspace(<span class="op">-</span>pi,pi,<span class="dv">100</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>sinx <span class="op">=</span> np.sin(xvals)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>ax.plot(xvals, sinx)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="08-Data_Analysis_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="multiple-axes-on-the-same-plot" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="multiple-axes-on-the-same-plot"><span class="header-section-number">9.3</span> Multiple axes on the same plot</h2>
+<p>The possible arguments to <code>plt.subplots()</code> are given in the documentation here: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html#matplotlib.pyplot.subplots</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.subplots(nrows<span class="op">=</span><span class="dv">1</span>, ncols<span class="op">=</span><span class="dv">1</span>, <span class="op">*</span>, sharex<span class="op">=</span><span class="va">False</span>, </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                  sharey<span class="op">=</span><span class="va">False</span>, squeeze<span class="op">=</span><span class="va">True</span>, subplot_kw<span class="op">=</span><span class="va">None</span>, </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                  gridspec_kw<span class="op">=</span><span class="va">None</span>, <span class="op">**</span>fig_kw)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Of particular interest are the number of rows <code>nrows</code> and columns <code>ncols</code> of axes on the figure.<br>
+If you don’t specify these, there will only be a single set of axes as above, but if you give two values as arguments they stand for the number of rows and number of columns.<br>
+The <code>ax</code> object will then be a <code>[list]</code> of axes or a set of axes, depending on how you unpack the returned values:</p>
+<div id="cell-10" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">2</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].plot(xvals, np.sin(xvals))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].plot(xvals, np.cos(xvals))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="08-Data_Analysis_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>For a square <span class="math inline">\(2\times 2\)</span> grid:</p>
+<div id="cell-12" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>[[ax1, ax2], [ax3, ax4]] <span class="op">=</span> axs</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>ax1.plot(xvals, np.sin(xvals)) <span class="co"># x vs sin(x)</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>ax2.plot(np.sin(xvals), xvals) <span class="co"># flipped axes</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>ax3.plot(xvals, np.cos(xvals)) <span class="co"># x vs cos(x)</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>ax4.plot(np.sin(xvals), np.cos(xvals)) <span class="co"># parametric plot of sin(x) vs cos(x)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="08-Data_Analysis_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="changing-the-plotting-attributes" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="changing-the-plotting-attributes"><span class="header-section-number">9.4</span> Changing the Plotting Attributes</h2>
+<section id="plotting-styles" class="level3" data-number="9.4.1">
+<h3 data-number="9.4.1" class="anchored" data-anchor-id="plotting-styles"><span class="header-section-number">9.4.1</span> Plotting Styles</h3>
+<p>We can change the plotting style (and many other features) using extra arguments to the <code>subplots</code> and <code>plot</code> functions.<br>
+The plot attributes can be given as keyword arguments after the x-values and y-values.<br>
+The arguments are given as strings and consist of either a symbol to specify a marker or line type or the colour<br>
+(spelled using the American spelling <code>color</code>, without a “u”):</p>
+<div id="cell-14" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>xvals <span class="op">=</span> np.arange(<span class="dv">11</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>yvals <span class="op">=</span> xvals<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># set some x and y dimensions (in inch !!!)</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>dims <span class="op">=</span> (<span class="dv">8</span>,<span class="dv">8</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>dims) <span class="co"># specify the size of the figure</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>ax.plot(xvals, yvals, linestyle<span class="op">=</span><span class="st">'--'</span>, marker<span class="op">=</span><span class="st">'o'</span>, color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="08-Data_Analysis_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Use <code>help(ax.plot)</code> (in a new NoteBook) to see what else is available and experiment with line styles and points etc., as well as online resources.</p>
+</section>
+<section id="multiple-plots-on-the-same-axis" class="level3" data-number="9.4.2">
+<h3 data-number="9.4.2" class="anchored" data-anchor-id="multiple-plots-on-the-same-axis"><span class="header-section-number">9.4.2</span> Multiple Plots on the same axis</h3>
+<p>The following example shows that we can plot more than one function on the same graph. A different colour is automatically used for each function.</p>
+<div id="cell-16" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>pi <span class="op">=</span> np.pi</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>xs <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span><span class="op">*</span>pi, <span class="dv">50</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>ys <span class="op">=</span> np.sin(xs)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>zs <span class="op">=</span> np.cos(xs)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>ax.plot(xs, ys)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>ax.plot(xs, zs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="08-Data_Analysis_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="labels-and-legends" class="level3" data-number="9.4.3">
+<h3 data-number="9.4.3" class="anchored" data-anchor-id="labels-and-legends"><span class="header-section-number">9.4.3</span> Labels and Legends</h3>
+<p>The plot can be improved by adding labels for the horizontal and vertical axes and a legend.</p>
+<div id="cell-18" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;markdown&quot;,&quot;checksum&quot;:&quot;c9139d74658a78185236a5c8ecfaec9c&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-60e65df13614b3d8&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-tags="[]" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Angle t (radians)"</span>, size<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"f (t)"</span>, size<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>labels<span class="op">=</span>[<span class="st">"sin(t)"</span>, <span class="st">"cos(t)"</span>]</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>ax.legend(labels)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>fig <span class="co"># shows the figure again</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div>
+<figure class="figure">
+<p><img src="08-Data_Analysis_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="saving-figures-to-a-file-on-your-hard-drive" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="saving-figures-to-a-file-on-your-hard-drive"><span class="header-section-number">9.5</span> Saving Figures to a File on Your Hard Drive</h2>
+<p><code>fig.savefig('FILENAME.extension')</code> saves the figure to a file named <code>FILENAME</code> with the image format given by the <code>.extension</code>: e.g.: <code>.png</code> <code>.jpg</code> <code>.pdf</code> etc.</p>
+<div id="cell-20" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run the code above (or paste it here) before running this cell</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'sinusoids.png'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;Figure size 640x480 with 0 Axes&gt;</code></pre>
+</div>
+</div>
+<ul>
+<li>Notice a file has appeared in your working folder for this lesson that could be used in a report or other document.</li>
+</ul>
+<p>A useful thing to do is to define a function that does all the steps of creating a figure template, so you can apply it to lots of different datasets.</p>
+<p>The example below has quite a lot going on, so take your time to study it and try changing some of the figure properties for yourself.</p>
+<div id="cell-22" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np, matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plotter(xdata, ydata):</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    fig,ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">4</span>))</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">0</span>].plot(xdata,ydata, linewidth<span class="op">=</span><span class="fl">0.2</span>, color<span class="op">=</span><span class="st">'red'</span>, marker<span class="op">=</span><span class="st">'*'</span>, markerfacecolor<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">1</span>].hist(ydata, orientation<span class="op">=</span><span class="st">'horizontal'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">0</span>].set_ylabel(<span class="st">'Data Values'</span>, size<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">0</span>].set_xlabel(<span class="st">'Data Index'</span>, size<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">1</span>].set_xlabel(<span class="st">'Data Counts'</span>, size<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">0</span>].set_xlim(<span class="dv">0</span>,<span class="dv">300</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> [<span class="dv">0</span>,<span class="dv">1</span>]:</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>        ax[i].grid() </span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>        ax[i].set_ylim(<span class="dv">0</span>,<span class="dv">80</span>)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">0</span>].text(<span class="op">-</span><span class="dv">50</span>,<span class="dv">0</span>,<span class="st">'(a)'</span>, size<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">1</span>].text(<span class="op">-</span><span class="dv">10</span>,<span class="dv">0</span>,<span class="st">'(b)'</span>, size<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fig</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co">##########</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">1</span>,<span class="dv">301</span>)</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.random.normal(<span class="dv">42</span>,<span class="dv">12</span>,<span class="dv">300</span>)</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plotter(x,y)</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="co">##########</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">'fancyfig.pdf'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="08-Data_Analysis_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The plots using Pandas in the next section can be manipulated in similar ways using matplotlib.</p>
+</section>
+<section id="data-analysis-using-pandas" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Data analysis using Pandas</h1>
+<section id="returning-to-dictionaries" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="returning-to-dictionaries"><span class="header-section-number">10.1</span> Returning to dictionaries</h2>
+<p>Dictionary entries can also be numerical arrays (as well as any other object)</p>
+<div id="cell-26" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;771ce5136f39b6cdb67d863e376f02ce&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-9c48c4c98fc8f8b3&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>thedata <span class="op">=</span> <span class="bu">dict</span>() <span class="co">#another way of making an empty dictionary</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>thedata[<span class="st">"Days"</span>] <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">8</span>))</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>thedata[<span class="st">"Temperatures"</span>] <span class="op">=</span> np.array([<span class="fl">23.3</span>, <span class="fl">16.9</span>, <span class="fl">21.8</span>, <span class="fl">26.9</span>, <span class="fl">23.5</span>, <span class="fl">21.7</span>, <span class="fl">19.8</span>])</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>thedata</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>{'Days': [1, 2, 3, 4, 5, 6, 7],
+ 'Temperatures': array([23.3, 16.9, 21.8, 26.9, 23.5, 21.7, 19.8])}</code></pre>
+</div>
+</div>
+<p>Which can also be manipulated:</p>
+<div id="cell-28" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;b35621da22e085b4684b298d6678efd6&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-016fe1d96ada2f49&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>thedata[<span class="st">"Temperatures"</span>] <span class="op">=</span> thedata[<span class="st">"Temperatures"</span>]<span class="op">-</span><span class="dv">10</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>thedata[<span class="st">"Temperatures"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>array([13.3,  6.9, 11.8, 16.9, 13.5, 11.7,  9.8])</code></pre>
+</div>
+</div>
+</section>
+<section id="data-frames-and-pandas" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="data-frames-and-pandas"><span class="header-section-number">10.2</span> Data Frames and Pandas</h2>
+<p>Pandas is a very powerful data analysis library that extends on the functionality of numpy and matplotlib.<br>
+It can be used to load, analyse plot and save data.</p>
+<section id="see-the-comprehensive-cheatsheet-on-moodle-for-full-information-about-pandas" class="level3" data-number="10.2.1">
+<h3 data-number="10.2.1" class="anchored" data-anchor-id="see-the-comprehensive-cheatsheet-on-moodle-for-full-information-about-pandas"><span class="header-section-number">10.2.1</span> See the comprehensive cheatsheet on moodle for full information about Pandas</h3>
+<p>The basic data types used by pandas are the dataframe and the series. Here we’ll look at dataframes, which are 2D arrays with labels and related to a spreadsheet.</p>
+<div id="cell-30" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;143f4785250cceb46e8c93b237f8c297&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-a8b395b35c884ece&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># make a dataframe called df out of our previous dictionary:</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(thedata)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Days  Temperatures
+0     1          13.3
+1     2           6.9
+2     3          11.8
+3     4          16.9
+4     5          13.5
+5     6          11.7
+6     7           9.8</code></pre>
+</div>
+</div>
+<p>In Jupyter-Notebooks dataframes will display with nice formatting by putting just their name at the end of a code cell:</p>
+<div id="cell-32" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;8e835f6d1bee6af550033fe54c3612df&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-dccbfdacef668890&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Days</th>
+<th data-quarto-table-cell-role="th">Temperatures</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>1</td>
+<td>13.3</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>2</td>
+<td>6.9</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>3</td>
+<td>11.8</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>4</td>
+<td>16.9</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>5</td>
+<td>13.5</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>6</td>
+<td>11.7</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>7</td>
+<td>9.8</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Columns can be accessed in the same way as dictionaries:</p>
+<div id="cell-34" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;3abad3e01a53aaa140d7f93699e6c4be&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-696ce685f2ff22a1&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Temperatures"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>0    13.3
+1     6.9
+2    11.8
+3    16.9
+4    13.5
+5    11.7
+6     9.8
+Name: Temperatures, dtype: float64</code></pre>
+</div>
+</div>
+<p>And they can be manipulated like Numpy arrays:</p>
+<div id="cell-36" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;59633640b6c98b3734a2cbde77bacc6d&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-dfb9a6d649e11597&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>average <span class="op">=</span> df[<span class="st">"Temperatures"</span>].mean()</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(average)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>deviation <span class="op">=</span> df[<span class="st">"Temperatures"</span>]<span class="op">-</span>average</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(deviation)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>11.985714285714284
+0    1.314286
+1   -5.085714
+2   -0.185714
+3    4.914286
+4    1.514286
+5   -0.285714
+6   -2.185714
+Name: Temperatures, dtype: float64</code></pre>
+</div>
+</div>
+<p>As well as writing new columns:</p>
+<div id="cell-38" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;82d2bebc5494e7424284c1db667d2e56&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-47c7e9f2be23349e&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Deviations"</span>] <span class="op">=</span> deviation</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Days</th>
+<th data-quarto-table-cell-role="th">Temperatures</th>
+<th data-quarto-table-cell-role="th">Deviations</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>1</td>
+<td>13.3</td>
+<td>1.314286</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>2</td>
+<td>6.9</td>
+<td>-5.085714</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>3</td>
+<td>11.8</td>
+<td>-0.185714</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>4</td>
+<td>16.9</td>
+<td>4.914286</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>5</td>
+<td>13.5</td>
+<td>1.514286</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>6</td>
+<td>11.7</td>
+<td>-0.285714</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>7</td>
+<td>9.8</td>
+<td>-2.185714</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>This can then be saved as a CSV using <code>df.to_csv("&lt;FILENAME&gt;.csv")</code> or even an Excel spreadsheet:</p>
+<ul>
+<li>Note: the <code>index=False</code> argument makes sure the left-hand index column (<code>[0,1,2,3,4,5,6]</code>) does <strong>not</strong> get written to the spreadsheet.</li>
+<li>The <code>sheet_name</code> argument allows you to name the sheet tab in Excel.</li>
+</ul>
+<div id="cell-40" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;9531865bc34fc2307cbbf7bb5c36f85d&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-274d592aaa58fa7d&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>df.to_excel(<span class="st">"devdata.xlsx"</span>, index<span class="op">=</span><span class="va">False</span>, sheet_name<span class="op">=</span><span class="st">"Temperature Deviations"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-41" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df.to_csv(<span class="st">"devdata.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>Now download and open the <code>devdata.xlsx</code> file that was just created!</li>
+</ul>
+<p>Lists and arrays can also be used to make Data-Frames:</p>
+<div id="cell-43" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;5401ca4737c1b782409214139158864f&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-4d60060058da4e5e&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>temps <span class="op">=</span> np.array([<span class="fl">23.3</span>, <span class="fl">16.9</span>, <span class="fl">21.8</span>, <span class="fl">26.9</span>, <span class="fl">23.5</span>, <span class="fl">21.7</span>, <span class="fl">19.8</span>])</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>average <span class="op">=</span> temps.mean()</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>devs <span class="op">=</span> temps<span class="op">-</span>average <span class="co"># deviation of each point from the mean</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>stdev <span class="op">=</span> temps.std() <span class="co"># standard deviation of the dataset</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>zscore <span class="op">=</span> devs<span class="op">/</span>stdev <span class="co"># Z-score is the number of standard deviations each reading is from the mean</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> [temps, devs, zscore]</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>mynewdataframe <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>mynewdataframe</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">0</th>
+<th data-quarto-table-cell-role="th">1</th>
+<th data-quarto-table-cell-role="th">2</th>
+<th data-quarto-table-cell-role="th">3</th>
+<th data-quarto-table-cell-role="th">4</th>
+<th data-quarto-table-cell-role="th">5</th>
+<th data-quarto-table-cell-role="th">6</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>23.300000</td>
+<td>16.900000</td>
+<td>21.800000</td>
+<td>26.900000</td>
+<td>23.500000</td>
+<td>21.700000</td>
+<td>19.800000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>1.314286</td>
+<td>-5.085714</td>
+<td>-0.185714</td>
+<td>4.914286</td>
+<td>1.514286</td>
+<td>-0.285714</td>
+<td>-2.185714</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>0.452977</td>
+<td>-1.752823</td>
+<td>-0.064008</td>
+<td>1.693739</td>
+<td>0.521908</td>
+<td>-0.098473</td>
+<td>-0.753320</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="cell-44" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;10dec8e78b04e50d02693ec67ee10632&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-296218947b05b95c&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="21">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rotate the dataframe:</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>newdata <span class="op">=</span> mynewdataframe.transpose()</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>newdata</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">0</th>
+<th data-quarto-table-cell-role="th">1</th>
+<th data-quarto-table-cell-role="th">2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>23.3</td>
+<td>1.314286</td>
+<td>0.452977</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>16.9</td>
+<td>-5.085714</td>
+<td>-1.752823</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>21.8</td>
+<td>-0.185714</td>
+<td>-0.064008</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>26.9</td>
+<td>4.914286</td>
+<td>1.693739</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>23.5</td>
+<td>1.514286</td>
+<td>0.521908</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>21.7</td>
+<td>-0.285714</td>
+<td>-0.098473</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>19.8</td>
+<td>-2.185714</td>
+<td>-0.753320</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<ul>
+<li>Data can be accessed and manipulated in similar ways to 2D arrays, but also accessed by the column name, new columns can be inserted etc.</li>
+</ul>
+<p>A dataframe also has an <em>object</em> variable <code>.columns</code> inside which describes the column headings. * In the above example <code>newdata.columns = [0, 1, 2]</code> by default.</p>
+<section id="renaming-the-columns" class="level4">
+<h4 class="anchored" data-anchor-id="renaming-the-columns">Renaming the columns</h4>
+<div id="cell-47" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;8b9ee9e23ad00d51fe56361c6d44e2d0&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-fc2b8e6e613a2522&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="22">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>newdata.columns <span class="op">=</span> <span class="st">"Temp"</span>, <span class="st">"Deviation"</span>, <span class="st">"Z-value"</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>newdata</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Temp</th>
+<th data-quarto-table-cell-role="th">Deviation</th>
+<th data-quarto-table-cell-role="th">Z-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>23.3</td>
+<td>1.314286</td>
+<td>0.452977</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>16.9</td>
+<td>-5.085714</td>
+<td>-1.752823</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>21.8</td>
+<td>-0.185714</td>
+<td>-0.064008</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>26.9</td>
+<td>4.914286</td>
+<td>1.693739</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>23.5</td>
+<td>1.514286</td>
+<td>0.521908</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>21.7</td>
+<td>-0.285714</td>
+<td>-0.098473</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>19.8</td>
+<td>-2.185714</td>
+<td>-0.753320</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>A dataframe also has a <code>.index</code> property naming the rows, which can be changed:</p>
+<div id="cell-49" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;a50eab2edd6cb27dd26a2b4d0668bf34&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-456a7433b97ce8c3&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="23">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>newdata.index <span class="op">=</span> [<span class="st">"Mon"</span>, <span class="st">"Tue"</span>, <span class="st">"Wed"</span>, <span class="st">"Thu"</span>, <span class="st">"Fri"</span>, <span class="st">"Sat"</span>, <span class="st">"Sun"</span>]</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>newdata</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Temp</th>
+<th data-quarto-table-cell-role="th">Deviation</th>
+<th data-quarto-table-cell-role="th">Z-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Mon</th>
+<td>23.3</td>
+<td>1.314286</td>
+<td>0.452977</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Tue</th>
+<td>16.9</td>
+<td>-5.085714</td>
+<td>-1.752823</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Wed</th>
+<td>21.8</td>
+<td>-0.185714</td>
+<td>-0.064008</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Thu</th>
+<td>26.9</td>
+<td>4.914286</td>
+<td>1.693739</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Fri</th>
+<td>23.5</td>
+<td>1.514286</td>
+<td>0.521908</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Sat</th>
+<td>21.7</td>
+<td>-0.285714</td>
+<td>-0.098473</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Sun</th>
+<td>19.8</td>
+<td>-2.185714</td>
+<td>-0.753320</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>See the very comprehensive sheet on moodle (also ones such as <a href="https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf">this one</a>) to find out more details.</p>
+</section>
+</section>
+<section id="importing-spreadsheet-data" class="level3" data-number="10.2.2">
+<h3 data-number="10.2.2" class="anchored" data-anchor-id="importing-spreadsheet-data"><span class="header-section-number">10.2.2</span> Importing spreadsheet data</h3>
+<p>It is possible to import data into a data-frame from plain text files, CSV files or even excel spreadsheets.</p>
+<div id="cell-51" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;310e6161169044dde2ab83b3915e073f&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-13158081153197e3&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="24">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_excel(<span class="st">"Files/Case Study Data.xlsx"</span>, sheet_name<span class="op">=</span><span class="st">"Data"</span>)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/macha/anaconda3/lib/python3.9/site-packages/openpyxl/worksheet/_reader.py:329: UserWarning: Unknown extension is not supported and will be removed
+  warn(msg)</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Project</th>
+<th data-quarto-table-cell-role="th">Region</th>
+<th data-quarto-table-cell-role="th">Country</th>
+<th data-quarto-table-cell-role="th">Type</th>
+<th data-quarto-table-cell-role="th">Rating</th>
+<th data-quarto-table-cell-role="th">Cost.Million.USD</th>
+<th data-quarto-table-cell-role="th">Total.Area.sqm</th>
+<th data-quarto-table-cell-role="th">Total.Delivered.kWh</th>
+<th data-quarto-table-cell-role="th">Delivered.Intensity.KWh.sqm.y</th>
+<th data-quarto-table-cell-role="th">Electricity.Intensity.kWh.sqm.y</th>
+<th data-quarto-table-cell-role="th">Gas.Intensity.kWh.sqm.y</th>
+<th data-quarto-table-cell-role="th">Water.L.sqm</th>
+<th data-quarto-table-cell-role="th">PV.Intensity.kWh.sqm</th>
+<th data-quarto-table-cell-role="th">Solar.Thermal.kWh.sqm</th>
+<th data-quarto-table-cell-role="th">Steam.kWh.sqm</th>
+<th data-quarto-table-cell-role="th">District.Heating.Intensity.kWh.sqm</th>
+<th data-quarto-table-cell-role="th">District.Cooling.Intensity.kWh.sqm</th>
+<th data-quarto-table-cell-role="th">CHP.generated.Elec.kWh.sqm</th>
+<th data-quarto-table-cell-role="th">CHP.generated.Heat.kWh.sqm</th>
+<th data-quarto-table-cell-role="th">Biomass.Boiler.kWh.sqm.y</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>Manitoba Hydro Place</td>
+<td>Americas</td>
+<td>Canada</td>
+<td>Commercial</td>
+<td>LEED-Platinum</td>
+<td>269.660000</td>
+<td>65000.000000</td>
+<td>7.280000e+06</td>
+<td>112.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>Child Development Centre</td>
+<td>Americas</td>
+<td>Canada</td>
+<td>University</td>
+<td>LEED-Platinum</td>
+<td>22.310000</td>
+<td>11612.140575</td>
+<td>1.817300e+06</td>
+<td>156.500000</td>
+<td>47.000000</td>
+<td>105.000000</td>
+<td>69.000000</td>
+<td>4.500000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>FIPKE Centre for Innovative Research</td>
+<td>Americas</td>
+<td>Canada</td>
+<td>University</td>
+<td>Green-Globe-5</td>
+<td>30.555000</td>
+<td>6323.794118</td>
+<td>2.365099e+06</td>
+<td>374.000000</td>
+<td>307.000000</td>
+<td>67.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>Transoceanica</td>
+<td>Americas</td>
+<td>Chile</td>
+<td>Commercial</td>
+<td>LEED-Gold</td>
+<td>20.924644</td>
+<td>13959.068901</td>
+<td>7.496020e+05</td>
+<td>53.700000</td>
+<td>53.700000</td>
+<td>NaN</td>
+<td>330.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>The Cooper Union</td>
+<td>Americas</td>
+<td>United States</td>
+<td>University</td>
+<td>LEED-Platinum</td>
+<td>112.000000</td>
+<td>16255.124535</td>
+<td>8.745257e+06</td>
+<td>538.000000</td>
+<td>306.000000</td>
+<td>232.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>Biodesign Institute B</td>
+<td>Americas</td>
+<td>United States</td>
+<td>University</td>
+<td>LEED-Platinum</td>
+<td>78.500000</td>
+<td>27184.466019</td>
+<td>2.520000e+07</td>
+<td>927.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>602.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>DELL Children's Medical Center of Central Texas</td>
+<td>Americas</td>
+<td>United States</td>
+<td>Hospital</td>
+<td>LEED-Platinum</td>
+<td>137.000000</td>
+<td>43948.234956</td>
+<td>3.990500e+07</td>
+<td>908.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7</th>
+<td>Kroon Hall</td>
+<td>Americas</td>
+<td>United States</td>
+<td>University</td>
+<td>LEED-Platinum</td>
+<td>33.500000</td>
+<td>6205.254065</td>
+<td>6.105970e+05</td>
+<td>98.400000</td>
+<td>83.000000</td>
+<td>NaN</td>
+<td>130.000000</td>
+<td>15.400000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">8</th>
+<td>Newark Center at Ohlone College</td>
+<td>Americas</td>
+<td>United States</td>
+<td>University</td>
+<td>LEED-Platinum</td>
+<td>58.000000</td>
+<td>12806.321244</td>
+<td>1.235810e+06</td>
+<td>96.500000</td>
+<td>38.750078</td>
+<td>4.305564</td>
+<td>425.000000</td>
+<td>5.500000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">9</th>
+<td>Tahoe Center for Environmental Sciences</td>
+<td>Americas</td>
+<td>United States</td>
+<td>University</td>
+<td>LEED-Platinum</td>
+<td>25.000000</td>
+<td>4374.310680</td>
+<td>4.505540e+05</td>
+<td>103.000000</td>
+<td>60.277898</td>
+<td>7.534737</td>
+<td>NaN</td>
+<td>6.458346</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">10</th>
+<td>Center for Health and Healing, Oregon</td>
+<td>Americas</td>
+<td>United States</td>
+<td>University</td>
+<td>LEED-Platinum</td>
+<td>145.400000</td>
+<td>38143.178709</td>
+<td>1.784338e+07</td>
+<td>467.800000</td>
+<td>189.000000</td>
+<td>281.000000</td>
+<td>459.000000</td>
+<td>1.200000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">11</th>
+<td>NREL Research Support Facility 1</td>
+<td>Americas</td>
+<td>United States</td>
+<td>University</td>
+<td>LEED-Platinum</td>
+<td>91.400000</td>
+<td>33457.000000</td>
+<td>3.713727e+06</td>
+<td>111.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>89.517889</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">12</th>
+<td>Twelve West</td>
+<td>Americas</td>
+<td>United States</td>
+<td>Commercial</td>
+<td>LEED-Platinum</td>
+<td>138.000000</td>
+<td>39747.000000</td>
+<td>5.476264e+06</td>
+<td>137.778053</td>
+<td>64.583463</td>
+<td>36.597295</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">13</th>
+<td>2000 Tower Oaks Blvd</td>
+<td>Americas</td>
+<td>United States</td>
+<td>Commercial</td>
+<td>LEED-Platinum</td>
+<td>63.600000</td>
+<td>18619.361936</td>
+<td>3.385000e+06</td>
+<td>181.800000</td>
+<td>181.800000</td>
+<td>NaN</td>
+<td>559.625000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">14</th>
+<td>Regent's Hall</td>
+<td>Americas</td>
+<td>United States</td>
+<td>University</td>
+<td>LEED-Platinum</td>
+<td>63.000000</td>
+<td>17859.989362</td>
+<td>3.357678e+06</td>
+<td>188.000000</td>
+<td>123.656737</td>
+<td>NaN</td>
+<td>208.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>65.014019</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">15</th>
+<td>Great River Energy</td>
+<td>Americas</td>
+<td>United States</td>
+<td>Commercial</td>
+<td>LEED-Platinum</td>
+<td>65.000000</td>
+<td>15434.070000</td>
+<td>3.086814e+06</td>
+<td>200.000000</td>
+<td>186.000000</td>
+<td>14.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">16</th>
+<td>Lewis &amp; Clark State Office building</td>
+<td>Americas</td>
+<td>United States</td>
+<td>Commercial</td>
+<td>LEED-Platinum</td>
+<td>18.100000</td>
+<td>11324.251203</td>
+<td>2.513984e+06</td>
+<td>222.000000</td>
+<td>222.000000</td>
+<td>NaN</td>
+<td>75.000000</td>
+<td>5.700000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">17</th>
+<td>Johnson Controls Campus</td>
+<td>Americas</td>
+<td>United States</td>
+<td>Commercial</td>
+<td>LEED-Platinum</td>
+<td>73.000000</td>
+<td>28745.989412</td>
+<td>7.330227e+06</td>
+<td>255.000000</td>
+<td>168.697168</td>
+<td>86.302832</td>
+<td>NaN</td>
+<td>1.100000</td>
+<td>0.2</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">18</th>
+<td>Genzyme Center</td>
+<td>Americas</td>
+<td>United States</td>
+<td>Commercial</td>
+<td>LEED-Platinum</td>
+<td>140.000000</td>
+<td>32021.614035</td>
+<td>9.126160e+06</td>
+<td>285.000000</td>
+<td>149.000000</td>
+<td>NaN</td>
+<td>638.000000</td>
+<td>0.800000</td>
+<td>NaN</td>
+<td>136.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">19</th>
+<td>CSOB</td>
+<td>Europe</td>
+<td>Czech Republic</td>
+<td>Commercial</td>
+<td>LEED-Gold</td>
+<td>107.000000</td>
+<td>82365.580435</td>
+<td>1.515527e+07</td>
+<td>184.000000</td>
+<td>152.000000</td>
+<td>32.000000</td>
+<td>325.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">20</th>
+<td>Lintulahti</td>
+<td>Europe</td>
+<td>Finland</td>
+<td>Commercial</td>
+<td>LEED-Platinum</td>
+<td>29.500000</td>
+<td>12885.708920</td>
+<td>2.744656e+06</td>
+<td>213.000000</td>
+<td>86.800000</td>
+<td>NaN</td>
+<td>221.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>89.2</td>
+<td>39.4</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">21</th>
+<td>EMGP 270</td>
+<td>Europe</td>
+<td>France</td>
+<td>Commercial</td>
+<td>HQE-Office</td>
+<td>24.900000</td>
+<td>9983.377193</td>
+<td>2.276210e+06</td>
+<td>228.000000</td>
+<td>228.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">22</th>
+<td>Paul Wunderlich-Haus</td>
+<td>Europe</td>
+<td>Germany</td>
+<td>Public Sector</td>
+<td>DNGB-Gold</td>
+<td>32.265000</td>
+<td>22000.000000</td>
+<td>1.056000e+06</td>
+<td>48.000000</td>
+<td>35.000000</td>
+<td>12.000000</td>
+<td>121.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">23</th>
+<td>Federal Environmental Agency</td>
+<td>Europe</td>
+<td>Germany</td>
+<td>Public Sector</td>
+<td>DNGB-Gold</td>
+<td>91.800000</td>
+<td>41000.000000</td>
+<td>3.513700e+06</td>
+<td>85.700000</td>
+<td>22.900000</td>
+<td>62.800000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">24</th>
+<td>Heinrich Boll Foundation</td>
+<td>Europe</td>
+<td>Germany</td>
+<td>Public Sector</td>
+<td>DNGB-Gold</td>
+<td>16.875000</td>
+<td>6964.509202</td>
+<td>6.811290e+05</td>
+<td>97.800000</td>
+<td>61.100000</td>
+<td>36.600000</td>
+<td>681.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">25</th>
+<td>Solon Corporate HQ</td>
+<td>Europe</td>
+<td>Germany</td>
+<td>Commercial</td>
+<td>DNGB-Gold</td>
+<td>63.450000</td>
+<td>33451.000000</td>
+<td>3.646159e+06</td>
+<td>109.000000</td>
+<td>41.900000</td>
+<td>67.300000</td>
+<td>NaN</td>
+<td>9.200000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>71.3</td>
+<td>148.0</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">26</th>
+<td>Thyssenkrupp Q1</td>
+<td>Europe</td>
+<td>Germany</td>
+<td>Commercial</td>
+<td>DNGB-Gold</td>
+<td>116.000000</td>
+<td>29000.000000</td>
+<td>4.350000e+06</td>
+<td>150.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">27</th>
+<td>SAP</td>
+<td>Europe</td>
+<td>Ireland</td>
+<td>Commercial</td>
+<td>NaN</td>
+<td>18.000000</td>
+<td>6000.000000</td>
+<td>1.009421e+06</td>
+<td>168.000000</td>
+<td>96.700000</td>
+<td>71.500000</td>
+<td>681.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">28</th>
+<td>Hagaporten 3</td>
+<td>Europe</td>
+<td>Sweden</td>
+<td>Commercial</td>
+<td>Miljobyggnad-Gold</td>
+<td>130.000000</td>
+<td>30000.000000</td>
+<td>4.050000e+06</td>
+<td>135.000000</td>
+<td>74.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>43.0</td>
+<td>18.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">29</th>
+<td>Eawag Forum Chriesbach</td>
+<td>Europe</td>
+<td>Switzerland</td>
+<td>Commercial</td>
+<td>NaN</td>
+<td>32.745000</td>
+<td>8533.000000</td>
+<td>4.197950e+05</td>
+<td>49.200000</td>
+<td>36.300000</td>
+<td>12.900000</td>
+<td>152.000000</td>
+<td>NaN</td>
+<td>3.1</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">30</th>
+<td>Daniel Swarovski Corp</td>
+<td>Europe</td>
+<td>Switzerland</td>
+<td>Commercial</td>
+<td>NaN</td>
+<td>57.000000</td>
+<td>12627.187079</td>
+<td>9.382000e+05</td>
+<td>74.300000</td>
+<td>74.300000</td>
+<td>NaN</td>
+<td>453.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">31</th>
+<td>TNT Express HQ</td>
+<td>Europe</td>
+<td>The Netherlands</td>
+<td>Commercial</td>
+<td>LEED-Platinum</td>
+<td>NaN</td>
+<td>17250.000000</td>
+<td>1.966500e+06</td>
+<td>114.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>168.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">32</th>
+<td>3 Assembly Square</td>
+<td>Europe</td>
+<td>United Kingdom</td>
+<td>Commercial</td>
+<td>BREEAM-Excellent</td>
+<td>19.500000</td>
+<td>6106.699387</td>
+<td>9.953920e+05</td>
+<td>163.000000</td>
+<td>109.791886</td>
+<td>13.993084</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>38.750078</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">33</th>
+<td>Suttie Centre</td>
+<td>Europe</td>
+<td>United Kingdom</td>
+<td>University</td>
+<td>BREEAM-Excellent</td>
+<td>22.356000</td>
+<td>6500.000000</td>
+<td>1.098500e+06</td>
+<td>169.000000</td>
+<td>169.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">34</th>
+<td>2 Victoria Avenue</td>
+<td>Asia-Pacific</td>
+<td>Australia</td>
+<td>Commercial</td>
+<td>Green-Star-Office-6</td>
+<td>NaN</td>
+<td>7185.000000</td>
+<td>7.008530e+05</td>
+<td>97.600000</td>
+<td>66.400000</td>
+<td>13.600000</td>
+<td>725.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">35</th>
+<td>Workplace6</td>
+<td>Asia-Pacific</td>
+<td>Australia</td>
+<td>Commercial+Retail</td>
+<td>Green-Star-Office-6</td>
+<td>52.080000</td>
+<td>18000.000000</td>
+<td>2.052000e+06</td>
+<td>114.000000</td>
+<td>99.484000</td>
+<td>13.700000</td>
+<td>117.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">36</th>
+<td>One Shelley Street</td>
+<td>Asia-Pacific</td>
+<td>Australia</td>
+<td>Commercial+Retail</td>
+<td>Green-Star-Office-6</td>
+<td>NaN</td>
+<td>33000.000000</td>
+<td>4.929499e+06</td>
+<td>160.000000</td>
+<td>96.200000</td>
+<td>64.100000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">37</th>
+<td>Council House 2</td>
+<td>Asia-Pacific</td>
+<td>Australia</td>
+<td>Public Sector</td>
+<td>Green-Star-Office-6</td>
+<td>71.740200</td>
+<td>12536.000000</td>
+<td>2.295816e+06</td>
+<td>183.000000</td>
+<td>77.200000</td>
+<td>106.000000</td>
+<td>592.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">38</th>
+<td>The Gague</td>
+<td>Asia-Pacific</td>
+<td>Australia</td>
+<td>Commercial+Retail</td>
+<td>Green-Star-Office-6</td>
+<td>NaN</td>
+<td>10366.000000</td>
+<td>2.467108e+06</td>
+<td>238.000000</td>
+<td>128.000000</td>
+<td>109.500000</td>
+<td>463.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">39</th>
+<td>Vanke Center</td>
+<td>Asia-Pacific</td>
+<td>China</td>
+<td>Commercial</td>
+<td>LEED-Platinum</td>
+<td>NaN</td>
+<td>14239.000000</td>
+<td>1.980000e+06</td>
+<td>139.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>18.700000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">40</th>
+<td>Suzlon One Earth</td>
+<td>Asia-Pacific</td>
+<td>India</td>
+<td>Commercial</td>
+<td>LEED-Platinum</td>
+<td>NaN</td>
+<td>75809.000000</td>
+<td>4.472731e+06</td>
+<td>59.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>304.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">41</th>
+<td>Keio University 4th Building Hiyoshi Campus</td>
+<td>Asia-Pacific</td>
+<td>Japan</td>
+<td>University</td>
+<td>CASBEE-S</td>
+<td>NaN</td>
+<td>18399.000000</td>
+<td>2.907042e+06</td>
+<td>158.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">42</th>
+<td>Epson Innovation Center</td>
+<td>Asia-Pacific</td>
+<td>Japan</td>
+<td>Commercial</td>
+<td>CASBEE-S</td>
+<td>NaN</td>
+<td>53372.000000</td>
+<td>8.966496e+06</td>
+<td>168.000000</td>
+<td>168.000000</td>
+<td>NaN</td>
+<td>580.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">43</th>
+<td>Honda Wako</td>
+<td>Asia-Pacific</td>
+<td>Japan</td>
+<td>Commercial</td>
+<td>CASBEE-S</td>
+<td>NaN</td>
+<td>52112.714286</td>
+<td>1.203804e+07</td>
+<td>231.000000</td>
+<td>156.000000</td>
+<td>73.900000</td>
+<td>714.000000</td>
+<td>1.300000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">44</th>
+<td>Nissan Global HQ</td>
+<td>Asia-Pacific</td>
+<td>Japan</td>
+<td>Commercial</td>
+<td>CASBEE-S</td>
+<td>NaN</td>
+<td>78500.000000</td>
+<td>2.457050e+07</td>
+<td>313.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>260.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">45</th>
+<td>Kansai Electric Power HQ</td>
+<td>Asia-Pacific</td>
+<td>Japan</td>
+<td>Commercial</td>
+<td>CASBEE-S</td>
+<td>NaN</td>
+<td>60000.000000</td>
+<td>2.028000e+07</td>
+<td>338.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>462.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">46</th>
+<td>Zero Energy Building</td>
+<td>Asia-Pacific</td>
+<td>Singapore</td>
+<td>Public Sector</td>
+<td>Green-Mark-Platinum</td>
+<td>8.800000</td>
+<td>4500.000000</td>
+<td>1.831500e+05</td>
+<td>40.700000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>98.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">47</th>
+<td>School of Art, Design, Media at NTU</td>
+<td>Asia-Pacific</td>
+<td>Singapore</td>
+<td>University</td>
+<td>Green-Mark-Platinum</td>
+<td>28.800000</td>
+<td>19975.000000</td>
+<td>2.692630e+06</td>
+<td>134.800000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">48</th>
+<td>Magic School of Green Technology</td>
+<td>Asia-Pacific</td>
+<td>Taiwan</td>
+<td>University</td>
+<td>LEED-Platinum</td>
+<td>6.000000</td>
+<td>3055.000000</td>
+<td>1.235136e+05</td>
+<td>40.430000</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Individual columns can be extracted using the following syntax:</p>
+<div id="cell-53" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;5c402824c8c699b751d95bf70ba07840&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-fe85f7ed42fdc469&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="25">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>projects <span class="op">=</span> data[<span class="st">"Project"</span>]</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(projects)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0                                Manitoba Hydro Place
+1                            Child Development Centre
+2                FIPKE Centre for Innovative Research
+3                                       Transoceanica
+4                                    The Cooper Union
+5                               Biodesign Institute B
+6     DELL Children's Medical Center of Central Texas
+7                                          Kroon Hall
+8                     Newark Center at Ohlone College
+9             Tahoe Center for Environmental Sciences
+10              Center for Health and Healing, Oregon
+11                   NREL Research Support Facility 1
+12                                        Twelve West
+13                               2000 Tower Oaks Blvd
+14                                      Regent's Hall
+15                                 Great River Energy
+16                Lewis &amp; Clark State Office building
+17                            Johnson Controls Campus
+18                                     Genzyme Center
+19                                               CSOB
+20                                         Lintulahti
+21                                           EMGP 270
+22                               Paul Wunderlich-Haus
+23                       Federal Environmental Agency
+24                           Heinrich Boll Foundation
+25                                 Solon Corporate HQ
+26                                    Thyssenkrupp Q1
+27                                                SAP
+28                                       Hagaporten 3
+29                             Eawag Forum Chriesbach
+30                              Daniel Swarovski Corp
+31                                     TNT Express HQ
+32                                  3 Assembly Square
+33                                      Suttie Centre
+34                                  2 Victoria Avenue
+35                                         Workplace6
+36                                 One Shelley Street
+37                                    Council House 2
+38                                          The Gague
+39                                       Vanke Center
+40                                   Suzlon One Earth
+41        Keio University 4th Building Hiyoshi Campus
+42                            Epson Innovation Center
+43                                         Honda Wako
+44                                   Nissan Global HQ
+45                           Kansai Electric Power HQ
+46                               Zero Energy Building
+47                School of Art, Design, Media at NTU
+48                   Magic School of Green Technology
+Name: Project, dtype: object</code></pre>
+</div>
+</div>
+<p>And subsets can be pulled from the data and made into their own dataframe.</p>
+<div id="cell-55" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;f4d8c6ee81a735b3144df9861026b790&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-90fd2474673c9d9f&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="26">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>selected_columns <span class="op">=</span> [<span class="st">"Total.Area.sqm"</span>, <span class="st">"Cost.Million.USD"</span>]</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>data2 <span class="op">=</span> data[selected_columns]</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>data2.index <span class="op">=</span> projects <span class="co"># from the previous cell</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>data2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Total.Area.sqm</th>
+<th data-quarto-table-cell-role="th">Cost.Million.USD</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Project</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Manitoba Hydro Place</th>
+<td>65000.000000</td>
+<td>269.660000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Child Development Centre</th>
+<td>11612.140575</td>
+<td>22.310000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">FIPKE Centre for Innovative Research</th>
+<td>6323.794118</td>
+<td>30.555000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Transoceanica</th>
+<td>13959.068901</td>
+<td>20.924644</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">The Cooper Union</th>
+<td>16255.124535</td>
+<td>112.000000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Biodesign Institute B</th>
+<td>27184.466019</td>
+<td>78.500000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">DELL Children's Medical Center of Central Texas</th>
+<td>43948.234956</td>
+<td>137.000000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Kroon Hall</th>
+<td>6205.254065</td>
+<td>33.500000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Newark Center at Ohlone College</th>
+<td>12806.321244</td>
+<td>58.000000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Tahoe Center for Environmental Sciences</th>
+<td>4374.310680</td>
+<td>25.000000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Center for Health and Healing, Oregon</th>
+<td>38143.178709</td>
+<td>145.400000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">NREL Research Support Facility 1</th>
+<td>33457.000000</td>
+<td>91.400000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Twelve West</th>
+<td>39747.000000</td>
+<td>138.000000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2000 Tower Oaks Blvd</th>
+<td>18619.361936</td>
+<td>63.600000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Regent's Hall</th>
+<td>17859.989362</td>
+<td>63.000000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Great River Energy</th>
+<td>15434.070000</td>
+<td>65.000000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Lewis &amp; Clark State Office building</th>
+<td>11324.251203</td>
+<td>18.100000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Johnson Controls Campus</th>
+<td>28745.989412</td>
+<td>73.000000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Genzyme Center</th>
+<td>32021.614035</td>
+<td>140.000000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">CSOB</th>
+<td>82365.580435</td>
+<td>107.000000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Lintulahti</th>
+<td>12885.708920</td>
+<td>29.500000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">EMGP 270</th>
+<td>9983.377193</td>
+<td>24.900000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Paul Wunderlich-Haus</th>
+<td>22000.000000</td>
+<td>32.265000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Federal Environmental Agency</th>
+<td>41000.000000</td>
+<td>91.800000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Heinrich Boll Foundation</th>
+<td>6964.509202</td>
+<td>16.875000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Solon Corporate HQ</th>
+<td>33451.000000</td>
+<td>63.450000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Thyssenkrupp Q1</th>
+<td>29000.000000</td>
+<td>116.000000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">SAP</th>
+<td>6000.000000</td>
+<td>18.000000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Hagaporten 3</th>
+<td>30000.000000</td>
+<td>130.000000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Eawag Forum Chriesbach</th>
+<td>8533.000000</td>
+<td>32.745000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Daniel Swarovski Corp</th>
+<td>12627.187079</td>
+<td>57.000000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">TNT Express HQ</th>
+<td>17250.000000</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">3 Assembly Square</th>
+<td>6106.699387</td>
+<td>19.500000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Suttie Centre</th>
+<td>6500.000000</td>
+<td>22.356000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2 Victoria Avenue</th>
+<td>7185.000000</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Workplace6</th>
+<td>18000.000000</td>
+<td>52.080000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">One Shelley Street</th>
+<td>33000.000000</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Council House 2</th>
+<td>12536.000000</td>
+<td>71.740200</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">The Gague</th>
+<td>10366.000000</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Vanke Center</th>
+<td>14239.000000</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Suzlon One Earth</th>
+<td>75809.000000</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Keio University 4th Building Hiyoshi Campus</th>
+<td>18399.000000</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Epson Innovation Center</th>
+<td>53372.000000</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Honda Wako</th>
+<td>52112.714286</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Nissan Global HQ</th>
+<td>78500.000000</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Kansai Electric Power HQ</th>
+<td>60000.000000</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Zero Energy Building</th>
+<td>4500.000000</td>
+<td>8.800000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">School of Art, Design, Media at NTU</th>
+<td>19975.000000</td>
+<td>28.800000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Magic School of Green Technology</th>
+<td>3055.000000</td>
+<td>6.000000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="cell-56" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;dd0e7b5c707165e128da41e9c58feb74&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-4473e72a009abdab&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="27">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_excel(<span class="st">"Files/Case Study Data.xlsx"</span>, sheet_name<span class="op">=</span><span class="st">"Data"</span>)</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>cost <span class="op">=</span> data[<span class="st">"Cost.Million.USD"</span>]</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>area <span class="op">=</span> data[<span class="st">"Total.Area.sqm"</span>]</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>costpermetre2 <span class="op">=</span> cost<span class="op">/</span>area</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="co"># create a new column</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"Cost.Per.sqm"</span>] <span class="op">=</span> costpermetre2</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>selected_columns <span class="op">=</span> [<span class="st">"Project"</span>, <span class="st">"Total.Area.sqm"</span>, <span class="st">"Cost.Million.USD"</span>, <span class="st">"Cost.Per.sqm"</span>]</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a><span class="co"># create a new DataFrame with the selected columns as the data and set the project name column as the index</span></span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>newdata <span class="op">=</span> data[selected_columns].set_index(<span class="st">"Project"</span>)</span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>newdata</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/macha/anaconda3/lib/python3.9/site-packages/openpyxl/worksheet/_reader.py:329: UserWarning: Unknown extension is not supported and will be removed
+  warn(msg)</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Total.Area.sqm</th>
+<th data-quarto-table-cell-role="th">Cost.Million.USD</th>
+<th data-quarto-table-cell-role="th">Cost.Per.sqm</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Project</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Manitoba Hydro Place</th>
+<td>65000.000000</td>
+<td>269.660000</td>
+<td>0.004149</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Child Development Centre</th>
+<td>11612.140575</td>
+<td>22.310000</td>
+<td>0.001921</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">FIPKE Centre for Innovative Research</th>
+<td>6323.794118</td>
+<td>30.555000</td>
+<td>0.004832</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Transoceanica</th>
+<td>13959.068901</td>
+<td>20.924644</td>
+<td>0.001499</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">The Cooper Union</th>
+<td>16255.124535</td>
+<td>112.000000</td>
+<td>0.006890</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Biodesign Institute B</th>
+<td>27184.466019</td>
+<td>78.500000</td>
+<td>0.002888</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">DELL Children's Medical Center of Central Texas</th>
+<td>43948.234956</td>
+<td>137.000000</td>
+<td>0.003117</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Kroon Hall</th>
+<td>6205.254065</td>
+<td>33.500000</td>
+<td>0.005399</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Newark Center at Ohlone College</th>
+<td>12806.321244</td>
+<td>58.000000</td>
+<td>0.004529</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Tahoe Center for Environmental Sciences</th>
+<td>4374.310680</td>
+<td>25.000000</td>
+<td>0.005715</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Center for Health and Healing, Oregon</th>
+<td>38143.178709</td>
+<td>145.400000</td>
+<td>0.003812</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">NREL Research Support Facility 1</th>
+<td>33457.000000</td>
+<td>91.400000</td>
+<td>0.002732</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Twelve West</th>
+<td>39747.000000</td>
+<td>138.000000</td>
+<td>0.003472</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2000 Tower Oaks Blvd</th>
+<td>18619.361936</td>
+<td>63.600000</td>
+<td>0.003416</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Regent's Hall</th>
+<td>17859.989362</td>
+<td>63.000000</td>
+<td>0.003527</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Great River Energy</th>
+<td>15434.070000</td>
+<td>65.000000</td>
+<td>0.004211</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Lewis &amp; Clark State Office building</th>
+<td>11324.251203</td>
+<td>18.100000</td>
+<td>0.001598</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Johnson Controls Campus</th>
+<td>28745.989412</td>
+<td>73.000000</td>
+<td>0.002539</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Genzyme Center</th>
+<td>32021.614035</td>
+<td>140.000000</td>
+<td>0.004372</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">CSOB</th>
+<td>82365.580435</td>
+<td>107.000000</td>
+<td>0.001299</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Lintulahti</th>
+<td>12885.708920</td>
+<td>29.500000</td>
+<td>0.002289</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">EMGP 270</th>
+<td>9983.377193</td>
+<td>24.900000</td>
+<td>0.002494</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Paul Wunderlich-Haus</th>
+<td>22000.000000</td>
+<td>32.265000</td>
+<td>0.001467</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Federal Environmental Agency</th>
+<td>41000.000000</td>
+<td>91.800000</td>
+<td>0.002239</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Heinrich Boll Foundation</th>
+<td>6964.509202</td>
+<td>16.875000</td>
+<td>0.002423</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Solon Corporate HQ</th>
+<td>33451.000000</td>
+<td>63.450000</td>
+<td>0.001897</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Thyssenkrupp Q1</th>
+<td>29000.000000</td>
+<td>116.000000</td>
+<td>0.004000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">SAP</th>
+<td>6000.000000</td>
+<td>18.000000</td>
+<td>0.003000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Hagaporten 3</th>
+<td>30000.000000</td>
+<td>130.000000</td>
+<td>0.004333</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Eawag Forum Chriesbach</th>
+<td>8533.000000</td>
+<td>32.745000</td>
+<td>0.003837</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Daniel Swarovski Corp</th>
+<td>12627.187079</td>
+<td>57.000000</td>
+<td>0.004514</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">TNT Express HQ</th>
+<td>17250.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">3 Assembly Square</th>
+<td>6106.699387</td>
+<td>19.500000</td>
+<td>0.003193</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Suttie Centre</th>
+<td>6500.000000</td>
+<td>22.356000</td>
+<td>0.003439</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2 Victoria Avenue</th>
+<td>7185.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Workplace6</th>
+<td>18000.000000</td>
+<td>52.080000</td>
+<td>0.002893</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">One Shelley Street</th>
+<td>33000.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Council House 2</th>
+<td>12536.000000</td>
+<td>71.740200</td>
+<td>0.005723</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">The Gague</th>
+<td>10366.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Vanke Center</th>
+<td>14239.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Suzlon One Earth</th>
+<td>75809.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Keio University 4th Building Hiyoshi Campus</th>
+<td>18399.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Epson Innovation Center</th>
+<td>53372.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Honda Wako</th>
+<td>52112.714286</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Nissan Global HQ</th>
+<td>78500.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Kansai Electric Power HQ</th>
+<td>60000.000000</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Zero Energy Building</th>
+<td>4500.000000</td>
+<td>8.800000</td>
+<td>0.001956</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">School of Art, Design, Media at NTU</th>
+<td>19975.000000</td>
+<td>28.800000</td>
+<td>0.001442</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Magic School of Green Technology</th>
+<td>3055.000000</td>
+<td>6.000000</td>
+<td>0.001964</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Pandas is very good at plotting the data.</p>
+<div id="cell-58" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;8eebed28524f8461255c18528596a3fa&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-06f053c4bd051957&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="28">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> newdata[<span class="st">"Total.Area.sqm"</span>].plot(kind<span class="op">=</span><span class="st">"bar"</span>, figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">5</span>)) <span class="co"># returns a set of figure axes</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="08-Data_Analysis_files/figure-html/cell-29-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Different plot styles are available</p>
+<div id="cell-60" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;4a051925423b9b5d04c47c31c800aa9e&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-b995e98087455253&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="29">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> newdata[<span class="st">"Total.Area.sqm"</span>].plot.hist(edgecolor<span class="op">=</span><span class="st">"black"</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> newdata.plot.scatter(x<span class="op">=</span><span class="st">"Total.Area.sqm"</span>, y<span class="op">=</span><span class="st">"Cost.Million.USD"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="08-Data_Analysis_files/figure-html/cell-30-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="08-Data_Analysis_files/figure-html/cell-30-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Plots can be saved or manipulated using this method:</p>
+<div id="cell-62" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;6906475a9bcc4bbfb6bf88f0f4642137&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-001c6cb38573104a&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="30">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>ax2.figure.savefig(<span class="st">"scatterplot.png"</span>) <span class="co"># how to access the figure canvas and save it</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>And plots can appear on the same axes or in subplots.</p>
+<div id="cell-64" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;075911aed1d4a97d76e04a3f743c508c&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-1eb90064e9fb2cc6&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="31">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>sortdata <span class="op">=</span> newdata.sort_values(by<span class="op">=</span><span class="st">"Total.Area.sqm"</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>ax3 <span class="op">=</span> sortdata.plot.bar(subplots<span class="op">=</span><span class="va">True</span>, figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">9</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="08-Data_Analysis_files/figure-html/cell-32-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="filtering-data" class="level3" data-number="10.2.3">
+<h3 data-number="10.2.3" class="anchored" data-anchor-id="filtering-data"><span class="header-section-number">10.2.3</span> Filtering data:</h3>
+<p>Data can also be filtered in the following way:</p>
+<div id="cell-66" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;2383dccb820d298de8ec0ed9fcb5f794&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-5b9bb5919305063c&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="32">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>costmilUSD <span class="op">=</span> data2[<span class="st">"Cost.Million.USD"</span>] <span class="co">#select the column </span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>condition <span class="op">=</span> costmilUSD<span class="op">&gt;</span><span class="dv">100</span> <span class="co">#filter selected values</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>data3 <span class="op">=</span> data2[condition]</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>data3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Total.Area.sqm</th>
+<th data-quarto-table-cell-role="th">Cost.Million.USD</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Project</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Manitoba Hydro Place</th>
+<td>65000.000000</td>
+<td>269.66</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">The Cooper Union</th>
+<td>16255.124535</td>
+<td>112.00</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">DELL Children's Medical Center of Central Texas</th>
+<td>43948.234956</td>
+<td>137.00</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Center for Health and Healing, Oregon</th>
+<td>38143.178709</td>
+<td>145.40</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Twelve West</th>
+<td>39747.000000</td>
+<td>138.00</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Genzyme Center</th>
+<td>32021.614035</td>
+<td>140.00</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">CSOB</th>
+<td>82365.580435</td>
+<td>107.00</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Thyssenkrupp Q1</th>
+<td>29000.000000</td>
+<td>116.00</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Hagaporten 3</th>
+<td>30000.000000</td>
+<td>130.00</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<ul>
+<li>Try breaking this down and printing each line to see what’s going on in each step.</li>
+</ul>
+<p>This can then be combined into a single line, which is more compact but harder to read.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>data3 <span class="op">=</span> data2[data2[<span class="st">"Cost.Million.USD"</span>]<span class="op">&gt;</span><span class="dv">100</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./07-Numerical_Arrays.html" class="pagination-link" aria-label="Numerical Arrays">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical Arrays</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./10-Debugging_Code.html" class="pagination-link" aria-label="Debugging Code">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Debugging Code</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

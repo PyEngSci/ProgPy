@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>10&nbsp; Debugging Code – Programming in Python</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./11-Writing_Programs.html" rel="next">
+<link href="./08-Data_Analysis.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-02ae9ba62279b8bbbed70b062340170a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="application/json" class="js-hypothesis-config">
+{
+  "theme": "clean"
+}
+</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+<script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document
+    .querySelectorAll('a[href*="solutions/"]')
+    .forEach(link => {
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+    });
+});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10-Debugging_Code.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Debugging Code</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Programming in Python</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Quick Summary</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-Python_Basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Python Basics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Using Variables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-Functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Writing Functions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-If_and_While.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditionals and While Loops</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-Lists-Dictionaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lists and Dictionaries</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-For_Loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Iteration using <code>for</code> Loops</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Numerical_Arrays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical Arrays</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-Data_Analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basics of Plotting Graphs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-Debugging_Code.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Debugging Code</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-Writing_Programs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Writing Programs</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="-1">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#what-is-debugging" id="toc-what-is-debugging" class="nav-link active" data-scroll-target="#what-is-debugging"><span class="header-section-number">10.1</span> What is debugging?</a></li>
+  <li><a href="#experimental-debugging" id="toc-experimental-debugging" class="nav-link" data-scroll-target="#experimental-debugging"><span class="header-section-number">10.2</span> Experimental debugging</a></li>
+  <li><a href="#error-messages" id="toc-error-messages" class="nav-link" data-scroll-target="#error-messages"><span class="header-section-number">10.3</span> Error Messages</a></li>
+  <li><a href="#my-program-doesnt-work" id="toc-my-program-doesnt-work" class="nav-link" data-scroll-target="#my-program-doesnt-work"><span class="header-section-number">10.4</span> My program doesn’t work!</a>
+  <ul class="collapse">
+  <li><a href="#rubber-duck-debugging" id="toc-rubber-duck-debugging" class="nav-link" data-scroll-target="#rubber-duck-debugging"><span class="header-section-number">10.4.1</span> Rubber duck debugging</a></li>
+  <li><a href="#simplifying-big-equations-or-compound-python-statement-that-dont-do-what-you-expect" id="toc-simplifying-big-equations-or-compound-python-statement-that-dont-do-what-you-expect" class="nav-link" data-scroll-target="#simplifying-big-equations-or-compound-python-statement-that-dont-do-what-you-expect"><span class="header-section-number">10.4.2</span> Simplifying big equations (or compound Python statement) that don’t do what you expect</a></li>
+  <li><a href="#kiss-keep-it-simple-stupid" id="toc-kiss-keep-it-simple-stupid" class="nav-link" data-scroll-target="#kiss-keep-it-simple-stupid"><span class="header-section-number">10.4.3</span> KISS (Keep it Simple, Stupid)</a></li>
+  <li><a href="#you-cant-get-the-program-to-run-no-matter-what-you-do." id="toc-you-cant-get-the-program-to-run-no-matter-what-you-do." class="nav-link" data-scroll-target="#you-cant-get-the-program-to-run-no-matter-what-you-do."><span class="header-section-number">10.4.4</span> You can’t get the program to run no matter what you do.</a></li>
+  </ul></li>
+  <li><a href="#tracing-different-types-of-error" id="toc-tracing-different-types-of-error" class="nav-link" data-scroll-target="#tracing-different-types-of-error"><span class="header-section-number">10.5</span> Tracing Different Types of Error</a>
+  <ul class="collapse">
+  <li><a href="#syntax-errors" id="toc-syntax-errors" class="nav-link" data-scroll-target="#syntax-errors"><span class="header-section-number">10.5.1</span> Syntax errors</a></li>
+  <li><a href="#runtime-errors" id="toc-runtime-errors" class="nav-link" data-scroll-target="#runtime-errors"><span class="header-section-number">10.5.2</span> Runtime errors</a></li>
+  <li><a href="#semantic-errors" id="toc-semantic-errors" class="nav-link" data-scroll-target="#semantic-errors"><span class="header-section-number">10.5.3</span> Semantic errors</a></li>
+  </ul></li>
+  <li><a href="#weekly-task-9" id="toc-weekly-task-9" class="nav-link" data-scroll-target="#weekly-task-9"><span class="header-section-number">11</span> Weekly Task 9</a>
+  <ul class="collapse">
+  <li><a href="#debugging-code" id="toc-debugging-code" class="nav-link" data-scroll-target="#debugging-code"><span class="header-section-number">11.1</span> Debugging Code</a>
+  <ul class="collapse">
+  <li><a href="#the-task" id="toc-the-task" class="nav-link" data-scroll-target="#the-task"><span class="header-section-number">11.1.1</span> The Task</a></li>
+  <li><a href="#cut-and-paste-the-above-code-into-the-cell-below-to-debug-it" id="toc-cut-and-paste-the-above-code-into-the-cell-below-to-debug-it" class="nav-link" data-scroll-target="#cut-and-paste-the-above-code-into-the-cell-below-to-debug-it"><span class="header-section-number">11.1.2</span> Cut and paste the above code into the cell below to debug it:</a></li>
+  </ul></li>
+  <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix"><span class="header-section-number">11.2</span> Appendix</a>
+  <ul class="collapse">
+  <li><a href="#practical-application-of-the-above-example-integration-using-a-cumulative-sum" id="toc-practical-application-of-the-above-example-integration-using-a-cumulative-sum" class="nav-link" data-scroll-target="#practical-application-of-the-above-example-integration-using-a-cumulative-sum"><span class="header-section-number">11.2.1</span> Practical Application of the above example: Integration using a Cumulative Sum</a></li>
+  <li><a href="#exercise-comment-the-code-above-so-you-understand-what-all-the-steps-are-doing." id="toc-exercise-comment-the-code-above-so-you-understand-what-all-the-steps-are-doing." class="nav-link" data-scroll-target="#exercise-comment-the-code-above-so-you-understand-what-all-the-steps-are-doing."><span class="header-section-number">11.2.2</span> Exercise: Comment the code above so you understand what all the steps are doing.</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+<div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/PyEngSci/ProgPy" target="_blank"><i class="bi bi-download"></i>Course Files</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Debugging Code</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Be sure to do all exercises and run all completed code cells.</p>
+<p>If anything goes wrong, <strong>restart the kernel</strong> (in the menubar, select Kernel<span class="math inline">\(\rightarrow\)</span>Restart).</p>
+<hr>
+<p>Read these notes then try to debug the Task code at the bottom.</p>
+<p>These notes will be useful to help you debug your own code in your projects.</p>
+<section id="what-is-debugging" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="what-is-debugging"><span class="header-section-number">10.1</span> What is debugging?</h2>
+<p>Adapted from: <a href="http://www.openbookproject.net/thinkcs/python/english2e/">http://www.openbookproject.net/thinkcs/python/english2e/</a>.</p>
+<p>Programming errors are called <strong>bugs</strong> and the process of tracking them down and correcting them is called <strong>debugging</strong>.</p>
+</section>
+<section id="experimental-debugging" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="experimental-debugging"><span class="header-section-number">10.2</span> Experimental debugging</h2>
+<p>One of the most important skills to master is debugging. It can be frustrating, debugging is one of the most rewarding parts of programming in terms of what you learn.</p>
+<p>Debugging is like detective work. You are given clues and you have to work out what led to the results you see. You should treat writing a program like experimental science. Once you have an idea what is going wrong, you modify your program and try again. If your hypothesis was correct, then you can predict the result of the modification, and you take a step closer to a working program.</p>
+<p>For some people, programming and debugging are the same thing. That is, programming is the process of gradually debugging a program until it does what you want. The idea is that <strong>you should start with a program that does <em>something</em> and make small modifications, debugging them as you go, so that you always have a working program</strong> (always save version backups).</p>
+</section>
+<section id="error-messages" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="error-messages"><span class="header-section-number">10.3</span> Error Messages</h2>
+<p>Sometimes error messages can be very long, as they trace their way through a cascade of failures the original error caused in various modules and functions.</p>
+<p>The most important lines are (a) near the top of the message, where the original error in your code is often identified, and (b) at the bottom, where the type of error it resulted in is listed. Any lines in between this are intermediate errors and less informative to you.</p>
+<p>In the example <em>traceback</em> below the error was on line 10 of the code (<code>m = np.mean("data")</code>) and the resulting category of error is at the bottom (<code>TypeError</code>) after making its way through the functions in the numpy module.</p>
+<hr>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">---------------------------------------------------------------------------</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">TypeError</span>                                 Traceback (most recent call last)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>ipython<span class="op">-</span><span class="bu">input</span><span class="op">-</span><span class="dv">10</span><span class="op">-</span><span class="dv">6157279637</span><span class="er">b3</span><span class="op">&gt;</span> <span class="kw">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span>()</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>      <span class="dv">8</span> b <span class="op">=</span> [<span class="fl">2.0</span>, <span class="fl">5.0</span>, <span class="fl">7.0</span>]</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>      <span class="dv">9</span> </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">---&gt;</span> <span class="dv">10</span> m <span class="op">=</span> np.mean(<span class="st">"data"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">~/</span>anaconda3<span class="op">/</span>lib<span class="op">/</span>python3<span class="fl">.6</span><span class="op">/</span>site<span class="op">-</span>packages<span class="op">/</span>numpy<span class="op">/</span>core<span class="op">/</span>fromnumeric.py <span class="kw">in</span> mean(a, axis, dtype, out, keepdims)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>   <span class="dv">2907</span> </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>   <span class="dv">2908</span>     <span class="cf">return</span> _methods._mean(a, axis<span class="op">=</span>axis, dtype<span class="op">=</span>dtype,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="op">-&gt;</span> <span class="dv">2909</span>                           out<span class="op">=</span>out, <span class="op">**</span>kwargs)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>   <span class="dv">2910</span> </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>   <span class="dv">2911</span> </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="op">~/</span>anaconda3<span class="op">/</span>lib<span class="op">/</span>python3<span class="fl">.6</span><span class="op">/</span>site<span class="op">-</span>packages<span class="op">/</span>numpy<span class="op">/</span>core<span class="op">/</span>_methods.py <span class="kw">in</span> _mean(a, axis, dtype, out, keepdims)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>     <span class="dv">68</span>             is_float16_result <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>     <span class="dv">69</span> </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="op">---&gt;</span> <span class="dv">70</span>     ret <span class="op">=</span> umr_sum(arr, axis, dtype, out, keepdims)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>     <span class="dv">71</span>     <span class="cf">if</span> <span class="bu">isinstance</span>(ret, mu.ndarray):</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>     <span class="dv">72</span>         ret <span class="op">=</span> um.true_divide(</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="pp">TypeError</span>: cannot perform <span class="bu">reduce</span> <span class="cf">with</span> flexible <span class="bu">type</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+<ul>
+<li>After a bit of investigation the error is found to be trying to give the wrong data type (a string) to the <code>np.mean</code> function.</li>
+</ul>
+</section>
+<section id="my-program-doesnt-work" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="my-program-doesnt-work"><span class="header-section-number">10.4</span> My program doesn’t work!</h2>
+<p>You should ask yourself these questions:</p>
+<ol type="1">
+<li>Is there something the program was supposed to do but which doesn’t seem to be happening? Find the section of the code that performs that function and make sure it is executing when you think it should.</li>
+<li>Is something happening that shouldn’t? Find code in your program that performs that function and see if it is executing when it shouldn’t.</li>
+<li>Is a section of code producing an effect that is not what you expected? Make sure that you understand the code in question, especially if it involves using functions or methods from other Python modules. Read the documentation for the functions you import and use. Try them out by writing simple test cases and checking the results.</li>
+</ol>
+<p>In order to program, you need to have a mental model of how programs work. If you write a program that doesn’t do what you expect, very often the problem is not in the program; it’s in your mental model.</p>
+<p>The best way to correct your mental model is to break the program into its components (usually the functions and methods) and test each component independently. Once you find the discrepancy between your model and reality, you can solve the problem.</p>
+<p>Of course, you should be building and testing components as you develop the program. If you encounter a problem, there should be only a small amount of new code that is not known to be correct.</p>
+<section id="rubber-duck-debugging" class="level3" data-number="10.4.1">
+<h3 data-number="10.4.1" class="anchored" data-anchor-id="rubber-duck-debugging"><span class="header-section-number">10.4.1</span> Rubber duck debugging</h3>
+<p>From: [<a href="http://en.wikipedia.org/wiki/Rubber_duck_debugging">http://en.wikipedia.org/wiki/Rubber_duck_debugging</a>]</p>
+<p>Rubber duck debugging is an informal term used in software engineering for a method of debugging code. The name is a reference to a story in the book The Pragmatic Programmer in which a programmer would carry around a rubber duck and debug their code by forcing themselves to explain it, line-by-line, to the duck. Many other terms exist for this technique, often involving different inanimate objects.</p>
+</section>
+<section id="simplifying-big-equations-or-compound-python-statement-that-dont-do-what-you-expect" class="level3" data-number="10.4.2">
+<h3 data-number="10.4.2" class="anchored" data-anchor-id="simplifying-big-equations-or-compound-python-statement-that-dont-do-what-you-expect"><span class="header-section-number">10.4.2</span> Simplifying big equations (or compound Python statement) that don’t do what you expect</h3>
+<p>Writing complex expressions is fine as long as they are readable, but they can be hard to debug. It is often a good idea to break a complex expression into a series of simpler lines containing temporary variables.</p>
+<p>For example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Mean = </span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(<span class="bu">sum</span>(arrayname)<span class="op">/</span><span class="bu">len</span>(arrayname)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>is simpler to read as:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sumvalues<span class="op">=</span><span class="bu">sum</span>(arrayname)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>N<span class="op">=</span><span class="bu">len</span>(arrayname)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>meanval<span class="op">=</span>sumvalues<span class="op">/</span>N</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>meanstr <span class="op">=</span> <span class="ss">f"Mean = </span><span class="sc">{</span>meanval<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(meanstr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Another problem that can occur with big expressions is that the order of evaluation may not be what you expect. For example, if you are translating the expression <code>x/2pi</code> into Python, you might write:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x <span class="op">/</span> <span class="dv">2</span> <span class="op">*</span> math.pi</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>That is not correct because multiplication and division have the same precedence and are evaluated from left to right. So this expression computes <code>(x/2)pi</code>.</p>
+<p>A good way to debug expressions is to add parentheses to make the order of evaluation explicit:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> math.pi)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Whenever you are not sure of the order of evaluation, use brackets. Not only will the program be correct (in the sense of doing what you intended), it will also be more readable for other people.</p>
+</section>
+<section id="kiss-keep-it-simple-stupid" class="level3" data-number="10.4.3">
+<h3 data-number="10.4.3" class="anchored" data-anchor-id="kiss-keep-it-simple-stupid"><span class="header-section-number">10.4.3</span> KISS (Keep it Simple, Stupid)</h3>
+<p>As you build it up, the modifications to your program should be as simple as possible, and you should be working on the smallest input that causes the error. You should have <code>print</code> functions in the appropriate places (and the output they produce should be comprehensible). You should understand the problem well enough to describe it concisely.</p>
+</section>
+<section id="you-cant-get-the-program-to-run-no-matter-what-you-do." class="level3" data-number="10.4.4">
+<h3 data-number="10.4.4" class="anchored" data-anchor-id="you-cant-get-the-program-to-run-no-matter-what-you-do."><span class="header-section-number">10.4.4</span> You can’t get the program to run no matter what you do.</h3>
+<p>If this happens, one approach is to start again with a new program like “Hello World!”, and make sure you can get a known program to run. Then gradually add the pieces of the new program to the working one.</p>
+</section>
+</section>
+<section id="tracing-different-types-of-error" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="tracing-different-types-of-error"><span class="header-section-number">10.5</span> Tracing Different Types of Error</h2>
+<p>Three kinds of errors can occur in a program:</p>
+<ol type="1">
+<li><strong>syntax</strong> errors [<a href="http://en.wikipedia.org/wiki/Syntax_error">http://en.wikipedia.org/wiki/Syntax_error</a>],</li>
+<li><strong>runtime</strong> errors [<a href="http://en.wikipedia.org/wiki/Syntax_error">http://en.wikipedia.org/wiki/Runtime_error</a>], and</li>
+<li><strong>semantic</strong> errors [<a href="http://en.wikipedia.org/wiki/Syntax_error">http://en.wikipedia.org/wiki/Logic_error</a>].</li>
+</ol>
+<section id="syntax-errors" class="level3" data-number="10.5.1">
+<h3 data-number="10.5.1" class="anchored" data-anchor-id="syntax-errors"><span class="header-section-number">10.5.1</span> Syntax errors</h3>
+<p>Syntax errors are usually easy to fix once you figure out what they are. The error message tells you where in the program the Python noticed a problem. However, sometimes the real error is before to the location of the error message, often on the preceding line.</p>
+<p>If you are copying code from another example, start by comparing your code to the original very carefully. Check every character. At the same time, remember that the source code might be wrong, so if you see something that looks like a syntax error, it might be.</p>
+<p>Here are some ways to avoid the most common syntax errors:</p>
+<ol type="1">
+<li>Make sure you do not use a built-in Python keyword or function for a variable name:
+<ul>
+<li>e.g.: <code>for, sum, print,...</code></li>
+</ul></li>
+<li>Check that you have a colon (<code>:</code>) before indented code blocks including after <code>for</code>, <code>while</code>, <code>if</code>, and <code>def</code> statements.</li>
+<li>Check that indentation is consistent. You may indent with either spaces or tabs but it’s best not to mix them. Each level should be indented by the same amount.</li>
+<li>Make sure that any strings in the code have matching quotation marks (E.g.: <code>"Hello'</code> is wrong)
+<ul>
+<li>If you have multiline strings with triple quotes, make sure you have ended the string properly.</li>
+<li>A string that is not closed correctly may cause an <code>invalid token</code> error at the end of your program, or it may treat the following part of the program as a string until it comes to the next string.
+<ul>
+<li>In the second case, it might not produce an error message at all!</li>
+</ul></li>
+</ul></li>
+<li>An unclosed bracket — (, {, or [ — makes Python continue with the next line as part of the current statement. Generally, an error occurs almost immediately in the <em>next</em> line.</li>
+<li>Check for the classic <code>=</code> instead of <code>==</code> inside a conditional.
+<ul>
+<li><code>if a=0:</code> is incorrect; it should be <code>if a==0:</code></li>
+</ul></li>
+</ol>
+<section id="exercise-correct-the-syntax-error-below." class="level4">
+<h4 class="anchored" data-anchor-id="exercise-correct-the-syntax-error-below.">Exercise: Correct the syntax error below.</h4>
+<div id="cell-11" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> pi</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#size</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="dv">12</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#radius</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> d<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate area: pi r^2</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>pi<span class="op">*</span>z<span class="op">*</span>z<span class="op">=</span>a</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-cyan-fg">  File </span><span class="ansi-green-fg">"/tmp/ipykernel_72841/1823711099.py"</span><span class="ansi-cyan-fg">, line </span><span class="ansi-green-fg">10</span>
+<span class="ansi-red-fg">    pi*z*z=a</span>
+    ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> cannot assign to operator
+</pre>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="runtime-errors" class="level3" data-number="10.5.2">
+<h3 data-number="10.5.2" class="anchored" data-anchor-id="runtime-errors"><span class="header-section-number">10.5.2</span> Runtime errors</h3>
+<p>Once your program is syntactically correct, Python can at least start running it. What could possibly go wrong?</p>
+<section id="inserting-print-functions" class="level4">
+<h4 class="anchored" data-anchor-id="inserting-print-functions">Inserting <code>print</code> functions</h4>
+<p>One of the most useful things you can do to help trace errors that occur while the program runs (both <em>runtime</em> and <em>semantic</em> errors is to insert lots of <code>print</code> functions to try to figure out where the error occurs and what is going wrong.</p>
+<p>For example you can insert <code>print("here", NUMBER)</code> with different numbers to see in the output which parts of the program are being executed.</p>
+</section>
+<section id="your-program-hangs." class="level4">
+<h4 class="anchored" data-anchor-id="your-program-hangs.">Your program hangs.</h4>
+<p>If a program stops and seems to be doing nothing, we say it is <em>“hanging”</em>. Often that means that it is caught in an infinite loop.</p>
+<ol type="1">
+<li>If there is a particular loop that you suspect is the problem, add a <code>print</code> statement immediately before the loop that says entering the loop and another immediately after that says exiting the loop.</li>
+<li>Run the program. If you get the first message and not the second, you’ve got an infinite loop. Go to the <strong>Infinite Loop</strong> section below.</li>
+<li>It is possible that you don’t understand the order which functions are being run in your program. Go to the <strong>Flow of Execution</strong> section below.</li>
+</ol>
+</section>
+<section id="infinite-loop" class="level4">
+<h4 class="anchored" data-anchor-id="infinite-loop">Infinite Loop</h4>
+<p>All programming and debugging require that you have a good mental model of what the algorithm ought to be doing. If you don’t understand what ought to happen to <code>x</code> and <code>y</code>, printing or inspecting their values is of little use. Start to debug the code by understanding what should actually be happening using pen and paper.</p>
+<p>If you think you have an infinite loop and you think you know what loop is causing the problem, add two things:</p>
+<ol type="1">
+<li>a counter and a <code>break</code> statement to get you out of the loop after a set number of iterations.</li>
+<li>a <code>print</code> statement at the end of the loop that prints the values of the variables in the condition and the value of the condition.</li>
+</ol>
+<p>For example:</p>
+<div id="cell-15" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;5adb69ce31ef590c033a31fd5e64cd37&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-18cf196d2aa79c45&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>y<span class="op">=-</span><span class="dv">1</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>i<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> x <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> y <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Do something to x</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Do something to y</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"x: "</span>, x),</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"y: "</span>, y),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"condition: "</span>, (x <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> y <span class="op">&lt;</span> <span class="dv">0</span>))</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    i<span class="op">=</span>i<span class="op">+</span><span class="dv">1</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">&gt;</span> <span class="dv">5</span>: <span class="cf">break</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(i)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>x:  1
+y:  -1
+condition:  True
+x:  1
+y:  -1
+condition:  True
+x:  1
+y:  -1
+condition:  True
+x:  1
+y:  -1
+condition:  True
+x:  1
+y:  -1
+condition:  True
+x:  1
+y:  -1
+condition:  True
+6</code></pre>
+</div>
+</div>
+<p>Now when you run the program, you will see a lines of output for each time through the loop. If the loop exits correctly, the condition should be <code>False</code>. If the loop keeps going, you will be able to see the values of <code>x</code> and <code>y</code>, and you might figure out why they are not being updated correctly.</p>
+</section>
+<section id="flow-of-execution" class="level4">
+<h4 class="anchored" data-anchor-id="flow-of-execution">Flow of Execution</h4>
+<p>The <em>“flow of execution”</em> is the order that different parts of the code are performed. For example it is not always obvious when different functions will be used, or when conditional loops are or are not used.</p>
+<p>If you are not sure how the <em>flow of execution</em> is moving through your program, add <code>print</code> function to the beginning of each function with a message like</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"entering function FNAME"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>where <code>FNAME</code> is the name of the function.</p>
+<p>Now when you run the program, it will print a <em>trace</em> of each function as it is used.</p>
+</section>
+<section id="running-the-program-results-in-an-exception." class="level4">
+<h4 class="anchored" data-anchor-id="running-the-program-results-in-an-exception.">Running the program results in an <em>exception</em>.</h4>
+<p>If something goes wrong while the program is running, Python prints a message that includes the name of the exception, the line of the program where the problem occurred, and a so-called <em>“traceback”</em>.</p>
+<p>The first step is to examine the place in the program where the error occurred and see if you can figure out what happened. These are some of the most common runtime errors:</p>
+<ul>
+<li>NameError
+<ul>
+<li>You are trying to use a variable that doesn’t exist in the current environment. Remember that variables are <em>local</em> to functions. You cannot refer to them from outside the function where they are defined.</li>
+</ul></li>
+<li>TypeError
+<ul>
+<li>There are several possible causes:
+<ol type="1">
+<li>You are trying to use a value improperly.
+<ul>
+<li>Example: indexing a string or list with something other than an integer.</li>
+</ul></li>
+<li>There is a mismatch between the items in a <code>.format</code> string and the items passed for conversion.
+<ul>
+<li>This can happen if either the number of items does not match or an invalid conversion is used.</li>
+</ul></li>
+<li>You are passing the wrong number of arguments to a function or method. For “DOT” methods, look at the <code>help()</code> for the method. Look at how the method should be used; make sure you are using the method on an object (variable or function) with the right <em>type</em> and providing the other arguments correctly.</li>
+</ol></li>
+</ul></li>
+<li>KeyError
+<ul>
+<li>You are trying to access an element of a <em>dictionary</em> using a key value that the dictionary does not contain (look up <em>Python dictionaries</em> for more information).</li>
+</ul></li>
+<li>AttributeError
+<ul>
+<li>You are trying to access a “DOT” <em>attribute</em> or “DOT” <em>method</em> that does not exist, check your spelling and that you have imported the modules correctly.</li>
+</ul></li>
+<li>IndexError
+<ul>
+<li>The index you are using to access a list or string is greater than its length minus one.
+<ul>
+<li>Immediately before the site of the error, add a <code>print</code> statement to display the value of the index and the length of the sequence. Is the sequence the right size? Is the index the right value?</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="lots-of-print-functions-results-in-too-much-output." class="level4">
+<h4 class="anchored" data-anchor-id="lots-of-print-functions-results-in-too-much-output.">Lots of <code>print</code> functions results in too much output.</h4>
+<p>To simplify the output, you can remove or comment out <code>print</code> statements that aren’t helping, or combine them, or format the output so it is easier to understand.</p>
+<p>To simplify the program, there are several things you can do. First, scale down the problem the program is working on. For example, if you are sorting a sequence, sort a <em>small</em> sequence. If the program takes input from the user, give it the simplest input that causes the problem.</p>
+<p>Often the process of finding the minimal test case leads you to the bug. If you find that a program works in one situation but not in another, that gives you a clue about what is going on.</p>
+</section>
+<section id="exercise-correct-the-runtime-error-below-using-the-error-message-and-a-bit-of-thought-online-searching-for-help." class="level4">
+<h4 class="anchored" data-anchor-id="exercise-correct-the-runtime-error-below-using-the-error-message-and-a-bit-of-thought-online-searching-for-help.">Exercise: Correct the runtime error below, using the error message (and a bit of thought / online searching) for help.</h4>
+<div id="cell-20" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy <span class="im">import</span> mean, <span class="bu">sum</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">3.0</span>, <span class="fl">2.0</span>, <span class="fl">1.0</span>]</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>mean <span class="op">=</span> <span class="bu">sum</span>(a)<span class="op">/</span><span class="bu">len</span>(a)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mean)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> [<span class="fl">2.0</span>, <span class="fl">5.0</span>, <span class="fl">7.0</span>]</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mean(b))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1.8</code></pre>
+</div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">/tmp/ipykernel_72841/788166369.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg ansi-bold">      7</span> b <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">2.0</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">5.0</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">7.0</span><span class="ansi-blue-fg">]</span>
+<span class="ansi-green-fg ansi-bold">      8</span> 
+<span class="ansi-green-fg">----&gt; 9</span><span class="ansi-red-fg"> </span>print<span class="ansi-blue-fg">(</span>mean<span class="ansi-blue-fg">(</span>b<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">TypeError</span>: 'numpy.float64' object is not callable</pre>
+</div>
+</div>
+</div>
+<p>Hint 1: The error is saying that you are trying to use (<em>“call”</em>) a <code>float</code> as if it is a function.</p>
+<hr>
+<p><a href="./solutions/sol1001.html">Solution: Click here</a></p>
+<hr>
+<p>A similar error is overwriting the print function:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> <span class="op">=</span> <span class="st">"This is what I want to print."</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> <span class="st">"Actually I'll print this instead."</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(output)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>Output:</code></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">---------------------------------------------------------------------------</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="pp">TypeError</span>                                 Traceback (most recent call last)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>ipython<span class="op">-</span><span class="bu">input</span><span class="op">-</span><span class="dv">10</span><span class="op">-</span>d347daba1296<span class="op">&gt;</span> <span class="kw">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>      <span class="dv">3</span> output <span class="op">=</span> <span class="st">"Actually I'll print this instead."</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>      <span class="dv">4</span> </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="op">----&gt;</span> <span class="dv">5</span> <span class="bu">print</span>(output)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="pp">TypeError</span>: <span class="st">'str'</span> <span class="bu">object</span> <span class="kw">is</span> <span class="kw">not</span> <span class="bu">callable</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>After the first line <code>print</code> has become a variable holding a string, so it cannot be called as a function.</li>
+<li>The simplest way to cure this is to restart the Python kernel (after correcting the error).</li>
+</ul>
+</section>
+</section>
+<section id="semantic-errors" class="level3" data-number="10.5.3">
+<h3 data-number="10.5.3" class="anchored" data-anchor-id="semantic-errors"><span class="header-section-number">10.5.3</span> Semantic errors</h3>
+<p><em>Semantic errors</em> are errors in the logic of the task you are trying to perform. These could be incorrect calculations or using conditionals incorrectly.</p>
+<p>Semantic errors can be the hardest type of error to track down. If there is a semantic error in your program, the computer will not generate any error messages but it will not do the right thing. It will do exactly what you told it to do, even if this is wrong!</p>
+<p>The problem is that the program you wrote is not the program you wanted to write. Identifying semantic errors can be tricky because it requires you to work backward by looking at the output of the program and trying to figure out what it is doing.</p>
+<p>Inserting a few well-placed <code>print</code> statements, showing the steps of calculations and how variables change, and comparing them to what you expect from hand calculations can be a very effective way of debugging.</p>
+<section id="exercise-the-code-below-runs-without-giving-an-error-message-but-the-answer-is-wrong" class="level4">
+<h4 class="anchored" data-anchor-id="exercise-the-code-below-runs-without-giving-an-error-message-but-the-answer-is-wrong">Exercise: The code below runs without giving an error message, but the answer is wrong…</h4>
+<ol type="1">
+<li>Insert some <code>print</code> functions to trace what each step is doing. You may need to move them around a bit until they are in the correct place to be the most use.</li>
+<li>Work out how you would perform the steps and the numbers you would expect and compare this to the output.</li>
+</ol>
+<div id="cell-26" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#find the minimum absolute value of a list</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> [<span class="dv">6</span>, <span class="dv">1</span>, <span class="op">-</span><span class="dv">10</span>, <span class="op">-</span><span class="dv">7</span>, <span class="dv">0</span>, <span class="dv">6</span>, <span class="op">-</span><span class="dv">9</span>, <span class="dv">7</span>, <span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>]</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>lowest <span class="op">=</span> <span class="fl">1e100</span> <span class="co">#set to a very big number (a "googol": 1x10^100)</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">#iterate through the data</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> data:</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">#if it's positive and less than the lowest so far</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> d <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> d <span class="op">&lt;</span> lowest: </span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>        <span class="co">#replace the lowest so far with the current value</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>        lowest <span class="op">=</span> d </span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> d <span class="op">&lt;</span> <span class="dv">0</span>:<span class="co">#if less than zero</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>        <span class="co">#negate </span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>        d <span class="op">=</span> <span class="op">-</span>d</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> d <span class="op">&lt;</span> lowest:</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>            lowest <span class="op">=</span> d</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lowest)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1</code></pre>
+</div>
+</div>
+<p><a href="./solutions/sol1002.html">Example code with print functions</a></p>
+<ul>
+<li>Do this first then try to debug the code.</li>
+</ul>
+<p><a href="./solutions/sol1003.html">Solution code here</a></p>
+</section>
+</section>
+</section>
+<section id="weekly-task-9" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Weekly Task 9</h1>
+<section id="debugging-code" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="debugging-code"><span class="header-section-number">11.1</span> Debugging Code</h2>
+<section id="the-task" class="level3" data-number="11.1.1">
+<h3 data-number="11.1.1" class="anchored" data-anchor-id="the-task"><span class="header-section-number">11.1.1</span> The Task</h3>
+<p>The following code was written to solve the problem below in the appendix, but contains several errors. (Commenting the code to match the steps in the method and understand all other steps will help you debug the code).</p>
+<p>The correct output should be a figure like this, saved to your working folder as <code>"integral.png"</code> <img src="Figures/errfn.png" class="img-fluid"></p>
+<ul>
+<li><strong>Run the code</strong> and <em>use the error messages</em> <strong>one at a time</strong> to debug the code so that it runs correctly and produces the graph shown above.</li>
+<li>Submit your Python <code>.py</code> file containing the corrected code (make sure it produces the correct graph and the gvals array is called <code>gvals</code>!).</li>
+</ul>
+<div id="cell-30" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;ed4954232b548635a412de21655dd13f&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-327110d619aceefa&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fx(x)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.exp(<span class="op">-</span>x<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#list for integral values</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>gvals<span class="op">=</span>[]</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#constant offset (would need to obtain for particular problem).</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>g<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>dx<span class="op">=</span><span class="fl">0.1</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>xvals<span class="op">=</span>np.arange(<span class="dv">0</span>,<span class="dv">3</span>,dx)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> xvals:</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>g<span class="op">=</span>g<span class="op">+</span>fx(x)<span class="op">*</span>dx</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>      gvals<span class="op">=</span>gvals<span class="op">+</span>[g</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>plt.plot(xvals, yvals,<span class="st">"-o"</span>)</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>                   </span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="co">#save the figure file as a png image</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>plt.shavefig(integral.png)</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-cyan-fg">  File </span><span class="ansi-green-fg">"/tmp/ipykernel_72841/3519592389.py"</span><span class="ansi-cyan-fg">, line </span><span class="ansi-green-fg">4</span>
+<span class="ansi-red-fg">    def fx(x)</span>
+             ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> invalid syntax
+</pre>
+</div>
+</div>
+</div>
+</section>
+<section id="cut-and-paste-the-above-code-into-the-cell-below-to-debug-it" class="level3" data-number="11.1.2">
+<h3 data-number="11.1.2" class="anchored" data-anchor-id="cut-and-paste-the-above-code-into-the-cell-below-to-debug-it"><span class="header-section-number">11.1.2</span> Cut and paste the above code into the cell below to debug it:</h3>
+<div id="cell-32" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;ffd10216d54be35f85e85a476f0ad911&quot;,&quot;grade&quot;:true,&quot;grade_id&quot;:&quot;cell-d9560d182b631743&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:true,&quot;task&quot;:false}}">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><a href="./solutions/sol1004.html">Click here for some final hints!</a></p>
+<ul>
+<li>Test your <code>gvals</code> array has the correct values below:</li>
+</ul>
+<div id="cell-34" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;7b1f29772dec5425fca44ed5dc727d85&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-cddbab600512813a&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">".checks"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> check10</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> gvals<span class="op">==</span>check10.gvals: <span class="bu">print</span>(<span class="st">"The data passes the test! (But check there are no remaining errors)"</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>: <span class="bu">print</span>(<span class="ss">f"Oops! gvals covers the wrong range of values. Try looking at the x-axis and your x values..."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="appendix" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="appendix"><span class="header-section-number">11.2</span> Appendix</h2>
+<section id="practical-application-of-the-above-example-integration-using-a-cumulative-sum" class="level3" data-number="11.2.1">
+<h3 data-number="11.2.1" class="anchored" data-anchor-id="practical-application-of-the-above-example-integration-using-a-cumulative-sum"><span class="header-section-number">11.2.1</span> Practical Application of the above example: Integration using a Cumulative Sum</h3>
+<p>Some functions are impossible to integrate analytically such as: <span class="math display">\[\displaystyle g(x) = \int \mathrm{e}^{-x^2} \mathrm{d}x.\]</span> (Try this: you will end up going round in circles!)</p>
+<ul>
+<li>We can Numerically Integrate <span class="math inline">\(g(x)\)</span> using: <span class="math display">\[\int\limits_a^b f(x) \mathrm{d}x \approx g_0 + \sum\limits_{x=a}^{b} f(x) \delta x,\]</span> with from some <em>initial</em> <span class="math inline">\(g_0\)</span> (given by the particular application).</li>
+<li>In this case it is just the <em>sum of small areas</em> under <span class="math inline">\(f(x)\)</span>, similar to the trapezium rule (or a cumulative sum).</li>
+</ul>
+</section>
+<section id="exercise-comment-the-code-above-so-you-understand-what-all-the-steps-are-doing." class="level3" data-number="11.2.2">
+<h3 data-number="11.2.2" class="anchored" data-anchor-id="exercise-comment-the-code-above-so-you-understand-what-all-the-steps-are-doing."><span class="header-section-number">11.2.2</span> Exercise: Comment the code above so you understand what all the steps are doing.</h3>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./08-Data_Analysis.html" class="pagination-link" aria-label="Basics of Plotting Graphs">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basics of Plotting Graphs</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./11-Writing_Programs.html" class="pagination-link" aria-label="Writing Programs">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Writing Programs</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

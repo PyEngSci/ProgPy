@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>2&nbsp; Python Basics – Programming in Python</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./02-Variables.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-02ae9ba62279b8bbbed70b062340170a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="application/json" class="js-hypothesis-config">
+{
+  "theme": "clean"
+}
+</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+<script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document
+    .querySelectorAll('a[href*="solutions/"]')
+    .forEach(link => {
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+    });
+});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-Python_Basics.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Python Basics</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Programming in Python</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Quick Summary</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-Python_Basics.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Python Basics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Using Variables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-Functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Writing Functions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-If_and_While.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditionals and While Loops</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-Lists-Dictionaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lists and Dictionaries</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-For_Loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Iteration using <code>for</code> Loops</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Numerical_Arrays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical Arrays</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-Data_Analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basics of Plotting Graphs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-Debugging_Code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Debugging Code</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-Writing_Programs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Writing Programs</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="-1">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#typing-commands-or-scripts" id="toc-typing-commands-or-scripts" class="nav-link active" data-scroll-target="#typing-commands-or-scripts"><span class="header-section-number">2.1</span> Typing commands or scripts</a></li>
+  <li><a href="#errors" id="toc-errors" class="nav-link" data-scroll-target="#errors"><span class="header-section-number">2.2</span> Errors</a></li>
+  <li><a href="#if-all-goes-wrong---restart-the-kernel" id="toc-if-all-goes-wrong---restart-the-kernel" class="nav-link" data-scroll-target="#if-all-goes-wrong---restart-the-kernel"><span class="header-section-number">2.3</span> If all goes wrong! <span class="math inline">\(-\)</span> Restart the kernel!</a></li>
+  <li><a href="#restart-the-kernel-using-the-circlearrowright-button-before-moving-on" id="toc-restart-the-kernel-using-the-circlearrowright-button-before-moving-on" class="nav-link" data-scroll-target="#restart-the-kernel-using-the-circlearrowright-button-before-moving-on"><span class="header-section-number">3</span> <strong>RESTART THE KERNEL (using the <span class="math inline">\(\circlearrowright\)</span> button) BEFORE MOVING ON!</strong></a>
+  <ul class="collapse">
+  <li><a href="#why-does-print-fail" id="toc-why-does-print-fail" class="nav-link" data-scroll-target="#why-does-print-fail"><span class="header-section-number">3.1</span> Why does <code>print</code> fail?</a>
+  <ul class="collapse">
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">3.1.1</span> Example</a></li>
+  <li><a href="#how-to-fix-it" id="toc-how-to-fix-it" class="nav-link" data-scroll-target="#how-to-fix-it"><span class="header-section-number">3.1.2</span> How to fix it</a></li>
+  <li><a href="#key-takeaway" id="toc-key-takeaway" class="nav-link" data-scroll-target="#key-takeaway"><span class="header-section-number">3.1.3</span> Key takeaway</a></li>
+  </ul></li>
+  <li><a href="#using-python-as-a-calculator" id="toc-using-python-as-a-calculator" class="nav-link" data-scroll-target="#using-python-as-a-calculator"><span class="header-section-number">3.2</span> Using Python as a calculator</a>
+  <ul class="collapse">
+  <li><a href="#types-of-number-integers-int" id="toc-types-of-number-integers-int" class="nav-link" data-scroll-target="#types-of-number-integers-int"><span class="header-section-number">3.2.1</span> Types of number: Integers (<code>int</code>)</a></li>
+  </ul></li>
+  <li><a href="#floating-point-numbers-float" id="toc-floating-point-numbers-float" class="nav-link" data-scroll-target="#floating-point-numbers-float"><span class="header-section-number">3.3</span> Floating point numbers (<code>float</code>)</a></li>
+  <li><a href="#arithmetic" id="toc-arithmetic" class="nav-link" data-scroll-target="#arithmetic"><span class="header-section-number">3.4</span> Arithmetic</a>
+  <ul class="collapse">
+  <li><a href="#exercises-use-python-to-perform-the-following-calculations." id="toc-exercises-use-python-to-perform-the-following-calculations." class="nav-link" data-scroll-target="#exercises-use-python-to-perform-the-following-calculations."><span class="header-section-number">3.4.1</span> Exercises: Use Python to perform the following calculations.</a></li>
+  </ul></li>
+  <li><a href="#exponentiation" id="toc-exponentiation" class="nav-link" data-scroll-target="#exponentiation"><span class="header-section-number">3.5</span> Exponentiation</a>
+  <ul class="collapse">
+  <li><a href="#print-the-result-of-25-below" id="toc-print-the-result-of-25-below" class="nav-link" data-scroll-target="#print-the-result-of-25-below"><span class="header-section-number">3.5.1</span> Print the result of <span class="math inline">\(2^5\)</span> below:</a></li>
+  <li><a href="#exercise-calculate-the-following" id="toc-exercise-calculate-the-following" class="nav-link" data-scroll-target="#exercise-calculate-the-following"><span class="header-section-number">3.5.2</span> Exercise: Calculate the following:</a></li>
+  </ul></li>
+  <li><a href="#combining-arithmetic-operations-in-one-expression" id="toc-combining-arithmetic-operations-in-one-expression" class="nav-link" data-scroll-target="#combining-arithmetic-operations-in-one-expression"><span class="header-section-number">3.6</span> Combining arithmetic operations in one expression</a>
+  <ul class="collapse">
+  <li><a href="#calculate-the-following" id="toc-calculate-the-following" class="nav-link" data-scroll-target="#calculate-the-following"><span class="header-section-number">3.6.1</span> Calculate the following:</a></li>
+  <li><a href="#correct-the-error-above-before-moving-on" id="toc-correct-the-error-above-before-moving-on" class="nav-link" data-scroll-target="#correct-the-error-above-before-moving-on"><span class="header-section-number">3.6.2</span> Correct the error above before moving on</a></li>
+  <li><a href="#try-these-above-examples-in-the-cell-below" id="toc-try-these-above-examples-in-the-cell-below" class="nav-link" data-scroll-target="#try-these-above-examples-in-the-cell-below"><span class="header-section-number">3.6.3</span> <strong>Try these above examples in the cell below:</strong></a></li>
+  <li><a href="#exercise-perform-the-following-calculation" id="toc-exercise-perform-the-following-calculation" class="nav-link" data-scroll-target="#exercise-perform-the-following-calculation"><span class="header-section-number">3.6.4</span> Exercise: Perform the following calculation:</a></li>
+  </ul></li>
+  <li><a href="#arithmetic-involving-integers" id="toc-arithmetic-involving-integers" class="nav-link" data-scroll-target="#arithmetic-involving-integers"><span class="header-section-number">3.7</span> Arithmetic Involving Integers</a>
+  <ul class="collapse">
+  <li><a href="#scientificengineering-notation" id="toc-scientificengineering-notation" class="nav-link" data-scroll-target="#scientificengineering-notation"><span class="header-section-number">3.7.1</span> Scientific/engineering notation</a></li>
+  <li><a href="#converting-the-type-of-number" id="toc-converting-the-type-of-number" class="nav-link" data-scroll-target="#converting-the-type-of-number"><span class="header-section-number">3.7.2</span> Converting the <em>type</em> of number</a></li>
+  </ul></li>
+  <li><a href="#other-useful-functions" id="toc-other-useful-functions" class="nav-link" data-scroll-target="#other-useful-functions"><span class="header-section-number">3.8</span> Other useful functions</a></li>
+  <li><a href="#using-libraries-to-add-new-functionality-to-python" id="toc-using-libraries-to-add-new-functionality-to-python" class="nav-link" data-scroll-target="#using-libraries-to-add-new-functionality-to-python"><span class="header-section-number">3.9</span> Using <em>“libraries”</em> to add new functionality to Python</a>
+  <ul class="collapse">
+  <li><a href="#importing-a-whole-library-into-python" id="toc-importing-a-whole-library-into-python" class="nav-link" data-scroll-target="#importing-a-whole-library-into-python"><span class="header-section-number">3.9.1</span> Importing a whole library into Python</a></li>
+  <li><a href="#calculate" id="toc-calculate" class="nav-link" data-scroll-target="#calculate"><span class="header-section-number">3.9.2</span> Calculate:</a></li>
+  <li><a href="#importing-particular-objects-from-inside-a-library" id="toc-importing-particular-objects-from-inside-a-library" class="nav-link" data-scroll-target="#importing-particular-objects-from-inside-a-library"><span class="header-section-number">3.9.3</span> Importing particular objects from inside a <em>library</em></a></li>
+  <li><a href="#exercise-import-the-numbers-e-and-pi-from-the-math-library-and-use-them-to-print-the-following-examples" id="toc-exercise-import-the-numbers-e-and-pi-from-the-math-library-and-use-them-to-print-the-following-examples" class="nav-link" data-scroll-target="#exercise-import-the-numbers-e-and-pi-from-the-math-library-and-use-them-to-print-the-following-examples"><span class="header-section-number">3.9.4</span> Exercise: <code>import</code> the numbers <span class="math inline">\(e\)</span> and <span class="math inline">\(\pi\)</span> <code>from</code> the <code>math</code> library and use them to print the following examples:</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise"><span class="header-section-number">3.9.5</span> Exercise:</a></li>
+  <li><a href="#mixing-multiple-libraries" id="toc-mixing-multiple-libraries" class="nav-link" data-scroll-target="#mixing-multiple-libraries"><span class="header-section-number">3.9.6</span> Mixing multiple libraries:</a></li>
+  </ul></li>
+  <li><a href="#importing-libraries-with-a-pseudonym" id="toc-importing-libraries-with-a-pseudonym" class="nav-link" data-scroll-target="#importing-libraries-with-a-pseudonym"><span class="header-section-number">3.10</span> Importing libraries with a pseudonym</a></li>
+  <li><a href="#appendix-a-note-on-floating-point-precision" id="toc-appendix-a-note-on-floating-point-precision" class="nav-link" data-scroll-target="#appendix-a-note-on-floating-point-precision"><span class="header-section-number">3.11</span> Appendix: A note on floating point precision</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/PyEngSci/ProgPy" target="_blank"><i class="bi bi-download"></i>Course Files</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Python Basics</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Run all cells marked <code>In [ ]</code> using the [<span class="math inline">\(\blacktriangleright\)</span> Run] button above and <strong>think about the result you see</strong>. Be sure to do all exercises (in blank cells) and run all completed code cells.</p>
+<p>If anything goes wrong, <strong>restart the kernel</strong> using <span class="math inline">\(\circlearrowright\)</span> above (or in the menubar, select Kernel<span class="math inline">\(\rightarrow\)</span>Restart). Or run text cells to get the formatted text back from markdown.</p>
+<hr>
+<p>In this section we introduce how we can use Python for basic calculations. From this you might think that programming is similar to using an advanced calculator. It is certainly true that you can use Python in this way. However, we will see later on that computer programming allows us to do much more than simple numerical calculations. From now on, whenever you reach for a calculator (or a spreadsheet program), you should immediately think of using Python instead.</p>
+<section id="typing-commands-or-scripts" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="typing-commands-or-scripts"><span class="header-section-number">2.1</span> Typing commands or scripts</h2>
+<p>Python is a programming <em>language</em>.</p>
+<p>You type individual commands on one line in a code block, commandline or script file, then run them. The Python <em>interpreter</em> reads the programme commands you give it from the top down and runs them to produce an output.</p>
+<ul>
+<li><strong>Click into the following “cell” and run the command using the triangular <span class="math inline">\(\blacktriangleright\)</span> Run button in the tab menubar (or <code>Ctrl+Return</code>)</strong></li>
+</ul>
+<div id="cell-4" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;&quot;}}" data-tags="[]" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello World!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hello World!</code></pre>
+</div>
+</div>
+<p>The following is a <em>script</em> with more than one line (<strong>run it as before</strong>):</p>
+<div id="cell-6" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;&quot;}}" data-tags="[]" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello World!"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The answer is:"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">42</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hello World!
+The answer is:
+42</code></pre>
+</div>
+</div>
+<p>In Jupyter NoteBooks (the interface you are using here) the last line often shows some output (shown with a number <code>[x]:</code>). This is <strong>not quite</strong> the same as printing a line (which can come anywhere in the script).</p>
+<div id="cell-8" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;&quot;}}" data-tags="[]" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello World!"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dv">42</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Is the answer."</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="dv">42</span>, <span class="st">"But what is the question?"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hello World!
+Is the answer.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>(42, 'But what is the question?')</code></pre>
+</div>
+</div>
+</section>
+<section id="errors" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="errors"><span class="header-section-number">2.2</span> Errors</h2>
+<p>If you mistype something or write a command that is not understood in Python you will get an (often long and hard to understand) error message:</p>
+<div id="cell-10" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;&quot;}}" data-tags="[]" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Print(<span class="dv">42</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">/tmp/ipykernel_57894/1640522948.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>Print<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">42</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">NameError</span>: name 'Print' is not defined</pre>
+</div>
+</div>
+</div>
+<p><strong>DONT PANIC!</strong></p>
+<p>The important information is usually at the top of the message (where the error was first detected) and the bottom (what type of error has occurred).</p>
+<p>Sometimes this is useful, as here, the function Print (with an uppercase P) is not known to Python, so it’s a typo.</p>
+<p>Sometimes it is less useful if Python can not figure out cause of the the problem:</p>
+<div id="cell-12" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;&quot;}}" data-tags="[]" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Hello World<span class="op">!</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-cyan-fg">  File </span><span class="ansi-green-fg">"/tmp/ipykernel_57894/2443755642.py"</span><span class="ansi-cyan-fg">, line </span><span class="ansi-green-fg">1</span>
+<span class="ansi-red-fg">    print(Hello World!)</span>
+                ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> invalid syntax
+</pre>
+</div>
+</div>
+</div>
+<p>It is always possible to put the error message into google, or ask an AI assistant, to help explain the possible causes of the error. After a while you will leaarn a few common error messsages, which will prove very helpful.</p>
+<ul>
+<li>open a new cell (using the menubar <code>+</code> button) and try to fix the error</li>
+</ul>
+</section>
+<section id="if-all-goes-wrong---restart-the-kernel" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="if-all-goes-wrong---restart-the-kernel"><span class="header-section-number">2.3</span> If all goes wrong! <span class="math inline">\(-\)</span> Restart the kernel!</h2>
+<p>Sometimes you will get in such a mess that you just need to <em>“turn it off and back on again”</em>.<br>
+This is done using the <span class="math inline">\(\circlearrowright\)</span> button in the menubar of this tab and clicking <code>Restart</code>.</p>
+<ul>
+<li>Example: here we accidentally overwrite the print function as a variable (this will make more sense after the next lesson):</li>
+</ul>
+<div id="cell-15" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;&quot;}}" data-tags="[]" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> <span class="op">=</span> <span class="dv">42</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello World!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">/tmp/ipykernel_57894/4242765778.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg ansi-bold">      1</span> print <span class="ansi-blue-fg">=</span> <span class="ansi-cyan-fg">42</span>
+<span class="ansi-green-fg ansi-bold">      2</span> 
+<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg"> </span>print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">"Hello World!"</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">TypeError</span>: 'int' object is not callable</pre>
+</div>
+</div>
+</div>
+<p>The error message is saying that a number (integer) can not be used (or <em>“called”</em> into use) as a function, functions are explained in Lesson 3.</p>
+<p><a href="./solutions/sol0100.html">Click Here for a more detailed explanation</a> (this will make more sense after later lessons).</p>
+</section>
+<section id="restart-the-kernel-using-the-circlearrowright-button-before-moving-on" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> <strong>RESTART THE KERNEL (using the <span class="math inline">\(\circlearrowright\)</span> button) BEFORE MOVING ON!</strong></h1>
+<section id="why-does-print-fail" class="level2 quarto-embed-nb-cell" data-notebook="/home/macha/Dropbox/04_teaching/AR10498_EMaC1/ProgPyQuarto/solutions/sol0100.ipynb" data-notebook-title="Why does `print` fail?" data-notebook-cellid="de7efc7f-7e0a-4c6e-8879-d4181b38b8e2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="why-does-print-fail"><span class="header-section-number">3.1</span> Why does <code>print</code> fail?</h2>
+<p>The problem is that we’ve <strong>overwritten the built-in <code>print</code> function</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> <span class="op">=</span> <span class="dv">42</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>After this line, the name <code>print</code> no longer refers to Python’s built-in printing function. It now refers to the integer <code>42</code>.</p>
+<p>So when Python reaches:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello World!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>it effectively tries to do:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dv">42</span>(<span class="st">"Hello World!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>However, integers can not be used (or <em>call</em>ed into use) as functions, so Python raises the error:</p>
+<pre class="text"><code>TypeError: 'int' object is not callable</code></pre>
+<section id="example" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="example"><span class="header-section-number">3.1.1</span> Example</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> <span class="op">=</span> <span class="dv">42</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello World!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Output:</p>
+<pre class="text"><code>TypeError: 'int' object is not callable</code></pre>
+</section>
+<section id="how-to-fix-it" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="how-to-fix-it"><span class="header-section-number">3.1.2</span> How to fix it</h3>
+<p>Use a different variable name:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>value <span class="op">=</span> <span class="dv">42</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello World!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Or restore the built-in function:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> <span class="bu">print</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello World!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>After <code>del print</code>, Python falls back to the built-in <code>print()</code> function again.</p>
+</section>
+<section id="key-takeaway" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="key-takeaway"><span class="header-section-number">3.1.3</span> Key takeaway</h3>
+<p>Avoid using the names of built-in Python functions as variable names:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span> <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]     <span class="co"># bad</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">str</span> <span class="op">=</span> <span class="st">"hello"</span>        <span class="co"># bad</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span> <span class="op">=</span> <span class="dv">10</span>             <span class="co"># bad</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> <span class="op">=</span> <span class="dv">42</span>           <span class="co"># bad</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Otherwise, you lose access to the original function until the name is deleted or the interpreter is restarted.</p>
+</section>
+</section>
+<section id="using-python-as-a-calculator" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="using-python-as-a-calculator"><span class="header-section-number">3.2</span> Using Python as a calculator</h2>
+<section id="types-of-number-integers-int" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="types-of-number-integers-int"><span class="header-section-number">3.2.1</span> Types of number: Integers (<code>int</code>)</h3>
+<p>Whole numbers or <em>integers</em> can be entered directly. You can use a minus sign for negative numbers.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="dv">1</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="dv">314159</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="dv">200</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><strong>Enter each number individually below and press the <code>&gt;Run</code> button (or <code>Ctrl+Return</code>)</strong></li>
+</ul>
+<div id="cell-19" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;&quot;}}" data-tags="[]" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="dv">42</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>42</code></pre>
+</div>
+</div>
+<p>In mathematics or finance we sometimes use commas or spaces in large numbers such as <span class="math inline">\(10\,000\,000\)</span>. This is not allowed in Python. Putting a space in a number will result in a syntax error (try this). Digits separated by commas will be interpreted as separate numbers.</p>
+<p>If you make a script containing the numbers and execute this script, you will see no output other than the last number.</p>
+<ul>
+<li><strong>Click on the cell below and then press <code>&gt;Run</code></strong> (or hold down Ctrl and press Return)</li>
+</ul>
+<div id="cell-21" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;941497fc24e6cd139cdae8af45e2c486&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-d0b61d2f52d019ec&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="dv">1</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="dv">314159</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="dv">200</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>-200</code></pre>
+</div>
+</div>
+<ul>
+<li>Jupyter notebooks always display the result of the (only) last line automatically</li>
+</ul>
+<p>You have to use the <code>print</code> function to print (display) any other output.</p>
+<div id="cell-23" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;b4869c4bb56216cf3867f286022d9f44&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-38aecab49b9bf2e2&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># script to print some integers</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">0</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">1</span>)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">314159</span>)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="op">-</span><span class="dv">200</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0
+1
+-1
+314159
+-200</code></pre>
+</div>
+</div>
+<ul>
+<li>note also the <em>hash</em> symbol <code>#</code> is used to leave a helpful <em>“comment”</em> in the code script. Any text following it on the same line is ignored by the Python interpreter.</li>
+</ul>
+</section>
+</section>
+<section id="floating-point-numbers-float" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="floating-point-numbers-float"><span class="header-section-number">3.3</span> Floating point numbers (<code>float</code>)</h2>
+<p>Python can also work with numbers with a decimal point.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.2</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="fl">3.4</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fl">0.0005</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fl">33.98</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>These are called <em>floating point numbers</em> in Python.</p>
+</section>
+<section id="arithmetic" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="arithmetic"><span class="header-section-number">3.4</span> Arithmetic</h2>
+<p>The following examples show how to do addition, subtraction, multiplication, division and exponentiation. The comments starting with <code>#</code> are for your information only and are ignored by the Python interpreter.</p>
+<div id="cell-26" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;4e7c3dc6c1cef627403852c740b95980&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-79ac5e6197712573&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># python arithmetic</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span><span class="op">+</span><span class="dv">16</span>      <span class="co"># addition</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>25</code></pre>
+</div>
+</div>
+<div id="cell-27" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;3ebe19231261e6a13bd069bfdd71d373&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-a52ce195539f1467&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="dv">25</span><span class="op">-</span><span class="dv">9</span>      <span class="co"># subtraction</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>16</code></pre>
+</div>
+</div>
+<div id="cell-28" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;c18e2d668628f9a91731eb852a1f852b&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-b4168f1ab0246258&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span><span class="op">*</span><span class="dv">5</span>       <span class="co"># multiplication</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>20</code></pre>
+</div>
+</div>
+<div id="cell-29" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;391b25d0134be3f131d2de6343810aab&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-d6a9f600716750d7&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span><span class="op">/</span><span class="dv">4</span>      <span class="co"># division</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>2.25</code></pre>
+</div>
+</div>
+<div id="cell-30" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;d98e2d348aa974d8d7715da42735798b&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-c8fb5aaded3e1074&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="dv">9</span><span class="op">//</span><span class="dv">4</span>       <span class="co"># integer division</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>2</code></pre>
+</div>
+</div>
+<div id="cell-31" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;a4006058abce54bcf868ea9e04660777&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-d1e444e79a6689c8&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">7</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.14285714285714285</code></pre>
+</div>
+</div>
+<div id="cell-32" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;a92fa4b6a13a0d0bce974248215e31fd&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-83de0c1a115c60a6&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="fl">1.0</span><span class="op">//</span><span class="dv">7</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.0</code></pre>
+</div>
+</div>
+<section id="exercises-use-python-to-perform-the-following-calculations." class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="exercises-use-python-to-perform-the-following-calculations."><span class="header-section-number">3.4.1</span> Exercises: Use Python to perform the following calculations.</h3>
+<p><span class="math inline">\(\displaystyle \frac{7}{6}\)</span></p>
+<div id="cell-34" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span><span class="op">/</span><span class="dv">6</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>1.1666666666666667</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(\displaystyle \frac{7}{2} + \frac{3}{8} - \frac{9}{10}\)</span></p>
+<div id="cell-36" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span><span class="op">/</span><span class="dv">2</span><span class="op">+</span><span class="dv">3</span><span class="op">/</span><span class="dv">8</span><span class="op">-</span><span class="dv">9</span><span class="op">/</span><span class="dv">8</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>2.75</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="exponentiation" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="exponentiation"><span class="header-section-number">3.5</span> Exponentiation</h2>
+<p>Exponents use the <code>**</code> <em>operator</em> in Python:</p>
+<p>e.g.&nbsp;<span class="math inline">\(x^p\)</span> is entered as <code>x**p</code></p>
+<section id="print-the-result-of-25-below" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="print-the-result-of-25-below"><span class="header-section-number">3.5.1</span> Print the result of <span class="math inline">\(2^5\)</span> below:</h3>
+<div id="cell-38" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2019-02-02T00:30:08.964973Z&quot;,&quot;start_time&quot;:&quot;2019-02-02T00:30:08.947968Z&quot;}}" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="op">**</span><span class="dv">5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>32</code></pre>
+</div>
+</div>
+<p>Expected result: <code>32</code></p>
+</section>
+<section id="exercise-calculate-the-following" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="exercise-calculate-the-following"><span class="header-section-number">3.5.2</span> Exercise: Calculate the following:</h3>
+<p><span class="math inline">\(\sqrt{20}\)</span></p>
+<p>(think about another way to represent square root as a power)</p>
+<div id="cell-40" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="dv">20</span><span class="op">**</span><span class="fl">0.5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>4.47213595499958</code></pre>
+</div>
+</div>
+<p>Result: <code>4.47213595499958</code></p>
+<p><a href="./solutions/sol0101.html">Click here to see solution</a></p>
+</section>
+</section>
+<section id="combining-arithmetic-operations-in-one-expression" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="combining-arithmetic-operations-in-one-expression"><span class="header-section-number">3.6</span> Combining arithmetic operations in one expression</h2>
+<p>The order in which the calculations are carried out is the standard <strong>BODMAS</strong> rule:</p>
+<ol type="1">
+<li>Brackets (parentheses),</li>
+<li>Orders (roots and powers/exponentiation),</li>
+<li>Multiplication</li>
+<li>Division / Multiplication,</li>
+<li>Addition / Subtraction.</li>
+</ol>
+<ul>
+<li>Combinations of addition and subtraction are carried out from left to right.
+<ul>
+<li>This means that <code>1 - 2 + 3</code> is equivalent to <code>(1 - 2) + 3</code> and <em>not</em> <code>1 - (2 + 3)</code>. calculations.</li>
+</ul></li>
+<li>The same holds for combinations of multiplication and division.
+<ul>
+<li>For example, <code>6/2*3</code> is equivalent to <code>(6/2)*3</code> and <em>not</em> <code>6/(2*3)</code>. Note that the use of spaces does <em>not</em> influence the order of calculations, e.g. <code>6 / 2*3</code> is equal to <code>(6/2)*3</code>.</li>
+</ul></li>
+</ul>
+<p>The order of operations can be changed by using parentheses <code>()</code>. Only parentheses (round brackets) can be used. Square brackets <code>[]</code> and braces (curly brackets) <code>{}</code> have a special meaning in Python and cannot be used to change the order of operations.</p>
+<section id="calculate-the-following" class="level3" data-number="3.6.1">
+<h3 data-number="3.6.1" class="anchored" data-anchor-id="calculate-the-following"><span class="header-section-number">3.6.1</span> Calculate the following:</h3>
+<p><span class="math inline">\(\displaystyle \frac{4^4 2^{-8}}{8^2}\)</span></p>
+<div id="cell-43" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>( <span class="dv">4</span><span class="op">**</span><span class="dv">4</span> <span class="op">*</span> <span class="dv">2</span><span class="op">**</span>(<span class="op">-</span><span class="dv">8</span>) ) <span class="op">/</span> <span class="dv">8</span><span class="op">**</span><span class="dv">2</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>0.015625</code></pre>
+</div>
+</div>
+<p>Expected result: <code>0.015625</code></p>
+<p><a href="./solutions/sol0102.html">Click here to see solution</a></p>
+<p>Note that multiplication symbol <code>*</code> is always necessary. This is especially important once we start using variables and parentheses. In mathematics we often write: <span class="math inline">\(5 x = 5 \times x\)</span> and <span class="math inline">\(5(3 + 4) = 5 \times (3 + 4)\)</span>, but we can not simplify in this way in Python.</p>
+<section id="the-following-will-give-an-error" class="level4">
+<h4 class="anchored" data-anchor-id="the-following-will-give-an-error">The following will give an error:</h4>
+<div id="cell-46" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2019-02-02T00:30:09.128964Z&quot;,&quot;start_time&quot;:&quot;2019-02-02T00:30:08.970972Z&quot;}}" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>(<span class="dv">3</span> <span class="op">+</span> <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>&lt;&gt;:1: SyntaxWarning: 'int' object is not callable; perhaps you missed a comma?
+&lt;&gt;:1: SyntaxWarning: 'int' object is not callable; perhaps you missed a comma?
+/tmp/ipykernel_58187/3516319131.py:1: SyntaxWarning: 'int' object is not callable; perhaps you missed a comma?
+  5(3 + 4)</code></pre>
+</div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">/tmp/ipykernel_58187/3516319131.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span><span class="ansi-cyan-fg">5</span><span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">3</span> <span class="ansi-blue-fg">+</span> <span class="ansi-cyan-fg">4</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">TypeError</span>: 'int' object is not callable</pre>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="correct-the-error-above-before-moving-on" class="level3" data-number="3.6.2">
+<h3 data-number="3.6.2" class="anchored" data-anchor-id="correct-the-error-above-before-moving-on"><span class="header-section-number">3.6.2</span> Correct the error above before moving on</h3>
+<p><a href="./solutions/sol0103.html">Solution</a></p>
+<div id="cell-48" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;5feb78da9387633cbadd68fc9d7fb209&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-f5f21517629911cf&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run this to see some more arithmetic operations</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2</span><span class="op">+</span><span class="dv">3</span><span class="op">*</span><span class="dv">5</span>)</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((<span class="dv">2</span><span class="op">+</span><span class="dv">3</span>)<span class="op">*</span><span class="dv">5</span>)</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="op">-</span>(<span class="dv">9</span><span class="op">+</span><span class="dv">4</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>17
+25
+-13</code></pre>
+</div>
+</div>
+<ul>
+<li>Note that it is not a good idea to use expressions like <code>3**2*2</code>.
+<ul>
+<li>You should use parentheses to make it clear that you mean <code>(3**2)*2</code> and not <code>3**(2*2)</code>.</li>
+</ul></li>
+</ul>
+</section>
+<section id="try-these-above-examples-in-the-cell-below" class="level3" data-number="3.6.3">
+<h3 data-number="3.6.3" class="anchored" data-anchor-id="try-these-above-examples-in-the-cell-below"><span class="header-section-number">3.6.3</span> <strong>Try these above examples in the cell below:</strong></h3>
+<ul>
+<li>In certain cases you should use parentheses even though they are not strictly necessary.
+<ul>
+<li>For example an expressions like <code>2*3*4/7*8</code> would be clearer when written as <code>(2*3*4/7)*8</code></li>
+</ul></li>
+<li>Spaces around mathematical operations are allowed and it is recommended to use extra spaces to make mathematical expressions clearer. Beware that the extra spaces do not have any special meaning for Python.</li>
+</ul>
+<div id="cell-52" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;7744b8ec4cb4c649f4d82da9c31b154b&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-03a97418a885c4cb&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use of spaces</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span><span class="op">*</span><span class="dv">5</span>)   <span class="co"># GOOD</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2</span><span class="op">+</span><span class="dv">3</span> <span class="op">*</span> <span class="dv">5</span>)   <span class="co"># BAD, this is equal to 2+(3*5) and NOT (2+3)*5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>17
+17</code></pre>
+</div>
+</div>
+</section>
+<section id="exercise-perform-the-following-calculation" class="level3" data-number="3.6.4">
+<h3 data-number="3.6.4" class="anchored" data-anchor-id="exercise-perform-the-following-calculation"><span class="header-section-number">3.6.4</span> Exercise: Perform the following calculation:</h3>
+<p><span class="math inline">\(\displaystyle\frac{852(53+27)-72(405)}{24}\)</span></p>
+<div id="cell-54" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>( ( <span class="dv">852</span><span class="op">*</span>(<span class="dv">53</span><span class="op">+</span><span class="dv">27</span>) <span class="op">-</span> <span class="dv">72</span><span class="op">*</span>(<span class="dv">405</span>) )<span class="op">/</span><span class="fl">24.0</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1625.0</code></pre>
+</div>
+</div>
+<p>Expected Result: <code>1625.0</code></p>
+<p><a href="./solutions/sol0104.html">Click here for solution</a></p>
+</section>
+</section>
+<section id="arithmetic-involving-integers" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="arithmetic-involving-integers"><span class="header-section-number">3.7</span> Arithmetic Involving Integers</h2>
+<p>When adding, subtracting or multiplying integers, the result will always be an integer. The same is true for exponentiation if the exponent is positive. For negative exponents the result will be a floating point number.</p>
+<div id="cell-57" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;e755326d34171fe12cfe3cd72d34c4f7&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-97d845c282f2fa77&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span><span class="op">**</span>(<span class="op">-</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<pre><code>0.01</code></pre>
+</div>
+</div>
+<div id="cell-58" class="cell" data-execution_count="21">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span><span class="op">**</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<pre><code>100</code></pre>
+</div>
+</div>
+<p>The parentheses are not strictly necessary in this case, but it is a good habit to use them.</p>
+<p>Mixing integers and floating point numbers in the same expression is allowed. Whenever integers and floating point numbers are combined in the same expression, the result will be a floating point number.</p>
+<div id="cell-60" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;f262429ff86924ce2390d050d039306d&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-667bc89c7b07bab7&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="22">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="op">+</span> <span class="fl">0.4</span>) <span class="op">*</span> <span class="dv">5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<pre><code>7.0</code></pre>
+</div>
+</div>
+<p>A division involving two integers will always result in a float in Python 3 (this has changed from Python 2).</p>
+<div id="cell-62" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;a14b922cf6f0f52ac5b1df296d27f2ea&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-d4865ff3d0008726&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="23">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="dv">11</span><span class="op">/</span><span class="dv">5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<pre><code>2.2</code></pre>
+</div>
+</div>
+<p>If you want the integer result, use the <code>int()</code> function (also see the <code>//</code> operator).</p>
+<div id="cell-64" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;62437d2322dbbba6eeef58119e581236&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-6871e516443237ea&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="24">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">11</span><span class="op">/</span><span class="dv">5</span>)</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">int</span>(<span class="fl">11.0</span><span class="op">/</span><span class="fl">5.0</span>))</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">11</span><span class="op">//</span><span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2.2
+2
+2</code></pre>
+</div>
+</div>
+<p>The remainder after integer division can be found using the operation <code>%</code></p>
+<div id="cell-66" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;35251cf7a9d7ddc04cc1624bb9d3aec3&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-b414010c4ef785d9&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="25">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">11</span> <span class="op">%</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1</code></pre>
+</div>
+</div>
+<p>Try some other examples here until you understand how this works:</p>
+<section id="scientificengineering-notation" class="level3" data-number="3.7.1">
+<h3 data-number="3.7.1" class="anchored" data-anchor-id="scientificengineering-notation"><span class="header-section-number">3.7.1</span> Scientific/engineering notation</h3>
+<p>Very big or very small floating point numbers can be entered using <em>scientific notation</em>.<br>
+The number <span class="math inline">\(5.6 \times 10^{17}\)</span> is typed as <code>5.6e17</code> (the letter <code>e</code> stands for exponent and means “times ten to the power”, <strong>not</strong> the number <span class="math inline">\(e\neq2.718\)</span>)</p>
+<p>We can output several values at once by separating them with a comma. The values are separated by a single space in the output.</p>
+<div id="cell-70" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;7ff5825a10d7ed34ef89252d63cd71b1&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-8b542ba8eb53f32b&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="26">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="fl">2e6</span>, <span class="fl">1e-3</span>, <span class="fl">5.6e17</span>, <span class="fl">1.618e-20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2000000.0 0.001 5.6e+17 1.618e-20</code></pre>
+</div>
+</div>
+</section>
+<section id="converting-the-type-of-number" class="level3" data-number="3.7.2">
+<h3 data-number="3.7.2" class="anchored" data-anchor-id="converting-the-type-of-number"><span class="header-section-number">3.7.2</span> Converting the <em>type</em> of number</h3>
+<p>Integers and floating point numbers are different types of values in Python, and behave differently when doing mathematical calculations (see later).</p>
+<p>Special in-built functions <code>int()</code> and <code>float()</code> can be used to convert between types.</p>
+<ul>
+<li>A function is a key-word followed by round brackets (parentheses).<br>
+</li>
+<li>the input (called the <em>“argument”</em> ) to the function goes into the brackets.</li>
+<li>the function gives (or <em>“returns”</em> ) an output:</li>
+</ul>
+<section id="converting-a-float-to-an-int" class="level4">
+<h4 class="anchored" data-anchor-id="converting-a-float-to-an-int">Converting a <code>float</code> to an <code>int</code>:</h4>
+<div id="cell-72" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;8f6f14d50f57234baa6f067f86337e21&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-a62ca0a704f35d2d&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="27">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="bu">int</span>(<span class="fl">4.9</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<pre><code>4</code></pre>
+</div>
+</div>
+</section>
+<section id="converting-an-int-to-a-float" class="level4">
+<h4 class="anchored" data-anchor-id="converting-an-int-to-a-float">Converting an <code>int</code> to a <code>float</code>:</h4>
+<div id="cell-74" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;1fef62fafa97700626544d0241dcab33&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-32754f857777e91b&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="28">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="bu">float</span>(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<pre><code>5.0</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="other-useful-functions" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="other-useful-functions"><span class="header-section-number">3.8</span> Other useful functions</h2>
+<p>Some other functions come with basic Python that can be used on numbers.</p>
+<p>The <code>round()</code> function takes a number and rounds it up or down, depending on certain <a href="https://docs.python.org/release/3.1.5/library/functions.html#round">rules</a> (but the behaviour might not be as you expect from high school maths!):</p>
+<div id="cell-76" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;4fd389493a7da4df734c5333fe3cb1f8&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-2bf16151934d19ab&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="29">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(<span class="fl">4.49</span>))</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(<span class="fl">4.50</span>))</span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(<span class="fl">4.51</span>))</span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(<span class="fl">3.5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>4
+4
+5
+4</code></pre>
+</div>
+</div>
+<ul>
+<li>Notice using the result of the <code>round</code> function as the input (argument) to the <code>print</code> function.</li>
+</ul>
+<p>The <code>abs()</code> function is used for absolute values</p>
+<div id="cell-78" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;43b8415dff477d876b39f5a6280ec0b8&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-04f12c027981f1b7&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="30">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="bu">abs</span>(<span class="op">-</span><span class="fl">10.0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<pre><code>10.0</code></pre>
+</div>
+</div>
+</section>
+<section id="using-libraries-to-add-new-functionality-to-python" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="using-libraries-to-add-new-functionality-to-python"><span class="header-section-number">3.9</span> Using <em>“libraries”</em> to add new functionality to Python</h2>
+<p>Some features come with Python but are not available straight away, we need to add them at the top of a script.</p>
+<section id="importing-a-whole-library-into-python" class="level3" data-number="3.9.1">
+<h3 data-number="3.9.1" class="anchored" data-anchor-id="importing-a-whole-library-into-python"><span class="header-section-number">3.9.1</span> Importing a whole library into Python</h3>
+<p>For example to use constants such as <span class="math inline">\(\pi\)</span> or <span class="math inline">\(e\)</span> we can import a <em>“library”</em> called <code>math</code>, using an <code>import</code> statement:</p>
+<div id="cell-80" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;6dc970b4f92684eeeea7e3f846c06520&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-120ddbfeb9ba30bc&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="31">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="co"># how to import a library</span></span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(math.pi)</span>
+<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(math.e)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3.141592653589793
+2.718281828459045</code></pre>
+</div>
+</div>
+<ul>
+<li>Notice how the values of the constants pi and e are called from <em>within</em> the <code>math</code> library using the “dot” syntax. That is, <strong>the name of the loaded library</strong>, followed by a “<strong>.</strong>” and then <strong>the thing we want from within the library</strong> (with no spaces).</li>
+</ul>
+<p>This “dot” method is used a lot in Python to access functions or variables within other so called <em>“objects”</em>.</p>
+</section>
+<section id="calculate" class="level3" data-number="3.9.2">
+<h3 data-number="3.9.2" class="anchored" data-anchor-id="calculate"><span class="header-section-number">3.9.2</span> Calculate:</h3>
+<ul>
+<li><span class="math inline">\(e^{-1}\)</span></li>
+</ul>
+<p>Result: <code>0.36787944117144233</code></p>
+<ul>
+<li>Compare this with <strong>engineering</strong> notation <code>1e-1</code>, which means <span class="math inline">\(10^{-1}\)</span></li>
+</ul>
+<div id="cell-85" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;4b5a60001110250279c69d441f1739f5&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-76f424f18dbcea75&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="32">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1e-1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
+<pre><code>0.1</code></pre>
+</div>
+</div>
+</section>
+<section id="importing-particular-objects-from-inside-a-library" class="level3" data-number="3.9.3">
+<h3 data-number="3.9.3" class="anchored" data-anchor-id="importing-particular-objects-from-inside-a-library"><span class="header-section-number">3.9.3</span> Importing particular objects from inside a <em>library</em></h3>
+<p>Libraries such as <code>math</code> also contain mathematical functions such as <em>sine</em>, <em>cosine</em> or <em>square root</em>. These have names such as <code>sin</code>, <code>cos</code> and <code>sqrt</code>.</p>
+<p>In this case we can load just the bits we need <code>from math</code>, instead of using the dot method (which also works).</p>
+<div id="cell-87" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;4f01c1dd5be8d00c36f78a2782727cff&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-1c6fa6b7dc2b65bf&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="33">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> sin, cos, sqrt, pi</span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sqrt(<span class="dv">2</span>), sin(pi<span class="op">/</span><span class="dv">2</span>), cos(<span class="dv">0</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1.4142135623730951 1.0 1.0</code></pre>
+</div>
+</div>
+</section>
+<section id="exercise-import-the-numbers-e-and-pi-from-the-math-library-and-use-them-to-print-the-following-examples" class="level3" data-number="3.9.4">
+<h3 data-number="3.9.4" class="anchored" data-anchor-id="exercise-import-the-numbers-e-and-pi-from-the-math-library-and-use-them-to-print-the-following-examples"><span class="header-section-number">3.9.4</span> Exercise: <code>import</code> the numbers <span class="math inline">\(e\)</span> and <span class="math inline">\(\pi\)</span> <code>from</code> the <code>math</code> library and use them to print the following examples:</h3>
+<ul>
+<li><span class="math inline">\(e^2\)</span></li>
+<li><span class="math inline">\(3\left(\dfrac{\pi}{4}\right)\)</span></li>
+</ul>
+<p>Result:<br>
+<code>7.3890560989306495 2.356194490192345</code></p>
+<p><a href="./solutions/sol0105.html">Click here for solution</a></p>
+</section>
+<section id="exercise" class="level3" data-number="3.9.5">
+<h3 data-number="3.9.5" class="anchored" data-anchor-id="exercise"><span class="header-section-number">3.9.5</span> Exercise:</h3>
+<p>Import the sine function and the constant <span class="math inline">\(\pi\)</span> and calculate: <span class="math inline">\(\left(\sin\frac{\pi}{4}\right)^2\)</span></p>
+<p>Result: <code>0.4999999999999999</code></p>
+<p><a href="./solutions/sol0106.html">Click here for solution</a></p>
+<ul>
+<li><strong>Note 1:</strong> the <a href="#Appendix:-A-note-on-floating-point-precision">floating point precision</a> in the last example is due to converting between a binary number in the computer’s memory to a decimal (0.5).</li>
+<li><strong>Note 2:</strong> angles are in <em>radians</em> so you need to convert using <span class="math inline">\(rads = \frac{degs}{180} \times \pi\)</span>
+<ul>
+<li>there is also a <em>“convenience function”</em> <code>deg2rad</code>, which is in another library called <code>numpy</code> (Numerical Python) that also has its own versions of mathematical constants and functions:</li>
+</ul></li>
+</ul>
+<div id="cell-94" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;9010cb38ca000d46fbd5f5f8fe6b2628&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-a3a903026a091b8f&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="35">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb88"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy <span class="im">import</span> deg2rad, rad2deg</span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(deg2rad(<span class="dv">180</span>))</span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rad2deg(<span class="fl">3.1416</span><span class="op">/</span><span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3.141592653589793
+90.00021045914971</code></pre>
+</div>
+</div>
+</section>
+<section id="mixing-multiple-libraries" class="level3" data-number="3.9.6">
+<h3 data-number="3.9.6" class="anchored" data-anchor-id="mixing-multiple-libraries"><span class="header-section-number">3.9.6</span> Mixing multiple libraries:</h3>
+<div id="cell-96" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;acd258eb978a1723991c0732713e9974&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-0bdf509c4b54ae88&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="36">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math, numpy</span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(math.sin(<span class="dv">90</span><span class="op">*</span>math.pi<span class="op">/</span><span class="dv">180</span>), numpy.sin(numpy.deg2rad(<span class="dv">90</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1.0 1.0</code></pre>
+</div>
+</div>
+<ul>
+<li>Notice again how we can also put a function in the <em>argument</em> (input) to another function.</li>
+</ul>
+</section>
+</section>
+<section id="importing-libraries-with-a-pseudonym" class="level2" data-number="3.10">
+<h2 data-number="3.10" class="anchored" data-anchor-id="importing-libraries-with-a-pseudonym"><span class="header-section-number">3.10</span> Importing libraries with a pseudonym</h2>
+<p>To make typing easier we can import a library and give it a nickname, using <code>import as</code>:</p>
+<div id="cell-99" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;89c464be238d7c6b5319567c00f7b2fd&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-01b7726dd8b99142&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="37">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy <span class="im">import</span> deg2rad <span class="im">as</span> d2r</span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.sin(d2r(<span class="dv">90</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1.0</code></pre>
+</div>
+</div>
+<ul>
+<li>If you want to know what functions are available you can either:
+<ol type="1">
+<li>search the internet (google: “python numpy functions”)</li>
+<li>start typing in an input window, press <code>Tab</code> and wait for the pop-up to appear</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb94"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co">#type the following in the box below and press the TAB button on your keyboard and wait a second...</span></span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy</span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>numpy.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="3" type="1">
+<li>use the in-built <code>dir</code> function:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="bu">dir</span>(math)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="4" type="1">
+<li>Use the in-built <code>help</code> function:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb96"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a><span class="bu">help</span>(math)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+<p>Try the examples above in the input <code>In [ ]</code> cell below:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy</span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>numpy.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You can also get help in Jupyter notebooks by typing the name of the library or function and a question mark:</p>
+<div id="cell-104" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;7904a7098988e87f95c4e43f74399e27&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-0f9047c43cdc33e3&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="39">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy</span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a>numpy?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">Type:</span>        module
+<span class="ansi-red-fg">String form:</span> &lt;module 'numpy' from '/home/macha/anaconda3/lib/python3.9/site-packages/numpy/__init__.py'&gt;
+<span class="ansi-red-fg">File:</span>        ~/anaconda3/lib/python3.9/site-packages/numpy/__init__.py
+<span class="ansi-red-fg">Docstring:</span>  
+NumPy
+=====
+Provides
+  1. An array object of arbitrary homogeneous items
+  2. Fast mathematical operations over arrays
+  3. Linear Algebra, Fourier Transforms, Random Number Generation
+How to use the documentation
+----------------------------
+Documentation is available in two forms: docstrings provided
+with the code, and a loose standing reference guide, available from
+`the NumPy homepage &lt;https://numpy.org&gt;`_.
+We recommend exploring the docstrings using
+`IPython &lt;https://ipython.org&gt;`_, an advanced Python shell with
+TAB-completion and introspection capabilities.  See below for further
+instructions.
+The docstring examples assume that `numpy` has been imported as ``np``::
+  &gt;&gt;&gt; import numpy as np
+Code snippets are indicated by three greater-than signs::
+  &gt;&gt;&gt; x = 42
+  &gt;&gt;&gt; x = x + 1
+Use the built-in ``help`` function to view a function's docstring::
+  &gt;&gt;&gt; help(np.sort)
+  ... # doctest: +SKIP
+For some objects, ``np.info(obj)`` may provide additional help.  This is
+particularly true if you see the line "Help on ufunc object:" at the top
+of the help() page.  Ufuncs are implemented in C, not Python, for speed.
+The native Python help() does not know how to view their help, but our
+np.info() function does.
+Available subpackages
+---------------------
+lib
+    Basic functions used by several sub-packages.
+random
+    Core Random Tools
+linalg
+    Core Linear Algebra Tools
+fft
+    Core FFT routines
+polynomial
+    Polynomial tools
+testing
+    NumPy testing tools
+distutils
+    Enhancements to distutils with support for
+    Fortran compilers support and more (for Python &lt;= 3.11)
+Utilities
+---------
+test
+    Run numpy unittests
+show_config
+    Show numpy build configuration
+__version__
+    NumPy version string
+Viewing documentation using IPython
+-----------------------------------
+Start IPython and import `numpy` usually under the alias ``np``: `import
+numpy as np`.  Then, directly past or use the ``%cpaste`` magic to paste
+examples into the shell.  To see which functions are available in `numpy`,
+type ``np.&lt;TAB&gt;`` (where ``&lt;TAB&gt;`` refers to the TAB key), or use
+``np.*cos*?&lt;ENTER&gt;`` (where ``&lt;ENTER&gt;`` refers to the ENTER key) to narrow
+down the list.  To view the docstring for a function, use
+``np.cos?&lt;ENTER&gt;`` (to view the docstring) and ``np.cos??&lt;ENTER&gt;`` (to view
+the source code).
+Copies vs. in-place operation
+-----------------------------
+Most of the functions in `numpy` return a copy of the array argument
+(e.g., `np.sort`).  In-place versions of these functions are often
+available as array methods, i.e. ``x = np.array([1,2,3]); x.sort()``.
+Exceptions to this rule are documented.
+</pre>
+</div>
+</div>
+</div>
+</section>
+<section id="appendix-a-note-on-floating-point-precision" class="level2" data-number="3.11">
+<h2 data-number="3.11" class="anchored" data-anchor-id="appendix-a-note-on-floating-point-precision"><span class="header-section-number">3.11</span> Appendix: A note on floating point precision</h2>
+<p>The floating point numbers in Python have a precision of approximately 16 significant digits and this can cause rounding errors.</p>
+<p>Mathematically, the result of the calculation <span class="math inline">\((1 + a) - 1\)</span> is <span class="math inline">\(a\)</span>, no matter what the value of <span class="math inline">\(a\)</span> is.</p>
+<p>With finite precision the result can be less accurate for smaller the values of <span class="math inline">\(a\)</span>:</p>
+<div id="cell-106" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;199235f8411330d5ebb188f253dc5102&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-6ccfbf21d91a4056&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="40">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb99"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">1.0</span> <span class="op">+</span> <span class="fl">1e-15</span>) <span class="op">-</span> <span class="fl">1.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="40">
+<pre><code>1.1102230246251565e-15</code></pre>
+</div>
+</div>
+<p>In the next example the number 0.1 + 0.2 <em>should</em> equal 0.3</p>
+<div id="cell-108" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;5dad121b152c3bd69f559efaabc7aae9&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-a89f33024a96269c&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="false" data-execution_count="41">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb101"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fl">0.1</span> <span class="op">+</span> <span class="fl">0.2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="41">
+<pre><code>0.30000000000000004</code></pre>
+</div>
+</div>
+<p>The strange values that remain are a result of the numbers being stored in binary in the computer’s memory then converted back to decimal.</p>
+<p>See https://floating-point-gui.de/basic/ for more information.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Quick Summary">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Quick Summary</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./02-Variables.html" class="pagination-link" aria-label="Using Variables">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Using Variables</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
