@@ -1,5 +1,6 @@
-# AR10498
-Python Lesson Notebooks
+# Programming in Python lessons
+
+Python interactive Jupyter Notebook lessons
 
 Clone in Notebooks with:  
 1. From the start menu (or mac launcher) Open Anaconda Navigator (Python 3), then JupyterLab
