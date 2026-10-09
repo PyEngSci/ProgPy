@@ -12,6 +12,6 @@ Clone in Notebooks with:
 ```python
 import pygit2
 
-pygit2.clone_repository('https://github.com/AR10498/AR10498.git', 'AR10498')
+pygit2.clone_repository('https://github.com/PyEngSci/ProgPy.git', 'ProgPy')
 ```
 4. This should copy the course materials to your workspace.
