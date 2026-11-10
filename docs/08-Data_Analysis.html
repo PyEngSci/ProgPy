@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>9&nbsp; Basics of Plotting Graphs – Programming in Python</title>
+<title>9&nbsp; Data Analysis – Programming in Python</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -176,7 +176,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08-Data_Analysis.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basics of Plotting Graphs</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08-Data_Analysis.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Analysis</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -252,7 +252,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08-Data_Analysis.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basics of Plotting Graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -277,7 +277,10 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#matplotlib" id="toc-matplotlib" class="nav-link active" data-scroll-target="#matplotlib"><span class="header-section-number">9.1</span> Matplotlib</a></li>
+  <li><a href="#basics-of-plotting-graphs" id="toc-basics-of-plotting-graphs" class="nav-link active" data-scroll-target="#basics-of-plotting-graphs"><span class="header-section-number">9.1</span> Basics of Plotting Graphs</a>
+  <ul class="collapse">
+  <li><a href="#matplotlib" id="toc-matplotlib" class="nav-link" data-scroll-target="#matplotlib"><span class="header-section-number">9.1.1</span> Matplotlib</a></li>
+  </ul></li>
   <li><a href="#simple-plotting" id="toc-simple-plotting" class="nav-link" data-scroll-target="#simple-plotting"><span class="header-section-number">9.2</span> Simple Plotting</a>
   <ul class="collapse">
   <li><a href="#creating-a-set-of-figure-axes" id="toc-creating-a-set-of-figure-axes" class="nav-link" data-scroll-target="#creating-a-set-of-figure-axes"><span class="header-section-number">9.2.1</span> Creating a set of Figure <em>axes</em></a></li>
@@ -309,7 +312,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basics of Plotting Graphs</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Analysis</span></h1>
 </div>
 
 
@@ -329,8 +332,10 @@ window.Quarto = {
 <p>Run all cells marked <code>In [ ]</code> using the [<span class="math inline">\(\blacktriangleright\)</span> Run] button above and <strong>think about the result you see</strong>. Be sure to do all exercises (in blank cells) and run all completed code cells.</p>
 <p>If anything goes wrong, <strong>restart the kernel</strong> (in the menubar, select Kernel<span class="math inline">\(\rightarrow\)</span>Restart). Or run text cells to get the formatted text back from markdown.</p>
 <hr>
-<section id="matplotlib" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="matplotlib"><span class="header-section-number">9.1</span> Matplotlib</h2>
+<section id="basics-of-plotting-graphs" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="basics-of-plotting-graphs"><span class="header-section-number">9.1</span> Basics of Plotting Graphs</h2>
+<section id="matplotlib" class="level3" data-number="9.1.1">
+<h3 data-number="9.1.1" class="anchored" data-anchor-id="matplotlib"><span class="header-section-number">9.1.1</span> Matplotlib</h3>
 <p>Matplotlib, and particularly its plotting capabilities in <code>pyplot</code>, are used to create publication quality figures of functions and data. The functionality is vast, and you will need to refer to the documentation frequently until you are familiar with what you need from it and the details of how it is used:<br>
 https://matplotlib.org/stable/tutorials/introductory/usage.html.<br>
 Most of the functionality we will be using are contained in the <code>pyplot</code> functionality of Matplotlib, which is normally accessed using:</p>
@@ -338,6 +343,7 @@ Most of the functionality we will be using are contained in the <code>pyplot</co
 <p>The various plotting tools and ways of specifying figure attributes are then accessed using the syntax:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>plt.ATTRIBUTE(ARGUMENTS)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Where <code>ATTRIBUTE</code> is replaced by the name of the function or other attribute you wish to access.</p>
+</section>
 </section>
 <section id="simple-plotting" class="level2" data-number="9.2">
 <h2 data-number="9.2" class="anchored" data-anchor-id="simple-plotting"><span class="header-section-number">9.2</span> Simple Plotting</h2>
