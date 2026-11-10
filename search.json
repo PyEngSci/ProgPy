@@ -14,7 +14,7 @@
     "href": "index.html#basics",
     "title": "Programming in Python",
     "section": "Basics:",
-    "text": "Basics:\n\n# Libraries\n1from math import exp, sqrt, pi\n\n# Variables\n2x = 1.75\n\n# Calculations\n3y = exp(-x**2/2) / sqrt(2*pi)\n\n# Printing\n4print(f\"The PDF of the standard normal distribution at x={x} is {y:.3}\")\n\n\n1\n\nImport required functionS from the math library.\n\n2\n\nAssign a value to a variable using the assignment operator =\n\n3\n\nPerform a simple calculation and assign the result to a variable.\n\n4\n\nPrint (display) the result in a formatted f-string.\n\n\n\n\nThe PDF of the standard normal distribution at x=1.75 is 0.0863",
+    "text": "Basics:\nHint: Hover your mouse over the numbered circles for code explanations\n\n# Libraries\n1from math import exp, sqrt, pi\n\n# Variables\n2x = 1.75\n\n# Calculations\n3y = exp(-x**2/2) / sqrt(2*pi)\n\n# Printing\n4print(f\"The PDF of the standard normal distribution at x={x} is {y:.3}\")\n\n\n1\n\nImport required functions from the math library.\n\n2\n\nAssign a value to a variable using the assignment operator =\n\n3\n\nPerform a simple calculation and assign the result to a variable.\n\n4\n\nPrint (display) the result in a formatted f-string.\n\n\n\n\nThe PDF of the standard normal distribution at x=1.75 is 0.0863",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Quick Summary</span>"
     ]
