@@ -6,7 +6,7 @@ jupyter: python3
 
 execute:
   enabled: true
-  cache: true
+  freeze: auto
   error: true 
  
 book:
@@ -15,64 +15,63 @@ book:
   date-format: "YYYY-MM-DD"
   chapters:
     - index.ipynb
-    - Notebooks/01-Python_Basics.ipynb
-    - Notebooks/02-Variables.ipynb
-    - Notebooks/03-Functions.ipynb
-    - Notebooks/04-If_and_While.ipynb
-    - Notebooks/05-Lists-Dictionaries.ipynb
-    - Notebooks/06-For_Loops.ipynb
-    - Notebooks/07-Numerical_Arrays.ipynb
-    - Notebooks/08-Data_Analysis.ipynb
-    - Notebooks/10-Debugging_Code.ipynb
-    - Notebooks/11-Writing_Programs.ipynb
+    - Lesson01/01-Python_Basics.ipynb
+    - Lesson02/02-Variables.ipynb
+    - Lesson03/03-Functions.ipynb
+    - Lesson04/04-If_and_While.ipynb
+    - Lesson05/05-Lists-Dictionaries.ipynb
+    - Lesson06/06-For_Loops.ipynb
+    - Lesson07/07-Numerical_Arrays.ipynb
+    - Lesson08/08-Data_Analysis.ipynb
+    - Lesson09/09-Debugging_Code.ipynb
+    - Lesson10/10-Writing_Programs.ipynb
     
     - part: ""
       chapters:
-        - Notebooks/solutions/sol0100.ipynb
-        - Notebooks/solutions/sol0101.ipynb
-        - Notebooks/solutions/sol0102.ipynb
-        - Notebooks/solutions/sol0103.ipynb
-        - Notebooks/solutions/sol0104.ipynb
-        - Notebooks/solutions/sol0105.ipynb
-        - Notebooks/solutions/sol0106.ipynb
-        - Notebooks/solutions/sol0201.ipynb
-        - Notebooks/solutions/sol0202.ipynb
-        - Notebooks/solutions/sol0203.ipynb
-        - Notebooks/solutions/sol0204.ipynb
-        - Notebooks/solutions/sol0205.ipynb
-        - Notebooks/solutions/sol0206.ipynb
-        - Notebooks/solutions/sol0301.ipynb
-        - Notebooks/solutions/sol0302.ipynb
-        - Notebooks/solutions/sol0303.ipynb
-        - Notebooks/solutions/sol0304.ipynb
-        - Notebooks/solutions/sol0305.ipynb
-        - Notebooks/solutions/sol0306.ipynb
-        - Notebooks/solutions/sol0401.ipynb
-        - Notebooks/solutions/sol0402.ipynb
-        - Notebooks/solutions/sol0403.ipynb
-        - Notebooks/solutions/sol0404.ipynb
-        - Notebooks/solutions/sol0405.ipynb
-        - Notebooks/solutions/sol0501.ipynb
-        - Notebooks/solutions/sol0601.ipynb
-        - Notebooks/solutions/sol0602.ipynb
-        - Notebooks/solutions/sol0603.ipynb
-        - Notebooks/solutions/sol0604.ipynb
-        - Notebooks/solutions/sol1001.ipynb
-        - Notebooks/solutions/sol1002.ipynb
-        - Notebooks/solutions/sol1003.ipynb
-        - Notebooks/solutions/sol1004.ipynb
-        - Notebooks/solutions/sol1101.ipynb
-        - Notebooks/solutions/sol1102.ipynb
-        - Notebooks/solutions/sol1103.ipynb
-        - Notebooks/solutions/sol1104.ipynb
-        - Notebooks/solutions/sol1105.ipynb
-        - Notebooks/solutions/task04_model.ipynb
+        - Lesson01/solutions/sol0100.ipynb
+        - Lesson01/solutions/sol0101.ipynb
+        - Lesson01/solutions/sol0102.ipynb
+        - Lesson01/solutions/sol0103.ipynb
+        - Lesson01/solutions/sol0104.ipynb
+        - Lesson01/solutions/sol0105.ipynb
+        - Lesson01/solutions/sol0106.ipynb
+        - Lesson02/solutions/sol0201.ipynb
+        - Lesson02/solutions/sol0202.ipynb
+        - Lesson02/solutions/sol0203.ipynb
+        - Lesson02/solutions/sol0204.ipynb
+        - Lesson02/solutions/sol0205.ipynb
+        - Lesson02/solutions/sol0206.ipynb
+        - Lesson03/solutions/sol0301.ipynb
+        - Lesson03/solutions/sol0302.ipynb
+        - Lesson03/solutions/sol0303.ipynb
+        - Lesson03/solutions/sol0304.ipynb
+        - Lesson03/solutions/sol0305.ipynb
+        - Lesson03/solutions/sol0306.ipynb
+        - Lesson04/solutions/sol0401.ipynb
+        - Lesson04/solutions/sol0402.ipynb
+        - Lesson04/solutions/sol0403.ipynb
+        - Lesson04/solutions/sol0404.ipynb
+        - Lesson04/solutions/sol0405.ipynb
+        - Lesson04/solutions/task04_model.ipynb
+        - Lesson05/solutions/sol0501.ipynb
+        - Lesson06/solutions/sol0601.ipynb
+        - Lesson06/solutions/sol0602.ipynb
+        - Lesson06/solutions/sol0603.ipynb
+        - Lesson06/solutions/sol0604.ipynb
+        - Lesson09/solutions/sol0901.ipynb
+        - Lesson09/solutions/sol0902.ipynb
+        - Lesson09/solutions/sol0903.ipynb
+        - Lesson09/solutions/sol0904.ipynb
+        - Lesson10/solutions/sol1001.ipynb
+        - Lesson10/solutions/sol1002.ipynb
+        - Lesson10/solutions/sol1003.ipynb
+        - Lesson10/solutions/sol1004.ipynb
+        - Lesson10/solutions/sol1005.ipynb
+
     
 format:
   html:
-    toc-expand: false
     number-sections: true
-    number-offset: -1
     number-depth: 3
     include-in-header:
       text: |

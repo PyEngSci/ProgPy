@@ -181,5 +181,278 @@
   },
   "solutions/task04_model.ipynb": {
     "task04_model.html": "2f0bd749"
+  },
+  "Notebooks/01-Python_Basics.ipynb": {
+    "01-Python_Basics.html": "fa30e0d4"
+  },
+  "Notebooks/02-Variables.ipynb": {
+    "02-Variables.html": "b8423f76"
+  },
+  "Notebooks/03-Functions.ipynb": {
+    "03-Functions.html": "c39d2aa4"
+  },
+  "Notebooks/04-If_and_While.ipynb": {
+    "04-If_and_While.html": "3b029c24"
+  },
+  "Notebooks/05-Lists-Dictionaries.ipynb": {
+    "05-Lists-Dictionaries.html": "bb2469a3"
+  },
+  "Notebooks/06-For_Loops.ipynb": {
+    "06-For_Loops.html": "370d0589"
+  },
+  "Notebooks/07-Numerical_Arrays.ipynb": {
+    "07-Numerical_Arrays.html": "3efd512d"
+  },
+  "Notebooks/08-Data_Analysis.ipynb": {
+    "08-Data_Analysis.html": "8292aca9"
+  },
+  "Notebooks/10-Debugging_Code.ipynb": {
+    "10-Debugging_Code.html": "b9be69cf"
+  },
+  "Notebooks/11-Writing_Programs.ipynb": {
+    "11-Writing_Programs.html": "fa280ec5"
+  },
+  "Notebooks/solutions/sol0100.ipynb": {
+    "sol0100.html": "34f5d216"
+  },
+  "Notebooks/solutions/sol0101.ipynb": {
+    "sol0101.html": "da7617f0"
+  },
+  "Notebooks/solutions/sol0102.ipynb": {
+    "sol0102.html": "04bfaee0"
+  },
+  "Notebooks/solutions/sol0103.ipynb": {
+    "sol0103.html": "ba30b200"
+  },
+  "Notebooks/solutions/sol0104.ipynb": {
+    "sol0104.html": "11597994"
+  },
+  "Notebooks/solutions/sol0105.ipynb": {
+    "sol0105.html": "aeaed49f"
+  },
+  "Notebooks/solutions/sol0106.ipynb": {
+    "sol0106.html": "17142411"
+  },
+  "Notebooks/solutions/sol0201.ipynb": {
+    "sol0201.html": "3b6d7391"
+  },
+  "Notebooks/solutions/sol0202.ipynb": {
+    "sol0202.html": "0d88826c"
+  },
+  "Notebooks/solutions/sol0203.ipynb": {
+    "sol0203.html": "95ffbe7d"
+  },
+  "Notebooks/solutions/sol0204.ipynb": {
+    "sol0204.html": "bc8e918c"
+  },
+  "Notebooks/solutions/sol0205.ipynb": {
+    "sol0205.html": "08a2b0b5"
+  },
+  "Notebooks/solutions/sol0206.ipynb": {
+    "sol0206.html": "54f9b6db"
+  },
+  "Notebooks/solutions/sol0301.ipynb": {
+    "sol0301.html": "b9dd15da"
+  },
+  "Notebooks/solutions/sol0302.ipynb": {
+    "sol0302.html": "7af0af5e"
+  },
+  "Notebooks/solutions/sol0303.ipynb": {
+    "sol0303.html": "c1908c3d"
+  },
+  "Notebooks/solutions/sol0304.ipynb": {
+    "sol0304.html": "4af228d3"
+  },
+  "Notebooks/solutions/sol0305.ipynb": {
+    "sol0305.html": "c706478e"
+  },
+  "Notebooks/solutions/sol0306.ipynb": {
+    "sol0306.html": "36d43060"
+  },
+  "Notebooks/solutions/sol0401.ipynb": {
+    "sol0401.html": "4448facf"
+  },
+  "Notebooks/solutions/sol0402.ipynb": {
+    "sol0402.html": "29c0b2a8"
+  },
+  "Notebooks/solutions/sol0403.ipynb": {
+    "sol0403.html": "841e2657"
+  },
+  "Notebooks/solutions/sol0404.ipynb": {
+    "sol0404.html": "fa443fc8"
+  },
+  "Notebooks/solutions/sol0405.ipynb": {
+    "sol0405.html": "1b08c3ee"
+  },
+  "Notebooks/solutions/sol0501.ipynb": {
+    "sol0501.html": "f3be9d41"
+  },
+  "Notebooks/solutions/sol0601.ipynb": {
+    "sol0601.html": "bc472c22"
+  },
+  "Notebooks/solutions/sol0602.ipynb": {
+    "sol0602.html": "6c4b6e42"
+  },
+  "Notebooks/solutions/sol0603.ipynb": {
+    "sol0603.html": "500adae4"
+  },
+  "Notebooks/solutions/sol0604.ipynb": {
+    "sol0604.html": "3fc20542"
+  },
+  "Notebooks/solutions/sol1001.ipynb": {
+    "sol1001.html": "ff2bbf46"
+  },
+  "Notebooks/solutions/sol1002.ipynb": {
+    "sol1002.html": "7e6da2a6"
+  },
+  "Notebooks/solutions/sol1003.ipynb": {
+    "sol1003.html": "f2c84cbe"
+  },
+  "Notebooks/solutions/sol1004.ipynb": {
+    "sol1004.html": "defc7b00"
+  },
+  "Notebooks/solutions/sol1101.ipynb": {
+    "sol1101.html": "6c6d34be"
+  },
+  "Notebooks/solutions/sol1102.ipynb": {
+    "sol1102.html": "c70be910"
+  },
+  "Notebooks/solutions/sol1103.ipynb": {
+    "sol1103.html": "1c345da0"
+  },
+  "Notebooks/solutions/sol1104.ipynb": {
+    "sol1104.html": "2d235c0e"
+  },
+  "Notebooks/solutions/sol1105.ipynb": {
+    "sol1105.html": "dbe4f808"
+  },
+  "Notebooks/solutions/task04_model.ipynb": {
+    "task04_model.html": "b76a59e1"
+  },
+  "Lesson09/09-Debugging_Code.ipynb": {
+    "09-Debugging_Code.html": "d42d1358"
+  },
+  "Lesson10/10-Writing_Programs.ipynb": {
+    "10-Writing_Programs.html": "3c182232"
+  },
+  "Lesson01/solutions/sol0100.ipynb": {
+    "sol0100.html": "03d8ce0a"
+  },
+  "Lesson01/solutions/sol0101.ipynb": {
+    "sol0101.html": "110a1d4e"
+  },
+  "Lesson01/solutions/sol0102.ipynb": {
+    "sol0102.html": "acde47e7"
+  },
+  "Lesson01/solutions/sol0103.ipynb": {
+    "sol0103.html": "5480d72b"
+  },
+  "Lesson01/solutions/sol0104.ipynb": {
+    "sol0104.html": "71480c47"
+  },
+  "Lesson01/solutions/sol0105.ipynb": {
+    "sol0105.html": "a50cf68f"
+  },
+  "Lesson01/solutions/sol0106.ipynb": {
+    "sol0106.html": "72d455bd"
+  },
+  "Lesson02/solutions/sol0201.ipynb": {
+    "sol0201.html": "bb4f1ee3"
+  },
+  "Lesson02/solutions/sol0202.ipynb": {
+    "sol0202.html": "049e246e"
+  },
+  "Lesson02/solutions/sol0203.ipynb": {
+    "sol0203.html": "13933010"
+  },
+  "Lesson02/solutions/sol0204.ipynb": {
+    "sol0204.html": "b755bea1"
+  },
+  "Lesson02/solutions/sol0205.ipynb": {
+    "sol0205.html": "d0292aed"
+  },
+  "Lesson02/solutions/sol0206.ipynb": {
+    "sol0206.html": "137b1eee"
+  },
+  "Lesson03/solutions/sol0301.ipynb": {
+    "sol0301.html": "1c5e7049"
+  },
+  "Lesson03/solutions/sol0302.ipynb": {
+    "sol0302.html": "b0a5aa34"
+  },
+  "Lesson03/solutions/sol0303.ipynb": {
+    "sol0303.html": "7aef3f7d"
+  },
+  "Lesson03/solutions/sol0304.ipynb": {
+    "sol0304.html": "52b5ab45"
+  },
+  "Lesson03/solutions/sol0305.ipynb": {
+    "sol0305.html": "f3a124e5"
+  },
+  "Lesson03/solutions/sol0306.ipynb": {
+    "sol0306.html": "351476c1"
+  },
+  "Lesson04/solutions/sol0401.ipynb": {
+    "sol0401.html": "f9e05905"
+  },
+  "Lesson04/solutions/sol0402.ipynb": {
+    "sol0402.html": "403c69ef"
+  },
+  "Lesson04/solutions/sol0403.ipynb": {
+    "sol0403.html": "58e643c0"
+  },
+  "Lesson04/solutions/sol0404.ipynb": {
+    "sol0404.html": "18b4afd0"
+  },
+  "Lesson04/solutions/sol0405.ipynb": {
+    "sol0405.html": "229a33a9"
+  },
+  "Lesson04/solutions/task04_model.ipynb": {
+    "task04_model.html": "d0741d6a"
+  },
+  "Lesson05/solutions/sol0501.ipynb": {
+    "sol0501.html": "7f0ad543"
+  },
+  "Lesson06/solutions/sol0601.ipynb": {
+    "sol0601.html": "f72ae52f"
+  },
+  "Lesson06/solutions/sol0602.ipynb": {
+    "sol0602.html": "507d3f8e"
+  },
+  "Lesson06/solutions/sol0603.ipynb": {
+    "sol0603.html": "fb5f40bd"
+  },
+  "Lesson06/solutions/sol0604.ipynb": {
+    "sol0604.html": "76ccb827"
+  },
+  "Lesson09/solutions/sol0901.ipynb": {
+    "sol0901.html": "f5d0a0e9"
+  },
+  "Lesson09/solutions/sol0902.ipynb": {
+    "sol0902.html": "5631e281"
+  },
+  "Lesson09/solutions/sol0903.ipynb": {
+    "sol0903.html": "fea4331c"
+  },
+  "Lesson09/solutions/sol0904.ipynb": {
+    "sol0904.html": "5d196784"
+  },
+  "Lesson10/solutions/sol1001.ipynb": {
+    "sol1001.html": "c41031c6"
+  },
+  "Lesson10/solutions/sol1002.ipynb": {
+    "sol1002.html": "98fc3c8c"
+  },
+  "Lesson10/solutions/sol1003.ipynb": {
+    "sol1003.html": "3d76d611"
+  },
+  "Lesson10/solutions/sol1004.ipynb": {
+    "sol1004.html": "db228f54"
+  },
+  "Lesson10/solutions/sol1005.ipynb": {
+    "sol1005.html": "751a1398"
+  },
+  "index.qmd": {
+    "index.html": "4746b911"
   }
 }

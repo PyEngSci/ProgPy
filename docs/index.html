@@ -72,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./Notebooks/01-Python_Basics.html" rel="next">
+<link href="./Lesson01/01-Python_Basics.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -124,6 +124,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script>
+window.PlotlyConfig = {MathJaxConfig: 'local'};
+if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
+</script>
+<script type="module">import "https://cdn.plot.ly/plotly-3.5.0.min"</script>
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   document
@@ -209,61 +215,61 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Notebooks/01-Python_Basics.html" class="sidebar-item-text sidebar-link">
+  <a href="./Lesson01/01-Python_Basics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Python Basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Notebooks/02-Variables.html" class="sidebar-item-text sidebar-link">
+  <a href="./Lesson02/02-Variables.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Using Variables</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Notebooks/03-Functions.html" class="sidebar-item-text sidebar-link">
+  <a href="./Lesson03/03-Functions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Writing Functions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Notebooks/04-If_and_While.html" class="sidebar-item-text sidebar-link">
+  <a href="./Lesson04/04-If_and_While.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditionals and While Loops</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Notebooks/05-Lists-Dictionaries.html" class="sidebar-item-text sidebar-link">
+  <a href="./Lesson05/05-Lists-Dictionaries.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lists and Dictionaries</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Notebooks/06-For_Loops.html" class="sidebar-item-text sidebar-link">
+  <a href="./Lesson06/06-For_Loops.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Iteration using <code>for</code> Loops</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Notebooks/07-Numerical_Arrays.html" class="sidebar-item-text sidebar-link">
+  <a href="./Lesson07/07-Numerical_Arrays.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical Arrays</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Notebooks/08-Data_Analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Analysis</span></span></a>
+  <a href="./Lesson08/08-Data_Analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basics of Plotting Graphs</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Notebooks/10-Debugging_Code.html" class="sidebar-item-text sidebar-link">
+  <a href="./Lesson09/09-Debugging_Code.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Debugging Code</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Notebooks/11-Writing_Programs.html" class="sidebar-item-text sidebar-link">
+  <a href="./Lesson10/10-Writing_Programs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Writing Programs</span></span></a>
   </div>
 </li>
@@ -273,7 +279,7 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="-1">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
@@ -321,13 +327,10 @@ window.Quarto = {
 
 <section id="quick-summary" class="level1 unnumbered">
 <h1 class="unnumbered">Quick Summary</h1>
-<section id="for-a-copy-of-these-jupyter-notebooks-go-to-github.compyengsciprogpy" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="for-a-copy-of-these-jupyter-notebooks-go-to-github.compyengsciprogpy">For a copy of these Jupyter NoteBooks go to: <a href="https://github.com/PyEngSci/ProgPy">github.com/PyEngSci/ProgPy</a></h4>
-</section>
 <section id="basics" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="basics">Basics:</h2>
 <p><strong>Hint:</strong> Hover your mouse over the numbered circles for code explanations</p>
-<div id="cell-3" class="cell" data-execution_count="2">
+<div id="cell-2" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;&quot;}}" data-tags="[]" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Libraries</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> exp, sqrt, pi</span>
 <span id="annotated-cell-1-3"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -366,7 +369,7 @@ window.Quarto = {
 </section>
 <section id="functions" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="functions">Functions</h2>
-<div id="cell-6" class="cell" data-execution_count="3">
+<div id="cell-5" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Built-in functions</span></span>
 <span id="annotated-cell-2-2"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1">1</button><span id="annotated-cell-2-3" class="code-annotation-target"><a href="#annotated-cell-2-3" aria-hidden="true" tabindex="-1"></a>p3 <span class="op">=</span> <span class="bu">round</span>(pi, <span class="dv">3</span>)</span>
@@ -389,7 +392,7 @@ window.Quarto = {
 </li>
 <li>the number of decimal places required.</li>
 </ol>
-<div id="cell-8" class="cell" data-execution_count="4">
+<div id="cell-7" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Defining a new function</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1">1</button><span id="annotated-cell-3-2" class="code-annotation-target"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normal(x, mean<span class="op">=</span><span class="dv">0</span>, stdev<span class="op">=</span><span class="dv">1</span>):</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="2">2</button><span id="annotated-cell-3-3" class="code-annotation-target"><a href="#annotated-cell-3-3" aria-hidden="true" tabindex="-1"></a>    norm <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> ( stdev <span class="op">*</span> sqrt(<span class="dv">2</span><span class="op">*</span>pi) )</span>
@@ -432,7 +435,7 @@ Keyword arguments can have the same name as the keyword itself without confusion
 </section>
 <section id="conditionals" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="conditionals">Conditionals</h2>
-<div id="cell-11" class="cell" data-execution_count="5">
+<div id="cell-10" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-4-1"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define a new function for re-use</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1">1</button><span id="annotated-cell-4-2" class="code-annotation-target"><a href="#annotated-cell-4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> discuss(zval):</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="2">2</button><span id="annotated-cell-4-3" class="code-annotation-target"><a href="#annotated-cell-4-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">-</span><span class="dv">1</span> <span class="op">&lt;=</span> zval <span class="op">&lt;=</span><span class="dv">1</span>:</span>
@@ -470,7 +473,7 @@ Keyword arguments can have the same name as the keyword itself without confusion
 </section>
 <section id="iteration" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="iteration">Iteration</h2>
-<div id="cell-14" class="cell" data-execution_count="6">
+<div id="cell-13" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-5-1"><a href="#annotated-cell-5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define z</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1">1</button><span id="annotated-cell-5-2" class="code-annotation-target"><a href="#annotated-cell-5-2" aria-hidden="true" tabindex="-1"></a>z<span class="op">=-</span><span class="dv">3</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="2">2</button><span id="annotated-cell-5-3" class="code-annotation-target"><a href="#annotated-cell-5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> z<span class="op">&lt;=</span><span class="dv">3</span>:</span>
@@ -525,7 +528,7 @@ This event is very rare!</code></pre>
 </section>
 <section id="lists-and-loops" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="lists-and-loops">Lists and loops</h2>
-<div id="cell-17" class="cell" data-execution_count="7">
+<div id="cell-16" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-6-1"><a href="#annotated-cell-6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating lists</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1">1</button><span id="annotated-cell-6-2" class="code-annotation-target"><a href="#annotated-cell-6-2" aria-hidden="true" tabindex="-1"></a>int_list <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">10</span>))</span>
 <span id="annotated-cell-6-3"><a href="#annotated-cell-6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -543,7 +546,7 @@ The <code>list</code> function turns a valid argument into a Python list.</span>
 <pre><code>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</code></pre>
 </div>
 </div>
-<div id="cell-19" class="cell" data-execution_count="8">
+<div id="cell-18" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-7"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-7-1"><a href="#annotated-cell-7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># "List comprehension"</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1">1</button><span id="annotated-cell-7-2" class="code-annotation-target"><a href="#annotated-cell-7-2" aria-hidden="true" tabindex="-1"></a>new_list <span class="op">=</span> [n<span class="op">+</span><span class="dv">1</span> <span class="cf">for</span> n <span class="kw">in</span> int_list]</span>
 <span id="annotated-cell-7-3"><a href="#annotated-cell-7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -560,7 +563,7 @@ The <code>list</code> function turns a valid argument into a Python list.</span>
 <pre><code>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</code></pre>
 </div>
 </div>
-<div id="cell-21" class="cell" data-execution_count="9">
+<div id="cell-20" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-8"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-8-1"><a href="#annotated-cell-8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for loops</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="1">1</button><span id="annotated-cell-8-2" class="code-annotation-target"><a href="#annotated-cell-8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">11</span>):</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="2">2</button><span id="annotated-cell-8-3" class="code-annotation-target"><a href="#annotated-cell-8-3" aria-hidden="true" tabindex="-1"></a>    x2 <span class="op">=</span> <span class="fl">0.1</span><span class="op">*</span>n <span class="op">-</span> <span class="fl">0.5</span></span>
@@ -600,7 +603,7 @@ Note: here the value of <code>n</code> is actually used in the calculation, but 
 <p>Some functions such as the normal distribution <span class="math inline">\(\displaystyle y = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}\)</span> cannot be integrated analytically (by hand).</p>
 <p>We can do this numerically by approximating the area under the curve using finite blocks of width <span class="math inline">\(\Delta x\)</span> and height <span class="math inline">\(y\)</span> and adding their area. See the plots in <a href="#6.-Plotting">Section 6.</a></p>
 <p><strong>The code below combines the programming building blocks above to approximate the area under (integrate) the normal distribution between two values <span class="math inline">\(x=a\)</span> and <span class="math inline">\(x=b\)</span></strong></p>
-<div id="cell-24" class="cell" data-execution_count="10">
+<div id="cell-23" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-9"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-9-1"><a href="#annotated-cell-9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> exp, sqrt, pi</span>
 <span id="annotated-cell-9-2"><a href="#annotated-cell-9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="annotated-cell-9-3"><a href="#annotated-cell-9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Defining the normal distribution function (with standard values as default parameters)</span></span>
@@ -780,7 +783,7 @@ The probability of being below z=3.0 is 0.9987</code></pre>
 </section>
 <section id="plotting" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="plotting">Plotting</h2>
-<div id="cell-27" class="cell" data-execution_count="11">
+<div id="cell-26" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-10"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="1">1</button><span id="annotated-cell-10-1" class="code-annotation-target"><a href="#annotated-cell-10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="annotated-cell-10-2"><a href="#annotated-cell-10-2" aria-hidden="true" tabindex="-1"></a></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="2">2</button><span id="annotated-cell-10-3" class="code-annotation-target"><a href="#annotated-cell-10-3" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">4</span>))</span>
@@ -843,21 +846,15 @@ The probability of being below z=3.0 is 0.9987</code></pre>
 </section>
 <section id="manipulating-and-analysing-data" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="manipulating-and-analysing-data">Manipulating and analysing data</h2>
-<div id="cell-30" class="cell" data-execution_count="12">
+<div id="cell-29" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># read in external data file</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_excel(<span class="st">"Files/Case Study Data.xlsx"</span>, sheet_name<span class="op">=</span><span class="st">"Data"</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_excel(<span class="st">"Files/Case Study Data.xlsx"</span>, sheet_name<span class="op">=</span><span class="st">"Data"</span>, engine<span class="op">=</span><span class="st">"openpyxl"</span>)</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> [<span class="st">'Project'</span>, <span class="st">'Region'</span>, <span class="st">'Country'</span>, <span class="st">'Type'</span>, <span class="st">'Rating'</span>, </span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Cost.Million.USD'</span>,<span class="st">'Total.Area.sqm'</span>, <span class="st">'Total.Delivered.kWh'</span>]</span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>data[cols]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/home/macha/anaconda3/lib/python3.9/site-packages/openpyxl/worksheet/_reader.py:329: UserWarning:
-
-Unknown extension is not supported and will be removed
-</code></pre>
-</div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <div>
 
@@ -1422,59 +1419,45 @@ Unknown extension is not supported and will be removed
 </div>
 </div>
 </div>
-<div id="cell-31" class="cell" data-execution_count="13">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># manipulating data</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>cost_per_square_m <span class="op">=</span> data[<span class="st">"Cost.Million.USD"</span>] <span class="op">/</span> data[<span class="st">"Total.Area.sqm"</span>]</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"cost_per_square_m"</span>] <span class="op">=</span> cost_per_square_m</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-30" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># manipulating data</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>cost_per_square_m <span class="op">=</span> data[<span class="st">"Cost.Million.USD"</span>] <span class="op">/</span> data[<span class="st">"Total.Area.sqm"</span>]</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"cost_per_square_m"</span>] <span class="op">=</span> cost_per_square_m</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-32" class="cell" data-execution_count="14">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># interactive plotting (hover mouse over points)</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> px.scatter(data, x<span class="op">=</span><span class="st">"Delivered.Intensity.KWh.sqm.y"</span>, y<span class="op">=</span><span class="st">"cost_per_square_m"</span>, </span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                 hover_data<span class="op">=</span>[<span class="st">"Project"</span>, <span class="st">"Rating"</span>])</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>fig.update_traces(marker<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">12</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
-<span class="ansi-green-fg">/tmp/ipykernel_48980/3458334706.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg ansi-bold">      1</span> <span class="ansi-red-fg"># interactive plotting (hover mouse over points)</span>
-<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">import</span> plotly<span class="ansi-blue-fg">.</span>express <span class="ansi-green-fg">as</span> px
-<span class="ansi-green-fg ansi-bold">      3</span> 
-<span class="ansi-green-fg ansi-bold">      4</span> fig = px.scatter(data, x="Delivered.Intensity.KWh.sqm.y", y="cost_per_square_m", 
-<span class="ansi-green-fg ansi-bold">      5</span>                  hover_data=["Project", "Rating"])
+<div id="cell-31" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;&quot;}}" data-tags="[]" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># interactive plotting (hover mouse over points)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> px.scatter(data, x<span class="op">=</span><span class="st">"Delivered.Intensity.KWh.sqm.y"</span>, y<span class="op">=</span><span class="st">"cost_per_square_m"</span>, </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>                 hover_data<span class="op">=</span>[<span class="st">"Project"</span>, <span class="st">"Rating"</span>])</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>fig.update_traces(marker<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">12</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script>if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>                <script>window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.5.0.min.js" integrity="sha256-fHbNLP+GlIXN+efbQec78UkemUz3NJp7UmfGxC1tNxs=" crossorigin="anonymous"></script>                <div id="bd8a8c01-5bc8-4f62-bcaa-686099b61367" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("bd8a8c01-5bc8-4f62-bcaa-686099b61367")) {                    Plotly.newPlot(                        "bd8a8c01-5bc8-4f62-bcaa-686099b61367",                        [{"customdata":[["Manitoba Hydro Place","LEED-Platinum"],["Child Development Centre","LEED-Platinum"],["FIPKE Centre for Innovative Research","Green-Globe-5"],["Transoceanica","LEED-Gold"],["The Cooper Union","LEED-Platinum"],["Biodesign Institute B","LEED-Platinum"],["DELL Children's Medical Center of Central Texas","LEED-Platinum"],["Kroon Hall","LEED-Platinum"],["Newark Center at Ohlone College","LEED-Platinum"],["Tahoe Center for Environmental Sciences","LEED-Platinum"],["Center for Health and Healing, Oregon","LEED-Platinum"],["NREL Research Support Facility 1","LEED-Platinum"],["Twelve West","LEED-Platinum"],["2000 Tower Oaks Blvd","LEED-Platinum"],["Regent's Hall","LEED-Platinum"],["Great River Energy","LEED-Platinum"],["Lewis & Clark State Office building","LEED-Platinum"],["Johnson Controls Campus","LEED-Platinum"],["Genzyme Center","LEED-Platinum"],["CSOB","LEED-Gold"],["Lintulahti","LEED-Platinum"],["EMGP 270","HQE-Office"],["Paul Wunderlich-Haus","DNGB-Gold"],["Federal Environmental Agency","DNGB-Gold"],["Heinrich Boll Foundation","DNGB-Gold"],["Solon Corporate HQ","DNGB-Gold"],["Thyssenkrupp Q1","DNGB-Gold"],["SAP",null],["Hagaporten 3","Miljobyggnad-Gold"],["Eawag Forum Chriesbach",null],["Daniel Swarovski Corp",null],["TNT Express HQ","LEED-Platinum"],["3 Assembly Square","BREEAM-Excellent"],["Suttie Centre","BREEAM-Excellent"],["2 Victoria Avenue","Green-Star-Office-6"],["Workplace6","Green-Star-Office-6"],["One Shelley Street","Green-Star-Office-6"],["Council House 2","Green-Star-Office-6"],["The Gague","Green-Star-Office-6"],["Vanke Center","LEED-Platinum"],["Suzlon One Earth","LEED-Platinum"],["Keio University 4th Building Hiyoshi Campus","CASBEE-S"],["Epson Innovation Center","CASBEE-S"],["Honda Wako","CASBEE-S"],["Nissan Global HQ","CASBEE-S"],["Kansai Electric Power HQ","CASBEE-S"],["Zero Energy Building","Green-Mark-Platinum"],["School of Art, Design, Media at NTU","Green-Mark-Platinum"],["Magic School of Green Technology","LEED-Platinum"]],"hovertemplate":"Delivered.Intensity.KWh.sqm.y=%{x}\u003cbr\u003ecost_per_square_m=%{y}\u003cbr\u003eProject=%{customdata[0]}\u003cbr\u003eRating=%{customdata[1]}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"","marker":{"color":"#636efa","symbol":"circle","size":12},"mode":"markers","name":"","orientation":"v","showlegend":false,"x":{"dtype":"f8","bdata":"AAAAAAAAXEAAAAAAAJBjQAAAAAAAYHdAmpmZmZnZSkAAAAAAANCAQAAAAAAA+IxAAAAAAABgjECamZmZmZlYQAAAAAAAIFhAAAAAAADAWUDNzMzMzDx9QAAAAAAAwFtAevIa0OU4YUCamZmZmblmQAAAAAAAgGdAAAAAAAAAaUAAAAAAAMBrQAAAAAAA4G9AAAAAAADQcUAAAAAAAABnQAAAAAAAoGpAAAAAAACAbEAAAAAAAABIQM3MzMzMbFVAMzMzMzNzWEAAAAAAAEBbQAAAAAAAwGJAAAAAAAAAZUAAAAAAAOBgQJqZmZmZmUhAMzMzMzOTUkAAAAAAAIBcQAAAAAAAYGRAAAAAAAAgZUBmZmZmZmZYQAAAAAAAgFxAAAAAAAAAZEAAAAAAAOBmQAAAAAAAwG1AAAAAAABgYUAAAAAAAIBNQAAAAAAAwGNAAAAAAAAAZUAAAAAAAOBsQAAAAAAAkHNAAAAAAAAgdUCamZmZmVlEQJqZmZmZ2WBA16NwPQo3REA="},"xaxis":"x","y":{"dtype":"f8","bdata":"WuFodiP+cD\u002fa11qnXnpfP9g5LVh1ynM\u002fflGC\u002fkKPWD9PLVB91Dh8P\u002fYW0qDmp2c\u002fKw50vHWJaT8q1wVM5Rx2P5XDNMQDjXI\u002flrKhnM5odz92JsKePjpvP31NnrwiYWY\u002fzZA6aTpxbD+GbXYvc\u002ftrP1O5frOS5Ww\u002fBhUBvAlAcT+oM8Qo7C9aPymEGnavzWQ\u002fE2i4amzocT88paVUw0hVP5xnFq8hwWI\u002fr3oFbJpuZD8aG2\u002f\u002fUwdYP8lP\u002fhCTV2I\u002flE\u002faxWXZYz8w8JwWxhNfP\u002fyp8dJNYnA\u002f+n5qvHSTaD8meDBP1L9xPyCllL65b28\u002fRYuhTVh9cj8AAAAAAAD4f9nR8+OnKGo\u002f8ksgjuksbD8AAAAAAAD4f0YFYYHCs2c\u002fAAAAAAAA+H9OBgfauHB3PwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H8AAAAAAAD4fwAAAAAAAPh\u002fAAAAAAAA+H+cDAPlGAVgP64we2Fbn1c\u002fvuDa9MoWYD8="},"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"Delivered.Intensity.KWh.sqm.y"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"cost_per_square_m"}},"legend":{"tracegroupgap":0}},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('bd8a8c01-5bc8-4f62-bcaa-686099b61367');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
 
-<span class="ansi-green-fg">~/anaconda3/lib/python3.9/site-packages/plotly/express/__init__.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg ansi-bold">     13</span>     )
-<span class="ansi-green-fg ansi-bold">     14</span> 
-<span class="ansi-green-fg">---&gt; 15</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>_imshow <span class="ansi-green-fg">import</span> imshow
-<span class="ansi-green-fg ansi-bold">     16</span> from ._chart_types import (  # noqa: F401
-<span class="ansi-green-fg ansi-bold">     17</span>     scatter<span class="ansi-blue-fg">,</span>
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
 
-<span class="ansi-green-fg">~/anaconda3/lib/python3.9/site-packages/plotly/express/_imshow.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg ansi-bold">      2</span> <span class="ansi-green-fg">from</span> _plotly_utils<span class="ansi-blue-fg">.</span>basevalidators <span class="ansi-green-fg">import</span> ColorscaleValidator
-<span class="ansi-green-fg ansi-bold">      3</span> <span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>_core <span class="ansi-green-fg">import</span> apply_default_cascade<span class="ansi-blue-fg">,</span> init_figure<span class="ansi-blue-fg">,</span> configure_animation_controls
-<span class="ansi-green-fg">----&gt; 4</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>imshow_utils <span class="ansi-green-fg">import</span> rescale_intensity<span class="ansi-blue-fg">,</span> _integer_ranges<span class="ansi-blue-fg">,</span> _integer_types
-<span class="ansi-green-fg ansi-bold">      5</span> <span class="ansi-green-fg">import</span> pandas <span class="ansi-green-fg">as</span> pd
-<span class="ansi-green-fg ansi-bold">      6</span> <span class="ansi-green-fg">import</span> numpy <span class="ansi-green-fg">as</span> np
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
 
-<span class="ansi-green-fg">~/anaconda3/lib/python3.9/site-packages/plotly/express/imshow_utils.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg ansi-bold">     22</span> dtype_range = {
-<span class="ansi-green-fg ansi-bold">     23</span>     np<span class="ansi-blue-fg">.</span>bool_<span class="ansi-blue-fg">:</span> <span class="ansi-blue-fg">(</span><span class="ansi-green-fg">False</span><span class="ansi-blue-fg">,</span> <span class="ansi-green-fg">True</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg">---&gt; 24</span><span class="ansi-red-fg">     </span>np<span class="ansi-blue-fg">.</span>bool8<span class="ansi-blue-fg">:</span> <span class="ansi-blue-fg">(</span><span class="ansi-green-fg">False</span><span class="ansi-blue-fg">,</span> <span class="ansi-green-fg">True</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg ansi-bold">     25</span>     np<span class="ansi-blue-fg">.</span>float16<span class="ansi-blue-fg">:</span> <span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">-</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg ansi-bold">     26</span>     np<span class="ansi-blue-fg">.</span>float32<span class="ansi-blue-fg">:</span> <span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">-</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span>
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.9/site-packages/numpy/__init__.py</span> in <span class="ansi-cyan-fg">__getattr__</span><span class="ansi-blue-fg">(attr)</span>
-<span class="ansi-green-fg ansi-bold">    408</span>             <span class="ansi-green-fg">return</span> char<span class="ansi-blue-fg">.</span>chararray
-<span class="ansi-green-fg ansi-bold">    409</span> 
-<span class="ansi-green-fg">--&gt; 410</span><span class="ansi-red-fg">         raise AttributeError("module {!r} has no attribute "
-</span><span class="ansi-green-fg ansi-bold">    411</span>                              "{!r}".format(__name__, attr))
-<span class="ansi-green-fg ansi-bold">    412</span> 
-
-<span class="ansi-red-fg">AttributeError</span>: module 'numpy' has no attribute 'bool8'</pre>
-</div>
+                        })                };            </script>        </div>
 </div>
 </div>
 
@@ -1926,7 +1909,7 @@ Unknown extension is not supported and will be removed
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./Notebooks/01-Python_Basics.html" class="pagination-link" aria-label="Python Basics">
+      <a href="./Lesson01/01-Python_Basics.html" class="pagination-link" aria-label="Python Basics">
         <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Python Basics</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
