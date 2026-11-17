@@ -2,64 +2,71 @@ project:
   type: book
   output-dir: docs
 
+jupyter: python3
+
+execute:
+  enabled: true
+  cache: true
+  error: true 
+ 
 book:
   title: "Programming in Python"
   author: "Nick McCullen"
   date-format: "YYYY-MM-DD"
   chapters:
     - index.ipynb
-    - 01-Python_Basics.ipynb
-    - 02-Variables.ipynb
-    - 03-Functions.ipynb
-    - 04-If_and_While.ipynb
-    - 05-Lists-Dictionaries.ipynb
-    - 06-For_Loops.ipynb
-    - 07-Numerical_Arrays.ipynb
-    - 08-Data_Analysis.ipynb
-    - 10-Debugging_Code.ipynb
-    - 11-Writing_Programs.ipynb
+    - Notebooks/01-Python_Basics.ipynb
+    - Notebooks/02-Variables.ipynb
+    - Notebooks/03-Functions.ipynb
+    - Notebooks/04-If_and_While.ipynb
+    - Notebooks/05-Lists-Dictionaries.ipynb
+    - Notebooks/06-For_Loops.ipynb
+    - Notebooks/07-Numerical_Arrays.ipynb
+    - Notebooks/08-Data_Analysis.ipynb
+    - Notebooks/10-Debugging_Code.ipynb
+    - Notebooks/11-Writing_Programs.ipynb
     
     - part: ""
       chapters:
-        - solutions/sol0100.ipynb
-        - solutions/sol0101.ipynb
-        - solutions/sol0102.ipynb
-        - solutions/sol0103.ipynb
-        - solutions/sol0104.ipynb
-        - solutions/sol0105.ipynb
-        - solutions/sol0106.ipynb
-        - solutions/sol0201.ipynb
-        - solutions/sol0202.ipynb
-        - solutions/sol0203.ipynb
-        - solutions/sol0204.ipynb
-        - solutions/sol0205.ipynb
-        - solutions/sol0206.ipynb
-        - solutions/sol0301.ipynb
-        - solutions/sol0302.ipynb
-        - solutions/sol0303.ipynb
-        - solutions/sol0304.ipynb
-        - solutions/sol0305.ipynb
-        - solutions/sol0306.ipynb
-        - solutions/sol0401.ipynb
-        - solutions/sol0402.ipynb
-        - solutions/sol0403.ipynb
-        - solutions/sol0404.ipynb
-        - solutions/sol0405.ipynb
-        - solutions/sol0501.ipynb
-        - solutions/sol0601.ipynb
-        - solutions/sol0602.ipynb
-        - solutions/sol0603.ipynb
-        - solutions/sol0604.ipynb
-        - solutions/sol1001.ipynb
-        - solutions/sol1002.ipynb
-        - solutions/sol1003.ipynb
-        - solutions/sol1004.ipynb
-        - solutions/sol1101.ipynb
-        - solutions/sol1102.ipynb
-        - solutions/sol1103.ipynb
-        - solutions/sol1104.ipynb
-        - solutions/sol1105.ipynb
-        - solutions/task04_model.ipynb
+        - Notebooks/solutions/sol0100.ipynb
+        - Notebooks/solutions/sol0101.ipynb
+        - Notebooks/solutions/sol0102.ipynb
+        - Notebooks/solutions/sol0103.ipynb
+        - Notebooks/solutions/sol0104.ipynb
+        - Notebooks/solutions/sol0105.ipynb
+        - Notebooks/solutions/sol0106.ipynb
+        - Notebooks/solutions/sol0201.ipynb
+        - Notebooks/solutions/sol0202.ipynb
+        - Notebooks/solutions/sol0203.ipynb
+        - Notebooks/solutions/sol0204.ipynb
+        - Notebooks/solutions/sol0205.ipynb
+        - Notebooks/solutions/sol0206.ipynb
+        - Notebooks/solutions/sol0301.ipynb
+        - Notebooks/solutions/sol0302.ipynb
+        - Notebooks/solutions/sol0303.ipynb
+        - Notebooks/solutions/sol0304.ipynb
+        - Notebooks/solutions/sol0305.ipynb
+        - Notebooks/solutions/sol0306.ipynb
+        - Notebooks/solutions/sol0401.ipynb
+        - Notebooks/solutions/sol0402.ipynb
+        - Notebooks/solutions/sol0403.ipynb
+        - Notebooks/solutions/sol0404.ipynb
+        - Notebooks/solutions/sol0405.ipynb
+        - Notebooks/solutions/sol0501.ipynb
+        - Notebooks/solutions/sol0601.ipynb
+        - Notebooks/solutions/sol0602.ipynb
+        - Notebooks/solutions/sol0603.ipynb
+        - Notebooks/solutions/sol0604.ipynb
+        - Notebooks/solutions/sol1001.ipynb
+        - Notebooks/solutions/sol1002.ipynb
+        - Notebooks/solutions/sol1003.ipynb
+        - Notebooks/solutions/sol1004.ipynb
+        - Notebooks/solutions/sol1101.ipynb
+        - Notebooks/solutions/sol1102.ipynb
+        - Notebooks/solutions/sol1103.ipynb
+        - Notebooks/solutions/sol1104.ipynb
+        - Notebooks/solutions/sol1105.ipynb
+        - Notebooks/solutions/task04_model.ipynb
     
 format:
   html:
@@ -72,7 +79,7 @@ format:
         <script>
         document.addEventListener("DOMContentLoaded", () => {
           document
-            .querySelectorAll('a[href*="solutions/"]')
+            .querySelectorAll('a[href*="Notebooks/solutions/"]')
             .forEach(link => {
               link.target = "_blank";
               link.rel = "noopener noreferrer";
