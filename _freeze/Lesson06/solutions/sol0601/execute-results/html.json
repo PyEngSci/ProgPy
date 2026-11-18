@@ -1,0 +1,12 @@
+{
+  "hash": "9ea0de345cc293fd336eceb449c314e6",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "::: {#cell-0 .cell execution_count=1}\n``` {.python .cell-code}\na = 1\nb = 0\nc = -4\n\ndisc = b**2 - 4*a*c\nprint(disc)\n\nx1 = (-b + disc**0.5)/(2*a)\nx2 = (-b - disc**0.5)/(2*a)\n\nprint(x1, x2)\na = list(range(3,10,3))\n\nprint(a)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n16\n2.0 -2.0\n[3, 6, 9]\n```\n:::\n:::\n\n\n",
+    "supporting": [
+      "sol0601_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

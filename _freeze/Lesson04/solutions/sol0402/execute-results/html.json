@@ -1,0 +1,12 @@
+{
+  "hash": "5cf599ebd27ac1c21b9806e8aabc7228",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "### Using only `if`\n\n::: {#cell-1 .cell execution_count=1}\n``` {.python .cell-code}\nx=0\n\nif x > 0:\n    sign = \"Positive!\"\nif x < 0:\n    sign = \"Negative!\"\nif x==0: \n    sign = \"Zero!\"\n    \nprint(sign)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\nZero!\n```\n:::\n:::\n\n\n### Using `elif`\n\n::: {#cell-3 .cell execution_count=2}\n``` {.python .cell-code}\nx=0\n\nif x > 0:\n    sign = \"Positive!\"\nelif x < 0:\n    sign = \"Negative!\"\nelse: sign = \"Zero!\"\n    \nprint(sign)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\nZero!\n```\n:::\n:::\n\n\n### Alternative:\n\n::: {#cell-5 .cell execution_count=3}\n``` {.python .cell-code}\nx=0\n\nsign=None\nif x > 0:\n    sign = \"Positive!\"\nif x < 0:\n    sign = \"Negative!\"\n    \nprint(sign)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\nNone\n```\n:::\n:::\n\n\n",
+    "supporting": [
+      "sol0402_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

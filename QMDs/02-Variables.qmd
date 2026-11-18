@@ -1,0 +1,491 @@
+---
+jupyter: python3
+---
+
+Run all cells marked `In [ ]` using the [$\blacktriangleright$ Run] button above and **think about the result you see**.
+Be sure to do all exercises (in blank cells) and run all completed code cells. 
+
+If anything goes wrong, **$\circlearrowright$ restart the kernel** (in the menubar, select Kernel$\rightarrow$Restart). Or run text cells to get the formatted text back from markdown.
+
+---
+
+# Using Variables
+
+## Variables
+
+In Python we can give a name to an intermediate result. The values assigned to these symbols can be accessed and changed later.
+
+### *Assigning* a value using the **equals operator**: `=`
+
+We give a name to a value using an equals sign `=` (called the _"assignment statement"_). 
+
+The name appears on the left hand side of the `=` and the value (or calculation) appears
+on the right hand side. 
+
+After a variable is given a value, the value will replace the name **anywhere it is used** in the script _below_ it. 
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: b663ef86c7132c2b72b4682a65aadae5, grade: false, grade_id: cell-394d670dcbcdec36, locked: false, schema_version: 3, solution: false, task: false}
+distance = 45.6  # assignment of a numerical value to a variable name
+time = 0.5  # another assignment statement
+print(distance / time)  # Python sees the values assigned to the two names
+```
+
+Names are  called *variables*. 
+
+
+Variables can be useful
+to make a complicated expression more clear. 
+
+The calculation:
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 3e2c698bfa04f8e18b7a77293057a166, grade: false, grade_id: cell-c6567b5bc2c35182, locked: false, schema_version: 3, solution: false, task: false}
+((4 * 9.81 * 0.05) / (3 * 0.47) * (2650.0 - 1000.0) / 1000.0) ** 0.5
+```
+
+can be made a lot clearer by giving names to some of the parameters
+and intermediate results and by adding comments. 
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 3a8fb831d54e450846b6142525fea2e0, grade: false, grade_id: cell-bbd55236447962b2, locked: false, schema_version: 3, solution: false, task: false}
+# Terminal velocity of spherical object
+
+g = 9.81  # acceleration due to gravity (m/s^2^)
+d = 0.05  # object diameter (m)
+C_d = 0.47  # drag coefficient (1)
+rho = 1000.0  # fluid density (kg/m^3^)
+rho_s = 2650.0  # object density (kg/m^3^)
+geometry_factor = (4 * g * d) / (3 * C_d)
+buoyancy_factor = (rho_s - rho) / rho
+V_t = (geometry_factor * buoyancy_factor) ** 0.5
+
+print(V_t)
+```
+
+This makes it also much
+easier to make changes or corrections.
+
+### Exercise:
+
+Let $a = 5$, $b = -1$ and $c=10$.  
+
+```{python}
+#| deletable: true
+#| nbgrader: {cell_type: code, checksum: 674ab7a8e4fa2eb21989b160103d1933, grade: false, grade_id: cell-50b9da9f0ce8dcff, locked: false, points: 0, schema_version: 3, solution: false, task: false}
+# YOUR CODE HERE
+```
+
+### Evaluate $w$ where:
+
+* $w = 3 a - 5 b + 2 c$
+
+```{python}
+#| deletable: true
+#| nbgrader: {cell_type: code, checksum: ddf79fe6c1aa60cdadc792f415a19718, grade: false, grade_id: cell-6d60c253cbcbed35, locked: false, points: 0, schema_version: 3, solution: false, task: false}
+# set w equal to the mathematical expression
+
+# YOUR CODE HERE
+
+print(w)
+```
+
+Expected Result: `40`
+
+[Click here for Solution](solutions/sol0201.ipynb)
+
+### Evaluate $w$ where:
+
+* $\displaystyle w = \frac{5 a - 2 b}{4 c + 2 a}$
+
+Result: `0.54`
+
+```{python}
+#| deletable: true
+#| nbgrader: {cell_type: code, checksum: 5516081a111cdb15288cde0782c3e4bd, grade: false, grade_id: cell-cfc9f7d1ddcb0694, locked: false, points: 0, schema_version: 3, solution: false, task: false}
+# YOUR CODE HERE
+
+print(w)
+```
+
+Expected Result: `0.54`
+
+[Click here for Solution](solutions/sol0202.ipynb)
+
+
+### Evaluate $w$ where:
+
+* $\displaystyle w = \sqrt{2 a - b}$
+
+```{python}
+#| deletable: true
+#| nbgrader: {cell_type: code, checksum: 9fbfe97b7183bfddec67f00c2d1081f6, grade: false, grade_id: cell-6c618859726f3be5, locked: false, points: 0, schema_version: 3, solution: false, task: false}
+# YOUR CODE HERE
+
+print(w)
+```
+
+Expected Result: `3.3166247903554`
+
+[Click here for Solution](solutions/sol0203.ipynb)
+
+
+---
+
+
+The word *variable* refers to the fact that we can change what value a name refers to. 
+
+The same name can be reused for different values. 
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 7ab5d138dba406b23959b829ba7a50b3, grade: false, grade_id: cell-3e7d45cd30ef4f09, locked: false, schema_version: 3, solution: false, task: false}
+a = 0.618
+print(a)
+a = 1.618
+print(a)
+```
+
+### IMPORTANT: Assignment is ***not*** equals!
+
+Note that the use of the equals sign can be confusing at first.  
+The
+equals sign denotes *assignment* and is **not an equation** in the mathematical
+sense.  
+`A = B` takes the rigt hand side (B) and *assigns* it (gives its value) to the variable (A) on the left.
+
+#### Notes:
+
+* The following example will generate an error message since this not legal Python code.
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 6c0f480bc8b4a3f7b58ff1b84f982fcf, grade: false, grade_id: cell-50a101ecb5c0bdef, locked: false, schema_version: 3, solution: false, task: false}
+2 * 3 = a
+```
+
+* If one variable is assigned to another, it takes its *current value* but they do not remain equal forever:
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: c7eac85a30c54b65faadc50089d34f85, grade: false, grade_id: cell-bba65c155ca526e5, locked: false, schema_version: 3, solution: false, task: false}
+a = 1  # set a to 1
+b = a  # b takes the current value of a
+a = 2  # change the value of a
+print(a, b)  # note that b does not change
+```
+
+* The right hand side (**RHS**) is evaluated *before* assignment to the varible on the left (**LHS**), so the following examples are possible in Python:
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 33ac7975b1702fa79a070bc3645171b4, grade: false, grade_id: cell-851527b514689664, locked: false, schema_version: 3, solution: false, task: false}
+a = 1
+print(a)
+```
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: d6229ae174db95d5a3aac52840fffc6b, grade: false, grade_id: cell-5f856b96daf5f43c, locked: false, schema_version: 3, solution: false, task: false}
+# take the value of a and add 1 to it, assign this back to `a`
+a = a + 1
+print(a)
+```
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 774efe95da130d5482eb633f33e4cf77, grade: false, grade_id: cell-5c4cbdc1c8f5a73b, locked: false, schema_version: 3, solution: false, task: false}
+# multiply the current value of `a` by 2 and overwrite `a`
+a = 2 * a
+print(a)
+```
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: ad7b40ddd435273ca109e6b1b3b8139e, grade: false, grade_id: cell-fc66ee82ef406fb2, locked: false, schema_version: 3, solution: false, task: false}
+# replace the value of the variable `a` with its old value squared
+a = a**2
+print(a)
+```
+
+**Note:** 
+in each case the **old value of `a`** is taken and used for the calculation, **before** *replacing* it using the assignment statement (=). 
+
+#### Example: Swapping two values 
+
+Suppose we have assigned the names `varA` and `varB` to two different
+values.  
+To swap the values, we have to
+use a temporary name to refer to one of the values.
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 555037c3d65c5ee1b6a8a1f0902321b9, grade: false, grade_id: cell-5867aff6138fac5c, locked: false, schema_version: 3, solution: false, task: false}
+varA = 7
+varB = -99
+
+print(varA, varB)
+
+tmp = varA
+varA = varB
+varB = tmp
+
+print(varA, varB)
+```
+
+### Allowed Variable Names
+
+* A valid variable name consists of *letters* (A,a,B,b,...), *digits* (1,2,3,...) and *underscores* ( _ )  
+but
+ **_cannot_ start with a digit**. 
+* **Spaces are *NOT* allowed** in variable names. 
+* You should not use an underscore at the start of a variable name, since
+this has a special meaning in Python.
+* Python is *case-sensitive*, which means that upper and lower case letters are distinct. 
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 19324d73840979c2f719065ca4ac105c, grade: false, grade_id: cell-2de7530ea04243dd, locked: false, schema_version: 3, solution: false, task: false}
+a = 5
+b2 = a + a
+quite_a_long_variable_name = 0.1
+A = 50.0
+outerRadius = 5.7
+print(a, b2, quite_a_long_variable_name, A, outerRadius)
+```
+
+### Example: Quadratic Formula
+
+The following program finds the solutions of the quadratic equation
+$a x^2 + b x + c$ using the quadratic formula:
+$$x = \frac{-b\pm\sqrt{b^2-4ac}}{2a},$$ where $b^2-4ac$ is known as the
+<span>*discriminant*</span>.  
+We assume in this example that there are
+two solutions.
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: a47382bde523414edde1c8533649a5e7, grade: false, grade_id: cell-7c6491276aca505c, locked: false, schema_version: 3, solution: false, task: false}
+# coefficients of the quadratic a*x**2 + b*x + c
+
+a = 1.0
+b = -5.0
+c = 6.0  # quadratic formula for the equation a*x**2 + b*x + c = 0
+
+disc = b**2 - 4 * a * c  # assumed to be positive
+print(disc)
+
+x1 = (-b + disc**0.5) / (2 * a)
+x2 = (-b - disc**0.5) / (2 * a)
+
+print(x1, x2)
+```
+
+#### Exercise run the quadratic formula program with different coefficients  
+    
+1. Use an equations for which you know what the results should be:
+    * e.g.: $x^2 - 4 = 0$.  
+
+```{python}
+#| deletable: true
+#| nbgrader: {cell_type: code, checksum: 2176cf97341d20ff48e37fcb40a1e0d1, grade: false, grade_id: cell-298bcea54481f74a, locked: false, points: 0, schema_version: 3, solution: false, task: false}
+# YOUR CODE HERE
+
+
+print(x1, x2)
+```
+
+[Possible Solution](solutions/sol0204.ipynb)
+
+2. Find out what happens when the discriminant is negative.
+
+```{python}
+#| deletable: true
+#| nbgrader: {cell_type: code, checksum: 57e5ba16e69b7eff8afe19bb23a59e4c, grade: false, grade_id: cell-400ace63d00e0846, locked: false, points: 0, schema_version: 3, solution: false, task: false}
+# YOUR CODE HERE
+
+
+print(x1, x2)
+```
+
+[Possible Solution](solutions/sol0205.ipynb)
+
+### Using Built-in Constants
+
+Important constants like $\pi$ and $e$ can be accessed by loading the `math` library using
+`import`.  
+The *imaginary number* $i=\sqrt{-1}$ (called $j$ by electrical engineers) is accessed using `1j`.
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: acc26498067a3ab682b8d92ff1c65b0d, grade: false, grade_id: cell-6792de2cb49e5f5f, locked: false, schema_version: 3, solution: false, task: false}
+from math import e, pi
+
+print(pi, e, e ** (1j * pi) + 1)
+```
+
+* Note that the last result is $1.2\times10^{-16}i = 0.00000000000000012i\approx 0$, due to [floating point precision](../Lesson01/01-Python_Basics.ipynb#Appendix:-A-note-on-floating-point-precision).
+
+## Strings as Variables 
+
+Strings of characters (words) in quote marks can also be assigned to variable names, and it important to not
+confuse the two. For example:
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 2d0ad76e697eb93d9a045a32d5efe4ad, grade: false, grade_id: cell-a7a86d21a8f33792, locked: false, schema_version: 3, solution: false, task: false}
+word1 = "Hello World!"
+print("word1")
+print(word1)
+```
+
+Notice that in the first instance the string `word1` that was enclosed
+in quotes was 
+print ed and in the second the *string value* `hello`
+assigned to the variable named `word1` was 
+printed.
+
+### Formatting Output Values in Strings
+
+Integer or floating point
+numbers can also also be combined with strings in other ways. They can be
+directly interspersed with text strings by separating them with commas
+without conversion:
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 53d6893896b0f0090378a1b46d165f64, grade: false, grade_id: cell-578a428c7b3988be, locked: false, points: 0, schema_version: 3, solution: false, task: false}
+print("The answer is", 40 + 2, "but not", "40" + "2")
+```
+
+Notice that spaces were automatically added in this case.  
+There are
+other ways of formatting objects including numbers in text output.
+
+
+### Formatted _"f-strings"_
+
+From Python 3.6 onwards formatted strings or _"f-strings"_ can be used in Python:  
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 964a19e0e9fbd4971325161e26613d4c, grade: false, grade_id: cell-8723ddf898d4c081, locked: false, schema_version: 3, solution: false, task: false}
+from math import e, pi
+
+a = 42
+
+# the first argument is a plain variable name, .3f gives it to 3 decimal (floating point) places, and the third to 3 digits
+formatted_string = f"The answer is {a}, the number pi is {pi:.3f} and the base of natural logarithms is {e:.3}."
+
+print(formatted_string)
+```
+
+* Note the use of `:.3f` to round to three decimal places and `:.3` for three significant figures.
+
+This makes formatting numbers in text very easy. Strings can also be formatted into strings, as the following multi-line string (using three quote marks on either side) shows:
+
+## Summary 
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: f7d7ad0e88e5119e40dd1187dc762c4b, grade: false, grade_id: cell-20361ff5c6adb848, locked: false, schema_version: 3, solution: false, task: false}
+# a comment is ignored
+
+import math  # importing a module
+
+-999  # an integer
+0.0999  # a floating point number
+1.987e-6  # scientific/engineering notation
+print(88)  # printing a value
+print(1, 4, 9)  # printing multiple values
+print(10 ** (2 * 3) - 1)  # integer arithmetic
+print(7 / 2)  # integer arithmetic does what you would expect in real life
+print(7.0 / 2.0)  # floating point arithmetic
+print(math.pi * 100)  # built-in constant
+num1 = 44  # assignment statement
+num2 = 2 * 33
+print(num1 + num2)
+```
+
+-   Operations: `+`, `-`, `*`, `/`, `**`, `%`
+
+-   Functions: `type`, `int`, `float`, `round`
+
+-   Constants: `math.pi`, `math.e`
+
+## Pitfalls 
+
+-   The operation `*` denotes multiplication and cannot be omitted. It
+    can be helpful to read out a formula.   
+    E.g., $5 (4 + 2)$ reads as five *times* four plus two.
+    
+-   In other programming languages or in in previous Python versions (e.g. Python 2), 
+    the symbol `/` denotes *integer* division.
+    In them, we have `7/2 => 3`, but `7.0/2 => 3.5` and `7/2.0 => 3.5`.
+    But this is *not* the case in Python 3.
+
+-   Variable names are case-sensitive.
+
+-   Do not confuse assignment statements and mathematical equations.
+
+# Exercise:
+
+### Projectile Motion 
+
+The height of a ball thrown upwards with a velocity $v_0$ is given by
+$$y = y_0 + v_0 t - \frac{1}{2} g t^2,$$ where time $t=0$ when the ball
+is released. The ball is released at height $y_0$. The initial velocity
+is $v_0$. Position, velocity and acceleration are all measured as
+positive upwards. Take $y_0 = 1.5$, $v_0 = 12.8$ and $g = 9.81$.
+
+-   Use Python to calculate the height of the ball at $t = 2$.
+
+-   Use Python to calculate the time $t$ for which $y = 5$.  
+(Hint: rearrange and use the quadratic formula: $x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$)
+
+```{python}
+#| deletable: true
+#| nbgrader: {cell_type: code, checksum: 009a6114ea24d23a75a135c1d72f154f, grade: false, grade_id: cell-42a726e9ace714fd, locked: false, points: 0, schema_version: 3, solution: false, task: false}
+# YOUR CODE
+
+
+print("y(2) =", answer)
+
+y_1 = 5
+
+# YOUR CODE
+
+
+# leave this next line as it is
+print(f"The ball will be at height y={y_1}m at times: t={t_1:.2}s and t={t_2:.2}s")
+```
+
+Expected Result:  
+```
+y(2) = 7.48
+The ball will be at height y=5m at times: t=0.31s and t=2.3s
+```
+
+[Click here for Solution](solutions/sol0206.ipynb)
+

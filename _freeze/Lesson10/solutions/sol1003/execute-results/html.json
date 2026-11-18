@@ -1,0 +1,12 @@
+{
+  "hash": "ddd360a40b6379a08d0d4a3624eaf220",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "::: {#cell-0 .cell execution_count=1}\n``` {.python .cell-code}\nN = 1000\nwins = 0\nfor i in range(N):\n    side = list(range(1, 6))\n    A = random.choice(side)\n    B = random.choice(side)\n    C = random.choice(side)\n    if A == B == C:\n        wins = wins+A\n    elif A+B+C <= 4:\n        wins = wins-(A+B+C)\nprint(wins, N)\nprint(1.0 * wins / N)\n```\n\n::: {.cell-output .cell-output-error}\n\n::: {.ansi-escaped-output}\n```{=html}\n<pre><span class=\"ansi-red-fg\">---------------------------------------------------------------------------</span>\n<span class=\"ansi-red-fg\">NameError</span>                                 Traceback (most recent call last)\nCell <span class=\"ansi-green-fg\">In[1], line 5</span>\n<span class=\"ansi-green-fg ansi-bold\">      3</span> <span style=\"font-weight:bold;color:rgb(0,135,0)\">for</span> i <span style=\"font-weight:bold;color:rgb(175,0,255)\">in</span> <span style=\"color:rgb(0,135,0)\">range</span>(N):\n<span class=\"ansi-green-fg ansi-bold\">      4</span>     side <span style=\"color:rgb(98,98,98)\">=</span> <span style=\"color:rgb(0,135,0)\">list</span>(<span style=\"color:rgb(0,135,0)\">range</span>(<span style=\"color:rgb(98,98,98)\">1</span>, <span style=\"color:rgb(98,98,98)\">6</span>))\n<span class=\"ansi-green-fg\">----&gt; 5</span>     A <span style=\"color:rgb(98,98,98)\">=</span> random<span style=\"color:rgb(98,98,98)\">.</span>choice(side)\n<span class=\"ansi-green-fg ansi-bold\">      6</span>     B <span style=\"color:rgb(98,98,98)\">=</span> random<span style=\"color:rgb(98,98,98)\">.</span>choice(side)\n<span class=\"ansi-green-fg ansi-bold\">      7</span>     C <span style=\"color:rgb(98,98,98)\">=</span> random<span style=\"color:rgb(98,98,98)\">.</span>choice(side)\n\n<span class=\"ansi-red-fg\">NameError</span>: name 'random' is not defined</pre>\n```\n:::\n\n:::\n:::\n\n\n",
+    "supporting": [
+      "sol1003_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

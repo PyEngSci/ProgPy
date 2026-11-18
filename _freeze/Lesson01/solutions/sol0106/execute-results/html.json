@@ -1,0 +1,12 @@
+{
+  "hash": "b3932d06cff9314f200080f2f677f976",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "::: {#cell-0 .cell execution_count=1}\n``` {.python .cell-code}\nfrom math import pi, sin\n\nprint( sin(pi/4)**2 )\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n0.4999999999999999\n```\n:::\n:::\n\n\n",
+    "supporting": [
+      "sol0106_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

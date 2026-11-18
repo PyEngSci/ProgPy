@@ -1,0 +1,12 @@
+{
+  "hash": "356ac6862cc9505e3efd4fc222f3a488",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "::: {#cell-0 .cell execution_count=1}\n``` {.python .cell-code}\n#function to give to `twice()`\ndef two_times_x(x):\n    return 2*x\n\n#our function:\ndef twice(fun, xval):\n    return fun(fun(xval))\n\na2 = twice(two_times_x, 10)\nprint(a2)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n40\n```\n:::\n:::\n\n\n",
+    "supporting": [
+      "sol0306_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

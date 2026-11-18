@@ -1,0 +1,755 @@
+---
+jupyter: python3
+---
+
+Run all cells marked `In [ ]` using the [$\blacktriangleright$ Run] button above and **think about the result you see**.
+Be sure to do all exercises (in blank cells) and run all completed code cells. 
+
+If anything goes wrong, **$\circlearrowright$ restart the kernel** (in the menubar, select Kernel$\rightarrow$Restart). Or run text cells to get the formatted text back from markdown.
+
+---
+
+# Conditionals and While Loops
+
+
+Remember to run all the examples and experiment as you go through these materials. 
+
+## Conditionals
+
+A conditional executes a block of code depending on whether something is true or false.  
+
+A simple example (which will be explained more clearly shortly) follows:
+
+```{python}
+#| deletable: false
+#| editable: false
+#| nbgrader: {cell_type: code, checksum: 5a1c60e2bb4fdc7ff44a1e3a3b90e0b6, grade: false, grade_id: cell-f1482deab73861e6, locked: true, schema_version: 3, solution: false, task: false}
+#| tags: []
+if 10 > 5: print("It's true!")
+```
+
+* Copy the above code to the block below but make the statement false:
+
+```{python}
+#| deletable: false
+#| nbgrader: {cell_type: code, checksum: fe1c4f79eefe6312a572aaaee045b41f, grade: false, grade_id: cell-7d25811dbe367da5, locked: false, points: 0, schema_version: 3, solution: false, task: false}
+# YOUR CODE HERE
+```
+
+Result: [nothing should happen!]
+
+### Indentation of Code Blocks
+
+Conditional blocks can be indented in the same way as function code blocks, following a colon.  
+The code block ends when the indentation returns to the previous level.  
+The code run if the condition is true must be *indented* by the same number of spaces.  
+This tells Python what is part of the block and what is outside it.  
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 1c6d0b26f9ab47e83c5bbae4c428871b, grade: false, grade_id: cell-0254c9be78f2b3f2, locked: true, schema_version: 3, solution: false, task: false}
+if 10 > 5:
+    print("Guess What?")
+    print("It's true!")
+    
+print("This is outside the conditional code block")
+```
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: beb3fd07f6b41e1f6c17e9be3a50ab7d, grade: false, grade_id: cell-8a229420fe9c98f0, locked: true, schema_version: 3, solution: false, task: false}
+if 10 > 15:
+    print("Guess What?")
+    print("It's true!")
+    
+print("This is outside the conditional code block")
+```
+
+### Comparisons
+
+The operators `<`, `<=`, `>`, `>=`, `!=`, `==` can be used for Comparisons, and can be seen as *asking Python a question*:
+
+* `<` means "is it less than?"
+* `<=` means "is it less than or equal to?"
+* `>` means "is it greater than?"
+* `>=`  means "is it greater than or equal to?" 
+* `!=`  means "is it not equal to?" 
+* `==` means "is it exactly equal to?" (the same as)
+
+Note that, since the equals sign is reserved for assigning values to
+variables we use a double equals `==` to test exact equality.
+
+If the condition is satisfied then Python gives a value of
+`True` as the answer, and if not `False`.  
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 78bf5479970030781b62da4acc47d1a5, grade: false, grade_id: cell-4b311662714a6a78, locked: true, schema_version: 3, solution: false, task: false}
+print(10 < 5)
+print(2 < 5 < 10)
+print(10 == 10)
+print(10 != 10)
+```
+
+* Try different examples below to see what happens.
+
+```{python}
+#| deletable: false
+#| nbgrader: {cell_type: code, checksum: 119dfb9fa3ea2079c65e6b5ed081faaa, grade: false, grade_id: cell-b24c098a70c8c453, locked: false, points: 0, schema_version: 3, solution: false, task: false}
+# YOUR CODE HERE
+```
+
+### `|` (OR) and `&` (AND) 
+
+These so-called *"boolean operators"* can be *chained*
+together, using the operators `|`, `&`, as follows.  
+* You have to use brackets to make this work as expected.
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: e5e28358b84b7aeb4596ec885f37a994, grade: false, grade_id: cell-e054890575ea050f, locked: true, schema_version: 3, solution: false, task: false}
+#| tags: []
+print( (2 < 5) & (10 < 20) )
+```
+
+Both conditions must be `True` for `&` to give a `True` answer.
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: ce51b8f44be68d0e8ecced484b47514c, grade: false, grade_id: cell-d5796de6575d0b67, locked: true, schema_version: 3, solution: false, task: false}
+#| tags: []
+print(2<10, 50>100)
+
+
+print( (2 < 10) & (50 > 100) )
+```
+
+The `or` operator requires only one condition to be `True`
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 01fe3e97b8d1ae627cf6ed9c08218cba, grade: false, grade_id: cell-8f34400a3422a9da, locked: true, schema_version: 3, solution: false, task: false}
+#| tags: []
+print( (2 < 10) | (50 > 100) )
+```
+
+More complicated expressions are allowed, but get quickly hard to follow if brackets are not used.
+
+### Operator Precedence
+
+The following table shows which are evaluated first (like the BODMAS rules for algebra).
+
+  Operator                                | Description
+  ----------------------------------------| -------------------------------------
+  `\|`                                     | Bitwise OR
+  `&`                                     | Bitwise AND 
+  `~`                                     | Bitwise NOT
+  `or`                                    | Boolean OR
+  `and`                                   | Boolean AND
+  `not`                                   | Boolean NOT
+  `<`, `<=`, `>`, `>=`, `!=`, `==`        | Comparisons
+  `+`, `-`                                | Addition and subtraction
+  `*`, `/`, `//`, `%`                     | Multiplication, division, remainder
+  `**`                                    | Exponentiation
+
+
+### If-Else Statement
+
+An If-Else statement looks at a condition and continues into the next
+indented block if the statement is true.
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 108e4cafc60bc7536f0ed37d7344d7e6, grade: false, grade_id: cell-a2098941d730a2cf, locked: true, schema_version: 3, solution: false, task: false}
+a = 2
+
+if a > 5:
+    print("a is greater than 5")
+else:
+    print("a is 5 or less")
+```
+
+* Change the value of `a` and observe the result.
+
+```{python}
+#| deletable: false
+#| nbgrader: {cell_type: code, checksum: 549c3b76312a6b76a67dde1a0b76ee72, grade: false, grade_id: cell-18a30964f3186ebd, locked: false, points: 0, schema_version: 3, solution: false, task: false}
+#a=2
+# YOUR CODE HERE
+
+
+if a > 5:
+    print("a is greater than 5")
+else:
+    print("a is 5 or less")
+```
+
+### If-Elseif-Else
+
+In case we have two or more conditions to test, we can use a *"nested"* if
+statement.
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 25fcef5de151fc9c909aa44149df8d45, grade: false, grade_id: cell-281a969ee8f00974, locked: true, schema_version: 3, solution: false, task: false}
+x = 4
+
+if x > 0:
+    print("Positive")
+else:
+    if x < 0:
+        print("Negative")
+    else:
+        print("Zero")
+```
+
+* Notice how the indentation is used for putting one condition inside another
+    * we just use another 4 spaces to indicate what is inside the second condition.
+    
+    
+* **Change the value of `x` to investigate its behaviour**
+
+```{python}
+#| deletable: false
+#| nbgrader: {cell_type: code, checksum: a1d59aa577ef79370687466ffef320dd, grade: false, grade_id: cell-7d2371d702d5f046, locked: false, points: 0, schema_version: 3, solution: false, task: false}
+import math
+
+#x = 4
+# YOUR CODE HERE
+
+
+
+if x > 0:
+    print("Positive")
+else:
+    if x < 0:
+        print("Negative")
+    else:
+        print("Zero")
+```
+
+Since this is quite a common pattern, there is a special syntax using
+the `elif` keyword. This syntax also avoids the extra indentation.
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 11def14caaec7c9a2d5ff00e1ee29e6d, grade: false, grade_id: cell-e000b6d5d6d8e771, locked: true, schema_version: 3, solution: false, task: false}
+x = -4
+
+if x > 0:
+    print("Positive")
+elif x < 0:
+    print("Negative")
+else:
+    print("Zero")
+```
+
+The following **exercise** demonstrates the use of several `elif` tests.
+
+Conditional to give the following mapping of x values to y values: 
+
+$$
+\begin{array}{ll}
+y = -4 & \text{if } x<-4 \\
+y = \dfrac{(x+4)^2}{4} - 4 & \text{if } -4 \leq x < 0 \\
+y = 4 - \dfrac{(x-4)^2}{4} & \text{if } 0 \leq x < 4 \\
+y = 4 & \text{if } x \geq 4 \\
+\end{array}
+$$
+
+```{python}
+#| deletable: false
+#| nbgrader: {cell_type: code, checksum: 6b44713345b2bddb8d47d2100f09a045, grade: false, grade_id: cell-df04a596719a6611, locked: false, points: 0, schema_version: 3, solution: false, task: false}
+x = 3
+
+if x < -4:
+    y = -4.0
+#elif ???:
+# YOUR CODE HERE
+
+    y = (x + 4)**2/4.0 - 4.0
+#elif ???:
+#    y = ???
+# YOUR CODE HERE
+
+#else:
+#    ???
+# YOUR CODE HERE
+
+
+
+print(x, y)
+```
+
+Result: `3 3.75`
+
+[Click for Solution](solutions/sol0401.ipynb)
+
+
+Each `elif` condition **only** gets tested _**if** the previous conditions were **false**_.
+
+### Using only If 
+
+It is possible to use an if statement without an else part, but be careful.  
+It is important to make sure all cases are covered.
+
+* Consider the following example:
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 479d59f054cd4c09c1d4160d42a89d9e, grade: false, grade_id: cell-1e238ff363d54489, locked: true, schema_version: 3, solution: false, task: false}
+x=0
+
+if x > 0:
+    sign = "Positive!"
+if x < 0:
+    sign = "Negative!"
+
+print(sign)
+```
+
+Even though this looks correct, the case `x == 0` is not covered, can lead to an error.   
+
+* **Correct the code in the next cell to correct the error before moving on**
+
+```{python}
+#| deletable: false
+#| nbgrader: {cell_type: code, checksum: 40c263eda8e62c553b21ae268408048d, grade: false, grade_id: cell-6184b3d610b6edf4, locked: false, points: 0, schema_version: 3, solution: false, task: false}
+x=0
+
+if x > 0:
+    sign = "Positive!"
+if x < 0:
+    sign = "Negative!"
+# YOUR CODE HERE
+
+
+print(sign)
+```
+
+[Click for solution](solutions/sol0402.ipynb)
+
+## Iteration Using While Loops
+
+### Iteration
+
+Sometimes you will need to repeat the same step over and over,
+using the results from one step as the input to the next, this is called *iteration*  
+(Also see `for` loops in Lesson 5).
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: c4a834f6069f6ed93ac83f4f7f73bf11, grade: false, grade_id: cell-d516ffcecbf3eca0, locked: true, schema_version: 3, solution: false, task: false}
+# Fibonacci sequence
+a0 = 1
+a1 = 1
+a2 = a1+a0
+a3 = a2+a1
+a4 = a3+a2
+a5 = a4+a3
+
+print(a0, a1, a2, a3, a4, a5)
+```
+
+* You also saw this after the end of the task in Week 2 when putting the previously calculated value for $A_g$ back into the next calculation iterated to the correct answer.
+
+### Reminder on updating variables:
+
+Remember that when we *assign* values to a variable using
+the equals sign we  
+**first** take the expression on the
+right **then** assign it to the variable on the left of the
+`=`. 
+
+Therefore we should not interpret `a=b` in the mathematical sense
+of equality, but *assigning* the value of b to a. 
+
+This can be used to update a variable to a new value that depends on the old one:
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 0ac39aad78908a3bddb72ca985081b31, grade: false, grade_id: cell-ae8ca478d540e9a0, locked: true, schema_version: 3, solution: false, task: false}
+a = 1
+a = a+1
+print(a)
+
+a = a/4.0
+print(a)
+```
+
+In this example Python **first** adds one to the old value of `a` **then** overwrites a with this new value.
+
+### Iterating with WHILE Loops
+
+A conditional statement such as `a>b` can be used to perform some action repeatedly until the condition is no longer true.
+
+This is called a *"`while` loop"*, since it will continue repeating a block of code while the statement remains true. 
+
+Once the condition is no longer true the loop will be exited and the last value used. 
+
+In the following example we print square numbers as long as the base number is less than 10:
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 38423332ce1f250bb79039f75964f468, grade: false, grade_id: cell-791ffe4619a3a286, locked: true, schema_version: 3, solution: false, task: false}
+number = 1
+
+while number <= 10: # check the condition to see whether to skip or run the block
+    square = number**2    # the block is run if the condition is true
+    print(number, square) # each line is executed in order
+    number = number + 1   # the values being compared MUST CHANGE or the block will loop forever! 
+    # at the end of the block the condition is checked again and the program moves on if False
+
+print('end of loop')
+```
+
+### Exercise: Fibonacci Sequence 
+
+Follow the instruction in the `#` comment to iterate the sequence to iterate until $a$ reaches $100$.
+
+**Hint:** The sequence [above](#Iteration) can be re-written:
+```python
+# Fibonacci sequence
+a0 = 1
+a1 = 1
+a2 = a1+a0 #equals 2
+
+a0 = a1 # set a0 to the previous value of a1
+a1 = a2 # set a1 to the previous value of a2 = 2
+a2 = a1+a0 # re-calculate a2 = 3
+
+a0 = a1 # set a0 to ... a1 = 2 
+a1 = a2 # set a1 to 3
+a2 = a1+a0 # re-calculate a2 = 5
+```
+and so on...
+
+```{python}
+#| deletable: false
+#| nbgrader: {cell_type: code, checksum: eb7c46f6db54d95ebdaaffb9aeeefd36, grade: false, grade_id: cell-123b0c8076817c32, locked: false, points: 0, schema_version: 3, solution: false, task: false}
+# set first value
+a0 = 1
+print(a0)
+
+# set second value
+a1 = 1
+print(a1)
+
+# calculate third value
+a2 = a1+a0
+print(a2)
+
+# put the following block in a while loop to iterate then stop when a goes over 100
+# YOUR CODE HERE
+```
+
+* Why is the last value greater than 100?
+
+[Click for solution](solutions/sol0403.ipynb)
+
+## Example:  Square Root Iteration 
+
+### Background
+
+The value of $\sqrt{2}$ can be calculated by iteration using: 
+$x_n = \dfrac{1}{2}\left(x_{n-1} + \dfrac{2}{x_{n-1}}\right)$
+
+An example iterating this for 10 steps is given below:
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 52252c9cddbb9e0016bafd7a6f3708cf, grade: false, grade_id: cell-62a1fd9a6959052c, locked: true, schema_version: 3, solution: false, task: false}
+x=1 # initial value for x
+print(x**2)
+
+i=0 # set a counter
+while i<10:
+    x = 0.5*(x + 2/x)
+    print(x**2) # show how close x is to sqrt(2)
+    i=i+1
+```
+
+It only takes a few iterations to get very close to $\sqrt 2$
+
+* Lets see how the sequence converges by looking at the difference between steps:
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 5a5c3a9a105275392ed89ca424782bb4, grade: false, grade_id: cell-a0e50f97280dce11, locked: true, schema_version: 3, solution: false, task: false}
+x=1 # initial value for x
+print(x**2)
+
+i=0 # set a counter
+while i<10:
+    x_old = x
+    x = 0.5*(x_old + 2/x_old)
+    difference = x - x_old
+    print(x**2, difference) # print the "error" from the true value
+    i=i+1
+```
+
+The `difference` term is a measure of the precision (or error) of the current value.  
+
+* we can define the `while` loop to run while the magnitude of this error is greater than some desired precision (e.g. `1e-6`)
+    * **Note the `abs(VALUE)` has to be used as the difference is negative so always below our precision!**
+   
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: d742e7dc5926e9eaa2472207099bf0df, grade: false, grade_id: cell-62c94dd266bdabb5, locked: true, schema_version: 3, solution: false, task: false}
+x=1 # initial value for x
+print(x**2)
+
+difference = 10 # set this initially above the tolerance
+
+while abs(difference) > 1e-6:
+    x_old = x
+    x = 0.5*(x_old + 2/x_old)
+    difference = x - x_old
+    print(x**2, difference) # print the "error" from the true value
+```
+
+* **Note** that the last printed value is the first one where the error is _below_ the desired precision.
+
+### Exercise: The $\pi$ sequence
+
+The constant $\pi$ can be obtained using the infinite sequence:
+$\pi = 4\left( 1 - \dfrac{1}{3} + \dfrac{1}{5} - \dfrac{1}{7} + \dfrac{1}{9} - \cdots \right)$. 
+
+The following two code cells reuse variables to iteratively add to the sequence in the brackets. 
+
+* **run the cell below to assign an initial value to s (the first term in the brackets above)** 
+* **observe how $s_2 = s_1 - \dfrac{1}{3}$ (the first two terms in the brackets)**
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 97000261cc93b6605f49cfeecb65cd4d, grade: false, grade_id: cell-d311cbabc2a978a1, locked: true, schema_version: 3, solution: false, task: false}
+# series pi, using pi/4 = 1 - 1/3 + 1/5 - 1/7 + 1/9 ...
+s = 1
+print(4*s)
+
+n = -1.0 # set the sign of the next term to be negative
+d = 3.0
+s = s + n/d  # take old value then add next term in sequence (-1/3.0)
+print(4*s)
+```
+
+* **Run the cell below & notice that the sign of `n` changes from `-1` to `1` and `d` changes from `3` to `5` to add on another term of the series.**
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: ccafe539fc493ef9d1cd7cefbc4b6ff1, grade: false, grade_id: cell-d712d451150bf2a6, locked: true, schema_version: 3, solution: false, task: false}
+n = -1*n  # change the sign of the next term by multiplying by -1
+d = d + 2  # add 2 to the denominator
+s = s + n/d
+
+print(4*s)
+```
+
+* **Re-run the cell above (use `Ctrl-Enter`) many times over and observe the value of `4*s` as it gets closer to $\pi$**
+
+The above iteration repeats the same steps again and again to accomplish
+the task. 
+
+However it will take many iterations to approximate to the answer well. 
+
+A `while` loop can now be used to calculate $\pi$ to a given precision. 
+
+### Exercise: using the $\sqrt 2$ example to guide you, write program to calculate $\pi$ to a given precision
+
+1. keep track of the changes between each iteration of the $\pi$ sequence  
+(the so called *error* term, or correction to each step of the calculation), 
+2. exit the loop once the absolute error is below (not larger than) some precision. 
+3. count the number of steps it takes using a *counter* `i` which increments on each iteration of the loop.
+
+
+* **If your program gets stuck (in an infinite loop) you will see `In [*]` for a long time (more than a few seconds):  
+if this happens STOP THE KERNEL (square stop button next to `>| Run`)**
+
+```{python}
+#| deletable: false
+#| nbgrader: {cell_type: code, checksum: 27591b4408a4b370af8c67b2f2e65cd0, grade: false, grade_id: cell-a325eeac0583934a, locked: false, points: 0, schema_version: 3, solution: false, task: false}
+# series pi, using pi/4 = 1 - 1/3 + 1/5 - 1/7 + 1/9 ...
+
+# set initial values
+# YOUR CODE HERE
+
+
+#calculate first two terms
+#s = ...
+# YOUR CODE HERE
+
+
+
+# set any initial value  for err that is larger than the condition in the while:
+#err = ...
+# YOUR CODE HERE
+
+
+# define a counter to count the steps
+i = 0  # set the counter i
+
+
+# start a while loop with a condition based on the absolute error
+#while ???:
+# YOUR CODE HERE
+
+    # iterate using the pi example above as a model
+    # iterating the counter and keeping track of the error (it MUST CHANGE each iteration)
+    # YOUR CODE HERE
+    
+
+print(4*s, err, i) # print pi, error and number of steps
+```
+
+Expected result: `3.1416426510898874 9.999750006262076e-05 19999`
+
+* The program should take nearly 20000 iterations to reach a precision of $1\times10^{-4}$
+* if it exits too soon check you are calculating the correct error and comparing to the absolute error
+
+
+[Click for solution](solutions/sol0404.ipynb)
+
+### Using Conditionals with Functions
+
+
+If statements are often used inside a function. Consider the
+following function.
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: de429af5868ca44dd77d8cc2b0757348, grade: false, grade_id: cell-33d8feb1ed04067e, locked: true, schema_version: 3, solution: false, task: false}
+def correct_abs(x):
+    if x > 0:
+        y = x
+    elif x < 0:
+        y = -x
+    elif x == 0:
+        y = 0
+    return y
+
+print(correct_abs(5))
+print(correct_abs(-5))
+print(correct_abs(0))
+```
+
+* We could also use an `else` part instead of the last `elif`. 
+* The code could be made shorter by using `>=` instead of `>` and `==`.
+
+### Exercise: Use an if statement to determine whether a quadratic equation has 0, 1 or 2 real roots. 
+
+* Implement a function that solves the quadratic equation $a x^2 + b x + c = 0$ given the values of the coefficients. 
+    - There are two roots $x_{1,2} = \dfrac{-b\pm \sqrt{b^2 - 4ac}}{2a}$ if the discriminant $b^2 - 4ac > 0$.
+    - There is only one root $x = \dfrac{-b}{2a}$ if the discriminant is zero.
+    - There are zero real roots otherwise.
+* The function should take $a$, $b$ and $c$ as arguments. 
+* It should not **return** any results, but print the number of solutions followed by the solutions (if any).
+
+```{python}
+#| deletable: false
+#| nbgrader: {cell_type: code, checksum: ef3e2e9e31409d8fc8459d543d989162, grade: false, grade_id: cell-c409fdc4bce64c8f, locked: false, points: 0, schema_version: 3, solution: false, task: false}
+#def ???:
+# YOUR CODE HERE
+
+    #disc = ???
+    # YOUR CODE HERE
+    
+    if disc > 0:
+        #x1 = ???
+        #x2 = ???
+        # YOUR CODE HERE
+        
+        print("2 roots =", x1, x2)
+    #elif ???:
+        #???
+        #print(???)
+    # YOUR CODE HERE
+    
+    #???
+        #???
+    # YOUR CODE HERE
+    
+
+        
+quads(1, 0, -1)
+quads(1, 2, 1)
+quads(1, 0, 1)
+```
+
+Expected Result:  
+```
+2 roots = 1.0 -1.0
+1 root = -1.0
+0 roots
+```
+
+
+[Click for Solution](solutions/sol0405.ipynb)
+
+## Summary
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: c0a5dba67386e4cfa0014a477ef5d644, grade: false, grade_id: cell-bc87ea3a50820ebe, locked: true, schema_version: 3, solution: false, task: false}
+# conditionals
+a = -1
+if (a > 0) & (type(a) == int):
+    print("positive integer")
+elif (a < 0) | (type(a) != int):
+    print("negative or not an integer")
+else:
+    print("zero!")
+    
+#while loops
+def lessthanten(x):
+    n=0
+    while x>=10:
+        n+=1
+        x=x/10
+        print(x, end=' ')
+    print() #blank line
+    return str(n)+" iterations"
+
+start=1000000
+y=lessthanten(start)
+print(y)
+```
+
+## Pitfalls
+
+
+Watch out for the following sources of errors:
+
+-   Missing colon before indentation block.
+
+-   Wrong or inconsistent indentation. Use for 4 spaces (not tabs) per
+    indentation level.
+
+-   If you use an if statement without an else clause, make sure you
+    know exactly what you are doing.
+
+-   Make sure all possible cases are covered in an `if` statement.
+
+-   Consider special cases and corner cases, e.g, zero, negative values,
+    first and last possible values, etc.
+

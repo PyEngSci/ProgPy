@@ -1,0 +1,12 @@
+{
+  "hash": "0add26442392aa730359098ca2d884f7",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "::: {#cell-0 .cell execution_count=1}\n``` {.python .cell-code}\ndef square_geometry(s):\n    return 4*s, s**2\n\nprint(square_geometry(3))\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n(12, 9)\n```\n:::\n:::\n\n\n",
+    "supporting": [
+      "sol0304_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

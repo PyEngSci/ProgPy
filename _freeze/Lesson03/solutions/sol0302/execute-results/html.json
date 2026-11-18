@@ -1,0 +1,12 @@
+{
+  "hash": "efd25f511286d66813f4fc77b56de50b",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "::: {#cell-0 .cell execution_count=1}\n``` {.python .cell-code}\ndef trunc5dp(x):\n    x = x*1e5\n    x = int(x)\n    x = x/1e5\n    return x\n    \nans = trunc5dp(4321.1234567)\nprint(ans)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n4321.12345\n```\n:::\n:::\n\n\n",
+    "supporting": [
+      "sol0302_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

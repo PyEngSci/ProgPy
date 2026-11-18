@@ -1,0 +1,12 @@
+{
+  "hash": "d42e536ea5003be1c8c3b97a813790f1",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "What Python is seeing is this:  \nOn the line below the word print is set to the value 42 (an integer)\n```python\nprint = 42\n```\nAfter this we are trying to use whatever is represented by the word `print` as a function\n```python\nprint(\"Hello World!\")\n```\n\nAs `print` is now **not a function** but the *integer value* `42` Python sees this as:\n```python\n42(\"Hello World!\")\n```\n\nWhich does not make any sense in Python! \n\n* Run the following three cells in order to see what happens:\n\n::: {#24bb6442-0bd8-4710-ac60-ea9bc190c49e .cell editable='true' quarto-private-1='{\"key\":\"slideshow\",\"value\":{\"slide_type\":\"\"}}' tags='[]' execution_count=1}\n``` {.python .cell-code}\nprint\n```\n\n::: {.cell-output .cell-output-display execution_count=1}\n```\n<function print(*args, sep=' ', end='\\n', file=None, flush=False)>\n```\n:::\n:::\n\n\n::: {#dae261ad-f13f-4ac4-814b-10a8cd53b669 .cell editable='true' quarto-private-1='{\"key\":\"slideshow\",\"value\":{\"slide_type\":\"\"}}' tags='[]' execution_count=2}\n``` {.python .cell-code}\nprint = 42\n```\n:::\n\n\n::: {#83ddd8d4-4fb1-4c3a-bda8-41de6d2deb76 .cell editable='true' quarto-private-1='{\"key\":\"slideshow\",\"value\":{\"slide_type\":\"\"}}' tags='[]' execution_count=3}\n``` {.python .cell-code}\nprint\n```\n\n::: {.cell-output .cell-output-display execution_count=3}\n```\n42\n```\n:::\n:::\n\n\n::: {#0874d157-67a6-4f91-8033-58c4095cdc4b .cell editable='true' quarto-private-1='{\"key\":\"slideshow\",\"value\":{\"slide_type\":\"\"}}' tags='[]' execution_count=4}\n``` {.python .cell-code}\nprint(\"Something\")\n```\n\n::: {.cell-output .cell-output-error}\n\n::: {.ansi-escaped-output}\n```{=html}\n<pre><span class=\"ansi-red-fg\">---------------------------------------------------------------------------</span>\n<span class=\"ansi-red-fg\">TypeError</span>                                 Traceback (most recent call last)\nCell <span class=\"ansi-green-fg\">In[4], line 1</span>\n<span class=\"ansi-green-fg\">----&gt; 1</span> <span style=\"color:rgb(0,135,0)\">print</span>(<span style=\"color:rgb(175,0,0)\">\"</span><span style=\"color:rgb(175,0,0)\">Something</span><span style=\"color:rgb(175,0,0)\">\"</span>)\n\n<span class=\"ansi-red-fg\">TypeError</span>: 'int' object is not callable</pre>\n```\n:::\n\n:::\n:::\n\n\n",
+    "supporting": [
+      "sol0100_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "hash": "307ae24f1b0a0c979976e5ca7db2241e",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "::: {#cell-0 .cell execution_count=1}\n``` {.python .cell-code}\nimport random\n\nN = 1000000\nwins = 0\nfor i in range(N):\n    A = int(6*random.random()+1)\n    B = int(6*random.random()+1)\n    C = int(6*random.random()+1)\n    if A == B == C:\n        wins = wins+A\n    elif A+B+C <= 6:\n        wins = wins-(A+B+C)\nprint(wins, N, end=' ')\nprint(1.0*wins/N)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n-347940 1000000 -0.34794\n```\n:::\n:::\n\n\n",
+    "supporting": [
+      "sol1002_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

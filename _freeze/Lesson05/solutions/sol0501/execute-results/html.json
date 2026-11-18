@@ -1,0 +1,12 @@
+{
+  "hash": "768bda179242cddc4a9623c7e6542920",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "::: {#cell-0 .cell execution_count=1}\n``` {.python .cell-code}\nlst1 = ['A', 'b', 'c', 3, 4, 5, 'h', 'i', 'j']\n\nlst1[1] = [7, 8, 9]\n\nprint(lst1)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n['A', [7, 8, 9], 'c', 3, 4, 5, 'h', 'i', 'j']\n```\n:::\n:::\n\n\n",
+    "supporting": [
+      "sol0501_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

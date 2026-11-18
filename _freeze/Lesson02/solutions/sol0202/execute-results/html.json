@@ -1,0 +1,12 @@
+{
+  "hash": "cc973b35bb446e3981368f4163438994",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "::: {#cell-0 .cell execution_count=1}\n``` {.python .cell-code}\na=5\nb=-1\nc=10\n\nw = (5*a - 2*b) / (4*c + 2*a)\n\nprint(w)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n0.54\n```\n:::\n:::\n\n\n",
+    "supporting": [
+      "sol0202_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

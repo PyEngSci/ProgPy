@@ -1,0 +1,12 @@
+{
+  "hash": "ff8cb274097290f3d65282cb166645ff",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "::: {#cell-0 .cell execution_count=1}\n``` {.python .cell-code}\n# solution\n\nprint( ( 852*(53+27) - 72*(405) )/24.0 )\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n1625.0\n```\n:::\n:::\n\n\n",
+    "supporting": [
+      "sol0104_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

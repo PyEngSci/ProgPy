@@ -1,0 +1,12 @@
+{
+  "hash": "badc556614fccbdf3c5371a9780e281a",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "::: {#cell-0 .cell execution_count=1}\n``` {.python .cell-code}\ndef quads(a, b, c):\n    disc = b**2 - 4*a*c\n    if disc > 0:\n        x1 = (-b + disc**0.5)/(2.0*a)\n        x2 = (-b - disc**0.5)/(2.0*a)\n        print(\"2 roots =\", x1, x2)\n    elif disc == 0:\n        x = -b/(2.0*a)\n        print(\"1 root =\", x)\n    else:\n        print(\"0 roots\")\n        \n        \nquads(1, 0, -1)\nquads(1, 2, 1)\nquads(1, 0, 1)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n2 roots = 1.0 -1.0\n1 root = -1.0\n0 roots\n```\n:::\n:::\n\n\n",
+    "supporting": [
+      "sol0405_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

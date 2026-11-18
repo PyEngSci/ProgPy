@@ -1,0 +1,404 @@
+---
+jupyter: python3
+---
+
+Run all cells marked `In [ ]` using the [$\blacktriangleright$ Run] button above and **think about the result you see**.
+Be sure to do all exercises (in blank cells) and run all completed code cells. 
+
+If anything goes wrong, **restart the kernel** (in the menubar, select Kernel$\rightarrow$Restart). Or run text cells to get the formatted text back from markdown.
+
+---
+
+# Numerical Arrays
+
+You have now seen the basic Python language (_"syntax"_) and programming methods.  
+These basic building blocks can be built-up to construct advanced programs for things such as:
+* solving the equations for engineering problems;
+* simulating the behaviour of constructions and other designs;
+* optimising structures, energy flows or other problems;
+* analysing data from measurements in order to present the results.
+
+## Importing Modules and Accessing Attributes
+
+In order to manipulate numerical data effectively we need to use a new data type called a numerical `array`.  
+These can be used more mathematically than lists and behave a little differently.  
+
+Arrays and plotting functions are imported from external libraries, in the same way we have already seen for the `math` library.
+
+## Numpy and Numerical Arrays
+
+Lists are useful but it can be fiddly to perform mathematical operations for each element, e.g.::
+
+```python 
+b = [3*sin(x)**2+10 for x in a]
+```
+
+Also multiplying a list by a number is interpreted as adding the list to itself that number of times:
+
+```python
+alist = [1, 2, 3]
+print(alist+alist)
+print(alist*3)
+```
+> Output:
+```
+[1, 2, 3, 1, 2, 3]
+[1, 2, 3, 1, 2, 3, 1, 2, 3]
+```
+
+
+Another data type can be imported with the Numerical Python (NumPy) module that behave in a more mathematically logical way.  
+
+### Numpy
+
+NumPy is a Python library that provides efficient operation on arrays of data.  
+NumPy stores data in what are called *numerical arrays*, along with many functions for generating and methods for manipulating them.
+
+It is usually imported using the alias `np`:
+```python
+import numpy as np
+```
+You can then get help by using the `help(MODULE.THING)` command, for example type:
+```python
+help(np.random)
+```
+To see the help manual on the `random` functions in NumPy.  
+
+### Converting Lists to Arrays
+
+An array *looks* like a `list` but it is a NumPy N-Dimensional Array (in this case 1D).  
+
+NumPy arrays have element-by-element (_elementwise_) operations, which is more logical mathematically:
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 971f993242e1693f3433e437065aa1cf, grade: false, grade_id: cell-960fbea6017aecf8, locked: true, schema_version: 3, solution: false, task: false}
+import numpy as np
+
+alist = [1, 2, 3, 4]
+ary = np.array(alist)
+
+print(ary+ary)
+print(ary*ary)
+print(ary**3)
+```
+
+Plotting can be done on arrays the same as with lists:
+
+* NumPy also contains functions that can act directly on all the elements of an array (unlike those in the `math` library`)
+
+### Generating Arrays with `arange()`
+
+NumPy can generate arrays directly using the function `arange()`:
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 8ad944481a4645d458e47260bfc07e05, grade: false, grade_id: cell-f806489407aa112f, locked: true, schema_version: 3, solution: false, task: false}
+import numpy as np
+
+a = np.arange(1, 8)
+print(a)
+print(a**2)
+```
+
+The `arange` function can also use fractional values 
+
+The syntax is `range(VAR1,VAR2,STEP)`, where the  values created are those between `VAR1` and `VAR2`, including `VAR1` but not `VAR2`:
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 6d160271029ec304b59c66fec36cf73e, grade: false, grade_id: cell-fc2c34df79fa2f58, locked: true, schema_version: 3, solution: false, task: false}
+import numpy as np
+
+a = np.arange(-1, 1, 0.5)
+
+print(a)
+```
+
+**Note:** the second  value is not included in the array, so to get around this the value needs to be slightly above the required end-point.
+
+#### Exercise: Create an array that goes from `-2` to `2` in steps of `0.2` and _includes_ the numbers `-2`, `0` and `2`
+
+```{python}
+#| deletable: true
+#| nbgrader: {cell_type: code, checksum: 2ee25440fd06e8981800817bea7ae09a, grade: false, grade_id: cell-c2a15f66cd74eb60, locked: false, points: 0, schema_version: 3, solution: false, task: false}
+# YOUR CODE HERE
+```
+
+Expected result:
+```
+[-2.0000000e+00 -1.8000000e+00 -1.6000000e+00 -1.4000000e+00
+ -1.2000000e+00 -1.0000000e+00 -8.0000000e-01 -6.0000000e-01
+ -4.0000000e-01 -2.0000000e-01 -4.4408921e-16  2.0000000e-01
+  4.0000000e-01  6.0000000e-01  8.0000000e-01  1.0000000e+00
+  1.2000000e+00  1.4000000e+00  1.6000000e+00  1.8000000e+00
+  2.0000000e+00]
+```
+
+**Note:** Sometimes the `arange` function returns the values in scientific notation, as above.
+
+This is due to the central value being _very close_ to zero but not quite (due to precision accuracy).
+
+One solution to this is to use the `.round()` function method built in to arrays:
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 85b162255fe02e056e7294b1eda38c73, grade: false, grade_id: cell-deb1671b4e7b87fb, locked: true, schema_version: 3, solution: false, task: false}
+import numpy as np
+a = np.arange(-2, 2.1, 0.2)
+
+print(a.round(1))
+```
+
+### Generating Arrays with `linspace()`
+
+The `arange` function is useful when we want an array of numbers with a fixed spacing.
+However, in some applications we might want an array that starts and ends at fixed values but has a certain *number* of steps in between.
+
+For this we can use the `linspace` function from NumPy, which stands for *"linear spacing"*.  
+Type `help(np.linspace)` to read more about it:
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 2980c8504418d76f7449b4bde22f7017, grade: false, grade_id: cell-faa55980fe39901a, locked: true, schema_version: 3, solution: false, task: false}
+import numpy as np
+pi = np.pi
+
+a = np.linspace(-pi, pi, 5)
+print(a)
+```
+
+
+This has returned 5 values in total, including **both** the start value $-\pi$ and end value $\pi$.  
+That is, with `x=linspace(a,b,n)` $a \leq x \leq b$ (unlike with `x=arange(a,b,dx)` where $a \leq x < b$).  
+
+Both `linspace` and the previous `arange` function are very useful when plotting mathematical functions.
+
+## 2D Arrays and Numpy N-D arrays
+
+[http://docs.scipy.org/doc/numpy/reference/arrays.ndarray.html](http://docs.scipy.org/doc/numpy/reference/arrays.ndarray.html)
+
+There are various ways to create an array, including converting from a *list*, entering all the values by hand, or generating large arrays using special functions and loops. We can also change the individual values in arrays.
+
+Study the following examples and practice changing things and looking at the outputs to understand how things work.
+
+### Converting from a list to an array
+
+If we have all the values in a (nested) list it can be converted to a numerical array:
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: afaea77fa304efbcec3ce654e5a47d4b, grade: false, grade_id: cell-ba42e43d5ec5d493, locked: true, schema_version: 3, solution: false, task: false}
+import numpy as np
+
+mylist = [[1,2,3],[4,5,6],[7,8,9]]
+
+myarray = np.array(mylist)
+
+print(myarray)
+```
+
+An array has a *dimension* and a *shape*:
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 0719c2447154e0a8bb1db7eeebef213a, grade: false, grade_id: cell-e00e43b1ce73e32a, locked: true, schema_version: 3, solution: false, task: false}
+print(myarray.ndim)
+print(myarray.shape)
+```
+
+This means it is a 2 dimensional array, with 3 rows and 3 columns.
+
+### Accessing array values by index
+
+We can also access the elements of *square arrays* using indexing: `arrayname[row,col]`, where the variables `row` and `col` are replaced by the values of the row and column number we want to access.
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: f3df902d6ea8a58d1e4cc32b54f4411e, grade: false, grade_id: cell-90f85d0b298cb04e, locked: true, schema_version: 3, solution: false, task: false}
+print(myarray[0, 2])
+```
+
+Print the middle number in the block (5).
+
+```{python}
+#| deletable: true
+#| nbgrader: {cell_type: code, checksum: 8d7c36ae9e8cdfa8e9685d028edb4d58, grade: false, grade_id: cell-8b2f1d1b0c005b8d, locked: false, points: 0, schema_version: 3, solution: false, task: false}
+# myarray[?, ?]
+# YOUR CODE HERE
+```
+
+Print the last number in the block (9)
+
+```{python}
+#| deletable: true
+#| nbgrader: {cell_type: code, checksum: eeabe2d258c53d57cd4e84f8c223fdbf, grade: false, grade_id: cell-f84be548457fdc6c, locked: false, points: 0, schema_version: 3, solution: false, task: false}
+# YOUR CODE HERE
+```
+
+To change a value
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: fb538cc4dabe212dba902a736aa9f8f3, grade: false, grade_id: cell-a60f2e5349d14c95, locked: true, schema_version: 3, solution: false, task: false}
+myarray[1, 1] = 111
+
+print(myarray)
+```
+
+### Manipulating numerical arrays
+
+[http://docs.scipy.org/doc/numpy/reference/routines.array-manipulation.html](http://docs.scipy.org/doc/numpy/reference/routines.array-manipulation.html)
+
+### Generating Arrays using Special Functions
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 64d614ede0bf914c3da5606db358f982, grade: false, grade_id: cell-9a9be377292f0439, locked: true, schema_version: 3, solution: false, task: false}
+nrows = 5
+ncols = 7
+dimensions = (nrows, ncols)
+myzeros = np.zeros(dimensions)
+print(myzeros)
+```
+
+Try using different numbers for the parameters in these functions to see what happens.
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: df35ddf9e7c7ad99ae4239117e3c68cd, grade: false, grade_id: cell-afb51b127ae9e05b, locked: true, schema_version: 3, solution: false, task: false}
+myones = np.ones((3,5))
+print(myones)
+```
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 8755ce2e9bb53abfafe33e139651d5f4, grade: false, grade_id: cell-6bf05d4c6ae33908, locked: true, schema_version: 3, solution: false, task: false}
+from numpy.random import random
+dims = (5, 2)
+rands = random(dims)
+randr = rands.round(2)
+print(randr)
+```
+
+Shorthand notation can also be used:
+```python
+myzeros = np.zeros((nrows,ncols))
+```
+
+We can take *slices* of an array using the notation `arrayname[ROWSLICE, COLSLICE]`, where `ROWSLICE` and `COLSLICE` use the same slicing rules `STARTAT:ENDBEFORE` as seen in previous sections. 
+
+For example we can slice off a single row or column:
+
+The code below does the following:
+
+1. Create an array of ones using the `numpy.ones` function with one column and five rows.
+2. Change the middle value to 5.
+3. slice the column into the middle column of an array of $5\times7$ zeros.
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 4a92294e840de3081f14e55fe6c8c701, grade: false, grade_id: cell-58c2b7f3d6d80c70, locked: true, schema_version: 3, solution: false, task: false}
+myones = np.ones((5,1))
+print(myones)
+```
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: a0ccf2aa8399a9dd7093a5333a5a8207, grade: false, grade_id: cell-11cf4eb604531b42, locked: true, schema_version: 3, solution: false, task: false}
+myones[2] = 5
+print(myones)
+```
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 9a7a72212fa22df493bb4c4b2f8af4af, grade: false, grade_id: cell-0e0ab90cdc12093c, locked: true, schema_version: 3, solution: false, task: false}
+newarray = np.zeros((5, 7))
+
+newarray[:, 3] = myones[:, 0]
+print(newarray)
+```
+
+* Note that `myones` is a 2D array so we have to slice all values `:` in column `0` using `[:, 0]`
+
+Further reading can be found [here](https://docs.scipy.org/doc/numpy/user/quickstart.html).
+
+## Vector mathematics
+
+Numerical arrays can also be used to perform vector calculations.
+
+Note that there are different ways of multiplying vectors (and hence arrays)
+
+With $\vec a = [a_1, a_2, a_3, \cdots]$  
+and $\vec b = [b_1, b_2, b_3, \cdots]$
+
+### Elementwise multiplication
+
+$ [a_1 b_1, a_2 b_2, a_3 b_3, \cdots ]$
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 7c25b36b609b2f05e551de2d3dcecf73, grade: false, grade_id: cell-b441996e0197a963, locked: true, schema_version: 3, solution: false, task: false}
+# element by element multiplication
+a = np.array([1,2,3,5])
+b = np.array([2,4,6,8])
+
+print( a*b )
+
+print( np.multiply(a, b) ) #alternative method
+```
+
+### The scalar dot product
+
+$ \vec a \cdot \vec b = a_1 b_1 + a_2 b_2 + a_3 b_3 + \cdots$
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: b132ad1f63203efe06505b1064b0d006, grade: false, grade_id: cell-c49908e141c05faa, locked: true, schema_version: 3, solution: false, task: false}
+# dot product on arrays
+a = np.array([1,2,3,5])
+b = np.array([2,4,6,8])
+
+print( a@b )
+
+print( np.dot(a, b) ) #alternative method
+```
+
+### The vector cross product
+
+$$\vec a \times \vec b
+=
+\begin{pmatrix}
+a_2 b_3 - a_3 b_2 \\
+a_3 b_1 - a_1 b_3 \\
+a_1 b_2 - a_2 b_1
+\end{pmatrix}$$
+
+```{python}
+#| deletable: true
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 3e85f97c8a199c5d41bfd0fc7756df2f, grade: false, grade_id: cell-07ee8d7ca19450ff, locked: true, schema_version: 3, solution: false, task: false}
+# cross product on arrays
+x = [1, 2, 3]
+y = [4, 5, 6]
+
+print( np.cross(x, y) )
+```
+

@@ -1,0 +1,12 @@
+{
+  "hash": "4f8619b86ced8e211d365f4fb1f7e744",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "::: {#cell-0 .cell execution_count=1}\n``` {.python .cell-code}\n# Fibonacci sequence\n\n# define the first two values\nfib = [1, 1]\n\n# iterate for 10 steps\nfor i in range(10):\n    # calculate next value as sum of previous two values of the list\n    nextval = fib[-1]+fib[-2]\n    # join it to the end of the list\n    fib.append(nextval) \n\n# Print the list\nprint(fib)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144]\n```\n:::\n:::\n\n\n",
+    "supporting": [
+      "sol0603_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

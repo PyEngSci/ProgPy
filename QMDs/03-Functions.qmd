@@ -1,0 +1,1046 @@
+---
+jupyter: python3
+---
+
+Run all cells marked `In [ ]` using the [$\blacktriangleright$ Run] button above and **think about the result you see**.
+Be sure to do all exercises (in blank cells) and run all completed code cells. 
+
+If anything goes wrong, **$\circlearrowright$ restart the kernel** (in the menubar, select Kernel$\rightarrow$Restart). Or run text cells to get the formatted text back from markdown.
+
+---
+
+# Writing Functions
+
+
+Remember to type in and run all the examples as you go through these materials.  
+**Study each example and make sure you understand what is happening before moving on to the next**
+
+## Functions
+
+A function is a rule that takes input values and produces output values.  
+Python functions are not quite the same as mathematical functions.  
+However in Python a function that is **"called"** (used) several times with the same input can **"return"** (give back) different values each time.  
+A Python function can also have side effects, such as writing output to the screen or to a file. 
+
+We will start of by exploring some of the functions that are available in Python and then we will see how to build our own functions.
+
+### Built-in Functions 
+
+There are several functions that are available directly in Python: `print`, `int`, `float`, `round`, etc.  
+Some others are `type`, `abs`, `min`, `max`, `list` and `range`. 
+
+* To use a function you need the name of the function followed by the arguments in brackets. 
+    * The arguments can be numbers, variables, calculations or other functions. 
+
+The functions we had already seen and also the `abs` and `type` function take one input, known as its ***"argument"*** and **return** one thing back, known as the result. 
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 5654f7a8b8da42ab0e570a29d2ee0690, grade: false, grade_id: cell-a5b28a58c88cbfdd, locked: true, schema_version: 3, solution: false, task: false}
+int(4.436e2), round(4.436e2), float(-68), type(42), type("Hello")
+```
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: c81aa23d2356d6dd5ffbbdacf2be5efc, grade: false, grade_id: cell-ae322af8b36fba07, locked: true, schema_version: 3, solution: false, task: false}
+abs(5), abs(-5), abs(6.01 + 0.01), abs(-6.01 - 0.01)
+```
+
+The `min` and `max` functions take two (or more) arguments and return one result. 
+
+If there are several arguments they have to be separated by commas. 
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 908639212787997ee70987d426847f3b, grade: false, grade_id: cell-e26a08a1cf7f8571, locked: true, schema_version: 3, solution: false, task: false}
+max(-3, 5)
+```
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 4384c3354c01977f899138d3dc02b8f8, grade: false, grade_id: cell-8a33ffb04d67f30d, locked: true, schema_version: 3, solution: false, task: false}
+min(-3, 5, 0, -10)
+```
+
+## Returned values
+
+Some functions like `sqrt()` **return** (give back) a value that can be used:
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: b430f66b593b28679023709b6f5f5fe2, grade: false, grade_id: cell-4833fb875a9a0d5e, locked: true, schema_version: 3, solution: false, task: false}
+from math import sqrt
+a = sqrt(2)
+print(a)
+```
+
+Other functions just perform a function but do not give anything back.   
+The `print()` function only prints to the screen but **does not** *return* a value: 
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 6f4cf84e088ac896edab10e81455e56e, grade: false, grade_id: cell-b16bc76aa5cff319, locked: true, schema_version: 3, solution: false, task: false}
+print(42)     # this prints the value to the screen
+b = print(42) # prints the value, and we try to capture the output in the variable `b`
+print(b)      # however the function has returned nothing, indicated by the value `None` in Python
+```
+
+* A special value of `None` was returned to the variable `b`.
+
+Another very useful built-in function is the `help` function, which can take the name of a function, _without_ (), and gives info about the function.
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 1dba54cb6f7b26cbeb3c71715f487a33, grade: false, grade_id: cell-48e098df51145b16, locked: true, schema_version: 3, solution: false, task: false}
+help(abs)
+```
+
+### Imported Functions
+
+In the previous section we saw that to access certain objects (constants or functions),
+we have to load a library first. 
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 4dba1a0728838eb8f79bccd116695890, grade: false, grade_id: cell-63439d5bed6b2f8f, locked: true, schema_version: 3, solution: false, task: false}
+import math
+
+print(math.exp(1))
+```
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: c23898758151a6985831f26d5deaa236, grade: false, grade_id: cell-e75a748311dcf8e1, locked: true, schema_version: 3, solution: false, task: false}
+from math import sqrt, sin, pi
+
+print(sqrt(36))
+print(sin(pi/2))
+```
+
+* Note: angles are assumed to be in radians, so you will need to convert from degrees: `rads = degs*pi/180`
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 1c938edb4a06e31a1b8319f32186cd60, grade: false, grade_id: cell-cc95843a63a4e16e, locked: true, schema_version: 3, solution: false, task: false}
+x = 2
+print(
+    math.log(math.exp(x)), 
+    math.exp(math.log(x))
+)
+```
+
+The mathematical functions in the `math` module always work with
+floating point numbers. This means that integers will be converted to
+floating point numbers first. The expression `math.sqrt(36)` will return
+the floating point number `6.0` even though the result could be
+represented by an integer.
+
+The `help` function can also be applied to modules. This will result in
+a list of all the functions and constants contained in that module,
+together with their documentation. 
+
+* Try this for the `math` module by printing `help(math)`.
+
+The built-in function `dir` allows us to get just a list of names of functions and constants for a module.
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 98b786ee42dfb065a39a1b0114c08ee8, grade: false, grade_id: cell-cfde36a6d611c1b7, locked: true, schema_version: 3, solution: false, task: false}
+import math
+
+print(dir(math))
+```
+
+## Defining Functions 
+
+Another crucial part of programming is the ability to define functions when we want to do the same thing in several places.  
+
+We can define our own functions starting with the `def` keyword and ending with `return VALUES` (if we want it to give a useable result back).  
+
+The code in the function has to be _indented_ by the same number of spaces (usually four) to tell Python what code is to be run by the function when we eventually use it.
+
+```python 
+def NAME(ARGUMENTS):
+    # maybe some workings here, the result can be just about anything
+    return "Result!" 
+```
+
+
+#### Explanation
+* A function definition starts with the keyword `def`, 
+* then comes the name of the function and a set of brackets, 
+    * The names of functions and parameters have to follow the same rules as
+the names of variables  
+(letters, numbers and underscores, no numbers or
+underscores at the start).
+* inside the brackets put any parameters (called _"arguments"_) that are to be used in the function
+    * multiple arguments are separated by commas.
+* a colon `:` must follow the brackets
+* After the colon, starting on the next line, we can have one or more lines of code that make up the function.
+    * anything the function does must be *indented* by the same number of spaces (conventionally 4)
+    * the contents of the function are known as a **_"code block"_** (see below).
+    * Anything indented will be run together when the function is used, but nothing afterwards.
+    * the `return` keyword labels the end of the function, anything after this is **ignored**.
+    
+Once a function is defined, it can be called in exactly the same way as
+a built-in function.  
+The **`return`** line says what the output of the function will be.  
+* The **returned** output value can then be used as a variable or printed, when the function is used later ("called").
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: af919b324d0490968bbcad95d37e9716, grade: false, grade_id: cell-92eecfd9fe04779b, locked: true, schema_version: 3, solution: false, task: false}
+def sq(x):
+    return x**2
+```
+
+**Note that the function does not do anything at the point it is defined, only once we use (or "call") it later in the code.**
+* The word "**call**" is used in programming to mean applying or using a function. 
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: af919b324d0490968bbcad95d37e9716, grade: false, grade_id: cell-92eecfd9fe04779b, locked: true, schema_version: 3, solution: false, task: false}
+print(sq(2))
+```
+
+**This is a very important point that you need to understand before moving on!**
+
+* **Note 1:** The function variables in the **def**inition (here: `x`) are just *placeholders* to be used in the workings when the function is **call**ed. 
+* **Note 2:** above, the number $2$ was given to the function as its argument, which was assigned to the *internal* variable `x` in the workings (defined in the function definition in the previous cell). It has nothing to do with any other variable with the same name in the main program.
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 1a9330df9205535c27247a0d2683b9bb, grade: false, grade_id: cell-b2b121f96b308d32, locked: true, schema_version: 3, solution: false, task: false}
+u = 3.5
+v = sq(u+0.5) - 1.0
+print(v)
+```
+
+* **Note:** the value given as the argument (`x`) above was $u+0.5 = 3.5+0.5 = 4$ so this is what the working inside the function _"sees"_ as `x`.
+
+### Exercise: 
+
+Define a function to  $f(x) = \dfrac{x^2}{3 + x}$. 
+
+* Print the quantities $f(0)$, $f(-1)$ and $f(1/3)$.
+
+The structure of the code will be like this:
+```python
+#define function name and arguments here
+def YOUR_FUNCTION_NAME( INPUT_ARGUMENT_VARIABLE_NAME_TO_USE_IN_FUNCTION )
+    #indented code for what to return to outside programme
+    return OUTPUT_VALUE_TO_RETURN_TO_MAIN_PROGRAMME
+```
+
+```{python}
+#| deletable: false
+#| nbgrader: {cell_type: code, checksum: b95b8793a0502aae9fe8041b5e41350d, grade: false, grade_id: cell-662a9eea04450fb0, locked: false, points: 0, schema_version: 3, solution: false, task: false}
+# YOUR CODE HERE
+
+
+
+print(f(0)) 
+
+# perform other tests:
+# YOUR CODE HERE
+```
+
+The result should be: 
+```
+0.0 
+0.5 0.03333333333333333
+```
+
+[Click for Solution](solutions/sol0301.ipynb)
+
+### Indentation of Code Blocks
+
+The code run by the function must be *indented* by the same number of spaces.  
+This tells Python what is part of the function and what is outside it.  
+We can run many commands inside a function, including printing to the screen, rather than returning a value to be printed or used in a variable.
+
+```python
+def FUNCTION_NAME(ARGUMENTS):
+    #<-four spaces indented line, 
+    # any code run by the function
+    # when it is used 
+    # needs to be in this indented block
+    # anything outside the function
+    # goes back to normal alignment
+    return RETURNED_VALUE
+    #anything after the return action is ignored...
+
+```
+
+#### Study the example below very carefully until you understand every part of it:
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: e87cf20de301e477c8ed6c6f876eb20e, grade: false, grade_id: cell-2213fad603dab90a, locked: true, schema_version: 3, solution: false, task: false}
+def do_things(a_number):
+    print(f"Your number is {a_number:.2f} to 2DP")
+    print("Squared it is:", a_number**2)
+    asqrt = a_number**0.5
+    print(f"The square root of {a_number} has been returned")
+    return asqrt
+    print("This does nothing because return immediately ends the function!")
+
+print("This is not inside the function!")
+```
+
+Note that nothing inside the function happens until we _call_ the function:
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: f55ade73c9076027f888cc95fa622bc1, grade: false, grade_id: cell-dba16370b641041a, locked: true, schema_version: 3, solution: false, task: false}
+x = 5.499025
+y = do_things(x)
+print("This is after the function finishes!")
+```
+
+* Notice: the last `print()` in the `do_things()` function is ignored because a function **ends** on a `return` statement!
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: bfeeb85be5851ce8baf3f993d334b940, grade: false, grade_id: cell-1d90175fcb46f10b, locked: true, schema_version: 3, solution: false, task: false}
+print(y)
+```
+
+Note: When a function is used any arguments needed must be given in the brackets. 
+
+Also the argument name `a_number` and the argument name given when using the function `x` are **not related**.
+Whatever value is given to the function replaces the variable wherever it appears in the function.
+**This is a very important point. Think about it carefully!**
+
+```{python}
+#this "global" variable is seen by the main program
+number = 101
+
+#define a new function, the variable named `number` here is not related to the one above
+def days_in_n_weeks(number):
+    # the temporary "local" variable names in the definition do not see or affect the ones in the main program!
+    answer = number*7
+    return answer
+
+weeks = 6
+# run (or "call") the function:
+days = days_in_n_weeks(weeks)
+print(days)
+```
+
+We can now check that the original variable `number` was not related to the one in the main program
+
+```{python}
+print(number)
+```
+
+Also, the variable `answer` only exists in the workings of the function, and is not seen by the main program:
+
+```{python}
+print(answer)
+```
+
+### Exercise:  Truncate Decimal Places
+
+Write a function `trunc5dp` that truncates a number after the fifth decimal place. For example, `trunc5dp(4321.1234567) = 4321.12345`. 
+
+Follow these steps in the indented function code block:
+1. Multiply by $10^5$ (either written `100000` or `1e5`), - e.g. $4321.1234567$ becomes $432112345.67$
+2. use the `int()` function to remove trailing decimals, - e.g. $432112345.67$ becomes $432112345$
+3. divide by $10^5$. - e.g. $432112345$ becomes $4321.12345$
+
+the structure of the function is like this:
+```python
+#function name definition, with 1 argument
+    # indented code block
+    # using algorithm
+    # steps goes here
+    # return the answer
+```
+
+```{python}
+#| deletable: false
+#| nbgrader: {cell_type: code, checksum: ab9f820bde1072fdeaafa4f0d10db40e, grade: false, grade_id: cell-5e9e14c61635cb08, locked: false, points: 0, schema_version: 3, solution: false, task: false}
+# YOUR CODE HERE
+
+    
+ans = trunc5dp(4321.1234567)
+print(ans)
+```
+
+Expected Result: `4321.12345`
+
+* Does your function do what you expect for negative numbers?
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 01b6f891379814cbb849aa609597712d, grade: false, grade_id: cell-79cb1fe647eb481e, locked: true, schema_version: 3, solution: false, task: false}
+print(trunc5dp(-4321.1234567))  # truncates (round towards zero)
+```
+
+Expected Result: `-4321.12345`
+
+[Click for Solution](solutions/sol0302.ipynb)
+
+### Naming arguments
+
+The names that you give parameters in the definition of the function are only used _inside_ the function.    
+They do not relate to the arguments and variable names in the main program.
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: cf26e1cb77e386aa770ee830a61cd1a0, grade: false, grade_id: cell-732ff13d05e6de7d, locked: true, schema_version: 3, solution: false, task: false}
+def myfunc(temporary_variable_name):
+    answer = temporary_variable_name * 2
+    return answer
+
+
+x = 10
+
+# x will be renamed temporary_variable_name inside the function (and only there)
+y = myfunc(x)
+
+print(y)
+```
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 0d4cc369c4b5d8989c81638ee5f51146, grade: false, grade_id: cell-f9d003ecc8b29cd4, locked: true, schema_version: 3, solution: false, task: false}
+print(temporary_variable_name)  # this will lead to an error
+```
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 05d2b413be42a935183cdd0d426f4055, grade: false, grade_id: cell-d20171d8a490b4fd, locked: true, schema_version: 3, solution: false, task: false}
+print(answer) #so will this
+```
+
+* Think about this...
+
+Variable names used inside functions do not affect variables used in the rest of the program:
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 103696f5530fc8f77d7a5f9b136feb86, grade: false, grade_id: cell-a7037e8bf1a8c6e6, locked: true, schema_version: 3, solution: false, task: false}
+a = 1
+
+def root(a):
+    a = a**0.5 #this a is only a tempory name
+    return a
+
+b = 2
+
+print(root(b))
+print(a)
+```
+
+* Here `a` is a different thing *inside* to *outside* the function. **Make sure you are clear on this**.
+
+
+### Avoiding confusion with parameters that are not arguments
+
+Be careful using parameters that are not passed into the function as arguments, as this can cause confusion.
+* The following has an error, but it will **not raise an error message at the time of defining it!**
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: b66ef6e3d8dc5e7666b625010b6ddadd, grade: false, grade_id: cell-22dbbc6cc40030e0, locked: true, schema_version: 3, solution: false, task: false}
+def funky(ar):
+    # note the variable bee is not defined!
+    ans = ar+bee 
+    return ans
+
+print("Here!")
+```
+
+* The error will occur when trying to call (apply/use) the function: 
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: b66ef6e3d8dc5e7666b625010b6ddadd, grade: false, grade_id: cell-22dbbc6cc40030e0, locked: true, schema_version: 3, solution: false, task: false}
+funky(20)
+```
+
+### Understanding the error message:
+
+Note the first part of the error message that points to the origin of the problem on line 7:
+```python
+----> 1 funky(20)
+```
+which then traces the issue back to the function definition on line 2:
+```python
+<ipython-input-1-40d916a0d279> in funky(ar)
+      1 def funky(ar):
+      2     # note the variable bee is not defined!
+----> 3     ans = ar+bee
+      4     return ans
+```
+before finally saying what was not understood by the Python interpreter:
+```python
+NameError: name 'bee' is not defined
+
+```
+
+### Avoiding the error
+
+It's always best to pass all parameters into the function as arguments:
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 0d729bb7db44aa8eaea7a630bb2dd3d8, grade: false, grade_id: cell-ba9160fe1824dbeb, locked: true, schema_version: 3, solution: false, task: false}
+def funky(ar, bee):
+    ans = ar+bee 
+    return ans
+
+b = 8222
+
+funky(778, b)
+```
+
+### Exercise: Calculating Area
+
+* Complete the following program by writing a functions to calculate the area of a circle, given its radius ($a = \pi r ^2$);
+
+```python
+## Instructions: your code should have this structure:
+
+# def circle_area(r):
+#     return ??
+```
+
+```{python}
+#| deletable: false
+#| nbgrader: {cell_type: code, checksum: 3a3659d9bc9a86f1a99285d0182eb226, grade: false, grade_id: cell-f285cbf821a3cdac, locked: false, points: 0, schema_version: 3, solution: false, task: false}
+from math import pi
+
+# YOUR CODE HERE
+
+
+print(circle_area(2.0))
+```
+
+Expected Result: `12.566370614359172`
+
+[Click for Solution](solutions/sol0303.ipynb)
+
+### Example: No Parameters
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: af6424f4a7e960f48b8bf9005518b326, grade: false, grade_id: cell-cb2ab57b43bae034, locked: true, schema_version: 3, solution: false, task: false}
+def the_answer():
+    return 42
+
+
+ans = the_answer()
+print(ans)
+```
+
+### Example: Multiple Parameters
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 49c4cf88029785b15c4ceb2a219c9719, grade: false, grade_id: cell-d00f56b1f72af215, locked: true, schema_version: 3, solution: false, task: false}
+def quadratic_value(a, b, c, x):
+    "Evaluate a quadratic polynomial a*x**2 + b*x + c"
+    return a*x**2 + b*x + c
+
+
+help(quadratic_value)
+```
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: bb75b43797a932646a2020a8ce39d09f, grade: false, grade_id: cell-51647fac1a517c3c, locked: true, schema_version: 3, solution: false, task: false}
+print(quadratic_value(2.0, 3.0, 4.0, 0.5))
+```
+
+If a function requires several parameters, we need to separate the
+parameter names by commas. 
+
+* The example also shows the use of a *documentation string*, which can be useful for the user.
+* The `help` function will  print  the documentation string, as well as the name of the function and the
+function parameters.
+
+### Local Variables
+
+Any variables that are assigned inside a function definition are called *local*
+variables, and **only exist *inside* the function**.  
+This means that any local variables that we use for intermediate calculations inside a function will not interfere
+with the variables in the rest of the program.
+
+#### Study and understand what is going on in the following example code blocks:
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 2f853a58605bd08b4fa509a05368c656, grade: false, grade_id: cell-f5dc0689498618a4, locked: true, schema_version: 3, solution: false, task: false}
+import math
+
+
+def ellipse(a, b):
+    ab = a*b
+    print(ab)
+    return math.pi*ab
+```
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 43889850defd68c35f0464c28b32e202, grade: false, grade_id: cell-d5ba90c85ac3df29, locked: true, schema_version: 3, solution: false, task: false}
+ab = 4  # unrelated to local variable ab in ellipse
+print(ab)
+```
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 3cc18ffc60fb2092ffcb288a75c04bbc, grade: false, grade_id: cell-4b63f4be8f99ab51, locked: true, schema_version: 3, solution: false, task: false}
+a = 2.0
+b = 3.0
+
+A = ellipse(a, b)
+```
+
+* Note: `ellipse()` *printed* the **internal** value of `ab` to the output, but ***returned*** te value of $\pi a b$ to the variable `A`:
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 036b074afd7cf8289b514f0aacef6a50, grade: false, grade_id: cell-be6f1aa26e34b65b, locked: true, schema_version: 3, solution: false, task: false}
+print(A)
+
+#the value of ab defined outside the function remains unchanged!
+print(ab)
+```
+
+### Multiple Return Values 
+
+A function can return several values, by separating
+the values by commas in the return statement. 
+
+The following example shows a function that returns the two roots of the quadratic equation
+$a x^2 + b x + c = 0$. 
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: b6627393f2fa292d96dd5471abc7a6cc, grade: false, grade_id: cell-9657e364f563be37, locked: true, schema_version: 3, solution: false, task: false}
+import math
+
+
+def quadratic(a, b, c):
+    "return the roots of the quadratic equation a*x**2 + b*x + c = 0."
+    discriminant = b**2 - 4*a*c  # assumed to be positive
+    offset = math.sqrt(discriminant)
+    x1 = (-b + offset)/(2*a)
+    x2 = (-b - offset)/(2*a)
+    return x1, x2
+
+
+print(quadratic(4.0, 0.0, -16.0))
+```
+
+We can assign names to each of the return values using the following
+syntax:
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 512bf9c50bbefc4abe6ef96c2bc1dc02, grade: false, grade_id: cell-0c86e32a06a940b5, locked: true, schema_version: 3, solution: false, task: false}
+root1, root2 = quadratic(4.0, 0.0, -16.0)
+print(root1)
+print(root2)
+```
+
+* Note that the names of the local variables (`x1` and `x2`) do not have
+to be the same as the variables we use to name the results of the
+function (`root1`, `root2`).
+
+### Exercise: Calculating perimeter and area of a square
+
+* Define a function to calculate the perimeter and area of a square, given the side length ($P = 4L$, $A=L^2$);
+
+```{python}
+#| deletable: false
+#| nbgrader: {cell_type: code, checksum: afe6193af54ee7d2c203b9ddef919283, grade: false, grade_id: cell-418677059108b9c3, locked: false, points: 0, schema_version: 3, solution: false, task: false}
+# YOUR CODE HERE
+
+
+print(square_geometry(3))
+```
+
+Expected Result: `(12, 9)`
+
+### The cell below will test the function you defined above on a (hidden) test case
+
+Run the cell below to test your function on some hidden example:
+
+```{python}
+#| deletable: false
+#| editable: false
+#| nbgrader: {cell_type: code, checksum: 929da3670d82008e98e112fd9cdac8fb, grade: false, grade_id: cell-1edec9725b8b66cb, locked: true, schema_version: 3, solution: false, task: false}
+#| slideshow: {slide_type: ''}
+#| tags: []
+# Run this block to test your function on a hidden test case!
+
+import check03
+
+check03.test0301(square_geometry)
+```
+
+[Click for Solution](solutions/sol0304.ipynb)
+
+### Exercise: Calculating Perimeter and Area of a rectangle
+
+* Write a function to return the perimeter and area of a rectangle, given the width and height ($P=2W + 2H$, $A=W\times H$). 
+* test your function with $W=3$ and $H=4$
+
+```{python}
+#| deletable: false
+#| nbgrader: {cell_type: code, checksum: ba0b96497630eb60784b0ecb3cf3ff45, grade: false, grade_id: cell-21b3d577c9edfdfb, locked: false, points: 0, schema_version: 3, solution: false, task: false}
+# YOUR CODE HERE
+
+
+#set W and H here
+
+perimeter, area = rectangle_geometry(width, height)
+print(perimeter)
+print(area)
+```
+
+Expected Result: 
+```
+14
+12
+```
+
+```{python}
+#| deletable: false
+#| editable: false
+#| nbgrader: {cell_type: code, checksum: cfa803cc550eee7a25aee0bbc82c5317, grade: false, grade_id: cell-fd8f7fd7df1b6ea4, locked: true, schema_version: 3, solution: false, task: false}
+#| slideshow: {slide_type: ''}
+#| tags: []
+# Run this block to test your function on a hidden test case!
+
+import check03
+check03.test0302(rectangle_geometry)
+```
+
+[Click for Solution](solutions/sol0305.ipynb)
+
+
+### No Return Values
+
+It is possible to define functions that do not return any values at all.
+These are used to perform tasks such as printing, reading or writing files, accessing the internet, or plotting graphs.
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 3f34e963d0a3195410e124e7cad24fa9, grade: false, grade_id: cell-b33b980eedba38fa, locked: true, schema_version: 3, solution: false, task: false}
+def hello():
+    print("Hello World!")
+
+
+hello()
+```
+
+The function does not contain a `return` statement and
+therefore the function does not return a value, just a special value
+`None`.
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 9545dc52a5f7c5637ef34434ad9331ee, grade: false, grade_id: cell-45531bbebfb53953, locked: true, schema_version: 3, solution: false, task: false}
+greeting = hello()  # the action of printing will still be performed
+
+print(greeting)
+```
+
+### Optional Arguments and Keyword Arguments 
+
+Sometimes arguments can be given default values using an equals sign. 
+
+If that argument is not entered when applying the function it takes the default value.
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: c3638a74f8e3cca8a80093963124096b, grade: false, grade_id: cell-54d3d7a1b30953dd, locked: true, schema_version: 3, solution: false, task: false}
+def raisepower(base, exponent=2):
+    return base**exponent
+
+
+print(raisepower(10))
+print(raisepower(10, 5))
+print(raisepower(2, exponent=10))
+```
+
+* Keyword arguments must appear **after** compulsory arguments that do not have default values. 
+* If there are more than 3 or 4 arguments it is a good idea to have them as optional keyword arguments with default values.
+
+### Functions names as arguments 
+
+Functions can also be used as input parameters (arguments) in Python. 
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 16d64967d2b2842eac3eb7c3cf9a6230, grade: false, grade_id: cell-f31b1a5c7ba08745, locked: true, schema_version: 3, solution: false, task: false}
+from math import cos, sin, tan
+
+
+def f_zero_ten(InputFunction):
+    print(InputFunction(0.0), InputFunction(10.0))
+
+
+f_zero_ten(cos)
+f_zero_ten(sin)
+f_zero_ten(tan)
+```
+
+**Note:** the function name is passed _**without** parentheses_ `( )`
+* if you input  a function with arguments e.g. `cos(0)` then only the numerical **value** returned by $\cos(0)=1$ is seen by the function.
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 34f2610ba7e43c205fd349b0da46eb6c, grade: false, grade_id: cell-175270ab4e1a5d66, locked: true, schema_version: 3, solution: false, task: false}
+from math import cos
+
+def f_zero(fname):
+    return fname(0.0)
+
+x=0
+
+f_zero(cos(x))
+```
+
+### Understanding the error:
+
+The error is first captured on line 8 when we pass `cos(x)` as an argument to our `f_zero` function:
+```python
+----> 8 f_zero(cos(x))
+```
+
+But the error really occurs when trying to call (apply) `fname` as a function:
+```python
+----> 4     return fname(0.0)
+```
+The error message states:
+```python
+TypeError: 'float' object is not callable
+```
+
+* This is because we passed `cos(x)` with `x=0` into our function, but $\cos(0)$ is just the number 1 (a `float`: `1.0`).   
+* the floating point number `1.0` is not a function so cannot be used ("called") as if it were a function: `1.0(0.0)` does not mean anything.
+
+We would see a similar error using (calling) any other non-function as a function:
+
+```{python}
+#| deletable: false
+#| editable: true
+#| nbgrader: {cell_type: code, checksum: 5219157c87a9ccd3546c16a233141c4f, grade: false, grade_id: cell-221ebf92eaa510b5, locked: true, schema_version: 3, solution: false, task: false}
+import math
+
+answer = "The answer is:" #the variable answer holds a string
+
+answer(42) #trying to pass an argument to the variable attempts to use the above string as a function
+```
+
+### Exercise:
+
+* Define a function named `twice()` that takes a function `fun` and a value `xval` as two arguments, then returns $f(f(x))$
+
+```python
+? ?(?, ?):
+    return ?(?(?))
+```
+
+```{python}
+#| deletable: false
+#| nbgrader: {cell_type: code, checksum: 7ed16fc735d51e6c540c20a14e18660b, grade: false, grade_id: cell-d7882e4e57007ad9, locked: false, points: 0, schema_version: 3, solution: false, task: false}
+# define your twice() function below:
+# YOUR CODE HERE
+
+
+
+#function to give to your twice() function
+def two_times_x(x):
+    return 2*x
+
+
+# give the function two_times_x as an argument to the twice() function along with the value 10
+
+#a2 = twice(???, ???)
+# YOUR CODE HERE
+
+
+print(a2) #this should be the value of two_times_x(two_times_x(10))
+```
+
+Expected Result: `40`
+
+```{python}
+#| deletable: false
+#| editable: false
+#| nbgrader: {cell_type: code, checksum: c9fba56fc9b26b779c7470d783ae7722, grade: false, grade_id: cell-f20de2814f4ae376, locked: true, schema_version: 3, solution: false, task: false}
+#| slideshow: {slide_type: ''}
+#| tags: []
+# Run this block to test your function...
+
+# Test 1. test function to give to your twice() function
+def x_squared(x):
+    return x**2
+
+print( twice(x_squared,2) )
+# answer should be 16
+
+# Test 2. 
+# the sqrt function will also be used to evaluate sqrt(sqrt(16))
+from math import sqrt
+
+print( twice(sqrt,16) )
+# answer should be 2.0
+```
+
+[Click for Solution](solutions/sol0306.ipynb)
+
+Test and feedback function (run and see):
+
+```{python}
+#| editable: false
+#| slideshow: {slide_type: ''}
+#| tags: []
+import check03
+
+check03.test0303(twice)
+```
+
+## Summary
+
+### Defining a function
+```python
+def rootmeansquare(a, b):
+    c = a**2 + b**2
+    print(f"The sum of squares is {c}")
+    m = c/2
+    print(f"The mean of squares is {m}")
+    return m**0.5
+```
+
+### Calling a function
+```python
+x = 6
+y = 9
+s = rootmeansquare(x, 2*y)  # calling a function
+
+print(f"RMS = {s:.4}")
+```
+
+#### Output:
+```
+The sum of squares is 360
+The mean of squares is 180.0
+RMS = 13.42
+```
+
+### Functions with more than one output (returned value)
+```python
+def minmax(a,b,c):
+    minval = min(a,b,c)
+    maxval = max(a,b,c)
+    return minval, maxval
+
+mn,mx = minmax(69,42,404)
+print("Smallest is:", mn)
+print("Largest is:", mx)
+```
+#### Output:
+```
+Smallest is: 42
+Largest is: 404
+```
+
+### Functions with optional arguments
+```python
+def sigfig4(value_to_use, print_string="Rounded value:"):
+    "Function to round to 4 significant figures"
+    print(print_string, f"{value_to_use:.4}")
+    #Note: does not return a value!
+    
+r2 = 200**0.5 #square root 200
+sigfig4(r2, print_string="sqrt(200) is:")
+returned = sigfig4(2**0.5)
+print(returned)
+
+```
+#### Output:
+```
+sqrt(200) is: 14.14
+Rounded value: 1.414
+None
+```
+
+
+### Functions with function arguments
+```python
+def func_difference(dummy_function_name, value1, value2):
+    y1 = dummy_function_name(value1)
+    y2 = dummy_function_name(value2)
+    diff = y2-y1
+    return diff
+    
+    
+from math import sqrt
+
+ans = func_difference(sqrt, 4, 9)
+# inside func_difference the calculation is sqrt(9)-sqrt(4)
+
+print(ans)
+```
+#### Output:
+```
+1.0
+```
+
+## Pitfalls
+
+
+Watch out for the following sources of errors:
+
+-   Missing colon before indentation block.
+
+-   Wrong or inconsistent indentation. Use for 4 spaces (not tabs) per
+    indentation level.
+

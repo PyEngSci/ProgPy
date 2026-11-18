@@ -1,0 +1,407 @@
+---
+jupyter: python3
+---
+
+Be sure to do all exercises and run all completed code cells. 
+
+If anything goes wrong, **restart the kernel** (in the menubar, select Kernel$\rightarrow$Restart).
+
+---
+
+# Writing Programs
+
+See **10. Notes on Debugging** before going through this lesson. 
+
+Adapted in part from *The Way of the Program* in https://openbookproject.net/thinkcs/python/english3e/way_of_the_program.html
+
+## Introduction
+
+The most important skill using computers in Science and Engineering is **problem
+solving**.  
+Problem solving means the ability to formulate problems, think
+creatively about solutions, and express a solution clearly and accurately. 
+
+All computer languages include the following core components, which you have now seen:
+
+1. **inputs**: Getting data from the keyboard, a file, or some other device.
+2. **outputs**: Displaying data on the screen or sending data to a file, etc.
+3. **maths**: Performing mathematical operations.
+4. **conditional execution**: Check if certain conditions are true and execute some code only when this is so.
+5. **repetition**: Perform some action repeatedly, usually with some variation.
+
+Every program, no matter how complicated, is made up of variations on these core building-blocks.  
+
+Programming is simply the process of breaking a *large, complex task* into *smaller and smaller subtasks* until the
+subtasks are simple enough to be performed with sequences of these basic instructions.
+
+## Modelling the Problem
+
+Modelling does not just mean writing a computer simulation of a problem. It can be a mathematical model, a physical model, or just a sketch of the basic features of the situation.
+
+When you are faced with any task you want to perform, follow the procedure below:
+
+1. think what you have and what you want to achieve: what are your (a) *inputs* and (b) *outputs* 
+2. write down on paper basic steps you would perform by hand  to get from (a) to (b): an *algorithm*.
+3. Start with a simple working example or, if you can't find one, a list of commented steps *outlining* the procedure above that you will follow (*"pseudocode"*).
+4. Write the program from the middle out:
+    * Start with the *core* components and test they work on a simple case.
+    * Build more complexity around this, one step at a time, testing as you go.
+5. Experiment, play around, try things (but make back-ups) and debug until it works as required.
+
+### Mental Models to Algorithms
+
+Start by sketching (with a pencil and paper) the process you want to make the computer perform. This can be in the form of a numbered list, a flow chart, a diagram or sketch, or anything else that helps you visualise the problem.  
+If there are mathematical steps write the equations and convert them into the form they must be used in a Python script.  
+If there are logical steps (such as `IF`) then write these as a diagram with arrows and options.  
+
+Next think of the **most simple example** you can of the problem. Do the steps by hand and then write what you did in a logical series of steps and instructions. You can then start converting this to *Psudocode*.
+
+## Structuring your Code
+
+### Using Comments
+
+A good program contains a lot of useful comments (any line following a `#` in the code).
+These can be to help you understand, modify and debug your code at a later date, or to make it easier for the next person to use it. Good comments can be used to label units, which are not used by Python, and to tell you what different symbols and variables mean, as well as how things link together.
+
+You can also use comments to add placemarkers for things you want to include later, or to help you build new code from *Pseudocode* and lists of human-readable steps.
+
+### Pseudocode
+
+Pseudocode are the above steps, but with the instructions written in the positions that they would be in a real program. You do not need to use the actual Python syntax here, just instructions such as:
+```
+#1 SET UP MY VARIABLES AND FUNCTIONS
+#2 REPEAT THE NEXT STEPS for 10 INITIAL VALUES:
+    #2.1 DO SOME INITIAL TASK
+    #2.2 SET AN INITIAL VALUE FOR something
+    #2.3 REPEAT THE X METHOD while SOME CONDITION (ABOUT something) IS TRUE:
+        #2.3.1 THE X METHOD GOES HERE
+        #2.3.2 UPDATE THE VALUE OF something
+    #2.4 STORE WHATEVER RESULT WAS FOUND IN 2.3 
+#3 CLEAN UP, DO PLOTS AND SAVE DATA
+#4 HAVE A NICE CUP OF TEA
+```
+
+### Building Your Programme
+
+The most important thing here is: **do not try to write the whole programme at once!**  
+Start with the most basic core component (`THE X METHOD`) and test it works correctly in as many circumstances as you can think of. If there are lots of steps to it, or you will want to use it more than once then write it as a *function* you can use inside the loops.
+
+Once the middle part works build the next step around it. Do not forget to make the old part consistent with the alterations you have made. For example, if you used a single initial value in developing `THE X METHOD`, and are replacing it with a series of values taken from a FOR loop, then you will need to make sure these changes still work in `THE X METHOD`.
+
+You will need to constantly **test and debug** for every minor change you make (see the next section).
+
+### Example: Number Guessing Game
+
+The game: Person A chooses a number from 1 to 10 *at random* and person B has to guess the number to win. We must simulate the situation and compare it to the result from probability theory that the probability of winning is $\displaystyle P(win)=0.1$.
+
+#### Sketch Model:
+
+1. I'll have to pick a random number X for person A and another Y for person B
+2. I'll have to compare if X is equal to Y to see if it a winning game.
+3. I'll have to repeat steps 1--3 many times (100? 1000?), and 
+4. look at the proportion of wins.
+5. To do this I'll have to keep track of the number of wins from step 2
+
+#### Pseudo-code:
+
+Note we have to put step 3 logically above 1 and 2 since it *includes* repeating them. The numbers below refer to the steps above.
+
+```
+#5.1 Set a win counter at zero
+#3. repeat the process below for 1000 times -- set up a counter from 1 to 1000
+    #1 pick two random integers X and Y in the range 1-10
+    #2 compare X and Y to see if same:
+        #5.2 if true then add 1 to win counter
+#4. print the number of wins/1000 to give the proportion of wins
+```
+I wrote the steps as it occurred to me that it would be necessary. For example step 5.1 only became apparent once I knew I'd have to add 1 to a counter, so it had to start at some value (0).  
+Some of these steps will require more thought, but lets start to get something working first.
+
+#### Building the Programme:  
+
+We start by building and testing the core component: the random number generator. For this we will look on the web and in the manuals and find that the `random` module can generate random numbers. We see that there is a basic `random.random` function that returns a float in the range zero to one, so we test it.
+
+```{python}
+#| deletable: false
+#| editable: false
+#| nbgrader: {cell_type: code, checksum: 93a587a11f245bc2f43d18b034cec318, grade: false, grade_id: cell-7876edacf3063888, locked: true, schema_version: 3, solution: false, task: false}
+import random
+X = random.random()
+print(X)
+```
+
+Great! The only problem is we want an integer in the range 1$-$10.  
+This is easily done multiplying the result by 10 and using `int()`.  
+
+```python
+X = int(10*random.random())
+```
+
+Now we test it 50 times (in a FOR loop) to make sure it's doing the right thing now (`i` is just a counter that we never use):
+
+```{python}
+#| deletable: false
+#| editable: false
+#| nbgrader: {cell_type: code, checksum: 79306db368e28f4a1c0d459135422424, grade: false, grade_id: cell-e279698a307c633d, locked: true, schema_version: 3, solution: false, task: false}
+import random
+
+for i in range(50):
+    X = int(10*random.random())
+    print(X, end=' ')
+```
+
+But these numbers go from 0,..., 9.
+
+* Remember that `int()` simply cuts off the decimal point, so we're getting a value from [0,1,2,3,4,5,6,7,8,9]. 
+* OK, let's add one:
+
+```{python}
+#| deletable: false
+#| editable: false
+#| nbgrader: {cell_type: code, checksum: 972bb548eef0c9c2de985144c9fe8ec2, grade: false, grade_id: cell-53d8657067aaa4de, locked: true, schema_version: 3, solution: false, task: false}
+import random
+
+for i in range(50):
+    X = int(10*random.random()+1)
+    print(X, end=' ')
+```
+
+Seems to be working! We might as well leave the FOR loop in now, since we'll need it in the final programme anyway.  
+
+Now to generate two numbers and compare them (remember `==` is the question: "is it equal to?"):
+
+```{python}
+#| deletable: false
+#| editable: false
+#| nbgrader: {cell_type: code, checksum: 3cd10ec5c404ac0d9f8305e52130e361, grade: false, grade_id: cell-0ec2d7c86c23c66e, locked: true, schema_version: 3, solution: false, task: false}
+import random
+
+for i in range(20):
+    X = int(10*random.random()+1)
+    Y = int(10*random.random()+1)
+    print(X, Y, X == Y, ';')
+```
+
+Right. Now this works we can replace the `print` function with an IF condition: 
+
+```{python}
+#| deletable: false
+#| editable: false
+#| nbgrader: {cell_type: code, checksum: aab408f4053409a050ae34bc134ab1d5, grade: false, grade_id: cell-841a3e2b800bda1e, locked: true, schema_version: 3, solution: false, task: false}
+import random
+
+for i in range(20):
+    X = int(10*random.random()+1)
+    Y = int(10*random.random()+1)
+    if X == Y:
+        wins = wins+1
+```
+
+Oops! I forgot to give a starting value to `wins`. 
+
+#### Fix this error (cut and paste) in the cell below and rerun the code before moving on.
+
+```{python}
+#| deletable: false
+#| nbgrader: {cell_type: code, checksum: 7b459d60a6d93b23cfea6505c1323f2c, grade: true, grade_id: cell-e0c8aee671eaaa9f, locked: false, points: 0, schema_version: 3, solution: true, task: false}
+# YOUR CODE HERE
+```
+
+```
+.
+.
+.
+.
+.
+.
+.
+.
+.
+```
+
+Only now we think it's working do we do it for 1000 turns:
+
+```{python}
+#| deletable: false
+#| editable: false
+#| nbgrader: {cell_type: code, checksum: 5ac0315797189c7ee2a5218bc56779e9, grade: false, grade_id: cell-b673f714328b24ad, locked: true, schema_version: 3, solution: false, task: false}
+import random
+
+N = 1000
+wins = 0
+for i in range(N):
+    X = int(10*random.random()+1)
+    Y = int(10*random.random()+1)
+    if X == Y:
+        wins = wins+1
+print(wins, N)
+print(1.0*wins/N)
+```
+
+Excellent! And the result seems to support the theoretical value. 
+
+**Exercise:** Check this with better statistics by changing $N$ to a million (set `N=1e6`) and see if it agrees.  
+
+**Note**: This will introduce an error that you will need to correct by yourself by inspecting the error message.  
+Look at the last line `TypeError:` and try to work out what it means.
+
+```{python}
+#| deletable: false
+#| nbgrader: {cell_type: code, checksum: 76f22bad9b08767a7b737f830688106d, grade: true, grade_id: cell-6fb18d1f40c79ee9, locked: false, points: 0, schema_version: 3, solution: true, task: false}
+# YOUR CODE HERE
+```
+
+
+[Tell me the answer!](solutions/sol1001.ipynb)
+___
+
+
+One thing to notice here is how many refinements I had to make to get just a simple program working. 
+
+The more experienced you get the more steps you'll be able to make in one go, but it takes practice to become proficient. The process of debugging and refinement is how most programmers actually program from scratch. Also relying heavily on finding a similar bit of code and editing it to suit their needs.
+
+See the previous section on **Debugging Code** for details on solving errors and debugging exercises.
+
+### Exercise: The Dice Game
+
+A great way of programming is to take an existing code and modify it for your own task.  
+
+Take the working code for the last example above and modify it in the following ways:
+
+**Part 1.** Simulate a person rolling three dice $A, B, C$ (each with numbers from 1 to 6). Scores are calculated according to the following rules. Is the person likely to win on average, or lose?
+* **$A=B=C=N$**: Plus N points.
+* **$A, B, C$ *not* all same, and $A+B+C=M\leq 6$**: Minus M points.
+* **$A, B, C$ *not* all same, and $A+B+C=M > 6$**: No points lost/gained.
+    
+
+```{python}
+#| deletable: false
+#| nbgrader: {cell_type: code, checksum: 2c1c46aabf0810d750ed7d652c31b376, grade: true, grade_id: cell-a8c5060a2c96137f, locked: false, points: 0, schema_version: 3, solution: true, task: false}
+# Part 1: modify the last working code above here
+# YOUR CODE HERE
+```
+
+
+[Click here to reveal model solution](solutions/sol1002.ipynb)
+
+**Part 2.** Simplify the programme by looking up and using the `random.choice` function.
+
+```{python}
+#| deletable: false
+#| nbgrader: {cell_type: code, checksum: 0aca537e11c570038295f7feb3bbcc7a, grade: true, grade_id: cell-771becd505be8ee2, locked: false, points: 0, schema_version: 3, solution: true, task: false}
+# Part 2: Copy the code above and modify it here.
+# YOUR CODE HERE
+```
+
+
+[Click here for model solution](solutions/sol1003.ipynb)
+
+## Practice Exercise 1a:
+
+### Rock/paper/scissors 
+
+For this problem you will need to think through the logical steps of the problem **before** trying to modify your Dice Game code.
+* Remember to build your code **one step at a time** and print each step as you go along.
+
+The rules of rock/paper/scissors are:
+
+* Two people randomly choose between "rock", "paper" and "scissors".
+* **Rock** *beats* **Scissors**;
+* **Scisors** *beats* **Paper**;
+* **Paper** *beats* **rock**;
+* **same**: play again.
+
+Simulate this game and print the result until someone wins 2 hands in a row. 
+
+You will need to use a `WHILE` loop to keep going until someone wins, and some conditional statements to check who wins each game (if anyone).
+
+Try to use the `.format()` method when printing the answer. You will have to replace the FOR loop to make this work properly.
+
+The output could be something like:
+```
+A chooses Paper,    B Chooses Paper       Draw!      score=(0,0)
+A chooses Paper,    B Chooses Scissors    B Wins!    score=(0,1)
+A chooses Rock,     B Chooses Rock        Draw!      score=(0,0)
+A chooses Paper,    B Chooses Scissors    B Wins!    score=(0,1)
+A chooses Paper,    B Chooses Rock        A Wins!    score=(1,0)
+A chooses Paper,    B Chooses Rock        A Wins!    score=(2,0)
+```
+
+```{python}
+#| deletable: false
+#| nbgrader: {cell_type: code, checksum: b3f9026f06c35c8a6df65c84ea6cdd45, grade: true, grade_id: cell-daf583bd75f19f96, locked: false, points: 0, schema_version: 3, solution: true, task: false}
+# YOUR CODE HERE
+```
+
+[Click here for model answer](solutions/sol1004.ipynb)
+
+---
+
+## Practice exercise 1b:
+
+### Average Number of Hands
+
+Can you modify the previous example so that it simulates the game for 1000 separate games and prints the average number of hands per game.  Hint:  Use a `FOR` loop for the number of games.
+
+* The answer should be about 6
+
+```{python}
+#| deletable: false
+#| nbgrader: {cell_type: code, checksum: 1b798b129237ebf261e670aef49db330, grade: true, grade_id: cell-e61859c6ea1377a6, locked: false, points: 0, schema_version: 3, solution: true, task: false}
+# YOUR CODE HERE
+```
+
+[Click here for model answer](solutions/sol1005.ipynb)
+
+
+---
+
+# Practice Programming from Scratch
+### Worked Example for practice: NOT assessed
+
+## Euler Method for Numerical Integration
+
+#### Background:
+
+1. In engineering we often start with a *differential equation* of the form $\dfrac{\mathrm{d}y}{\mathrm{d}x} = F(x,y)$ and need to *integrate* $F(x,y)$ with respect to $x$, to obtain $y(x)$.
+
+2. The formula for differentiation by small changes: 
+$\dfrac{\mathrm{d}y}{\mathrm{d}x} \approx \dfrac{y(x + \delta x) - y(x)}{\delta x} = F(x,y),$
+can be rearranged to *reverse differentiate* (integrate) the function $F$ with respect to $x$:  
+
+    * $y(x + \delta x) = y(x) + F\delta x$, where $\delta x$ is a small change in $x$ (call it `dx` for simplicity).  
+        * This is **Euler's Method** of 1770.
+    * This can be used as an *iterative* scheme for finding the next $x_{i+1}$ from the current $x_i$.
+    * We must start with some *initial* $x_0$ then *integrate* forwards using the scheme above ($x_0$ relates to the *constant of integration* and can be any value.)
+
+This can be used to solve engineering problems where we know about forces, which relate to derivatives.    
+In the following heat-flow problem $F(u)=-k(u - T)$, where $u$ is the temperature inside the building, $T$ is the (constant) outside temperature $T=5$ (degrees C, but don't tell Python the units!) and $k$ is related to the thermal properties of the building.  
+
+##### Exercise:
+
+1. Use the Euler Method to plot an integral curve for the integrated function...  
+
+* **Do this!:**   
+    (a) a plan of how you would do this by hand,  
+    (b) work through *pseudocode* and  
+    (c) build your code bit-by-bit, to write a programme to solve the differential equation for heat flow from a building:  
+$\dfrac{\mathrm{d}u}{\mathrm{d}t} = -k(u-T),$  
+    * Take `k=0.1` and `dt=4`. 
+*  Draw the curve from $t=0$ to $t=24$ (you can think of being in hours).
+
+The steps are shown below to compare with the output from your code.
+
+| $t$   | $u(t)$ | $F(u)$ | $F\delta t$ |
+|-------|--------|--------|:---------:|
+| 0.0 | 20.000 | -1.500 | -6.000 |
+| 4.0 | 14.000 | -0.900 | -3.600 |
+| 8.0 | 10.400 | -0.540 | -2.160 |
+| 12.0 | 8.240 | -0.324 | -1.296 |
+| 16.0 | 6.944 | -0.194 | -0.778 |
+| 20.0 | 6.166 | -0.117 | -0.467 |
+| 24.0 | 5.700 | -0.070 | -0.280 |
+
+2. Try changing the value of $\delta t$ (e.g.: 8, 1, 0.5) and see how it affects the accuracy of the calculation.
+3. Try different values of the starting temperature and look at how long it takes to reach equilibrium.
+4. **Advanced:** Put in a variable external temperature $T$ (e.g. a sine function) and see how it responds...
+

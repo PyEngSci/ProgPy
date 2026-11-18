@@ -1,0 +1,12 @@
+{
+  "hash": "78c7fec72796c11628217aaa47366198",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "::: {#cell-0 .cell execution_count=1}\n``` {.python .cell-code}\n### BEGIN SOLUTION\ng = 9.81   # acceleration due to gravity\ny_0 = 1.5   # initial height\nv_0 = 12.8   # initial velocity\n\nt = 2\n\nanswer = y_0 + v_0 * t - 0.5 * g * t**2\n### END SOLUTION\n\nprint(\"y(2) =\", answer)\n\ny_1 = 5\n\n### BEGIN SOLUTION\n# equation for t\n# y_1 = y_0 + v_0 * t - 0.5 * g * t**2\n# equation rearranged\n# 0.5 * g * t**2 - v_0 * t + y_1 - y_0 = 0\n\na = 0.5 * g\nb = -v_0\nc = y_1 - y_0\ndisc = b**2 - 4*a*c\nt_1 = (-b - disc**0.5)/(2*a)\nt_2 = (-b + disc**0.5)/(2*a)\n### END SOLUTION\n\n#leave this next line as it is\nprint(f\"The ball will be at height y={y_1}m at times: t={t_1:.2}s and t={t_2:.2}s\")\n```\n\n::: {.cell-output .cell-output-stdout}\n```\ny(2) = 7.48\nThe ball will be at height y=5m at times: t=0.31s and t=2.3s\n```\n:::\n:::\n\n\n\n",
+    "supporting": [
+      "sol0206_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
