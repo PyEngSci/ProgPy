@@ -2,23 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>10&nbsp; Debugging Code – Programming in Python</title>
+<title>9&nbsp; Debugging Code – Programming in Python</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -79,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-02ae9ba62279b8bbbed70b062340170a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-fe077b0d5d1780ed73267815eb1dae6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -132,8 +129,22 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -173,7 +184,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Lesson09/09-Debugging_Code.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Debugging Code</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Lesson09/09-Debugging_Code.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Debugging Code</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -201,67 +212,67 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Quick Summary</span></span></a>
+ <span class="menu-text">Quick Summary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson01/01-Python_Basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Python Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson02/02-Variables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Using Variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Using Variables</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson03/03-Functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Writing Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Writing Functions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson04/04-If_and_While.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditionals and While Loops</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Conditionals and While Loops</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson05/05-Lists-Dictionaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lists and Dictionaries</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lists and Dictionaries</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson06/06-For_Loops.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Iteration using <code>for</code> Loops</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Iteration using <code>for</code> Loops</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson07/07-Numerical_Arrays.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical Arrays</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Numerical Arrays</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson08/08-Data_Analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basics of Plotting Graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Basics of Plotting Graphs</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson09/09-Debugging_Code.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Debugging Code</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Debugging Code</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson10/10-Writing_Programs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Writing Programs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Writing Programs</span></span></a>
   </div>
 </li>
     </ul>
@@ -274,30 +285,26 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-is-debugging" id="toc-what-is-debugging" class="nav-link active" data-scroll-target="#what-is-debugging"><span class="header-section-number">10.1</span> What is debugging?</a></li>
-  <li><a href="#experimental-debugging" id="toc-experimental-debugging" class="nav-link" data-scroll-target="#experimental-debugging"><span class="header-section-number">10.2</span> Experimental debugging</a></li>
-  <li><a href="#error-messages" id="toc-error-messages" class="nav-link" data-scroll-target="#error-messages"><span class="header-section-number">10.3</span> Error Messages</a></li>
-  <li><a href="#my-program-doesnt-work" id="toc-my-program-doesnt-work" class="nav-link" data-scroll-target="#my-program-doesnt-work"><span class="header-section-number">10.4</span> My program doesn’t work!</a>
+  <li><a href="#what-is-debugging" id="toc-what-is-debugging" class="nav-link active" data-scroll-target="#what-is-debugging"><span class="header-section-number">9.1</span> What is debugging?</a></li>
+  <li><a href="#experimental-debugging" id="toc-experimental-debugging" class="nav-link" data-scroll-target="#experimental-debugging"><span class="header-section-number">9.2</span> Experimental debugging</a></li>
+  <li><a href="#error-messages" id="toc-error-messages" class="nav-link" data-scroll-target="#error-messages"><span class="header-section-number">9.3</span> Error Messages</a></li>
+  <li><a href="#my-program-doesnt-work" id="toc-my-program-doesnt-work" class="nav-link" data-scroll-target="#my-program-doesnt-work"><span class="header-section-number">9.4</span> My program doesn’t work!</a>
   <ul class="collapse">
-  <li><a href="#rubber-duck-debugging" id="toc-rubber-duck-debugging" class="nav-link" data-scroll-target="#rubber-duck-debugging"><span class="header-section-number">10.4.1</span> Rubber duck debugging</a></li>
-  <li><a href="#simplifying-big-equations-or-compound-python-statement-that-dont-do-what-you-expect" id="toc-simplifying-big-equations-or-compound-python-statement-that-dont-do-what-you-expect" class="nav-link" data-scroll-target="#simplifying-big-equations-or-compound-python-statement-that-dont-do-what-you-expect"><span class="header-section-number">10.4.2</span> Simplifying big equations (or compound Python statement) that don’t do what you expect</a></li>
-  <li><a href="#kiss-keep-it-simple-stupid" id="toc-kiss-keep-it-simple-stupid" class="nav-link" data-scroll-target="#kiss-keep-it-simple-stupid"><span class="header-section-number">10.4.3</span> KISS (Keep it Simple, Stupid)</a></li>
-  <li><a href="#you-cant-get-the-program-to-run-no-matter-what-you-do." id="toc-you-cant-get-the-program-to-run-no-matter-what-you-do." class="nav-link" data-scroll-target="#you-cant-get-the-program-to-run-no-matter-what-you-do."><span class="header-section-number">10.4.4</span> You can’t get the program to run no matter what you do.</a></li>
+  <li><a href="#rubber-duck-debugging" id="toc-rubber-duck-debugging" class="nav-link" data-scroll-target="#rubber-duck-debugging"><span class="header-section-number">9.4.1</span> Rubber duck debugging</a></li>
+  <li><a href="#simplifying-big-equations-or-compound-python-statement-that-dont-do-what-you-expect" id="toc-simplifying-big-equations-or-compound-python-statement-that-dont-do-what-you-expect" class="nav-link" data-scroll-target="#simplifying-big-equations-or-compound-python-statement-that-dont-do-what-you-expect"><span class="header-section-number">9.4.2</span> Simplifying big equations (or compound Python statement) that don’t do what you expect</a></li>
+  <li><a href="#kiss-keep-it-simple-stupid" id="toc-kiss-keep-it-simple-stupid" class="nav-link" data-scroll-target="#kiss-keep-it-simple-stupid"><span class="header-section-number">9.4.3</span> KISS (Keep it Simple, Stupid)</a></li>
+  <li><a href="#you-cant-get-the-program-to-run-no-matter-what-you-do." id="toc-you-cant-get-the-program-to-run-no-matter-what-you-do." class="nav-link" data-scroll-target="#you-cant-get-the-program-to-run-no-matter-what-you-do."><span class="header-section-number">9.4.4</span> You can’t get the program to run no matter what you do.</a></li>
   </ul></li>
-  <li><a href="#tracing-different-types-of-error" id="toc-tracing-different-types-of-error" class="nav-link" data-scroll-target="#tracing-different-types-of-error"><span class="header-section-number">10.5</span> Tracing Different Types of Error</a>
+  <li><a href="#tracing-different-types-of-error" id="toc-tracing-different-types-of-error" class="nav-link" data-scroll-target="#tracing-different-types-of-error"><span class="header-section-number">9.5</span> Tracing Different Types of Error</a>
   <ul class="collapse">
-  <li><a href="#syntax-errors" id="toc-syntax-errors" class="nav-link" data-scroll-target="#syntax-errors"><span class="header-section-number">10.5.1</span> Syntax errors</a></li>
-  <li><a href="#runtime-errors" id="toc-runtime-errors" class="nav-link" data-scroll-target="#runtime-errors"><span class="header-section-number">10.5.2</span> Runtime errors</a></li>
-  <li><a href="#semantic-errors" id="toc-semantic-errors" class="nav-link" data-scroll-target="#semantic-errors"><span class="header-section-number">10.5.3</span> Semantic errors</a></li>
+  <li><a href="#syntax-errors" id="toc-syntax-errors" class="nav-link" data-scroll-target="#syntax-errors"><span class="header-section-number">9.5.1</span> Syntax errors</a></li>
+  <li><a href="#runtime-errors" id="toc-runtime-errors" class="nav-link" data-scroll-target="#runtime-errors"><span class="header-section-number">9.5.2</span> Runtime errors</a></li>
+  <li><a href="#semantic-errors" id="toc-semantic-errors" class="nav-link" data-scroll-target="#semantic-errors"><span class="header-section-number">9.5.3</span> Semantic errors</a></li>
   </ul></li>
-  <li><a href="#task-debugging-code" id="toc-task-debugging-code" class="nav-link" data-scroll-target="#task-debugging-code"><span class="header-section-number">10.6</span> Task: Debugging Code</a>
+  <li><a href="#task-debugging-code" id="toc-task-debugging-code" class="nav-link" data-scroll-target="#task-debugging-code"><span class="header-section-number">9.6</span> Task: Debugging Code</a></li>
+  <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix"><span class="header-section-number">9.7</span> Appendix</a>
   <ul class="collapse">
-  <li><a href="#cut-and-paste-the-above-code-into-the-cell-below-to-debug-it" id="toc-cut-and-paste-the-above-code-into-the-cell-below-to-debug-it" class="nav-link" data-scroll-target="#cut-and-paste-the-above-code-into-the-cell-below-to-debug-it"><span class="header-section-number">10.6.1</span> Cut and paste the above code into the cell below to debug it:</a></li>
-  </ul></li>
-  <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix"><span class="header-section-number">10.7</span> Appendix</a>
-  <ul class="collapse">
-  <li><a href="#practical-application-of-the-above-example-integration-using-a-cumulative-sum" id="toc-practical-application-of-the-above-example-integration-using-a-cumulative-sum" class="nav-link" data-scroll-target="#practical-application-of-the-above-example-integration-using-a-cumulative-sum"><span class="header-section-number">10.7.1</span> Practical Application of the above example: Integration using a Cumulative Sum</a></li>
-  <li><a href="#exercise-comment-the-code-above-so-you-understand-what-all-the-steps-are-doing." id="toc-exercise-comment-the-code-above-so-you-understand-what-all-the-steps-are-doing." class="nav-link" data-scroll-target="#exercise-comment-the-code-above-so-you-understand-what-all-the-steps-are-doing."><span class="header-section-number">10.7.2</span> Exercise: Comment the code above so you understand what all the steps are doing.</a></li>
+  <li><a href="#practical-application-of-the-above-example-integration-using-a-cumulative-sum" id="toc-practical-application-of-the-above-example-integration-using-a-cumulative-sum" class="nav-link" data-scroll-target="#practical-application-of-the-above-example-integration-using-a-cumulative-sum"><span class="header-section-number">9.7.1</span> Practical Application of the above example: Integration using a Cumulative Sum</a></li>
   </ul></li>
   </ul>
 <div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/PyEngSci/ProgPy" target="_blank"><i class="bi bi-download"></i>Course Files</a></li></ul></div></nav>
@@ -307,7 +314,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Debugging Code</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Debugging Code</span></h1>
 </div>
 
 
@@ -325,23 +332,23 @@ window.Quarto = {
 
 
 <p>Be sure to do all exercises and run all completed code cells.</p>
-<p>If anything goes wrong, <strong>restart the kernel</strong> (in the menubar, select Kernel<span class="math inline">\(\rightarrow\)</span>Restart).</p>
+<p>If anything goes wrong, <strong>restart the kernel</strong> (in the menubar, select Kernel<span class="math inline">\rightarrow</span>Restart).</p>
 <hr>
 <p>Read these notes then try to debug the Task code at the bottom.</p>
 <p>These notes will be useful to help you debug your own code in your projects.</p>
-<section id="what-is-debugging" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="what-is-debugging"><span class="header-section-number">10.1</span> What is debugging?</h2>
+<section id="what-is-debugging" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="what-is-debugging"><span class="header-section-number">9.1</span> What is debugging?</h2>
 <p>Adapted from: <a href="http://www.openbookproject.net/thinkcs/python/english2e/">http://www.openbookproject.net/thinkcs/python/english2e/</a>.</p>
 <p>Programming errors are called <strong>bugs</strong> and the process of tracking them down and correcting them is called <strong>debugging</strong>.</p>
 </section>
-<section id="experimental-debugging" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="experimental-debugging"><span class="header-section-number">10.2</span> Experimental debugging</h2>
+<section id="experimental-debugging" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="experimental-debugging"><span class="header-section-number">9.2</span> Experimental debugging</h2>
 <p>One of the most important skills to master is debugging. It can be frustrating, debugging is one of the most rewarding parts of programming in terms of what you learn.</p>
 <p>Debugging is like detective work. You are given clues and you have to work out what led to the results you see. You should treat writing a program like experimental science. Once you have an idea what is going wrong, you modify your program and try again. If your hypothesis was correct, then you can predict the result of the modification, and you take a step closer to a working program.</p>
 <p>For some people, programming and debugging are the same thing. That is, programming is the process of gradually debugging a program until it does what you want. The idea is that <strong>you should start with a program that does <em>something</em> and make small modifications, debugging them as you go, so that you always have a working program</strong> (always save version backups).</p>
 </section>
-<section id="error-messages" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="error-messages"><span class="header-section-number">10.3</span> Error Messages</h2>
+<section id="error-messages" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="error-messages"><span class="header-section-number">9.3</span> Error Messages</h2>
 <p>Sometimes error messages can be very long, as they trace their way through a cascade of failures the original error caused in various modules and functions.</p>
 <p>The most important lines are (a) near the top of the message, where the original error in your code is often identified, and (b) at the bottom, where the type of error it resulted in is listed. Any lines in between this are intermediate errors and less informative to you.</p>
 <p>In the example <em>traceback</em> below the error was on line 10 of the code (<code>m = np.mean("data")</code>) and the resulting category of error is at the bottom (<code>TypeError</code>) after making its way through the functions in the numpy module.</p>
@@ -373,8 +380,8 @@ window.Quarto = {
 <li>After a bit of investigation the error is found to be trying to give the wrong data type (a string) to the <code>np.mean</code> function.</li>
 </ul>
 </section>
-<section id="my-program-doesnt-work" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="my-program-doesnt-work"><span class="header-section-number">10.4</span> My program doesn’t work!</h2>
+<section id="my-program-doesnt-work" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="my-program-doesnt-work"><span class="header-section-number">9.4</span> My program doesn’t work!</h2>
 <p>You should ask yourself these questions:</p>
 <ol type="1">
 <li>Is there something the program was supposed to do but which doesn’t seem to be happening? Find the section of the code that performs that function and make sure it is executing when you think it should.</li>
@@ -384,13 +391,13 @@ window.Quarto = {
 <p>In order to program, you need to have a mental model of how programs work. If you write a program that doesn’t do what you expect, very often the problem is not in the program; it’s in your mental model.</p>
 <p>The best way to correct your mental model is to break the program into its components (usually the functions and methods) and test each component independently. Once you find the discrepancy between your model and reality, you can solve the problem.</p>
 <p>Of course, you should be building and testing components as you develop the program. If you encounter a problem, there should be only a small amount of new code that is not known to be correct.</p>
-<section id="rubber-duck-debugging" class="level3" data-number="10.4.1">
-<h3 data-number="10.4.1" class="anchored" data-anchor-id="rubber-duck-debugging"><span class="header-section-number">10.4.1</span> Rubber duck debugging</h3>
+<section id="rubber-duck-debugging" class="level3" data-number="9.4.1">
+<h3 data-number="9.4.1" class="anchored" data-anchor-id="rubber-duck-debugging"><span class="header-section-number">9.4.1</span> Rubber duck debugging</h3>
 <p>From: [<a href="http://en.wikipedia.org/wiki/Rubber_duck_debugging">http://en.wikipedia.org/wiki/Rubber_duck_debugging</a>]</p>
 <p>Rubber duck debugging is an informal term used in software engineering for a method of debugging code. The name is a reference to a story in the book The Pragmatic Programmer in which a programmer would carry around a rubber duck and debug their code by forcing themselves to explain it, line-by-line, to the duck. Many other terms exist for this technique, often involving different inanimate objects.</p>
 </section>
-<section id="simplifying-big-equations-or-compound-python-statement-that-dont-do-what-you-expect" class="level3" data-number="10.4.2">
-<h3 data-number="10.4.2" class="anchored" data-anchor-id="simplifying-big-equations-or-compound-python-statement-that-dont-do-what-you-expect"><span class="header-section-number">10.4.2</span> Simplifying big equations (or compound Python statement) that don’t do what you expect</h3>
+<section id="simplifying-big-equations-or-compound-python-statement-that-dont-do-what-you-expect" class="level3" data-number="9.4.2">
+<h3 data-number="9.4.2" class="anchored" data-anchor-id="simplifying-big-equations-or-compound-python-statement-that-dont-do-what-you-expect"><span class="header-section-number">9.4.2</span> Simplifying big equations (or compound Python statement) that don’t do what you expect</h3>
 <p>Writing complex expressions is fine as long as they are readable, but they can be hard to debug. It is often a good idea to break a complex expression into a series of simpler lines containing temporary variables.</p>
 <p>For example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Mean = </span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(<span class="bu">sum</span>(arrayname)<span class="op">/</span><span class="bu">len</span>(arrayname)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -407,25 +414,25 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> math.pi)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Whenever you are not sure of the order of evaluation, use brackets. Not only will the program be correct (in the sense of doing what you intended), it will also be more readable for other people.</p>
 </section>
-<section id="kiss-keep-it-simple-stupid" class="level3" data-number="10.4.3">
-<h3 data-number="10.4.3" class="anchored" data-anchor-id="kiss-keep-it-simple-stupid"><span class="header-section-number">10.4.3</span> KISS (Keep it Simple, Stupid)</h3>
+<section id="kiss-keep-it-simple-stupid" class="level3" data-number="9.4.3">
+<h3 data-number="9.4.3" class="anchored" data-anchor-id="kiss-keep-it-simple-stupid"><span class="header-section-number">9.4.3</span> KISS (Keep it Simple, Stupid)</h3>
 <p>As you build it up, the modifications to your program should be as simple as possible, and you should be working on the smallest input that causes the error. You should have <code>print</code> functions in the appropriate places (and the output they produce should be comprehensible). You should understand the problem well enough to describe it concisely.</p>
 </section>
-<section id="you-cant-get-the-program-to-run-no-matter-what-you-do." class="level3" data-number="10.4.4">
-<h3 data-number="10.4.4" class="anchored" data-anchor-id="you-cant-get-the-program-to-run-no-matter-what-you-do."><span class="header-section-number">10.4.4</span> You can’t get the program to run no matter what you do.</h3>
+<section id="you-cant-get-the-program-to-run-no-matter-what-you-do." class="level3" data-number="9.4.4">
+<h3 data-number="9.4.4" class="anchored" data-anchor-id="you-cant-get-the-program-to-run-no-matter-what-you-do."><span class="header-section-number">9.4.4</span> You can’t get the program to run no matter what you do.</h3>
 <p>If this happens, one approach is to start again with a new program like “Hello World!”, and make sure you can get a known program to run. Then gradually add the pieces of the new program to the working one.</p>
 </section>
 </section>
-<section id="tracing-different-types-of-error" class="level2" data-number="10.5">
-<h2 data-number="10.5" class="anchored" data-anchor-id="tracing-different-types-of-error"><span class="header-section-number">10.5</span> Tracing Different Types of Error</h2>
+<section id="tracing-different-types-of-error" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="tracing-different-types-of-error"><span class="header-section-number">9.5</span> Tracing Different Types of Error</h2>
 <p>Three kinds of errors can occur in a program:</p>
 <ol type="1">
 <li><strong>syntax</strong> errors [<a href="http://en.wikipedia.org/wiki/Syntax_error">http://en.wikipedia.org/wiki/Syntax_error</a>],</li>
 <li><strong>runtime</strong> errors [<a href="http://en.wikipedia.org/wiki/Syntax_error">http://en.wikipedia.org/wiki/Runtime_error</a>], and</li>
 <li><strong>semantic</strong> errors [<a href="http://en.wikipedia.org/wiki/Syntax_error">http://en.wikipedia.org/wiki/Logic_error</a>].</li>
 </ol>
-<section id="syntax-errors" class="level3" data-number="10.5.1">
-<h3 data-number="10.5.1" class="anchored" data-anchor-id="syntax-errors"><span class="header-section-number">10.5.1</span> Syntax errors</h3>
+<section id="syntax-errors" class="level3" data-number="9.5.1">
+<h3 data-number="9.5.1" class="anchored" data-anchor-id="syntax-errors"><span class="header-section-number">9.5.1</span> Syntax errors</h3>
 <p>Syntax errors are usually easy to fix once you figure out what they are. The error message tells you where in the program the Python noticed a problem. However, sometimes the real error is before to the location of the error message, often on the preceding line.</p>
 <p>If you are copying code from another example, start by comparing your code to the original very carefully. Check every character. At the same time, remember that the source code might be wrong, so if you see something that looks like a syntax error, it might be.</p>
 <p>Here are some ways to avoid the most common syntax errors:</p>
@@ -467,8 +474,8 @@ window.Quarto = {
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
-<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 10</span>
-<span class="ansi-red-fg">    </span><span class="ansi-red-fg">pi*z*z=a</span>
+<pre><span class="ansi-cyan-fg">  Cell </span><span class="ansi-green-fg">In[1], line 10</span>
+<span class="ansi-red-fg">    pi*z*z=a</span>
     ^
 <span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> cannot assign to expression here. Maybe you meant '==' instead of '='?
 </pre>
@@ -477,8 +484,8 @@ window.Quarto = {
 </div>
 </section>
 </section>
-<section id="runtime-errors" class="level3" data-number="10.5.2">
-<h3 data-number="10.5.2" class="anchored" data-anchor-id="runtime-errors"><span class="header-section-number">10.5.2</span> Runtime errors</h3>
+<section id="runtime-errors" class="level3" data-number="9.5.2">
+<h3 data-number="9.5.2" class="anchored" data-anchor-id="runtime-errors"><span class="header-section-number">9.5.2</span> Runtime errors</h3>
 <p>Once your program is syntactically correct, Python can at least start running it. What could possibly go wrong?</p>
 <section id="inserting-print-functions" class="level4">
 <h4 class="anchored" data-anchor-id="inserting-print-functions">Inserting <code>print</code> functions</h4>
@@ -614,12 +621,10 @@ condition:  True
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 9</span>
-<span class="ansi-green-fg">      5</span> print(mean)
-<span class="ansi-green-fg">      6</span> 
-<span class="ansi-green-fg">      7</span> b = [<span class="ansi-green-fg">2.0</span>, <span class="ansi-green-fg">5.0</span>, <span class="ansi-green-fg">7.0</span>]
-<span class="ansi-green-fg">      8</span> 
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">9</span> print(mean(b))
+Cell <span class="ansi-green-fg">In[3], line 9</span>
+<span class="ansi-green-fg ansi-bold">      5</span> <span style="color:rgb(0,135,0)">print</span>(mean)
+<span class="ansi-green-fg ansi-bold">      7</span> b <span style="color:rgb(98,98,98)">=</span> [<span style="color:rgb(98,98,98)">2.0</span>, <span style="color:rgb(98,98,98)">5.0</span>, <span style="color:rgb(98,98,98)">7.0</span>]
+<span class="ansi-green-fg">----&gt; 9</span> <span style="color:rgb(0,135,0)">print</span>(mean(b))
 
 <span class="ansi-red-fg">TypeError</span>: 'numpy.float64' object is not callable</pre>
 </div>
@@ -650,8 +655,8 @@ condition:  True
 </ul>
 </section>
 </section>
-<section id="semantic-errors" class="level3" data-number="10.5.3">
-<h3 data-number="10.5.3" class="anchored" data-anchor-id="semantic-errors"><span class="header-section-number">10.5.3</span> Semantic errors</h3>
+<section id="semantic-errors" class="level3" data-number="9.5.3">
+<h3 data-number="9.5.3" class="anchored" data-anchor-id="semantic-errors"><span class="header-section-number">9.5.3</span> Semantic errors</h3>
 <p><em>Semantic errors</em> are errors in the logic of the task you are trying to perform. These could be incorrect calculations or using conditionals incorrectly.</p>
 <p>Semantic errors can be the hardest type of error to track down. If there is a semantic error in your program, the computer will not generate any error messages but it will not do the right thing. It will do exactly what you told it to do, even if this is wrong!</p>
 <p>The problem is that the program you wrote is not the program you wanted to write. Identifying semantic errors can be tricky because it requires you to work backward by looking at the output of the program and trying to figure out what it is doing.</p>
@@ -694,8 +699,8 @@ condition:  True
 </section>
 </section>
 </section>
-<section id="task-debugging-code" class="level2" data-number="10.6">
-<h2 data-number="10.6" class="anchored" data-anchor-id="task-debugging-code"><span class="header-section-number">10.6</span> Task: Debugging Code</h2>
+<section id="task-debugging-code" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="task-debugging-code"><span class="header-section-number">9.6</span> Task: Debugging Code</h2>
 <p>The following code was written to solve the problem below in the appendix, but contains several errors. (Commenting the code to match the steps in the method and understand all other steps will help you debug the code).</p>
 <p>The correct output should be a figure like this, saved to your working folder as <code>"integral.png"</code></p>
 <p><img src="Figures/errfn.png" class="img-fluid"></p>
@@ -730,59 +735,136 @@ condition:  True
 <span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
-<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 4</span>
-<span class="ansi-red-fg">    </span><span class="ansi-red-fg">def fx(x)</span>
+<pre><span class="ansi-cyan-fg">  Cell </span><span class="ansi-green-fg">In[5], line 4</span>
+<span class="ansi-red-fg">    def fx(x)</span>
              ^
 <span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> expected ':'
 </pre>
 </div>
 </div>
 </div>
-<section id="cut-and-paste-the-above-code-into-the-cell-below-to-debug-it" class="level3" data-number="10.6.1">
-<h3 data-number="10.6.1" class="anchored" data-anchor-id="cut-and-paste-the-above-code-into-the-cell-below-to-debug-it"><span class="header-section-number">10.6.1</span> Cut and paste the above code into the cell below to debug it:</h3>
+<section id="cut-and-paste-the-above-code-into-the-cell-below-to-debug-it" class="level4">
+<h4 class="anchored" data-anchor-id="cut-and-paste-the-above-code-into-the-cell-below-to-debug-it">Cut and paste the above code into the cell below to debug it:</h4>
 <div id="cell-32" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;&quot;}}" data-tags="[]" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><a href="../Lesson09/solutions/sol0904.html">Click here for some final hints!</a></p>
 <ul>
-<li>Test your <code>gvals</code> array has the correct values using the cell below:</li>
+<li>Test your <code>gvals</code> array has the correct values using the preformatted cell below:</li>
 </ul>
-<div id="cell-34" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;&quot;}}" data-tags="[]" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> check09</span>
+<div id="cell-34" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;&quot;}}" data-tags="[]">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> check9 </span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> gvals<span class="op">==</span>check09.gvals: <span class="bu">print</span>(<span class="st">"The data passes the test! (But check there are no remaining errors)"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> gvals<span class="op">==</span>check9.gvals: <span class="bu">print</span>(<span class="st">"The data passes the test! (But check there are no remaining errors)"</span>)</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>: <span class="bu">print</span>(<span class="ss">f"Oops! gvals covers the wrong range of values. Try looking at the x-axis and your x values..."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[7]</span><span class="ansi-green-fg">, line 3</span>
-<span class="ansi-green-fg">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span> check09
-<span class="ansi-green-fg">      2</span> 
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> gvals==check09.gvals: print(<span class="ansi-yellow-fg">"The data passes the test! (But check there are no remaining errors)"</span>)
-<span class="ansi-green-fg">      4</span> <span style="font-weight:bold;color:rgb(0,135,0)">else</span>: print(f"Oops! gvals covers the wrong range of values. Try looking at the x-axis and your x values...")
-
-<span class="ansi-red-fg">NameError</span>: name 'gvals' is not defined</pre>
-</div>
-</div>
 </div>
 <hr>
 </section>
 </section>
-<section id="appendix" class="level2" data-number="10.7">
-<h2 data-number="10.7" class="anchored" data-anchor-id="appendix"><span class="header-section-number">10.7</span> Appendix</h2>
-<section id="practical-application-of-the-above-example-integration-using-a-cumulative-sum" class="level3" data-number="10.7.1">
-<h3 data-number="10.7.1" class="anchored" data-anchor-id="practical-application-of-the-above-example-integration-using-a-cumulative-sum"><span class="header-section-number">10.7.1</span> Practical Application of the above example: Integration using a Cumulative Sum</h3>
-<p>Some functions are impossible to integrate analytically such as: <span class="math display">\[\displaystyle g(x) = \int \mathrm{e}^{-x^2} \mathrm{d}x.\]</span> (Try this: you will end up going round in circles!)</p>
+<section id="appendix" class="level2" data-number="9.7">
+<h2 data-number="9.7" class="anchored" data-anchor-id="appendix"><span class="header-section-number">9.7</span> Appendix</h2>
+<section id="practical-application-of-the-above-example-integration-using-a-cumulative-sum" class="level3" data-number="9.7.1">
+<h3 data-number="9.7.1" class="anchored" data-anchor-id="practical-application-of-the-above-example-integration-using-a-cumulative-sum"><span class="header-section-number">9.7.1</span> Practical Application of the above example: Integration using a Cumulative Sum</h3>
+<p>Some functions are impossible to integrate analytically such as: <span class="math display">\displaystyle g(x) = \int \mathrm{e}^{-x^2} \mathrm{d}x.</span> (Try this: you will end up going round in circles!)</p>
 <ul>
-<li>We can Numerically Integrate <span class="math inline">\(g(x)\)</span> using: <span class="math display">\[\int\limits_a^b f(x) \mathrm{d}x \approx g_0 + \sum\limits_{x=a}^{b} f(x) \delta x,\]</span> with from some <em>initial</em> <span class="math inline">\(g_0\)</span> (given by the particular application).</li>
-<li>In this case it is just the <em>sum of small areas</em> under <span class="math inline">\(f(x)\)</span>, similar to the trapezium rule (or a cumulative sum).</li>
+<li>We can Numerically Integrate <span class="math inline">g(x)</span> using: <span class="math display">\int\limits_a^b f(x) \mathrm{d}x \approx g_0 + \sum\limits_{x=a}^{b} f(x) \delta x,</span> with from some <em>initial</em> <span class="math inline">g_0</span> (given by the particular application).</li>
+<li>In this case it is just the <em>sum of small areas</em> under <span class="math inline">f(x)</span>, similar to the trapezium rule (or a cumulative sum).</li>
 </ul>
+<section id="exercise-comment-the-code-below-so-you-understand-what-all-the-steps-are-doing." class="level4">
+<h4 class="anchored" data-anchor-id="exercise-comment-the-code-below-so-you-understand-what-all-the-steps-are-doing.">Exercise: Comment the code below so you understand what all the steps are doing.</h4>
+<div id="cell-36" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;&quot;}}" data-tags="[]" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> exp, sqrt, pi</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># define a function to ...</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normal(x, params<span class="op">=</span><span class="va">None</span>): <span class="co"># 1...</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> params<span class="op">==</span><span class="va">None</span>: <span class="co"># 2...</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>        mean<span class="op">=</span><span class="dv">0</span> <span class="co"># 3...</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>        stdev<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    norm <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> ( stdev <span class="op">*</span> sqrt(<span class="dv">2</span><span class="op">*</span>pi) ) <span class="co"># 4...</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> (x<span class="op">-</span>mean)<span class="op">/</span>stdev <span class="co"># 5...</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    PDF <span class="op">=</span> norm <span class="op">*</span> exp(<span class="op">-</span>z<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> <span class="dv">2</span>) <span class="co"># 6...</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> PDF <span class="co"># 7...</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a function to ...</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> integrate(func, a, b, dx, params<span class="op">=</span><span class="va">None</span>): <span class="co"># 8...</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Integrates a function named as the first argument </span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co">    between limits a and b with resolution dx</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="co">    func(x, params=(p1,p2,...)) must take only one positional argument </span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="co">            and possibly optional parameters as a single argument"""</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the triple quoted thing above is called a docstring and appears if you type help(integrate) later</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>    Area <span class="op">=</span> <span class="dv">0</span> <span class="co"># 9...</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>a <span class="co"># 10...</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> x<span class="op">&lt;=</span>b: <span class="co"># 11...</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> func(x, params) <span class="co"># 12...</span></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>        bar_area <span class="op">=</span> y<span class="op">*</span>dx <span class="co"># 13...</span></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>        Area <span class="op">+=</span> bar_area <span class="co"># 14...</span></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>x<span class="op">+</span>dx <span class="co"># 15...</span></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Area <span class="co"># 16...</span></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>xmin <span class="op">=</span> <span class="op">-</span><span class="dv">3</span><span class="op">;</span> xmax<span class="op">=</span><span class="dv">3</span> </span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>I <span class="op">=</span> integrate(normal, xmin, xmax, <span class="fl">0.1</span>) <span class="co"># 17...</span></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Estimated probability of being between z=</span><span class="sc">{</span>xmin<span class="sc">}</span><span class="ss"> and z=</span><span class="sc">{</span>xmax<span class="sc">}</span><span class="ss"> is </span><span class="sc">{</span>I<span class="op">*</span><span class="dv">100</span><span class="sc">:.3f}</span><span class="ss">%</span><span class="ch">\n</span><span class="ss">"</span>) </span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a><span class="co">#true value should be 99.73%</span></span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a><span class="co"># create lists for ...</span></span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>PDF<span class="op">=</span>[] <span class="co"># 18...</span></span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>CDF<span class="op">=</span>[] <span class="co"># 19...</span></span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">21</span> <span class="co"># number of ...</span></span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>stepsize <span class="op">=</span> (xmax<span class="op">-</span>xmin)<span class="op">/</span>(N<span class="op">-</span><span class="dv">1</span>) <span class="co"># N-1 because?</span></span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a>bvals<span class="op">=</span>[xmin<span class="op">+</span>(i<span class="op">*</span>stepsize) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N)] <span class="co"># 20...</span></span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> b <span class="kw">in</span> bvals: <span class="co"># 21...</span></span>
+<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> normal(b) <span class="co"># 22...</span></span>
+<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a>    c <span class="op">=</span> integrate(normal, <span class="op">-</span><span class="dv">10</span>, b, <span class="fl">0.001</span>) <span class="co"># 23...</span></span>
+<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a>    PDF.append(p) <span class="co"># 24...</span></span>
+<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a>    CDF.append(c)</span>
+<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss"> values of the CDF between </span><span class="sc">{</span>xmin<span class="sc">}</span><span class="ss"> and </span><span class="sc">{</span>xmax<span class="sc">}</span><span class="ss">:"</span>)</span>
+<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N):</span>
+<span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"The probability of being below z=</span><span class="sc">{</span>bvals[i]<span class="sc">:.2}</span><span class="ss"> is </span><span class="sc">{</span>CDF[i]<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Estimated probability of being between z=-3 and z=3 is 99.728%
+
+21 values of the CDF between -3 and 3:
+The probability of being below z=-3.0 is 0.0013
+The probability of being below z=-2.7 is 0.0035
+The probability of being below z=-2.4 is 0.0082
+The probability of being below z=-2.1 is 0.0178
+The probability of being below z=-1.8 is 0.0360
+The probability of being below z=-1.5 is 0.0669
+The probability of being below z=-1.2 is 0.1152
+The probability of being below z=-0.9 is 0.1842
+The probability of being below z=-0.6 is 0.2744
+The probability of being below z=-0.3 is 0.3823
+The probability of being below z=0.0 is 0.5002
+The probability of being below z=0.3 is 0.6181
+The probability of being below z=0.6 is 0.7259
+The probability of being below z=0.9 is 0.8161
+The probability of being below z=1.2 is 0.8850
+The probability of being below z=1.5 is 0.9333
+The probability of being below z=1.8 is 0.9641
+The probability of being below z=2.1 is 0.9822
+The probability of being below z=2.4 is 0.9918
+The probability of being below z=2.7 is 0.9965
+The probability of being below z=3.0 is 0.9987</code></pre>
+</div>
+</div>
+<div id="cell-37" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;&quot;}}" data-tags="[]" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">help</span>(integrate)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Help on function integrate in module __main__:
+
+integrate(func, a, b, dx, params=None)
+    Integrates a function named as the first argument 
+    between limits a and b with resolution dx
+    func(x, params=(p1,p2,...)) must take only one positional argument 
+            and possibly optional parameters as a single argument
+</code></pre>
+</div>
+</div>
+
+
 </section>
-<section id="exercise-comment-the-code-above-so-you-understand-what-all-the-steps-are-doing." class="level3" data-number="10.7.2">
-<h3 data-number="10.7.2" class="anchored" data-anchor-id="exercise-comment-the-code-above-so-you-understand-what-all-the-steps-are-doing."><span class="header-section-number">10.7.2</span> Exercise: Comment the code above so you understand what all the steps are doing.</h3>
-
-
 </section>
 </section>
 
@@ -1190,12 +1272,12 @@ condition:  True
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../Lesson08/08-Data_Analysis.html" class="pagination-link" aria-label="Basics of Plotting Graphs">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basics of Plotting Graphs</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Basics of Plotting Graphs</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../Lesson10/10-Writing_Programs.html" class="pagination-link" aria-label="Writing Programs">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Writing Programs</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Writing Programs</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -2,23 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Lists and Dictionaries – Programming in Python</title>
+<title>5&nbsp; Lists and Dictionaries – Programming in Python</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -79,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-02ae9ba62279b8bbbed70b062340170a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-fe077b0d5d1780ed73267815eb1dae6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -132,8 +129,22 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -173,7 +184,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Lesson05/05-Lists-Dictionaries.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lists and Dictionaries</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Lesson05/05-Lists-Dictionaries.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lists and Dictionaries</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -201,67 +212,67 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Quick Summary</span></span></a>
+ <span class="menu-text">Quick Summary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson01/01-Python_Basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Python Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson02/02-Variables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Using Variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Using Variables</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson03/03-Functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Writing Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Writing Functions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson04/04-If_and_While.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditionals and While Loops</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Conditionals and While Loops</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson05/05-Lists-Dictionaries.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lists and Dictionaries</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lists and Dictionaries</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson06/06-For_Loops.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Iteration using <code>for</code> Loops</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Iteration using <code>for</code> Loops</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson07/07-Numerical_Arrays.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical Arrays</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Numerical Arrays</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson08/08-Data_Analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basics of Plotting Graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Basics of Plotting Graphs</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson09/09-Debugging_Code.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Debugging Code</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Debugging Code</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson10/10-Writing_Programs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Writing Programs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Writing Programs</span></span></a>
   </div>
 </li>
     </ul>
@@ -274,29 +285,26 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#python-lists" id="toc-python-lists" class="nav-link active" data-scroll-target="#python-lists"><span class="header-section-number">6.1</span> Python Lists</a></li>
-  <li><a href="#generating-new-lists" id="toc-generating-new-lists" class="nav-link" data-scroll-target="#generating-new-lists"><span class="header-section-number">6.2</span> Generating New Lists</a>
+  <li><a href="#python-lists" id="toc-python-lists" class="nav-link active" data-scroll-target="#python-lists"><span class="header-section-number">5.1</span> Python Lists</a>
   <ul class="collapse">
-  <li><a href="#using-inbuilt-functions" id="toc-using-inbuilt-functions" class="nav-link" data-scroll-target="#using-inbuilt-functions"><span class="header-section-number">6.2.1</span> Using inbuilt functions</a></li>
-  <li><a href="#converting-an-iterable-object-to-a-list" id="toc-converting-an-iterable-object-to-a-list" class="nav-link" data-scroll-target="#converting-an-iterable-object-to-a-list"><span class="header-section-number">6.2.2</span> Converting an iterable object to a list:</a></li>
-  <li><a href="#accessing-an-item-in-a-list-using-its-index" id="toc-accessing-an-item-in-a-list-using-its-index" class="nav-link" data-scroll-target="#accessing-an-item-in-a-list-using-its-index"><span class="header-section-number">6.2.3</span> Accessing an item in a list using its <em>Index</em></a></li>
-  <li><a href="#slicing-lists" id="toc-slicing-lists" class="nav-link" data-scroll-target="#slicing-lists"><span class="header-section-number">6.2.4</span> Slicing Lists</a></li>
-  <li><a href="#adding-to-appending-to-a-list" id="toc-adding-to-appending-to-a-list" class="nav-link" data-scroll-target="#adding-to-appending-to-a-list"><span class="header-section-number">6.2.5</span> Adding to (<em>“appending”</em> to) a list:</a></li>
-  <li><a href="#joining-lists" id="toc-joining-lists" class="nav-link" data-scroll-target="#joining-lists"><span class="header-section-number">6.2.6</span> Joining Lists</a></li>
-  <li><a href="#nested-lists" id="toc-nested-lists" class="nav-link" data-scroll-target="#nested-lists"><span class="header-section-number">6.2.7</span> Nested Lists</a></li>
-  <li><a href="#changing-values-in-a-list" id="toc-changing-values-in-a-list" class="nav-link" data-scroll-target="#changing-values-in-a-list"><span class="header-section-number">6.2.8</span> Changing Values in a List</a></li>
-  <li><a href="#accessing-sub-items-of-lists" id="toc-accessing-sub-items-of-lists" class="nav-link" data-scroll-target="#accessing-sub-items-of-lists"><span class="header-section-number">6.2.9</span> Accessing Sub-items of Lists</a></li>
+  <li><a href="#generating-new-lists" id="toc-generating-new-lists" class="nav-link" data-scroll-target="#generating-new-lists"><span class="header-section-number">5.1.1</span> Generating New Lists</a></li>
+  <li><a href="#converting-an-iterable-object-to-a-list" id="toc-converting-an-iterable-object-to-a-list" class="nav-link" data-scroll-target="#converting-an-iterable-object-to-a-list"><span class="header-section-number">5.1.2</span> Converting an iterable object to a list:</a></li>
+  <li><a href="#accessing-an-item-in-a-list-using-its-index" id="toc-accessing-an-item-in-a-list-using-its-index" class="nav-link" data-scroll-target="#accessing-an-item-in-a-list-using-its-index"><span class="header-section-number">5.1.3</span> Accessing an item in a list using its <em>Index</em></a></li>
+  <li><a href="#slicing-lists" id="toc-slicing-lists" class="nav-link" data-scroll-target="#slicing-lists"><span class="header-section-number">5.1.4</span> Slicing Lists</a></li>
+  <li><a href="#adding-to-appending-to-a-list" id="toc-adding-to-appending-to-a-list" class="nav-link" data-scroll-target="#adding-to-appending-to-a-list"><span class="header-section-number">5.1.5</span> Adding to (<em>“appending”</em> to) a list:</a></li>
+  <li><a href="#joining-lists" id="toc-joining-lists" class="nav-link" data-scroll-target="#joining-lists"><span class="header-section-number">5.1.6</span> Joining Lists</a></li>
+  <li><a href="#nested-lists" id="toc-nested-lists" class="nav-link" data-scroll-target="#nested-lists"><span class="header-section-number">5.1.7</span> Nested Lists</a></li>
+  <li><a href="#changing-values-in-a-list" id="toc-changing-values-in-a-list" class="nav-link" data-scroll-target="#changing-values-in-a-list"><span class="header-section-number">5.1.8</span> Changing Values in a List</a></li>
+  <li><a href="#accessing-sub-items-of-lists" id="toc-accessing-sub-items-of-lists" class="nav-link" data-scroll-target="#accessing-sub-items-of-lists"><span class="header-section-number">5.1.9</span> Accessing Sub-items of Lists</a></li>
+  <li><a href="#looping-through-lists" id="toc-looping-through-lists" class="nav-link" data-scroll-target="#looping-through-lists"><span class="header-section-number">5.1.10</span> Looping through lists</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">5.1.11</span> Summary</a></li>
   </ul></li>
-  <li><a href="#looping-through-lists" id="toc-looping-through-lists" class="nav-link" data-scroll-target="#looping-through-lists"><span class="header-section-number">6.3</span> Looping through lists</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">6.4</span> Summary</a></li>
-  <li><a href="#python-dictionaries" id="toc-python-dictionaries" class="nav-link" data-scroll-target="#python-dictionaries"><span class="header-section-number">7</span> Python Dictionaries</a>
+  <li><a href="#python-dictionaries" id="toc-python-dictionaries" class="nav-link" data-scroll-target="#python-dictionaries"><span class="header-section-number">5.2</span> Python Dictionaries</a>
   <ul class="collapse">
-  <li><a href="#create-a-new-empty-dictionary" id="toc-create-a-new-empty-dictionary" class="nav-link" data-scroll-target="#create-a-new-empty-dictionary"><span class="header-section-number">7.1</span> Create a new <em>empty</em> dictionary:</a></li>
-  <li><a href="#more-complex-dictionaries" id="toc-more-complex-dictionaries" class="nav-link" data-scroll-target="#more-complex-dictionaries"><span class="header-section-number">7.2</span> More complex dictionaries</a>
-  <ul class="collapse">
-  <li><a href="#looping-through-parallel-data" id="toc-looping-through-parallel-data" class="nav-link" data-scroll-target="#looping-through-parallel-data"><span class="header-section-number">7.2.1</span> Looping through parallel data</a></li>
-  <li><a href="#accessing-the-attributes-of-a-dictionary" id="toc-accessing-the-attributes-of-a-dictionary" class="nav-link" data-scroll-target="#accessing-the-attributes-of-a-dictionary"><span class="header-section-number">7.2.2</span> Accessing the attributes of a dictionary</a></li>
-  </ul></li>
+  <li><a href="#create-a-new-empty-dictionary" id="toc-create-a-new-empty-dictionary" class="nav-link" data-scroll-target="#create-a-new-empty-dictionary"><span class="header-section-number">5.2.1</span> Create a new <em>empty</em> dictionary:</a></li>
+  <li><a href="#more-complex-dictionaries" id="toc-more-complex-dictionaries" class="nav-link" data-scroll-target="#more-complex-dictionaries"><span class="header-section-number">5.2.2</span> More complex dictionaries</a></li>
+  <li><a href="#looping-through-parallel-data" id="toc-looping-through-parallel-data" class="nav-link" data-scroll-target="#looping-through-parallel-data"><span class="header-section-number">5.2.3</span> Looping through parallel data</a></li>
+  <li><a href="#accessing-the-attributes-of-a-dictionary" id="toc-accessing-the-attributes-of-a-dictionary" class="nav-link" data-scroll-target="#accessing-the-attributes-of-a-dictionary"><span class="header-section-number">5.2.4</span> Accessing the attributes of a dictionary</a></li>
   </ul></li>
   </ul>
 <div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/PyEngSci/ProgPy" target="_blank"><i class="bi bi-download"></i>Course Files</a></li></ul></div></nav>
@@ -306,7 +314,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lists and Dictionaries</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lists and Dictionaries</span></h1>
 </div>
 
 
@@ -323,11 +331,11 @@ window.Quarto = {
 </header>
 
 
-<p>Run all cells marked <code>In [ ]</code> using the [<span class="math inline">\(\blacktriangleright\)</span> Run] button above and <strong>think about the result you see</strong>. Be sure to do all exercises (in blank cells) and run all completed code cells.</p>
-<p>If anything goes wrong, <strong><span class="math inline">\(\circlearrowright\)</span> restart the kernel</strong> (in the menubar, select Kernel<span class="math inline">\(\rightarrow\)</span>Restart). Or run text cells to get the formatted text back from markdown.</p>
+<p>Run all cells marked <code>In [ ]</code> using the [<span class="math inline">\blacktriangleright</span> Run] button above and <strong>think about the result you see</strong>. Be sure to do all exercises (in blank cells) and run all completed code cells.</p>
+<p>If anything goes wrong, <strong><span class="math inline">\circlearrowright</span> restart the kernel</strong> (in the menubar, select Kernel<span class="math inline">\rightarrow</span>Restart). Or run text cells to get the formatted text back from markdown.</p>
 <hr>
-<section id="python-lists" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="python-lists"><span class="header-section-number">6.1</span> Python Lists</h2>
+<section id="python-lists" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="python-lists"><span class="header-section-number">5.1</span> Python Lists</h2>
 <p>A <code>list</code> is a data type consisting of multiple elements.</p>
 <p>Lists are defined by enclosing them in square brackets.<br>
 The elements in a list can be of any type in Python, including text strings or numbers.</p>
@@ -338,11 +346,8 @@ The elements in a list can be of any type in Python, including text strings or n
 <pre><code>[1, 2, 1.5, 'Hello']</code></pre>
 </div>
 </div>
-</section>
-<section id="generating-new-lists" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="generating-new-lists"><span class="header-section-number">6.2</span> Generating New Lists</h2>
-<section id="using-inbuilt-functions" class="level3" data-number="6.2.1">
-<h3 data-number="6.2.1" class="anchored" data-anchor-id="using-inbuilt-functions"><span class="header-section-number">6.2.1</span> Using inbuilt functions</h3>
+<section id="generating-new-lists" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="generating-new-lists"><span class="header-section-number">5.1.1</span> Generating New Lists</h3>
 <p>The <code>list()</code> function can be used to create a new empty list:</p>
 <div id="cell-5" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;7df5c1f75e9f8a9ed96be374cb76f4e9&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-8dc77ce79b13996c&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="bu">list</span>()</span>
@@ -354,8 +359,8 @@ The elements in a list can be of any type in Python, including text strings or n
 <p>This is the same as saying:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> []</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="converting-an-iterable-object-to-a-list" class="level3" data-number="6.2.2">
-<h3 data-number="6.2.2" class="anchored" data-anchor-id="converting-an-iterable-object-to-a-list"><span class="header-section-number">6.2.2</span> Converting an iterable object to a list:</h3>
+<section id="converting-an-iterable-object-to-a-list" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="converting-an-iterable-object-to-a-list"><span class="header-section-number">5.1.2</span> Converting an iterable object to a list:</h3>
 <div id="cell-7" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;941ca4a265de4b4f3667cde7ca32a980&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-3d6b7a42dd786f33&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="st">"Hello World"</span> <span class="co"># this is a string which is like a list of characters</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="bu">list</span>(a) <span class="co"># make a list from the string contents</span></span>
@@ -366,8 +371,8 @@ The elements in a list can be of any type in Python, including text strings or n
 </div>
 </div>
 </section>
-<section id="accessing-an-item-in-a-list-using-its-index" class="level3" data-number="6.2.3">
-<h3 data-number="6.2.3" class="anchored" data-anchor-id="accessing-an-item-in-a-list-using-its-index"><span class="header-section-number">6.2.3</span> Accessing an item in a list using its <em>Index</em></h3>
+<section id="accessing-an-item-in-a-list-using-its-index" class="level3" data-number="5.1.3">
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="accessing-an-item-in-a-list-using-its-index"><span class="header-section-number">5.1.3</span> Accessing an item in a list using its <em>Index</em></h3>
 <p>The elements from a list can also be selected using their <em>index</em> in square brackets following the list’s name, just like with strings:</p>
 <div id="cell-9" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;53a37326eef88bf29d5bff4092549a34&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-7d2d417169799062&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
@@ -396,8 +401,8 @@ The elements in a list can be of any type in Python, including text strings or n
 </div>
 </div>
 </section>
-<section id="slicing-lists" class="level3" data-number="6.2.4">
-<h3 data-number="6.2.4" class="anchored" data-anchor-id="slicing-lists"><span class="header-section-number">6.2.4</span> Slicing Lists</h3>
+<section id="slicing-lists" class="level3" data-number="5.1.4">
+<h3 data-number="5.1.4" class="anchored" data-anchor-id="slicing-lists"><span class="header-section-number">5.1.4</span> Slicing Lists</h3>
 <p>We can also <em>slice</em> lists to take more than one value at a time.</p>
 <div id="cell-14" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;837749aebb490b8cebf2198663b9e4fd&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-8be1eebd7b1341a2&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pilist <span class="op">=</span> [<span class="dv">3</span>, <span class="st">"."</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">9</span>]</span>
@@ -408,8 +413,8 @@ The elements in a list can be of any type in Python, including text strings or n
 </div>
 </div>
 </section>
-<section id="adding-to-appending-to-a-list" class="level3" data-number="6.2.5">
-<h3 data-number="6.2.5" class="anchored" data-anchor-id="adding-to-appending-to-a-list"><span class="header-section-number">6.2.5</span> Adding to (<em>“appending”</em> to) a list:</h3>
+<section id="adding-to-appending-to-a-list" class="level3" data-number="5.1.5">
+<h3 data-number="5.1.5" class="anchored" data-anchor-id="adding-to-appending-to-a-list"><span class="header-section-number">5.1.5</span> Adding to (<em>“appending”</em> to) a list:</h3>
 <div id="cell-16" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;d87c86185ce6d01c522432a6eaa0312b&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-294a12b5b36434a8&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="bu">list</span>(<span class="st">"Hello World"</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -447,8 +452,8 @@ The elements in a list can be of any type in Python, including text strings or n
 </div>
 </div>
 </section>
-<section id="joining-lists" class="level3" data-number="6.2.6">
-<h3 data-number="6.2.6" class="anchored" data-anchor-id="joining-lists"><span class="header-section-number">6.2.6</span> Joining Lists</h3>
+<section id="joining-lists" class="level3" data-number="5.1.6">
+<h3 data-number="5.1.6" class="anchored" data-anchor-id="joining-lists"><span class="header-section-number">5.1.6</span> Joining Lists</h3>
 <p>Concatenating (joining) lists can be done using the <code>+</code> symbol, which does not add the lists in a numerical sense.</p>
 <div id="cell-22" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;652c5cb63dc2ee1c9ec62f946173084e&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-ee11134808b35c20&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
@@ -461,8 +466,8 @@ The elements in a list can be of any type in Python, including text strings or n
 </div>
 </div>
 </section>
-<section id="nested-lists" class="level3" data-number="6.2.7">
-<h3 data-number="6.2.7" class="anchored" data-anchor-id="nested-lists"><span class="header-section-number">6.2.7</span> Nested Lists</h3>
+<section id="nested-lists" class="level3" data-number="5.1.7">
+<h3 data-number="5.1.7" class="anchored" data-anchor-id="nested-lists"><span class="header-section-number">5.1.7</span> Nested Lists</h3>
 <p>Lists can also contain lists. These are known as <em>nested lists</em> and are demonstrated below:</p>
 <div id="cell-24" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;d135cd4214d4178096c3eb4a94e737f1&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-2b1bb89342606b88&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>lst1 <span class="op">=</span> [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"f"</span>, <span class="st">"g"</span>, <span class="st">"h"</span>, <span class="st">"i"</span>, <span class="st">"j"</span>]</span>
@@ -485,8 +490,8 @@ The elements in a list can be of any type in Python, including text strings or n
 </div>
 </div>
 </section>
-<section id="changing-values-in-a-list" class="level3" data-number="6.2.8">
-<h3 data-number="6.2.8" class="anchored" data-anchor-id="changing-values-in-a-list"><span class="header-section-number">6.2.8</span> Changing Values in a List</h3>
+<section id="changing-values-in-a-list" class="level3" data-number="5.1.8">
+<h3 data-number="5.1.8" class="anchored" data-anchor-id="changing-values-in-a-list"><span class="header-section-number">5.1.8</span> Changing Values in a List</h3>
 <p>Any entry in a list can be changed using its index or slice:</p>
 <div id="cell-27" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;466551f54e3cdd24e3f6c19ec31a283f&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-5a62cf1941408cac&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>lst1 <span class="op">=</span> [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"f"</span>, <span class="st">"g"</span>, <span class="st">"h"</span>, <span class="st">"i"</span>, <span class="st">"j"</span>]</span>
@@ -530,8 +535,8 @@ The elements in a list can be of any type in Python, including text strings or n
 </ul>
 <p>Notice also that the length of the list changes as we replace a 4 element slice with a three slice. Also when counting list entries, the entries in sub-lists do not get counted, just the sub-list itself as a whole object.</p>
 </section>
-<section id="accessing-sub-items-of-lists" class="level3" data-number="6.2.9">
-<h3 data-number="6.2.9" class="anchored" data-anchor-id="accessing-sub-items-of-lists"><span class="header-section-number">6.2.9</span> Accessing Sub-items of Lists</h3>
+<section id="accessing-sub-items-of-lists" class="level3" data-number="5.1.9">
+<h3 data-number="5.1.9" class="anchored" data-anchor-id="accessing-sub-items-of-lists"><span class="header-section-number">5.1.9</span> Accessing Sub-items of Lists</h3>
 <p>Look at the following example and see if you can figure out what’s going on (explanation beneath):</p>
 <div id="cell-34" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;e7164b73575c9c7fa97e7062dc2ca1b9&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-632fe3653352662c&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>lst1 <span class="op">=</span> [<span class="dv">1</span>, <span class="fl">1.5</span>, <span class="st">"hello"</span>, [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]]</span>
@@ -570,11 +575,10 @@ using another set of square brackets: <code>listname[item][subitem][subsubitem]<
 </div>
 </div>
 </section>
-</section>
-<section id="looping-through-lists" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="looping-through-lists"><span class="header-section-number">6.3</span> Looping through lists</h2>
+<section id="looping-through-lists" class="level3" data-number="5.1.10">
+<h3 data-number="5.1.10" class="anchored" data-anchor-id="looping-through-lists"><span class="header-section-number">5.1.10</span> Looping through lists</h3>
 <p><code>While</code> loops can be used, although there’s a better way coming up in the next lesson…</p>
-<div id="cell-38" class="cell" data-execution_count="21">
+<div id="cell-38" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;&quot;}}" data-tags="[]" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="bu">list</span>(<span class="st">"abcdefghijklmnopqrstuvwxyz"</span>)</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">len</span>(alpha)</span>
@@ -618,9 +622,9 @@ Letter 26 of the alphabet is z</code></pre>
 </div>
 </div>
 </section>
-<section id="summary" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="summary"><span class="header-section-number">6.4</span> Summary</h2>
-<div id="cell-40" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;4e8aa5a14534c0f9e226c6b1c7b8dff8&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-401e7301c0405879&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="22">
+<section id="summary" class="level3" data-number="5.1.11">
+<h3 data-number="5.1.11" class="anchored" data-anchor-id="summary"><span class="header-section-number">5.1.11</span> Summary</h3>
+<div id="cell-40" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;&quot;}}" data-tags="[]" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a comment is ignored</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>something <span class="op">=</span> <span class="st">"A string of characters"</span>  <span class="co"># giving a text string a variable name</span></span>
@@ -640,8 +644,9 @@ t
 </div>
 </div>
 </section>
-<section id="python-dictionaries" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Python Dictionaries</h1>
+</section>
+<section id="python-dictionaries" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="python-dictionaries"><span class="header-section-number">5.2</span> Python Dictionaries</h2>
 <p>A <em>dictionary of keys</em> or <code>dict</code> is a data type with pairs of <code>KEY:value</code> entries. They are defined in <em>curly brackets</em> and the values can be different types. For example:</p>
 <div id="cell-42" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>fruit<span class="op">=</span>{<span class="st">"apple"</span>:<span class="st">"A red fruit."</span>, <span class="st">"banana"</span>:<span class="st">"A yellow fruit."</span>, <span class="st">"tomato"</span>:<span class="st">"A red fruit."</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -673,8 +678,8 @@ t
 </div>
 </div>
 <p>The <em>values</em> can also be numerical, allowing us to count things:</p>
-<section id="create-a-new-empty-dictionary" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="create-a-new-empty-dictionary"><span class="header-section-number">7.1</span> Create a new <em>empty</em> dictionary:</h2>
+<section id="create-a-new-empty-dictionary" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="create-a-new-empty-dictionary"><span class="header-section-number">5.2.1</span> Create a new <em>empty</em> dictionary:</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>a_new_dict <span class="op">=</span> <span class="bu">dict</span>()</span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>another_new_dict <span class="op">=</span> {}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>There are two ways of doing it, as shown above.</p>
@@ -699,8 +704,8 @@ t
 </div>
 </div>
 </section>
-<section id="more-complex-dictionaries" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="more-complex-dictionaries"><span class="header-section-number">7.2</span> More complex dictionaries</h2>
+<section id="more-complex-dictionaries" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="more-complex-dictionaries"><span class="header-section-number">5.2.2</span> More complex dictionaries</h3>
 <p>Entries can also be lists, dictionaries or any other object:</p>
 <div id="cell-55" class="cell" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>thedata <span class="op">=</span> <span class="bu">dict</span>() </span>
@@ -723,8 +728,9 @@ t
 <pre><code>Wed 21.8</code></pre>
 </div>
 </div>
-<section id="looping-through-parallel-data" class="level3" data-number="7.2.1">
-<h3 data-number="7.2.1" class="anchored" data-anchor-id="looping-through-parallel-data"><span class="header-section-number">7.2.1</span> Looping through parallel data</h3>
+</section>
+<section id="looping-through-parallel-data" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="looping-through-parallel-data"><span class="header-section-number">5.2.3</span> Looping through parallel data</h3>
 <p>Using a <code>while</code> loop:</p>
 <div id="cell-59" class="cell" data-execution_count="32">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>i<span class="op">=</span><span class="dv">0</span></span>
@@ -745,8 +751,8 @@ Sun , 19.8</code></pre>
 </div>
 <p>The next lesson introduces a better type of iteration loop for lists and dictionaries…</p>
 </section>
-<section id="accessing-the-attributes-of-a-dictionary" class="level3" data-number="7.2.2">
-<h3 data-number="7.2.2" class="anchored" data-anchor-id="accessing-the-attributes-of-a-dictionary"><span class="header-section-number">7.2.2</span> Accessing the attributes of a dictionary</h3>
+<section id="accessing-the-attributes-of-a-dictionary" class="level3" data-number="5.2.4">
+<h3 data-number="5.2.4" class="anchored" data-anchor-id="accessing-the-attributes-of-a-dictionary"><span class="header-section-number">5.2.4</span> Accessing the attributes of a dictionary</h3>
 <p>The list of keys and any values stored can be accessed using a “dot” method:</p>
 <p>E.g., to get the keys:</p>
 <div id="cell-62" class="cell" data-execution_count="33">
@@ -771,7 +777,6 @@ Sun , 19.8</code></pre>
 </div>
 
 
-</section>
 </section>
 </section>
 
@@ -1179,12 +1184,12 @@ Sun , 19.8</code></pre>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../Lesson04/04-If_and_While.html" class="pagination-link" aria-label="Conditionals and While Loops">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditionals and While Loops</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Conditionals and While Loops</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../Lesson06/06-For_Loops.html" class="pagination-link" aria-label="Iteration using `for` Loops">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Iteration using <code>for</code> Loops</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Iteration using <code>for</code> Loops</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

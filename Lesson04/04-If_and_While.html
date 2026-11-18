@@ -2,23 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Conditionals and While Loops – Programming in Python</title>
+<title>4&nbsp; Conditionals and While Loops – Programming in Python</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -79,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-02ae9ba62279b8bbbed70b062340170a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-fe077b0d5d1780ed73267815eb1dae6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -132,8 +129,22 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -173,7 +184,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Lesson04/04-If_and_While.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditionals and While Loops</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Lesson04/04-If_and_While.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Conditionals and While Loops</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -201,67 +212,67 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Quick Summary</span></span></a>
+ <span class="menu-text">Quick Summary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson01/01-Python_Basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Python Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson02/02-Variables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Using Variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Using Variables</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson03/03-Functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Writing Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Writing Functions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson04/04-If_and_While.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditionals and While Loops</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Conditionals and While Loops</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson05/05-Lists-Dictionaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lists and Dictionaries</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lists and Dictionaries</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson06/06-For_Loops.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Iteration using <code>for</code> Loops</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Iteration using <code>for</code> Loops</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson07/07-Numerical_Arrays.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical Arrays</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Numerical Arrays</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson08/08-Data_Analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basics of Plotting Graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Basics of Plotting Graphs</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson09/09-Debugging_Code.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Debugging Code</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Debugging Code</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson10/10-Writing_Programs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Writing Programs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Writing Programs</span></span></a>
   </div>
 </li>
     </ul>
@@ -274,33 +285,33 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#conditionals" id="toc-conditionals" class="nav-link active" data-scroll-target="#conditionals"><span class="header-section-number">5.1</span> Conditionals</a>
+  <li><a href="#conditionals" id="toc-conditionals" class="nav-link active" data-scroll-target="#conditionals"><span class="header-section-number">4.1</span> Conditionals</a>
   <ul class="collapse">
-  <li><a href="#indentation-of-code-blocks" id="toc-indentation-of-code-blocks" class="nav-link" data-scroll-target="#indentation-of-code-blocks"><span class="header-section-number">5.1.1</span> Indentation of Code Blocks</a></li>
-  <li><a href="#comparisons" id="toc-comparisons" class="nav-link" data-scroll-target="#comparisons"><span class="header-section-number">5.1.2</span> Comparisons</a></li>
-  <li><a href="#or-and-and" id="toc-or-and-and" class="nav-link" data-scroll-target="#or-and-and"><span class="header-section-number">5.1.3</span> <code>|</code> (OR) and <code>&amp;</code> (AND)</a></li>
-  <li><a href="#operator-precedence" id="toc-operator-precedence" class="nav-link" data-scroll-target="#operator-precedence"><span class="header-section-number">5.1.4</span> Operator Precedence</a></li>
-  <li><a href="#if-else-statement" id="toc-if-else-statement" class="nav-link" data-scroll-target="#if-else-statement"><span class="header-section-number">5.1.5</span> If-Else Statement</a></li>
-  <li><a href="#if-elseif-else" id="toc-if-elseif-else" class="nav-link" data-scroll-target="#if-elseif-else"><span class="header-section-number">5.1.6</span> If-Elseif-Else</a></li>
-  <li><a href="#using-only-if" id="toc-using-only-if" class="nav-link" data-scroll-target="#using-only-if"><span class="header-section-number">5.1.7</span> Using only If</a></li>
+  <li><a href="#indentation-of-code-blocks" id="toc-indentation-of-code-blocks" class="nav-link" data-scroll-target="#indentation-of-code-blocks"><span class="header-section-number">4.1.1</span> Indentation of Code Blocks</a></li>
+  <li><a href="#comparisons" id="toc-comparisons" class="nav-link" data-scroll-target="#comparisons"><span class="header-section-number">4.1.2</span> Comparisons</a></li>
+  <li><a href="#or-and-and" id="toc-or-and-and" class="nav-link" data-scroll-target="#or-and-and"><span class="header-section-number">4.1.3</span> <code>|</code> (OR) and <code>&amp;</code> (AND)</a></li>
+  <li><a href="#operator-precedence" id="toc-operator-precedence" class="nav-link" data-scroll-target="#operator-precedence"><span class="header-section-number">4.1.4</span> Operator Precedence</a></li>
+  <li><a href="#if-else-statement" id="toc-if-else-statement" class="nav-link" data-scroll-target="#if-else-statement"><span class="header-section-number">4.1.5</span> If-Else Statement</a></li>
+  <li><a href="#if-elseif-else" id="toc-if-elseif-else" class="nav-link" data-scroll-target="#if-elseif-else"><span class="header-section-number">4.1.6</span> If-Elseif-Else</a></li>
+  <li><a href="#using-only-if" id="toc-using-only-if" class="nav-link" data-scroll-target="#using-only-if"><span class="header-section-number">4.1.7</span> Using only If</a></li>
   </ul></li>
-  <li><a href="#iteration-using-while-loops" id="toc-iteration-using-while-loops" class="nav-link" data-scroll-target="#iteration-using-while-loops"><span class="header-section-number">5.2</span> Iteration Using While Loops</a>
+  <li><a href="#iteration-using-while-loops" id="toc-iteration-using-while-loops" class="nav-link" data-scroll-target="#iteration-using-while-loops"><span class="header-section-number">4.2</span> Iteration Using While Loops</a>
   <ul class="collapse">
-  <li><a href="#iteration" id="toc-iteration" class="nav-link" data-scroll-target="#iteration"><span class="header-section-number">5.2.1</span> Iteration</a></li>
-  <li><a href="#reminder-on-updating-variables" id="toc-reminder-on-updating-variables" class="nav-link" data-scroll-target="#reminder-on-updating-variables"><span class="header-section-number">5.2.2</span> Reminder on updating variables:</a></li>
-  <li><a href="#iterating-with-while-loops" id="toc-iterating-with-while-loops" class="nav-link" data-scroll-target="#iterating-with-while-loops"><span class="header-section-number">5.2.3</span> Iterating with WHILE Loops</a></li>
-  <li><a href="#exercise-fibonacci-sequence" id="toc-exercise-fibonacci-sequence" class="nav-link" data-scroll-target="#exercise-fibonacci-sequence"><span class="header-section-number">5.2.4</span> Exercise: Fibonacci Sequence</a></li>
+  <li><a href="#iteration" id="toc-iteration" class="nav-link" data-scroll-target="#iteration"><span class="header-section-number">4.2.1</span> Iteration</a></li>
+  <li><a href="#reminder-on-updating-variables" id="toc-reminder-on-updating-variables" class="nav-link" data-scroll-target="#reminder-on-updating-variables"><span class="header-section-number">4.2.2</span> Reminder on updating variables:</a></li>
+  <li><a href="#iterating-with-while-loops" id="toc-iterating-with-while-loops" class="nav-link" data-scroll-target="#iterating-with-while-loops"><span class="header-section-number">4.2.3</span> Iterating with WHILE Loops</a></li>
+  <li><a href="#exercise-fibonacci-sequence" id="toc-exercise-fibonacci-sequence" class="nav-link" data-scroll-target="#exercise-fibonacci-sequence"><span class="header-section-number">4.2.4</span> Exercise: Fibonacci Sequence</a></li>
   </ul></li>
-  <li><a href="#example-square-root-iteration" id="toc-example-square-root-iteration" class="nav-link" data-scroll-target="#example-square-root-iteration"><span class="header-section-number">5.3</span> Example: Square Root Iteration</a>
+  <li><a href="#example-square-root-iteration" id="toc-example-square-root-iteration" class="nav-link" data-scroll-target="#example-square-root-iteration"><span class="header-section-number">4.3</span> Example: Square Root Iteration</a>
   <ul class="collapse">
-  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background"><span class="header-section-number">5.3.1</span> Background</a></li>
-  <li><a href="#exercise-the-pi-sequence" id="toc-exercise-the-pi-sequence" class="nav-link" data-scroll-target="#exercise-the-pi-sequence"><span class="header-section-number">5.3.2</span> Exercise: The <span class="math inline">\(\pi\)</span> sequence</a></li>
-  <li><a href="#exercise-using-the-sqrt-2-example-to-guide-you-write-program-to-calculate-pi-to-a-given-precision" id="toc-exercise-using-the-sqrt-2-example-to-guide-you-write-program-to-calculate-pi-to-a-given-precision" class="nav-link" data-scroll-target="#exercise-using-the-sqrt-2-example-to-guide-you-write-program-to-calculate-pi-to-a-given-precision"><span class="header-section-number">5.3.3</span> Exercise: using the <span class="math inline">\(\sqrt 2\)</span> example to guide you, write program to calculate <span class="math inline">\(\pi\)</span> to a given precision</a></li>
-  <li><a href="#using-conditionals-with-functions" id="toc-using-conditionals-with-functions" class="nav-link" data-scroll-target="#using-conditionals-with-functions"><span class="header-section-number">5.3.4</span> Using Conditionals with Functions</a></li>
-  <li><a href="#exercise-use-an-if-statement-to-determine-whether-a-quadratic-equation-has-0-1-or-2-real-roots." id="toc-exercise-use-an-if-statement-to-determine-whether-a-quadratic-equation-has-0-1-or-2-real-roots." class="nav-link" data-scroll-target="#exercise-use-an-if-statement-to-determine-whether-a-quadratic-equation-has-0-1-or-2-real-roots."><span class="header-section-number">5.3.5</span> Exercise: Use an if statement to determine whether a quadratic equation has 0, 1 or 2 real roots.</a></li>
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background"><span class="header-section-number">4.3.1</span> Background</a></li>
+  <li><a href="#exercise-the-pi-sequence" id="toc-exercise-the-pi-sequence" class="nav-link" data-scroll-target="#exercise-the-pi-sequence"><span class="header-section-number">4.3.2</span> Exercise: The <span class="math inline">\pi</span> sequence</a></li>
+  <li><a href="#exercise-using-the-sqrt-2-example-to-guide-you-write-program-to-calculate-pi-to-a-given-precision" id="toc-exercise-using-the-sqrt-2-example-to-guide-you-write-program-to-calculate-pi-to-a-given-precision" class="nav-link" data-scroll-target="#exercise-using-the-sqrt-2-example-to-guide-you-write-program-to-calculate-pi-to-a-given-precision"><span class="header-section-number">4.3.3</span> Exercise: using the <span class="math inline">\sqrt 2</span> example to guide you, write program to calculate <span class="math inline">\pi</span> to a given precision</a></li>
+  <li><a href="#using-conditionals-with-functions" id="toc-using-conditionals-with-functions" class="nav-link" data-scroll-target="#using-conditionals-with-functions"><span class="header-section-number">4.3.4</span> Using Conditionals with Functions</a></li>
+  <li><a href="#exercise-use-an-if-statement-to-determine-whether-a-quadratic-equation-has-0-1-or-2-real-roots." id="toc-exercise-use-an-if-statement-to-determine-whether-a-quadratic-equation-has-0-1-or-2-real-roots." class="nav-link" data-scroll-target="#exercise-use-an-if-statement-to-determine-whether-a-quadratic-equation-has-0-1-or-2-real-roots."><span class="header-section-number">4.3.5</span> Exercise: Use an if statement to determine whether a quadratic equation has 0, 1 or 2 real roots.</a></li>
   </ul></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">5.4</span> Summary</a></li>
-  <li><a href="#pitfalls" id="toc-pitfalls" class="nav-link" data-scroll-target="#pitfalls"><span class="header-section-number">5.5</span> Pitfalls</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">4.4</span> Summary</a></li>
+  <li><a href="#pitfalls" id="toc-pitfalls" class="nav-link" data-scroll-target="#pitfalls"><span class="header-section-number">4.5</span> Pitfalls</a></li>
   </ul>
 <div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/PyEngSci/ProgPy" target="_blank"><i class="bi bi-download"></i>Course Files</a></li></ul></div></nav>
     </div>
@@ -309,7 +320,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditionals and While Loops</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Conditionals and While Loops</span></h1>
 </div>
 
 
@@ -326,12 +337,12 @@ window.Quarto = {
 </header>
 
 
-<p>Run all cells marked <code>In [ ]</code> using the [<span class="math inline">\(\blacktriangleright\)</span> Run] button above and <strong>think about the result you see</strong>. Be sure to do all exercises (in blank cells) and run all completed code cells.</p>
-<p>If anything goes wrong, <strong><span class="math inline">\(\circlearrowright\)</span> restart the kernel</strong> (in the menubar, select Kernel<span class="math inline">\(\rightarrow\)</span>Restart). Or run text cells to get the formatted text back from markdown.</p>
+<p>Run all cells marked <code>In [ ]</code> using the [<span class="math inline">\blacktriangleright</span> Run] button above and <strong>think about the result you see</strong>. Be sure to do all exercises (in blank cells) and run all completed code cells.</p>
+<p>If anything goes wrong, <strong><span class="math inline">\circlearrowright</span> restart the kernel</strong> (in the menubar, select Kernel<span class="math inline">\rightarrow</span>Restart). Or run text cells to get the formatted text back from markdown.</p>
 <hr>
 <p>Remember to run all the examples and experiment as you go through these materials.</p>
-<section id="conditionals" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="conditionals"><span class="header-section-number">5.1</span> Conditionals</h2>
+<section id="conditionals" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="conditionals"><span class="header-section-number">4.1</span> Conditionals</h2>
 <p>A conditional executes a block of code depending on whether something is true or false.</p>
 <p>A simple example (which will be explained more clearly shortly) follows:</p>
 <div id="cell-4" class="cell" data-editable="false" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;5a1c60e2bb4fdc7ff44a1e3a3b90e0b6&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-f1482deab73861e6&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-tags="[]" data-execution_count="1">
@@ -347,13 +358,13 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Result: [nothing should happen!]</p>
-<section id="indentation-of-code-blocks" class="level3" data-number="5.1.1">
-<h3 data-number="5.1.1" class="anchored" data-anchor-id="indentation-of-code-blocks"><span class="header-section-number">5.1.1</span> Indentation of Code Blocks</h3>
+<section id="indentation-of-code-blocks" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="indentation-of-code-blocks"><span class="header-section-number">4.1.1</span> Indentation of Code Blocks</h3>
 <p>Conditional blocks can be indented in the same way as function code blocks, following a colon.<br>
 The code block ends when the indentation returns to the previous level.<br>
 The code run if the condition is true must be <em>indented</em> by the same number of spaces.<br>
 This tells Python what is part of the block and what is outside it.</p>
-<div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;1c6d0b26f9ab47e83c5bbae4c428871b&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-0254c9be78f2b3f2&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-execution_count="3">
+<div id="cell-8" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;1c6d0b26f9ab47e83c5bbae4c428871b&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-0254c9be78f2b3f2&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="dv">10</span> <span class="op">&gt;</span> <span class="dv">5</span>:</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Guess What?"</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"It's true!"</span>)</span>
@@ -376,8 +387,8 @@ This is outside the conditional code block</code></pre>
 </div>
 </div>
 </section>
-<section id="comparisons" class="level3" data-number="5.1.2">
-<h3 data-number="5.1.2" class="anchored" data-anchor-id="comparisons"><span class="header-section-number">5.1.2</span> Comparisons</h3>
+<section id="comparisons" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="comparisons"><span class="header-section-number">4.1.2</span> Comparisons</h3>
 <p>The operators <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>!=</code>, <code>==</code> can be used for Comparisons, and can be seen as <em>asking Python a question</em>:</p>
 <ul>
 <li><code>&lt;</code> means “is it less than?”</li>
@@ -389,7 +400,7 @@ This is outside the conditional code block</code></pre>
 </ul>
 <p>Note that, since the equals sign is reserved for assigning values to variables we use a double equals <code>==</code> to test exact equality.</p>
 <p>If the condition is satisfied then Python gives a value of <code>True</code> as the answer, and if not <code>False</code>.</p>
-<div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;78bf5479970030781b62da4acc47d1a5&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-4b311662714a6a78&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-execution_count="5">
+<div id="cell-11" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;78bf5479970030781b62da4acc47d1a5&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-4b311662714a6a78&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">10</span> <span class="op">&lt;</span> <span class="dv">5</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2</span> <span class="op">&lt;</span> <span class="dv">5</span> <span class="op">&lt;</span> <span class="dv">10</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">10</span> <span class="op">==</span> <span class="dv">10</span>)</span>
@@ -408,18 +419,18 @@ False</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="or-and-and" class="level3" data-number="5.1.3">
-<h3 data-number="5.1.3" class="anchored" data-anchor-id="or-and-and"><span class="header-section-number">5.1.3</span> <code>|</code> (OR) and <code>&amp;</code> (AND)</h3>
+<section id="or-and-and" class="level3" data-number="4.1.3">
+<h3 data-number="4.1.3" class="anchored" data-anchor-id="or-and-and"><span class="header-section-number">4.1.3</span> <code>|</code> (OR) and <code>&amp;</code> (AND)</h3>
 <p>These so-called <em>“boolean operators”</em> can be <em>chained</em> together, using the operators <code>|</code>, <code>&amp;</code>, as follows.<br>
 * You have to use brackets to make this work as expected.</p>
-<div id="cell-15" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;e5e28358b84b7aeb4596ec885f37a994&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-e054890575ea050f&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-tags="[]" data-execution_count="7">
+<div id="cell-15" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;e5e28358b84b7aeb4596ec885f37a994&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-e054890575ea050f&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-tags="[]" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>( (<span class="dv">2</span> <span class="op">&lt;</span> <span class="dv">5</span>) <span class="op">&amp;</span> (<span class="dv">10</span> <span class="op">&lt;</span> <span class="dv">20</span>) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>True</code></pre>
 </div>
 </div>
 <p>Both conditions must be <code>True</code> for <code>&amp;</code> to give a <code>True</code> answer.</p>
-<div id="cell-17" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;ce51b8f44be68d0e8ecced484b47514c&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-d5796de6575d0b67&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-tags="[]" data-execution_count="8">
+<div id="cell-17" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;ce51b8f44be68d0e8ecced484b47514c&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-d5796de6575d0b67&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-tags="[]" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2</span><span class="op">&lt;</span><span class="dv">10</span>, <span class="dv">50</span><span class="op">&gt;</span><span class="dv">100</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -430,7 +441,7 @@ False</code></pre>
 </div>
 </div>
 <p>The <code>or</code> operator requires only one condition to be <code>True</code></p>
-<div id="cell-19" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;01fe3e97b8d1ae627cf6ed9c08218cba&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-8f34400a3422a9da&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-tags="[]" data-execution_count="9">
+<div id="cell-19" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;01fe3e97b8d1ae627cf6ed9c08218cba&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-8f34400a3422a9da&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-tags="[]" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>( (<span class="dv">2</span> <span class="op">&lt;</span> <span class="dv">10</span>) <span class="op">|</span> (<span class="dv">50</span> <span class="op">&gt;</span> <span class="dv">100</span>) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>True</code></pre>
@@ -438,8 +449,8 @@ False</code></pre>
 </div>
 <p>More complicated expressions are allowed, but get quickly hard to follow if brackets are not used.</p>
 </section>
-<section id="operator-precedence" class="level3" data-number="5.1.4">
-<h3 data-number="5.1.4" class="anchored" data-anchor-id="operator-precedence"><span class="header-section-number">5.1.4</span> Operator Precedence</h3>
+<section id="operator-precedence" class="level3" data-number="4.1.4">
+<h3 data-number="4.1.4" class="anchored" data-anchor-id="operator-precedence"><span class="header-section-number">4.1.4</span> Operator Precedence</h3>
 <p>The following table shows which are evaluated first (like the BODMAS rules for algebra).</p>
 <table class="caption-top table">
 <colgroup>
@@ -496,10 +507,10 @@ False</code></pre>
 </tbody>
 </table>
 </section>
-<section id="if-else-statement" class="level3" data-number="5.1.5">
-<h3 data-number="5.1.5" class="anchored" data-anchor-id="if-else-statement"><span class="header-section-number">5.1.5</span> If-Else Statement</h3>
+<section id="if-else-statement" class="level3" data-number="4.1.5">
+<h3 data-number="4.1.5" class="anchored" data-anchor-id="if-else-statement"><span class="header-section-number">4.1.5</span> If-Else Statement</h3>
 <p>An If-Else statement looks at a condition and continues into the next indented block if the statement is true.</p>
-<div id="cell-23" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;108e4cafc60bc7536f0ed37d7344d7e6&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-a2098941d730a2cf&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-execution_count="10">
+<div id="cell-23" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;108e4cafc60bc7536f0ed37d7344d7e6&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-a2098941d730a2cf&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> a <span class="op">&gt;</span> <span class="dv">5</span>:</span>
@@ -527,10 +538,10 @@ False</code></pre>
 </div>
 </div>
 </section>
-<section id="if-elseif-else" class="level3" data-number="5.1.6">
-<h3 data-number="5.1.6" class="anchored" data-anchor-id="if-elseif-else"><span class="header-section-number">5.1.6</span> If-Elseif-Else</h3>
+<section id="if-elseif-else" class="level3" data-number="4.1.6">
+<h3 data-number="4.1.6" class="anchored" data-anchor-id="if-elseif-else"><span class="header-section-number">4.1.6</span> If-Elseif-Else</h3>
 <p>In case we have two or more conditions to test, we can use a <em>“nested”</em> if statement.</p>
-<div id="cell-27" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;25fcef5de151fc9c909aa44149df8d45&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-281a969ee8f00974&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-execution_count="12">
+<div id="cell-27" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;25fcef5de151fc9c909aa44149df8d45&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-281a969ee8f00974&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">4</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">0</span>:</span>
@@ -571,7 +582,7 @@ False</code></pre>
 </div>
 </div>
 <p>Since this is quite a common pattern, there is a special syntax using the <code>elif</code> keyword. This syntax also avoids the extra indentation.</p>
-<div id="cell-31" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;11def14caaec7c9a2d5ff00e1ee29e6d&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-e000b6d5d6d8e771&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-execution_count="14">
+<div id="cell-31" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;11def14caaec7c9a2d5ff00e1ee29e6d&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-e000b6d5d6d8e771&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="op">-</span><span class="dv">4</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">0</span>:</span>
@@ -585,15 +596,16 @@ False</code></pre>
 </div>
 </div>
 <p>The following <strong>exercise</strong> demonstrates the use of several <code>elif</code> tests.</p>
-Conditional to give the following mapping of x values to y values: $
-<span class="math display">\[\begin{array}
-~y = -4 &amp; \text{if } x&lt;-4 \\
+<p>Conditional to give the following mapping of x values to y values:</p>
+<p><span class="math display">
+\begin{array}{ll}
+y = -4 &amp; \text{if } x&lt;-4 \\
 y = \dfrac{(x+4)^2}{4} - 4 &amp; \text{if } -4 \leq x &lt; 0 \\
 y = 4 - \dfrac{(x-4)^2}{4} &amp; \text{if } 0 \leq x &lt; 4 \\
 y = 4 &amp; \text{if } x \geq 4 \\
-\end{array}\]</span>
-<p>$</p>
-<div id="cell-33" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;6b44713345b2bddb8d47d2100f09a045&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-df04a596719a6611&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="15">
+\end{array}
+</span></p>
+<div id="cell-33" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;6b44713345b2bddb8d47d2100f09a045&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-df04a596719a6611&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&lt;</span> <span class="op">-</span><span class="dv">4</span>:</span>
@@ -613,33 +625,19 @@ y = 4 &amp; \text{if } x \geq 4 \\
 <span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x, y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[15]</span><span class="ansi-green-fg">, line 19</span>
-<span class="ansi-green-fg">     15</span> <span style="font-style:italic;color:rgb(95,135,135)"># YOUR CODE HERE</span>
-<span class="ansi-green-fg">     16</span> 
-<span class="ansi-green-fg">     17</span> 
-<span class="ansi-green-fg">     18</span> 
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">19</span> print(x, y)
-
-<span class="ansi-red-fg">NameError</span>: name 'y' is not defined</pre>
-</div>
-</div>
 </div>
 <p>Result: <code>3 3.75</code></p>
 <p><a href="../Lesson04/solutions/sol0401.html">Click for Solution</a></p>
 <p>Each <code>elif</code> condition <strong>only</strong> gets tested <em><strong>if</strong> the previous conditions were <strong>false</strong></em>.</p>
 </section>
-<section id="using-only-if" class="level3" data-number="5.1.7">
-<h3 data-number="5.1.7" class="anchored" data-anchor-id="using-only-if"><span class="header-section-number">5.1.7</span> Using only If</h3>
+<section id="using-only-if" class="level3" data-number="4.1.7">
+<h3 data-number="4.1.7" class="anchored" data-anchor-id="using-only-if"><span class="header-section-number">4.1.7</span> Using only If</h3>
 <p>It is possible to use an if statement without an else part, but be careful.<br>
 It is important to make sure all cases are covered.</p>
 <ul>
 <li>Consider the following example:</li>
 </ul>
-<div id="cell-36" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;479d59f054cd4c09c1d4160d42a89d9e&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-1e238ff363d54489&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-execution_count="16">
+<div id="cell-36" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;479d59f054cd4c09c1d4160d42a89d9e&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-1e238ff363d54489&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span><span class="dv">0</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">0</span>:</span>
@@ -652,12 +650,10 @@ It is important to make sure all cases are covered.</p>
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[16]</span><span class="ansi-green-fg">, line 8</span>
-<span class="ansi-green-fg">      4</span>     sign = <span class="ansi-yellow-fg">"Positive!"</span>
-<span class="ansi-green-fg">      5</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> x &lt; <span class="ansi-green-fg">0</span>:
-<span class="ansi-green-fg">      6</span>     sign = <span class="ansi-yellow-fg">"Negative!"</span>
-<span class="ansi-green-fg">      7</span> 
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">8</span> print(sign)
+Cell <span class="ansi-green-fg">In[1], line 8</span>
+<span class="ansi-green-fg ansi-bold">      5</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> x <span style="color:rgb(98,98,98)">&lt;</span> <span style="color:rgb(98,98,98)">0</span>:
+<span class="ansi-green-fg ansi-bold">      6</span>     sign <span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Negative!</span><span style="color:rgb(175,0,0)">"</span>
+<span class="ansi-green-fg">----&gt; 8</span> <span style="color:rgb(0,135,0)">print</span>(sign)
 
 <span class="ansi-red-fg">NameError</span>: name 'sign' is not defined</pre>
 </div>
@@ -667,7 +663,7 @@ It is important to make sure all cases are covered.</p>
 <ul>
 <li><strong>Correct the code in the next cell to correct the error before moving on</strong></li>
 </ul>
-<div id="cell-38" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;40c263eda8e62c553b21ae268408048d&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-6184b3d610b6edf4&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="17">
+<div id="cell-38" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;40c263eda8e62c553b21ae268408048d&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-6184b3d610b6edf4&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span><span class="dv">0</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">0</span>:</span>
@@ -678,28 +674,14 @@ It is important to make sure all cases are covered.</p>
 <span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sign)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[17]</span><span class="ansi-green-fg">, line 10</span>
-<span class="ansi-green-fg">      6</span>     sign = <span class="ansi-yellow-fg">"Negative!"</span>
-<span class="ansi-green-fg">      7</span> <span style="font-style:italic;color:rgb(95,135,135)"># YOUR CODE HERE</span>
-<span class="ansi-green-fg">      8</span> 
-<span class="ansi-green-fg">      9</span> 
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">10</span> print(sign)
-
-<span class="ansi-red-fg">NameError</span>: name 'sign' is not defined</pre>
-</div>
-</div>
 </div>
 <p><a href="../Lesson04/solutions/sol0402.html">Click for solution</a></p>
 </section>
 </section>
-<section id="iteration-using-while-loops" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="iteration-using-while-loops"><span class="header-section-number">5.2</span> Iteration Using While Loops</h2>
-<section id="iteration" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="iteration"><span class="header-section-number">5.2.1</span> Iteration</h3>
+<section id="iteration-using-while-loops" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="iteration-using-while-loops"><span class="header-section-number">4.2</span> Iteration Using While Loops</h2>
+<section id="iteration" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="iteration"><span class="header-section-number">4.2.1</span> Iteration</h3>
 <p>Sometimes you will need to repeat the same step over and over, using the results from one step as the input to the next, this is called <em>iteration</em><br>
 (Also see <code>for</code> loops in Lesson 5).</p>
 <div id="cell-41" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;c4a834f6069f6ed93ac83f4f7f73bf11&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-d516ffcecbf3eca0&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="18">
@@ -717,11 +699,11 @@ It is important to make sure all cases are covered.</p>
 </div>
 </div>
 <ul>
-<li>You also saw this after the end of the task in Week 2 when putting the previously calculated value for <span class="math inline">\(A_g\)</span> back into the next calculation iterated to the correct answer.</li>
+<li>You also saw this after the end of the task in Week 2 when putting the previously calculated value for <span class="math inline">A_g</span> back into the next calculation iterated to the correct answer.</li>
 </ul>
 </section>
-<section id="reminder-on-updating-variables" class="level3" data-number="5.2.2">
-<h3 data-number="5.2.2" class="anchored" data-anchor-id="reminder-on-updating-variables"><span class="header-section-number">5.2.2</span> Reminder on updating variables:</h3>
+<section id="reminder-on-updating-variables" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="reminder-on-updating-variables"><span class="header-section-number">4.2.2</span> Reminder on updating variables:</h3>
 <p>Remember that when we <em>assign</em> values to a variable using the equals sign we<br>
 <strong>first</strong> take the expression on the right <strong>then</strong> assign it to the variable on the left of the <code>=</code>.</p>
 <p>Therefore we should not interpret <code>a=b</code> in the mathematical sense of equality, but <em>assigning</em> the value of b to a.</p>
@@ -740,8 +722,8 @@ It is important to make sure all cases are covered.</p>
 </div>
 <p>In this example Python <strong>first</strong> adds one to the old value of <code>a</code> <strong>then</strong> overwrites a with this new value.</p>
 </section>
-<section id="iterating-with-while-loops" class="level3" data-number="5.2.3">
-<h3 data-number="5.2.3" class="anchored" data-anchor-id="iterating-with-while-loops"><span class="header-section-number">5.2.3</span> Iterating with WHILE Loops</h3>
+<section id="iterating-with-while-loops" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="iterating-with-while-loops"><span class="header-section-number">4.2.3</span> Iterating with WHILE Loops</h3>
 <p>A conditional statement such as <code>a&gt;b</code> can be used to perform some action repeatedly until the condition is no longer true.</p>
 <p>This is called a <em>“<code>while</code> loop”</em>, since it will continue repeating a block of code while the statement remains true.</p>
 <p>Once the condition is no longer true the loop will be exited and the last value used.</p>
@@ -771,9 +753,9 @@ end of loop</code></pre>
 </div>
 </div>
 </section>
-<section id="exercise-fibonacci-sequence" class="level3" data-number="5.2.4">
-<h3 data-number="5.2.4" class="anchored" data-anchor-id="exercise-fibonacci-sequence"><span class="header-section-number">5.2.4</span> Exercise: Fibonacci Sequence</h3>
-<p>Follow the instruction in the <code>#</code> comment to iterate the sequence to iterate until <span class="math inline">\(a\)</span> reaches <span class="math inline">\(100\)</span>.</p>
+<section id="exercise-fibonacci-sequence" class="level3" data-number="4.2.4">
+<h3 data-number="4.2.4" class="anchored" data-anchor-id="exercise-fibonacci-sequence"><span class="header-section-number">4.2.4</span> Exercise: Fibonacci Sequence</h3>
+<p>Follow the instruction in the <code>#</code> comment to iterate the sequence to iterate until <span class="math inline">a</span> reaches <span class="math inline">100</span>.</p>
 <p><strong>Hint:</strong> The sequence <a href="#Iteration">above</a> can be re-written:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fibonacci sequence</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>a0 <span class="op">=</span> <span class="dv">1</span></span>
@@ -815,11 +797,11 @@ end of loop</code></pre>
 <p><a href="../Lesson04/solutions/sol0403.html">Click for solution</a></p>
 </section>
 </section>
-<section id="example-square-root-iteration" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="example-square-root-iteration"><span class="header-section-number">5.3</span> Example: Square Root Iteration</h2>
-<section id="background" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="background"><span class="header-section-number">5.3.1</span> Background</h3>
-<p>The value of <span class="math inline">\(\sqrt{2}\)</span> can be calculated by iteration using: <span class="math inline">\(x_n = \dfrac{1}{2}\left(x_{n-1} + \dfrac{2}{x_{n-1}}\right)\)</span></p>
+<section id="example-square-root-iteration" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="example-square-root-iteration"><span class="header-section-number">4.3</span> Example: Square Root Iteration</h2>
+<section id="background" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="background"><span class="header-section-number">4.3.1</span> Background</h3>
+<p>The value of <span class="math inline">\sqrt{2}</span> can be calculated by iteration using: <span class="math inline">x_n = \dfrac{1}{2}\left(x_{n-1} + \dfrac{2}{x_{n-1}}\right)</span></p>
 <p>An example iterating this for 10 steps is given below:</p>
 <div id="cell-52" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;52252c9cddbb9e0016bafd7a6f3708cf&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-62a1fd9a6959052c&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span><span class="dv">1</span> <span class="co"># initial value for x</span></span>
@@ -844,7 +826,7 @@ end of loop</code></pre>
 1.9999999999999996</code></pre>
 </div>
 </div>
-<p>It only takes a few iterations to get very close to <span class="math inline">\(\sqrt 2\)</span></p>
+<p>It only takes a few iterations to get very close to <span class="math inline">\sqrt 2</span></p>
 <ul>
 <li>Lets see how the sequence converges by looking at the difference between steps:</li>
 </ul>
@@ -904,13 +886,13 @@ end of loop</code></pre>
 <li><strong>Note</strong> that the last printed value is the first one where the error is <em>below</em> the desired precision.</li>
 </ul>
 </section>
-<section id="exercise-the-pi-sequence" class="level3" data-number="5.3.2">
-<h3 data-number="5.3.2" class="anchored" data-anchor-id="exercise-the-pi-sequence"><span class="header-section-number">5.3.2</span> Exercise: The <span class="math inline">\(\pi\)</span> sequence</h3>
-<p>The constant <span class="math inline">\(\pi\)</span> can be obtained using the infinite sequence: <span class="math inline">\(\pi = 4\left( 1 - \dfrac{1}{3} + \dfrac{1}{5} - \dfrac{1}{7} + \dfrac{1}{9} - \cdots \right)\)</span>.</p>
+<section id="exercise-the-pi-sequence" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="exercise-the-pi-sequence"><span class="header-section-number">4.3.2</span> Exercise: The <span class="math inline">\pi</span> sequence</h3>
+<p>The constant <span class="math inline">\pi</span> can be obtained using the infinite sequence: <span class="math inline">\pi = 4\left( 1 - \dfrac{1}{3} + \dfrac{1}{5} - \dfrac{1}{7} + \dfrac{1}{9} - \cdots \right)</span>.</p>
 <p>The following two code cells reuse variables to iteratively add to the sequence in the brackets.</p>
 <ul>
 <li><strong>run the cell below to assign an initial value to s (the first term in the brackets above)</strong></li>
-<li><strong>observe how <span class="math inline">\(s_2 = s_1 - \dfrac{1}{3}\)</span> (the first two terms in the brackets)</strong></li>
+<li><strong>observe how <span class="math inline">s_2 = s_1 - \dfrac{1}{3}</span> (the first two terms in the brackets)</strong></li>
 </ul>
 <div id="cell-60" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;97000261cc93b6605f49cfeecb65cd4d&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-d311cbabc2a978a1&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># series pi, using pi/4 = 1 - 1/3 + 1/5 - 1/7 + 1/9 ...</span></span>
@@ -940,16 +922,16 @@ end of loop</code></pre>
 </div>
 </div>
 <ul>
-<li><strong>Re-run the cell above (use <code>Ctrl-Enter</code>) many times over and observe the value of <code>4*s</code> as it gets closer to <span class="math inline">\(\pi\)</span></strong></li>
+<li><strong>Re-run the cell above (use <code>Ctrl-Enter</code>) many times over and observe the value of <code>4*s</code> as it gets closer to <span class="math inline">\pi</span></strong></li>
 </ul>
 <p>The above iteration repeats the same steps again and again to accomplish the task.</p>
 <p>However it will take many iterations to approximate to the answer well.</p>
-<p>A <code>while</code> loop can now be used to calculate <span class="math inline">\(\pi\)</span> to a given precision.</p>
+<p>A <code>while</code> loop can now be used to calculate <span class="math inline">\pi</span> to a given precision.</p>
 </section>
-<section id="exercise-using-the-sqrt-2-example-to-guide-you-write-program-to-calculate-pi-to-a-given-precision" class="level3" data-number="5.3.3">
-<h3 data-number="5.3.3" class="anchored" data-anchor-id="exercise-using-the-sqrt-2-example-to-guide-you-write-program-to-calculate-pi-to-a-given-precision"><span class="header-section-number">5.3.3</span> Exercise: using the <span class="math inline">\(\sqrt 2\)</span> example to guide you, write program to calculate <span class="math inline">\(\pi\)</span> to a given precision</h3>
+<section id="exercise-using-the-sqrt-2-example-to-guide-you-write-program-to-calculate-pi-to-a-given-precision" class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="exercise-using-the-sqrt-2-example-to-guide-you-write-program-to-calculate-pi-to-a-given-precision"><span class="header-section-number">4.3.3</span> Exercise: using the <span class="math inline">\sqrt 2</span> example to guide you, write program to calculate <span class="math inline">\pi</span> to a given precision</h3>
 <ol type="1">
-<li>keep track of the changes between each iteration of the <span class="math inline">\(\pi\)</span> sequence<br>
+<li>keep track of the changes between each iteration of the <span class="math inline">\pi</span> sequence<br>
 (the so called <em>error</em> term, or correction to each step of the calculation),</li>
 <li>exit the loop once the absolute error is below (not larger than) some precision.</li>
 <li>count the number of steps it takes using a <em>counter</em> <code>i</code> which increments on each iteration of the loop.</li>
@@ -958,7 +940,7 @@ end of loop</code></pre>
 <li><strong>If your program gets stuck (in an infinite loop) you will see <code>In [*]</code> for a long time (more than a few seconds):<br>
 if this happens STOP THE KERNEL (square stop button next to <code>&gt;| Run</code>)</strong></li>
 </ul>
-<div id="cell-65" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;27591b4408a4b370af8c67b2f2e65cd0&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-a325eeac0583934a&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="27">
+<div id="cell-65" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;27591b4408a4b370af8c67b2f2e65cd0&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-a325eeac0583934a&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># series pi, using pi/4 = 1 - 1/3 + 1/5 - 1/7 + 1/9 ...</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="co"># set initial values</span></span>
@@ -990,32 +972,18 @@ if this happens STOP THE KERNEL (square stop button next to <code>&gt;| Run</cod
 <span id="cb49-29"><a href="#cb49-29" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb49-30"><a href="#cb49-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb49-31"><a href="#cb49-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">4</span><span class="op">*</span>s, err, i) <span class="co"># print pi, error and number of steps</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[27]</span><span class="ansi-green-fg">, line 31</span>
-<span class="ansi-green-fg">     27</span>     <span style="font-style:italic;color:rgb(95,135,135)"># iterating the counter and keeping track of the error (it MUST CHANGE each iteration)</span>
-<span class="ansi-green-fg">     28</span>     <span style="font-style:italic;color:rgb(95,135,135)"># YOUR CODE HERE</span>
-<span class="ansi-green-fg">     29</span> 
-<span class="ansi-green-fg">     30</span> 
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">31</span> print(<span class="ansi-green-fg">4</span>*s, err, i) <span style="font-style:italic;color:rgb(95,135,135)"># print pi, error and number of steps</span>
-
-<span class="ansi-red-fg">NameError</span>: name 'err' is not defined</pre>
-</div>
-</div>
 </div>
 <p>Expected result: <code>3.1416426510898874 9.999750006262076e-05 19999</code></p>
 <ul>
-<li>The program should take nearly 20000 iterations to reach a precision of <span class="math inline">\(1\times10^{-4}\)</span></li>
+<li>The program should take nearly 20000 iterations to reach a precision of <span class="math inline">1\times10^{-4}</span></li>
 <li>if it exits too soon check you are calculating the correct error and comparing to the absolute error</li>
 </ul>
 <p><a href="../Lesson04/solutions/sol0404.html">Click for solution</a></p>
 </section>
-<section id="using-conditionals-with-functions" class="level3" data-number="5.3.4">
-<h3 data-number="5.3.4" class="anchored" data-anchor-id="using-conditionals-with-functions"><span class="header-section-number">5.3.4</span> Using Conditionals with Functions</h3>
+<section id="using-conditionals-with-functions" class="level3" data-number="4.3.4">
+<h3 data-number="4.3.4" class="anchored" data-anchor-id="using-conditionals-with-functions"><span class="header-section-number">4.3.4</span> Using Conditionals with Functions</h3>
 <p>If statements are often used inside a function. Consider the following function.</p>
-<div id="cell-68" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;de429af5868ca44dd77d8cc2b0757348&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-33d8feb1ed04067e&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-execution_count="28">
+<div id="cell-68" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;de429af5868ca44dd77d8cc2b0757348&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-33d8feb1ed04067e&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> correct_abs(x):</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">0</span>:</span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> x</span>
@@ -1039,19 +1007,19 @@ if this happens STOP THE KERNEL (square stop button next to <code>&gt;| Run</cod
 <li>The code could be made shorter by using <code>&gt;=</code> instead of <code>&gt;</code> and <code>==</code>.</li>
 </ul>
 </section>
-<section id="exercise-use-an-if-statement-to-determine-whether-a-quadratic-equation-has-0-1-or-2-real-roots." class="level3" data-number="5.3.5">
-<h3 data-number="5.3.5" class="anchored" data-anchor-id="exercise-use-an-if-statement-to-determine-whether-a-quadratic-equation-has-0-1-or-2-real-roots."><span class="header-section-number">5.3.5</span> Exercise: Use an if statement to determine whether a quadratic equation has 0, 1 or 2 real roots.</h3>
+<section id="exercise-use-an-if-statement-to-determine-whether-a-quadratic-equation-has-0-1-or-2-real-roots." class="level3" data-number="4.3.5">
+<h3 data-number="4.3.5" class="anchored" data-anchor-id="exercise-use-an-if-statement-to-determine-whether-a-quadratic-equation-has-0-1-or-2-real-roots."><span class="header-section-number">4.3.5</span> Exercise: Use an if statement to determine whether a quadratic equation has 0, 1 or 2 real roots.</h3>
 <ul>
-<li>Implement a function that solves the quadratic equation <span class="math inline">\(a x^2 + b x + c = 0\)</span> given the values of the coefficients.
+<li>Implement a function that solves the quadratic equation <span class="math inline">a x^2 + b x + c = 0</span> given the values of the coefficients.
 <ul>
-<li>There are two roots <span class="math inline">\(x_{1,2} = \dfrac{-b\pm \sqrt{b^2 - 4ac}}{2a}\)</span> if the discriminant <span class="math inline">\(b^2 - 4ac &gt; 0\)</span>.</li>
-<li>There is only one root <span class="math inline">\(x = \dfrac{-b}{2a}\)</span> if the discriminant is zero.</li>
+<li>There are two roots <span class="math inline">x_{1,2} = \dfrac{-b\pm \sqrt{b^2 - 4ac}}{2a}</span> if the discriminant <span class="math inline">b^2 - 4ac &gt; 0</span>.</li>
+<li>There is only one root <span class="math inline">x = \dfrac{-b}{2a}</span> if the discriminant is zero.</li>
 <li>There are zero real roots otherwise.</li>
 </ul></li>
-<li>The function should take <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span> and <span class="math inline">\(c\)</span> as arguments.</li>
+<li>The function should take <span class="math inline">a</span>, <span class="math inline">b</span> and <span class="math inline">c</span> as arguments.</li>
 <li>It should not <strong>return</strong> any results, but print the number of solutions followed by the solutions (if any).</li>
 </ul>
-<div id="cell-71" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;ef3e2e9e31409d8fc8459d543d989162&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-c409fdc4bce64c8f&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="29">
+<div id="cell-71" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;ef3e2e9e31409d8fc8459d543d989162&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-c409fdc4bce64c8f&quot;,&quot;locked&quot;:false,&quot;points&quot;:0,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co">#def ???:</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span>
 <span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1078,15 +1046,6 @@ if this happens STOP THE KERNEL (square stop button next to <code>&gt;| Run</cod
 <span id="cb52-24"><a href="#cb52-24" aria-hidden="true" tabindex="-1"></a>quads(<span class="dv">1</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>)</span>
 <span id="cb52-25"><a href="#cb52-25" aria-hidden="true" tabindex="-1"></a>quads(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
 <span id="cb52-26"><a href="#cb52-26" aria-hidden="true" tabindex="-1"></a>quads(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre>  <span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[29]</span><span class="ansi-green-fg">, line 7</span>
-<span class="ansi-red-fg">    </span><span class="ansi-red-fg">if disc &gt; 0:</span>
-    ^
-<span class="ansi-red-fg">IndentationError</span><span class="ansi-red-fg">:</span> unexpected indent
-</pre>
-</div>
-</div>
 </div>
 <p>Expected Result:</p>
 <pre><code>2 roots = 1.0 -1.0
@@ -1095,9 +1054,9 @@ if this happens STOP THE KERNEL (square stop button next to <code>&gt;| Run</cod
 <p><a href="../Lesson04/solutions/sol0405.html">Click for Solution</a></p>
 </section>
 </section>
-<section id="summary" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="summary"><span class="header-section-number">5.4</span> Summary</h2>
-<div id="cell-74" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;c0a5dba67386e4cfa0014a477ef5d644&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-bc87ea3a50820ebe&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-execution_count="30">
+<section id="summary" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="summary"><span class="header-section-number">4.4</span> Summary</h2>
+<div id="cell-74" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;c0a5dba67386e4cfa0014a477ef5d644&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-bc87ea3a50820ebe&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># conditionals</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (a <span class="op">&gt;</span> <span class="dv">0</span>) <span class="op">&amp;</span> (<span class="bu">type</span>(a) <span class="op">==</span> <span class="bu">int</span>):</span>
@@ -1127,8 +1086,8 @@ if this happens STOP THE KERNEL (square stop button next to <code>&gt;| Run</cod
 </div>
 </div>
 </section>
-<section id="pitfalls" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="pitfalls"><span class="header-section-number">5.5</span> Pitfalls</h2>
+<section id="pitfalls" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="pitfalls"><span class="header-section-number">4.5</span> Pitfalls</h2>
 <p>Watch out for the following sources of errors:</p>
 <ul>
 <li><p>Missing colon before indentation block.</p></li>
@@ -1545,12 +1504,12 @@ if this happens STOP THE KERNEL (square stop button next to <code>&gt;| Run</cod
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../Lesson03/03-Functions.html" class="pagination-link" aria-label="Writing Functions">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Writing Functions</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Writing Functions</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../Lesson05/05-Lists-Dictionaries.html" class="pagination-link" aria-label="Lists and Dictionaries">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lists and Dictionaries</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lists and Dictionaries</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

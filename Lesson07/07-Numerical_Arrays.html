@@ -2,23 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; Numerical Arrays – Programming in Python</title>
+<title>7&nbsp; Numerical Arrays – Programming in Python</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -79,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-02ae9ba62279b8bbbed70b062340170a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-fe077b0d5d1780ed73267815eb1dae6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -132,8 +129,22 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -173,7 +184,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Lesson07/07-Numerical_Arrays.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical Arrays</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Lesson07/07-Numerical_Arrays.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Numerical Arrays</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -201,67 +212,67 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Quick Summary</span></span></a>
+ <span class="menu-text">Quick Summary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson01/01-Python_Basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Python Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Python Basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson02/02-Variables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Using Variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Using Variables</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson03/03-Functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Writing Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Writing Functions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson04/04-If_and_While.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conditionals and While Loops</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Conditionals and While Loops</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson05/05-Lists-Dictionaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lists and Dictionaries</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lists and Dictionaries</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson06/06-For_Loops.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Iteration using <code>for</code> Loops</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Iteration using <code>for</code> Loops</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson07/07-Numerical_Arrays.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical Arrays</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Numerical Arrays</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson08/08-Data_Analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basics of Plotting Graphs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Basics of Plotting Graphs</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson09/09-Debugging_Code.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Debugging Code</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Debugging Code</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Lesson10/10-Writing_Programs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Writing Programs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Writing Programs</span></span></a>
   </div>
 </li>
     </ul>
@@ -274,26 +285,26 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#importing-modules-and-accessing-attributes" id="toc-importing-modules-and-accessing-attributes" class="nav-link active" data-scroll-target="#importing-modules-and-accessing-attributes"><span class="header-section-number">8.1</span> Importing Modules and Accessing Attributes</a></li>
-  <li><a href="#numpy-and-numerical-arrays" id="toc-numpy-and-numerical-arrays" class="nav-link" data-scroll-target="#numpy-and-numerical-arrays"><span class="header-section-number">8.2</span> Numpy and Numerical Arrays</a>
+  <li><a href="#importing-modules-and-accessing-attributes" id="toc-importing-modules-and-accessing-attributes" class="nav-link active" data-scroll-target="#importing-modules-and-accessing-attributes"><span class="header-section-number">7.1</span> Importing Modules and Accessing Attributes</a></li>
+  <li><a href="#numpy-and-numerical-arrays" id="toc-numpy-and-numerical-arrays" class="nav-link" data-scroll-target="#numpy-and-numerical-arrays"><span class="header-section-number">7.2</span> Numpy and Numerical Arrays</a>
   <ul class="collapse">
-  <li><a href="#numpy" id="toc-numpy" class="nav-link" data-scroll-target="#numpy"><span class="header-section-number">8.2.1</span> Numpy</a></li>
-  <li><a href="#converting-lists-to-arrays" id="toc-converting-lists-to-arrays" class="nav-link" data-scroll-target="#converting-lists-to-arrays"><span class="header-section-number">8.2.2</span> Converting Lists to Arrays</a></li>
-  <li><a href="#generating-arrays-with-arange" id="toc-generating-arrays-with-arange" class="nav-link" data-scroll-target="#generating-arrays-with-arange"><span class="header-section-number">8.2.3</span> Generating Arrays with <code>arange()</code></a></li>
-  <li><a href="#generating-arrays-with-linspace" id="toc-generating-arrays-with-linspace" class="nav-link" data-scroll-target="#generating-arrays-with-linspace"><span class="header-section-number">8.2.4</span> Generating Arrays with <code>linspace()</code></a></li>
+  <li><a href="#numpy" id="toc-numpy" class="nav-link" data-scroll-target="#numpy"><span class="header-section-number">7.2.1</span> Numpy</a></li>
+  <li><a href="#converting-lists-to-arrays" id="toc-converting-lists-to-arrays" class="nav-link" data-scroll-target="#converting-lists-to-arrays"><span class="header-section-number">7.2.2</span> Converting Lists to Arrays</a></li>
+  <li><a href="#generating-arrays-with-arange" id="toc-generating-arrays-with-arange" class="nav-link" data-scroll-target="#generating-arrays-with-arange"><span class="header-section-number">7.2.3</span> Generating Arrays with <code>arange()</code></a></li>
+  <li><a href="#generating-arrays-with-linspace" id="toc-generating-arrays-with-linspace" class="nav-link" data-scroll-target="#generating-arrays-with-linspace"><span class="header-section-number">7.2.4</span> Generating Arrays with <code>linspace()</code></a></li>
   </ul></li>
-  <li><a href="#d-arrays-and-numpy-n-d-arrays" id="toc-d-arrays-and-numpy-n-d-arrays" class="nav-link" data-scroll-target="#d-arrays-and-numpy-n-d-arrays"><span class="header-section-number">8.3</span> 2D Arrays and Numpy N-D arrays</a>
+  <li><a href="#d-arrays-and-numpy-n-d-arrays" id="toc-d-arrays-and-numpy-n-d-arrays" class="nav-link" data-scroll-target="#d-arrays-and-numpy-n-d-arrays"><span class="header-section-number">7.3</span> 2D Arrays and Numpy N-D arrays</a>
   <ul class="collapse">
-  <li><a href="#converting-from-a-list-to-an-array" id="toc-converting-from-a-list-to-an-array" class="nav-link" data-scroll-target="#converting-from-a-list-to-an-array"><span class="header-section-number">8.3.1</span> Converting from a list to an array</a></li>
-  <li><a href="#accessing-array-values-by-index" id="toc-accessing-array-values-by-index" class="nav-link" data-scroll-target="#accessing-array-values-by-index"><span class="header-section-number">8.3.2</span> Accessing array values by index</a></li>
-  <li><a href="#manipulating-numerical-arrays" id="toc-manipulating-numerical-arrays" class="nav-link" data-scroll-target="#manipulating-numerical-arrays"><span class="header-section-number">8.3.3</span> Manipulating numerical arrays</a></li>
-  <li><a href="#generating-arrays-using-special-functions" id="toc-generating-arrays-using-special-functions" class="nav-link" data-scroll-target="#generating-arrays-using-special-functions"><span class="header-section-number">8.3.4</span> Generating Arrays using Special Functions</a></li>
+  <li><a href="#converting-from-a-list-to-an-array" id="toc-converting-from-a-list-to-an-array" class="nav-link" data-scroll-target="#converting-from-a-list-to-an-array"><span class="header-section-number">7.3.1</span> Converting from a list to an array</a></li>
+  <li><a href="#accessing-array-values-by-index" id="toc-accessing-array-values-by-index" class="nav-link" data-scroll-target="#accessing-array-values-by-index"><span class="header-section-number">7.3.2</span> Accessing array values by index</a></li>
+  <li><a href="#manipulating-numerical-arrays" id="toc-manipulating-numerical-arrays" class="nav-link" data-scroll-target="#manipulating-numerical-arrays"><span class="header-section-number">7.3.3</span> Manipulating numerical arrays</a></li>
+  <li><a href="#generating-arrays-using-special-functions" id="toc-generating-arrays-using-special-functions" class="nav-link" data-scroll-target="#generating-arrays-using-special-functions"><span class="header-section-number">7.3.4</span> Generating Arrays using Special Functions</a></li>
   </ul></li>
-  <li><a href="#vector-mathematics" id="toc-vector-mathematics" class="nav-link" data-scroll-target="#vector-mathematics"><span class="header-section-number">8.4</span> Vector mathematics</a>
+  <li><a href="#vector-mathematics" id="toc-vector-mathematics" class="nav-link" data-scroll-target="#vector-mathematics"><span class="header-section-number">7.4</span> Vector mathematics</a>
   <ul class="collapse">
-  <li><a href="#elementwise-multiplication" id="toc-elementwise-multiplication" class="nav-link" data-scroll-target="#elementwise-multiplication"><span class="header-section-number">8.4.1</span> Elementwise multiplication</a></li>
-  <li><a href="#the-scalar-dot-product" id="toc-the-scalar-dot-product" class="nav-link" data-scroll-target="#the-scalar-dot-product"><span class="header-section-number">8.4.2</span> The scalar dot product</a></li>
-  <li><a href="#the-vector-cross-product" id="toc-the-vector-cross-product" class="nav-link" data-scroll-target="#the-vector-cross-product"><span class="header-section-number">8.4.3</span> The vector cross product</a></li>
+  <li><a href="#elementwise-multiplication" id="toc-elementwise-multiplication" class="nav-link" data-scroll-target="#elementwise-multiplication"><span class="header-section-number">7.4.1</span> Elementwise multiplication</a></li>
+  <li><a href="#the-scalar-dot-product" id="toc-the-scalar-dot-product" class="nav-link" data-scroll-target="#the-scalar-dot-product"><span class="header-section-number">7.4.2</span> The scalar dot product</a></li>
+  <li><a href="#the-vector-cross-product" id="toc-the-vector-cross-product" class="nav-link" data-scroll-target="#the-vector-cross-product"><span class="header-section-number">7.4.3</span> The vector cross product</a></li>
   </ul></li>
   </ul>
 <div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://github.com/PyEngSci/ProgPy" target="_blank"><i class="bi bi-download"></i>Course Files</a></li></ul></div></nav>
@@ -303,7 +314,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Numerical Arrays</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Numerical Arrays</span></h1>
 </div>
 
 
@@ -320,19 +331,19 @@ window.Quarto = {
 </header>
 
 
-<p>Run all cells marked <code>In [ ]</code> using the [<span class="math inline">\(\blacktriangleright\)</span> Run] button above and <strong>think about the result you see</strong>. Be sure to do all exercises (in blank cells) and run all completed code cells.</p>
-<p>If anything goes wrong, <strong>restart the kernel</strong> (in the menubar, select Kernel<span class="math inline">\(\rightarrow\)</span>Restart). Or run text cells to get the formatted text back from markdown.</p>
+<p>Run all cells marked <code>In [ ]</code> using the [<span class="math inline">\blacktriangleright</span> Run] button above and <strong>think about the result you see</strong>. Be sure to do all exercises (in blank cells) and run all completed code cells.</p>
+<p>If anything goes wrong, <strong>restart the kernel</strong> (in the menubar, select Kernel<span class="math inline">\rightarrow</span>Restart). Or run text cells to get the formatted text back from markdown.</p>
 <hr>
 <p>You have now seen the basic Python language (<em>“syntax”</em>) and programming methods.<br>
 These basic building blocks can be built-up to construct advanced programs for things such as: * solving the equations for engineering problems; * simulating the behaviour of constructions and other designs; * optimising structures, energy flows or other problems; * analysing data from measurements in order to present the results.</p>
-<section id="importing-modules-and-accessing-attributes" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="importing-modules-and-accessing-attributes"><span class="header-section-number">8.1</span> Importing Modules and Accessing Attributes</h2>
+<section id="importing-modules-and-accessing-attributes" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="importing-modules-and-accessing-attributes"><span class="header-section-number">7.1</span> Importing Modules and Accessing Attributes</h2>
 <p>In order to manipulate numerical data effectively we need to use a new data type called a numerical <code>array</code>.<br>
 These can be used more mathematically than lists and behave a little differently.</p>
 <p>Arrays and plotting functions are imported from external libraries, in the same way we have already seen for the <code>math</code> library.</p>
 </section>
-<section id="numpy-and-numerical-arrays" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="numpy-and-numerical-arrays"><span class="header-section-number">8.2</span> Numpy and Numerical Arrays</h2>
+<section id="numpy-and-numerical-arrays" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="numpy-and-numerical-arrays"><span class="header-section-number">7.2</span> Numpy and Numerical Arrays</h2>
 <p>Lists are useful but it can be fiddly to perform mathematical operations for each element, e.g.::</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> [<span class="dv">3</span><span class="op">*</span>sin(x)<span class="op">**</span><span class="dv">2</span><span class="op">+</span><span class="dv">10</span> <span class="cf">for</span> x <span class="kw">in</span> a]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Also multiplying a list by a number is interpreted as adding the list to itself that number of times:</p>
@@ -345,8 +356,8 @@ These can be used more mathematically than lists and behave a little differently
 <pre><code>[1, 2, 3, 1, 2, 3]
 [1, 2, 3, 1, 2, 3, 1, 2, 3]</code></pre>
 <p>Another data type can be imported with the Numerical Python (NumPy) module that behave in a more mathematically logical way.</p>
-<section id="numpy" class="level3" data-number="8.2.1">
-<h3 data-number="8.2.1" class="anchored" data-anchor-id="numpy"><span class="header-section-number">8.2.1</span> Numpy</h3>
+<section id="numpy" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="numpy"><span class="header-section-number">7.2.1</span> Numpy</h3>
 <p>NumPy is a Python library that provides efficient operation on arrays of data.<br>
 NumPy stores data in what are called <em>numerical arrays</em>, along with many functions for generating and methods for manipulating them.</p>
 <p>It is usually imported using the alias <code>np</code>:</p>
@@ -355,11 +366,11 @@ NumPy stores data in what are called <em>numerical arrays</em>, along with many 
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">help</span>(np.random)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To see the help manual on the <code>random</code> functions in NumPy.</p>
 </section>
-<section id="converting-lists-to-arrays" class="level3" data-number="8.2.2">
-<h3 data-number="8.2.2" class="anchored" data-anchor-id="converting-lists-to-arrays"><span class="header-section-number">8.2.2</span> Converting Lists to Arrays</h3>
+<section id="converting-lists-to-arrays" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="converting-lists-to-arrays"><span class="header-section-number">7.2.2</span> Converting Lists to Arrays</h3>
 <p>An array <em>looks</em> like a <code>list</code> but it is a NumPy N-Dimensional Array (in this case 1D).</p>
 <p>NumPy arrays have element-by-element (<em>elementwise</em>) operations, which is more logical mathematically:</p>
-<div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;971f993242e1693f3433e437065aa1cf&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-960fbea6017aecf8&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-execution_count="1">
+<div id="cell-6" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;971f993242e1693f3433e437065aa1cf&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-960fbea6017aecf8&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>alist <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]</span>
@@ -379,10 +390,10 @@ NumPy stores data in what are called <em>numerical arrays</em>, along with many 
 <li>NumPy also contains functions that can act directly on all the elements of an array (unlike those in the <code>math</code> library`)</li>
 </ul>
 </section>
-<section id="generating-arrays-with-arange" class="level3" data-number="8.2.3">
-<h3 data-number="8.2.3" class="anchored" data-anchor-id="generating-arrays-with-arange"><span class="header-section-number">8.2.3</span> Generating Arrays with <code>arange()</code></h3>
+<section id="generating-arrays-with-arange" class="level3" data-number="7.2.3">
+<h3 data-number="7.2.3" class="anchored" data-anchor-id="generating-arrays-with-arange"><span class="header-section-number">7.2.3</span> Generating Arrays with <code>arange()</code></h3>
 <p>NumPy can generate arrays directly using the function <code>arange()</code>:</p>
-<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;8ad944481a4645d458e47260bfc07e05&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-f806489407aa112f&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-execution_count="2">
+<div id="cell-9" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;8ad944481a4645d458e47260bfc07e05&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-f806489407aa112f&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="dv">8</span>)</span>
@@ -395,7 +406,7 @@ NumPy stores data in what are called <em>numerical arrays</em>, along with many 
 </div>
 <p>The <code>arange</code> function can also use fractional values</p>
 <p>The syntax is <code>range(VAR1,VAR2,STEP)</code>, where the values created are those between <code>VAR1</code> and <code>VAR2</code>, including <code>VAR1</code> but not <code>VAR2</code>:</p>
-<div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;6d160271029ec304b59c66fec36cf73e&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-fc2c34df79fa2f58&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-execution_count="3">
+<div id="cell-11" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;6d160271029ec304b59c66fec36cf73e&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-fc2c34df79fa2f58&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.arange(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.5</span>)</span>
@@ -421,7 +432,7 @@ NumPy stores data in what are called <em>numerical arrays</em>, along with many 
 <p><strong>Note:</strong> Sometimes the <code>arange</code> function returns the values in scientific notation, as above.</p>
 <p>This is due to the central value being <em>very close</em> to zero but not quite (due to precision accuracy).</p>
 <p>One solution to this is to use the <code>.round()</code> function method built in to arrays:</p>
-<div id="cell-16" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;85b162255fe02e056e7294b1eda38c73&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-deb1671b4e7b87fb&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-execution_count="5">
+<div id="cell-16" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;85b162255fe02e056e7294b1eda38c73&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-deb1671b4e7b87fb&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.arange(<span class="op">-</span><span class="dv">2</span>, <span class="fl">2.1</span>, <span class="fl">0.2</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -433,12 +444,12 @@ NumPy stores data in what are called <em>numerical arrays</em>, along with many 
 </div>
 </section>
 </section>
-<section id="generating-arrays-with-linspace" class="level3" data-number="8.2.4">
-<h3 data-number="8.2.4" class="anchored" data-anchor-id="generating-arrays-with-linspace"><span class="header-section-number">8.2.4</span> Generating Arrays with <code>linspace()</code></h3>
+<section id="generating-arrays-with-linspace" class="level3" data-number="7.2.4">
+<h3 data-number="7.2.4" class="anchored" data-anchor-id="generating-arrays-with-linspace"><span class="header-section-number">7.2.4</span> Generating Arrays with <code>linspace()</code></h3>
 <p>The <code>arange</code> function is useful when we want an array of numbers with a fixed spacing. However, in some applications we might want an array that starts and ends at fixed values but has a certain <em>number</em> of steps in between.</p>
 <p>For this we can use the <code>linspace</code> function from NumPy, which stands for <em>“linear spacing”</em>.<br>
 Type <code>help(np.linspace)</code> to read more about it:</p>
-<div id="cell-18" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;2980c8504418d76f7449b4bde22f7017&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-faa55980fe39901a&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-editable="true" data-execution_count="6">
+<div id="cell-18" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;2980c8504418d76f7449b4bde22f7017&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-faa55980fe39901a&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>pi <span class="op">=</span> np.pi</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -448,18 +459,18 @@ Type <code>help(np.linspace)</code> to read more about it:</p>
 <pre><code>[-3.14159265 -1.57079633  0.          1.57079633  3.14159265]</code></pre>
 </div>
 </div>
-<p>This has returned 5 values in total, including <strong>both</strong> the start value <span class="math inline">\(-\pi\)</span> and end value <span class="math inline">\(\pi\)</span>.<br>
-That is, with <code>x=linspace(a,b,n)</code> <span class="math inline">\(a \leq x \leq b\)</span> (unlike with <code>x=arange(a,b,dx)</code> where <span class="math inline">\(a \leq x &lt; b\)</span>).</p>
+<p>This has returned 5 values in total, including <strong>both</strong> the start value <span class="math inline">-\pi</span> and end value <span class="math inline">\pi</span>.<br>
+That is, with <code>x=linspace(a,b,n)</code> <span class="math inline">a \leq x \leq b</span> (unlike with <code>x=arange(a,b,dx)</code> where <span class="math inline">a \leq x &lt; b</span>).</p>
 <p>Both <code>linspace</code> and the previous <code>arange</code> function are very useful when plotting mathematical functions.</p>
 </section>
 </section>
-<section id="d-arrays-and-numpy-n-d-arrays" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="d-arrays-and-numpy-n-d-arrays"><span class="header-section-number">8.3</span> 2D Arrays and Numpy N-D arrays</h2>
+<section id="d-arrays-and-numpy-n-d-arrays" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="d-arrays-and-numpy-n-d-arrays"><span class="header-section-number">7.3</span> 2D Arrays and Numpy N-D arrays</h2>
 <p><a href="http://docs.scipy.org/doc/numpy/reference/arrays.ndarray.html">http://docs.scipy.org/doc/numpy/reference/arrays.ndarray.html</a></p>
 <p>There are various ways to create an array, including converting from a <em>list</em>, entering all the values by hand, or generating large arrays using special functions and loops. We can also change the individual values in arrays.</p>
 <p>Study the following examples and practice changing things and looking at the outputs to understand how things work.</p>
-<section id="converting-from-a-list-to-an-array" class="level3" data-number="8.3.1">
-<h3 data-number="8.3.1" class="anchored" data-anchor-id="converting-from-a-list-to-an-array"><span class="header-section-number">8.3.1</span> Converting from a list to an array</h3>
+<section id="converting-from-a-list-to-an-array" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="converting-from-a-list-to-an-array"><span class="header-section-number">7.3.1</span> Converting from a list to an array</h3>
 <p>If we have all the values in a (nested) list it can be converted to a numerical array:</p>
 <div id="cell-21" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;afaea77fa304efbcec3ce654e5a47d4b&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-ba42e43d5ec5d493&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -486,8 +497,8 @@ That is, with <code>x=linspace(a,b,n)</code> <span class="math inline">\(a \leq 
 </div>
 <p>This means it is a 2 dimensional array, with 3 rows and 3 columns.</p>
 </section>
-<section id="accessing-array-values-by-index" class="level3" data-number="8.3.2">
-<h3 data-number="8.3.2" class="anchored" data-anchor-id="accessing-array-values-by-index"><span class="header-section-number">8.3.2</span> Accessing array values by index</h3>
+<section id="accessing-array-values-by-index" class="level3" data-number="7.3.2">
+<h3 data-number="7.3.2" class="anchored" data-anchor-id="accessing-array-values-by-index"><span class="header-section-number">7.3.2</span> Accessing array values by index</h3>
 <p>We can also access the elements of <em>square arrays</em> using indexing: <code>arrayname[row,col]</code>, where the variables <code>row</code> and <code>col</code> are replaced by the values of the row and column number we want to access.</p>
 <div id="cell-26" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;f3df902d6ea8a58d1e4cc32b54f4411e&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-90f85d0b298cb04e&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(myarray[<span class="dv">0</span>, <span class="dv">2</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -516,12 +527,12 @@ That is, with <code>x=linspace(a,b,n)</code> <span class="math inline">\(a \leq 
 </div>
 </div>
 </section>
-<section id="manipulating-numerical-arrays" class="level3" data-number="8.3.3">
-<h3 data-number="8.3.3" class="anchored" data-anchor-id="manipulating-numerical-arrays"><span class="header-section-number">8.3.3</span> Manipulating numerical arrays</h3>
+<section id="manipulating-numerical-arrays" class="level3" data-number="7.3.3">
+<h3 data-number="7.3.3" class="anchored" data-anchor-id="manipulating-numerical-arrays"><span class="header-section-number">7.3.3</span> Manipulating numerical arrays</h3>
 <p><a href="http://docs.scipy.org/doc/numpy/reference/routines.array-manipulation.html">http://docs.scipy.org/doc/numpy/reference/routines.array-manipulation.html</a></p>
 </section>
-<section id="generating-arrays-using-special-functions" class="level3" data-number="8.3.4">
-<h3 data-number="8.3.4" class="anchored" data-anchor-id="generating-arrays-using-special-functions"><span class="header-section-number">8.3.4</span> Generating Arrays using Special Functions</h3>
+<section id="generating-arrays-using-special-functions" class="level3" data-number="7.3.4">
+<h3 data-number="7.3.4" class="anchored" data-anchor-id="generating-arrays-using-special-functions"><span class="header-section-number">7.3.4</span> Generating Arrays using Special Functions</h3>
 <div id="cell-35" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;64d614ede0bf914c3da5606db358f982&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-9a9be377292f0439&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>nrows <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>ncols <span class="op">=</span> <span class="dv">7</span></span>
@@ -553,11 +564,11 @@ That is, with <code>x=linspace(a,b,n)</code> <span class="math inline">\(a \leq 
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>randr <span class="op">=</span> rands.<span class="bu">round</span>(<span class="dv">2</span>)</span>
 <span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(randr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[[0.44 0.54]
- [0.43 0.9 ]
- [0.16 0.42]
- [0.35 0.36]
- [0.83 0.57]]</code></pre>
+<pre><code>[[0.43 0.99]
+ [0.05 0.37]
+ [0.77 0.97]
+ [0.34 0.3 ]
+ [0.79 0.32]]</code></pre>
 </div>
 </div>
 <p>Shorthand notation can also be used:</p>
@@ -568,7 +579,7 @@ That is, with <code>x=linspace(a,b,n)</code> <span class="math inline">\(a \leq 
 <ol type="1">
 <li>Create an array of ones using the <code>numpy.ones</code> function with one column and five rows.</li>
 <li>Change the middle value to 5.</li>
-<li>slice the column into the middle column of an array of <span class="math inline">\(5\times7\)</span> zeros.</li>
+<li>slice the column into the middle column of an array of <span class="math inline">5\times7</span> zeros.</li>
 </ol>
 <div id="cell-42" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;4a92294e840de3081f14e55fe6c8c701&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-58c2b7f3d6d80c70&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>myones <span class="op">=</span> np.ones((<span class="dv">5</span>,<span class="dv">1</span>))</span>
@@ -611,14 +622,14 @@ That is, with <code>x=linspace(a,b,n)</code> <span class="math inline">\(a \leq 
 <p>Further reading can be found <a href="https://docs.scipy.org/doc/numpy/user/quickstart.html">here</a>.</p>
 </section>
 </section>
-<section id="vector-mathematics" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="vector-mathematics"><span class="header-section-number">8.4</span> Vector mathematics</h2>
+<section id="vector-mathematics" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="vector-mathematics"><span class="header-section-number">7.4</span> Vector mathematics</h2>
 <p>Numerical arrays can also be used to perform vector calculations.</p>
 <p>Note that there are different ways of multiplying vectors (and hence arrays)</p>
-<p>With <span class="math inline">\(\vec a = [a_1, a_2, a_3, \cdots]\)</span><br>
-and <span class="math inline">\(\vec b = [b_1, b_2, b_3, \cdots]\)</span></p>
-<section id="elementwise-multiplication" class="level3" data-number="8.4.1">
-<h3 data-number="8.4.1" class="anchored" data-anchor-id="elementwise-multiplication"><span class="header-section-number">8.4.1</span> Elementwise multiplication</h3>
+<p>With <span class="math inline">\vec a = [a_1, a_2, a_3, \cdots]</span><br>
+and <span class="math inline">\vec b = [b_1, b_2, b_3, \cdots]</span></p>
+<section id="elementwise-multiplication" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="elementwise-multiplication"><span class="header-section-number">7.4.1</span> Elementwise multiplication</h3>
 <p>$ [a_1 b_1, a_2 b_2, a_3 b_3, ]$</p>
 <div id="cell-48" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;7c25b36b609b2f05e551de2d3dcecf73&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-b441996e0197a963&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># element by element multiplication</span></span>
@@ -634,8 +645,8 @@ and <span class="math inline">\(\vec b = [b_1, b_2, b_3, \cdots]\)</span></p>
 </div>
 </div>
 </section>
-<section id="the-scalar-dot-product" class="level3" data-number="8.4.2">
-<h3 data-number="8.4.2" class="anchored" data-anchor-id="the-scalar-dot-product"><span class="header-section-number">8.4.2</span> The scalar dot product</h3>
+<section id="the-scalar-dot-product" class="level3" data-number="7.4.2">
+<h3 data-number="7.4.2" class="anchored" data-anchor-id="the-scalar-dot-product"><span class="header-section-number">7.4.2</span> The scalar dot product</h3>
 <p>$ a b = a_1 b_1 + a_2 b_2 + a_3 b_3 + $</p>
 <div id="cell-50" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;b132ad1f63203efe06505b1064b0d006&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-c49908e141c05faa&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dot product on arrays</span></span>
@@ -651,15 +662,15 @@ and <span class="math inline">\(\vec b = [b_1, b_2, b_3, \cdots]\)</span></p>
 </div>
 </div>
 </section>
-<section id="the-vector-cross-product" class="level3" data-number="8.4.3">
-<h3 data-number="8.4.3" class="anchored" data-anchor-id="the-vector-cross-product"><span class="header-section-number">8.4.3</span> The vector cross product</h3>
-<p><span class="math display">\[\vec a \times \vec b
+<section id="the-vector-cross-product" class="level3" data-number="7.4.3">
+<h3 data-number="7.4.3" class="anchored" data-anchor-id="the-vector-cross-product"><span class="header-section-number">7.4.3</span> The vector cross product</h3>
+<p><span class="math display">\vec a \times \vec b
 =
 \begin{pmatrix}
 a_2 b_3 - a_3 b_2 \\
 a_3 b_1 - a_1 b_3 \\
 a_1 b_2 - a_2 b_1
-\end{pmatrix}\]</span></p>
+\end{pmatrix}</span></p>
 <div id="cell-52" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;nbgrader&quot;,&quot;value&quot;:{&quot;cell_type&quot;:&quot;code&quot;,&quot;checksum&quot;:&quot;3e85f97c8a199c5d41bfd0fc7756df2f&quot;,&quot;grade&quot;:false,&quot;grade_id&quot;:&quot;cell-07ee8d7ca19450ff&quot;,&quot;locked&quot;:true,&quot;schema_version&quot;:3,&quot;solution&quot;:false,&quot;task&quot;:false}}" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cross product on arrays</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
@@ -1079,12 +1090,12 @@ a_1 b_2 - a_2 b_1
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../Lesson06/06-For_Loops.html" class="pagination-link" aria-label="Iteration using `for` Loops">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Iteration using <code>for</code> Loops</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Iteration using <code>for</code> Loops</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../Lesson08/08-Data_Analysis.html" class="pagination-link" aria-label="Basics of Plotting Graphs">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Basics of Plotting Graphs</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Basics of Plotting Graphs</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
