@@ -265,7 +265,7 @@ fig.savefig("normal_plots.png") # <7>
 import pandas as pd
 
 # read in external data file
-data = pd.read_excel("Files/Case Study Data.xlsx", sheet_name="Data")
+data = pd.read_excel("Lesson08/Files/Case Study Data.xlsx", sheet_name="Data")
 
 cols = ['Project', 'Region', 'Country', 'Type', 'Rating', 
         'Cost.Million.USD','Total.Area.sqm', 'Total.Delivered.kWh']
