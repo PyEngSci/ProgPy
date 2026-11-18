@@ -5,16 +5,16 @@ project:
 jupyter: python3
 
 execute:
-  enabled: true
-  freeze: auto
-  error: true 
+  enabled: false
+#  freeze: auto
+#  error: true 
  
 book:
   title: "Programming in Python"
   author: "Nick McCullen"
   date-format: "YYYY-MM-DD"
   chapters:
-    - index.ipynb
+    - index.qmd
     - Lesson01/01-Python_Basics.ipynb
     - Lesson02/02-Variables.ipynb
     - Lesson03/03-Functions.ipynb
@@ -71,6 +71,7 @@ book:
     
 format:
   html:
+    html-math-method: katex # or try 'mathml' or 'mathjax'
     number-sections: true
     number-depth: 3
     include-in-header:

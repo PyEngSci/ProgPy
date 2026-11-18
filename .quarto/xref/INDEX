@@ -1,458 +1,215 @@
 {
   "index.ipynb": {
-    "index.html": "1c1ee112"
+    "index.html": "4c800726"
   },
   "Lesson01/01-Python_Basics.ipynb": {
-    "01-Python_Basics.html": "9a229c41"
+    "01-Python_Basics.html": "f3d653c2"
   },
   "Lesson02/02-Variables.ipynb": {
-    "02-Variables.html": "f35d6bf1"
+    "02-Variables.html": "1c6a5bdd"
   },
   "Lesson03/03-Functions.ipynb": {
-    "03-Functions.html": "2c9eedcf"
-  },
-  "Lesson04/04b-If_and_While.ipynb": {
-    "04b-If_and_While.html": "8955728d"
-  },
-  "Lesson05/05-Lists-Dictionaries.ipynb": {
-    "05-Lists-Dictionaries.html": "7eb91eb3"
-  },
-  "Lesson06/06-For_Loops.ipynb": {
-    "06-For_Loops.html": "666d380a"
-  },
-  "Lesson07/07-Numerical_Arrays.ipynb": {
-    "07-Numerical_Arrays.html": "236c4ef8"
-  },
-  "Lesson08/08-Data_Analysis.ipynb": {
-    "08-Data_Analysis.html": "8c4a963b"
-  },
-  "Lesson09/10-Debugging_Code.ipynb": {
-    "10-Debugging_Code.html": "0c801730"
-  },
-  "Lesson10/11-Writing_Programs.ipynb": {
-    "11-Writing_Programs.html": "a58cf145"
+    "03-Functions.html": "e96e568b"
   },
   "Lesson04/04-If_and_While.ipynb": {
-    "04-If_and_While.html": "733aff9b"
+    "04-If_and_While.html": "87c06b0f"
   },
-  "01-Python_Basics.ipynb": {
-    "01-Python_Basics.html": "5b2c730d"
+  "Lesson05/05-Lists-Dictionaries.ipynb": {
+    "05-Lists-Dictionaries.html": "8c6a49a2"
   },
-  "02-Variables.ipynb": {
-    "02-Variables.html": "41664327"
+  "Lesson06/06-For_Loops.ipynb": {
+    "06-For_Loops.html": "02a3ceb2"
   },
-  "03-Functions.ipynb": {
-    "03-Functions.html": "eb5119c4"
+  "Lesson07/07-Numerical_Arrays.ipynb": {
+    "07-Numerical_Arrays.html": "f433107a"
   },
-  "04-If_and_While.ipynb": {
-    "04-If_and_While.html": "34bce5c9"
-  },
-  "05-Lists-Dictionaries.ipynb": {
-    "05-Lists-Dictionaries.html": "4fd7106b"
-  },
-  "06-For_Loops.ipynb": {
-    "06-For_Loops.html": "d7742af1"
-  },
-  "07-Numerical_Arrays.ipynb": {
-    "07-Numerical_Arrays.html": "015f6cc9"
-  },
-  "08-Data_Analysis.ipynb": {
-    "08-Data_Analysis.html": "52cb2a21"
-  },
-  "10-Debugging_Code.ipynb": {
-    "10-Debugging_Code.html": "2b20eedd"
-  },
-  "11-Writing_Programs.ipynb": {
-    "11-Writing_Programs.html": "05c8dcf5"
-  },
-  "solutions/sol0100.ipynb": {
-    "sol0100.html": "c5149bf5"
-  },
-  "solutions/sol0101.ipynb": {
-    "sol0101.html": "a3780dd6"
-  },
-  "solutions/sol0102.ipynb": {
-    "sol0102.html": "dc44d2d0"
-  },
-  "solutions/sol0103.ipynb": {
-    "sol0103.html": "4ca07e84"
-  },
-  "solutions/sol0104.ipynb": {
-    "sol0104.html": "0ba4ce75"
-  },
-  "solutions/sol0105.ipynb": {
-    "sol0105.html": "38798dbd"
-  },
-  "solutions/sol0106.ipynb": {
-    "sol0106.html": "d447a561"
-  },
-  "solutions/sol0201.ipynb": {
-    "sol0201.html": "e0997220"
-  },
-  "solutions/sol0202.ipynb": {
-    "sol0202.html": "8cc55193"
-  },
-  "solutions/sol0203.ipynb": {
-    "sol0203.html": "b1e006a4"
-  },
-  "solutions/sol0204.ipynb": {
-    "sol0204.html": "2cebbd9c"
-  },
-  "solutions/sol0205.ipynb": {
-    "sol0205.html": "3dbe3f4a"
-  },
-  "solutions/sol0206.ipynb": {
-    "sol0206.html": "5a08e2a5"
-  },
-  "solutions/sol0301.ipynb": {
-    "sol0301.html": "945c640f"
-  },
-  "solutions/sol0302.ipynb": {
-    "sol0302.html": "35062ef7"
-  },
-  "solutions/sol0303.ipynb": {
-    "sol0303.html": "528f5a90"
-  },
-  "solutions/sol0304.ipynb": {
-    "sol0304.html": "094d9545"
-  },
-  "solutions/sol0305.ipynb": {
-    "sol0305.html": "edf6e34f"
-  },
-  "solutions/sol0306.ipynb": {
-    "sol0306.html": "c25ec3a3"
-  },
-  "solutions/sol0401.ipynb": {
-    "sol0401.html": "63867eb1"
-  },
-  "solutions/sol0402.ipynb": {
-    "sol0402.html": "26dc85c4"
-  },
-  "solutions/sol0403.ipynb": {
-    "sol0403.html": "5134a42a"
-  },
-  "solutions/sol0404.ipynb": {
-    "sol0404.html": "df35321b"
-  },
-  "solutions/sol0405.ipynb": {
-    "sol0405.html": "abc0c140"
-  },
-  "solutions/sol0501.ipynb": {
-    "sol0501.html": "cc22a018"
-  },
-  "solutions/sol0601.ipynb": {
-    "sol0601.html": "96c31044"
-  },
-  "solutions/sol0602.ipynb": {
-    "sol0602.html": "88c74d9d"
-  },
-  "solutions/sol0603.ipynb": {
-    "sol0603.html": "6fab2c21"
-  },
-  "solutions/sol0604.ipynb": {
-    "sol0604.html": "69216776"
-  },
-  "solutions/sol1001.ipynb": {
-    "sol1001.html": "3a849ac8"
-  },
-  "solutions/sol1002.ipynb": {
-    "sol1002.html": "82a61b33"
-  },
-  "solutions/sol1003.ipynb": {
-    "sol1003.html": "a2a39a02"
-  },
-  "solutions/sol1004.ipynb": {
-    "sol1004.html": "d740da1c"
-  },
-  "solutions/sol1101.ipynb": {
-    "sol1101.html": "b0342787"
-  },
-  "solutions/sol1102.ipynb": {
-    "sol1102.html": "3b7c144d"
-  },
-  "solutions/sol1103.ipynb": {
-    "sol1103.html": "39d17d3d"
-  },
-  "solutions/sol1104.ipynb": {
-    "sol1104.html": "0e3dfc75"
-  },
-  "solutions/sol1105.ipynb": {
-    "sol1105.html": "70a9228f"
-  },
-  "solutions/task04_model.ipynb": {
-    "task04_model.html": "2f0bd749"
-  },
-  "Notebooks/01-Python_Basics.ipynb": {
-    "01-Python_Basics.html": "fa30e0d4"
-  },
-  "Notebooks/02-Variables.ipynb": {
-    "02-Variables.html": "b8423f76"
-  },
-  "Notebooks/03-Functions.ipynb": {
-    "03-Functions.html": "c39d2aa4"
-  },
-  "Notebooks/04-If_and_While.ipynb": {
-    "04-If_and_While.html": "3b029c24"
-  },
-  "Notebooks/05-Lists-Dictionaries.ipynb": {
-    "05-Lists-Dictionaries.html": "bb2469a3"
-  },
-  "Notebooks/06-For_Loops.ipynb": {
-    "06-For_Loops.html": "370d0589"
-  },
-  "Notebooks/07-Numerical_Arrays.ipynb": {
-    "07-Numerical_Arrays.html": "3efd512d"
-  },
-  "Notebooks/08-Data_Analysis.ipynb": {
-    "08-Data_Analysis.html": "8292aca9"
-  },
-  "Notebooks/10-Debugging_Code.ipynb": {
-    "10-Debugging_Code.html": "b9be69cf"
-  },
-  "Notebooks/11-Writing_Programs.ipynb": {
-    "11-Writing_Programs.html": "fa280ec5"
-  },
-  "Notebooks/solutions/sol0100.ipynb": {
-    "sol0100.html": "34f5d216"
-  },
-  "Notebooks/solutions/sol0101.ipynb": {
-    "sol0101.html": "da7617f0"
-  },
-  "Notebooks/solutions/sol0102.ipynb": {
-    "sol0102.html": "04bfaee0"
-  },
-  "Notebooks/solutions/sol0103.ipynb": {
-    "sol0103.html": "ba30b200"
-  },
-  "Notebooks/solutions/sol0104.ipynb": {
-    "sol0104.html": "11597994"
-  },
-  "Notebooks/solutions/sol0105.ipynb": {
-    "sol0105.html": "aeaed49f"
-  },
-  "Notebooks/solutions/sol0106.ipynb": {
-    "sol0106.html": "17142411"
-  },
-  "Notebooks/solutions/sol0201.ipynb": {
-    "sol0201.html": "3b6d7391"
-  },
-  "Notebooks/solutions/sol0202.ipynb": {
-    "sol0202.html": "0d88826c"
-  },
-  "Notebooks/solutions/sol0203.ipynb": {
-    "sol0203.html": "95ffbe7d"
-  },
-  "Notebooks/solutions/sol0204.ipynb": {
-    "sol0204.html": "bc8e918c"
-  },
-  "Notebooks/solutions/sol0205.ipynb": {
-    "sol0205.html": "08a2b0b5"
-  },
-  "Notebooks/solutions/sol0206.ipynb": {
-    "sol0206.html": "54f9b6db"
-  },
-  "Notebooks/solutions/sol0301.ipynb": {
-    "sol0301.html": "b9dd15da"
-  },
-  "Notebooks/solutions/sol0302.ipynb": {
-    "sol0302.html": "7af0af5e"
-  },
-  "Notebooks/solutions/sol0303.ipynb": {
-    "sol0303.html": "c1908c3d"
-  },
-  "Notebooks/solutions/sol0304.ipynb": {
-    "sol0304.html": "4af228d3"
-  },
-  "Notebooks/solutions/sol0305.ipynb": {
-    "sol0305.html": "c706478e"
-  },
-  "Notebooks/solutions/sol0306.ipynb": {
-    "sol0306.html": "36d43060"
-  },
-  "Notebooks/solutions/sol0401.ipynb": {
-    "sol0401.html": "4448facf"
-  },
-  "Notebooks/solutions/sol0402.ipynb": {
-    "sol0402.html": "29c0b2a8"
-  },
-  "Notebooks/solutions/sol0403.ipynb": {
-    "sol0403.html": "841e2657"
-  },
-  "Notebooks/solutions/sol0404.ipynb": {
-    "sol0404.html": "fa443fc8"
-  },
-  "Notebooks/solutions/sol0405.ipynb": {
-    "sol0405.html": "1b08c3ee"
-  },
-  "Notebooks/solutions/sol0501.ipynb": {
-    "sol0501.html": "f3be9d41"
-  },
-  "Notebooks/solutions/sol0601.ipynb": {
-    "sol0601.html": "bc472c22"
-  },
-  "Notebooks/solutions/sol0602.ipynb": {
-    "sol0602.html": "6c4b6e42"
-  },
-  "Notebooks/solutions/sol0603.ipynb": {
-    "sol0603.html": "500adae4"
-  },
-  "Notebooks/solutions/sol0604.ipynb": {
-    "sol0604.html": "3fc20542"
-  },
-  "Notebooks/solutions/sol1001.ipynb": {
-    "sol1001.html": "ff2bbf46"
-  },
-  "Notebooks/solutions/sol1002.ipynb": {
-    "sol1002.html": "7e6da2a6"
-  },
-  "Notebooks/solutions/sol1003.ipynb": {
-    "sol1003.html": "f2c84cbe"
-  },
-  "Notebooks/solutions/sol1004.ipynb": {
-    "sol1004.html": "defc7b00"
-  },
-  "Notebooks/solutions/sol1101.ipynb": {
-    "sol1101.html": "6c6d34be"
-  },
-  "Notebooks/solutions/sol1102.ipynb": {
-    "sol1102.html": "c70be910"
-  },
-  "Notebooks/solutions/sol1103.ipynb": {
-    "sol1103.html": "1c345da0"
-  },
-  "Notebooks/solutions/sol1104.ipynb": {
-    "sol1104.html": "2d235c0e"
-  },
-  "Notebooks/solutions/sol1105.ipynb": {
-    "sol1105.html": "dbe4f808"
-  },
-  "Notebooks/solutions/task04_model.ipynb": {
-    "task04_model.html": "b76a59e1"
+  "Lesson08/08-Data_Analysis.ipynb": {
+    "08-Data_Analysis.html": "7121b8a8"
   },
   "Lesson09/09-Debugging_Code.ipynb": {
-    "09-Debugging_Code.html": "d42d1358"
+    "09-Debugging_Code.html": "30203a85"
   },
   "Lesson10/10-Writing_Programs.ipynb": {
-    "10-Writing_Programs.html": "3c182232"
+    "10-Writing_Programs.html": "b7761350"
   },
   "Lesson01/solutions/sol0100.ipynb": {
-    "sol0100.html": "03d8ce0a"
+    "sol0100.html": "971d7dee"
   },
   "Lesson01/solutions/sol0101.ipynb": {
-    "sol0101.html": "110a1d4e"
+    "sol0101.html": "dbdde1c1"
   },
   "Lesson01/solutions/sol0102.ipynb": {
-    "sol0102.html": "acde47e7"
+    "sol0102.html": "73a99fa2"
   },
   "Lesson01/solutions/sol0103.ipynb": {
-    "sol0103.html": "5480d72b"
+    "sol0103.html": "766dd98e"
   },
   "Lesson01/solutions/sol0104.ipynb": {
-    "sol0104.html": "71480c47"
+    "sol0104.html": "0a748d4f"
   },
   "Lesson01/solutions/sol0105.ipynb": {
-    "sol0105.html": "a50cf68f"
+    "sol0105.html": "1181297a"
   },
   "Lesson01/solutions/sol0106.ipynb": {
-    "sol0106.html": "72d455bd"
+    "sol0106.html": "cbb27cd8"
   },
   "Lesson02/solutions/sol0201.ipynb": {
-    "sol0201.html": "bb4f1ee3"
+    "sol0201.html": "6efb073e"
   },
   "Lesson02/solutions/sol0202.ipynb": {
-    "sol0202.html": "049e246e"
+    "sol0202.html": "16031fa9"
   },
   "Lesson02/solutions/sol0203.ipynb": {
-    "sol0203.html": "13933010"
+    "sol0203.html": "b78f94d2"
   },
   "Lesson02/solutions/sol0204.ipynb": {
-    "sol0204.html": "b755bea1"
+    "sol0204.html": "e9fb85a5"
   },
   "Lesson02/solutions/sol0205.ipynb": {
-    "sol0205.html": "d0292aed"
+    "sol0205.html": "752a7b7d"
   },
   "Lesson02/solutions/sol0206.ipynb": {
-    "sol0206.html": "137b1eee"
+    "sol0206.html": "706ef0aa"
   },
   "Lesson03/solutions/sol0301.ipynb": {
-    "sol0301.html": "1c5e7049"
+    "sol0301.html": "a78248c4"
   },
   "Lesson03/solutions/sol0302.ipynb": {
-    "sol0302.html": "b0a5aa34"
+    "sol0302.html": "8c741071"
   },
   "Lesson03/solutions/sol0303.ipynb": {
-    "sol0303.html": "7aef3f7d"
+    "sol0303.html": "c5fb2aaa"
   },
   "Lesson03/solutions/sol0304.ipynb": {
-    "sol0304.html": "52b5ab45"
+    "sol0304.html": "a1a8a26a"
   },
   "Lesson03/solutions/sol0305.ipynb": {
-    "sol0305.html": "f3a124e5"
+    "sol0305.html": "e0158c46"
   },
   "Lesson03/solutions/sol0306.ipynb": {
-    "sol0306.html": "351476c1"
+    "sol0306.html": "b8e80685"
   },
   "Lesson04/solutions/sol0401.ipynb": {
-    "sol0401.html": "f9e05905"
+    "sol0401.html": "2fbce06a"
   },
   "Lesson04/solutions/sol0402.ipynb": {
-    "sol0402.html": "403c69ef"
+    "sol0402.html": "9df1c32a"
   },
   "Lesson04/solutions/sol0403.ipynb": {
-    "sol0403.html": "58e643c0"
+    "sol0403.html": "c3599cf0"
   },
   "Lesson04/solutions/sol0404.ipynb": {
-    "sol0404.html": "18b4afd0"
+    "sol0404.html": "6437cccd"
   },
   "Lesson04/solutions/sol0405.ipynb": {
-    "sol0405.html": "229a33a9"
+    "sol0405.html": "0ceef8e8"
   },
   "Lesson04/solutions/task04_model.ipynb": {
-    "task04_model.html": "d0741d6a"
+    "task04_model.html": "b144316c"
   },
   "Lesson05/solutions/sol0501.ipynb": {
-    "sol0501.html": "7f0ad543"
+    "sol0501.html": "6b692dac"
   },
   "Lesson06/solutions/sol0601.ipynb": {
-    "sol0601.html": "f72ae52f"
+    "sol0601.html": "b2d77329"
   },
   "Lesson06/solutions/sol0602.ipynb": {
-    "sol0602.html": "507d3f8e"
+    "sol0602.html": "2546deca"
   },
   "Lesson06/solutions/sol0603.ipynb": {
-    "sol0603.html": "fb5f40bd"
+    "sol0603.html": "2a3580e8"
   },
   "Lesson06/solutions/sol0604.ipynb": {
-    "sol0604.html": "76ccb827"
+    "sol0604.html": "fa4c5961"
   },
   "Lesson09/solutions/sol0901.ipynb": {
-    "sol0901.html": "f5d0a0e9"
+    "sol0901.html": "3e7e4c68"
   },
   "Lesson09/solutions/sol0902.ipynb": {
-    "sol0902.html": "5631e281"
+    "sol0902.html": "b37606a3"
   },
   "Lesson09/solutions/sol0903.ipynb": {
-    "sol0903.html": "fea4331c"
+    "sol0903.html": "8c27b192"
   },
   "Lesson09/solutions/sol0904.ipynb": {
-    "sol0904.html": "5d196784"
+    "sol0904.html": "7d96b062"
   },
   "Lesson10/solutions/sol1001.ipynb": {
-    "sol1001.html": "c41031c6"
+    "sol1001.html": "fb165682"
   },
   "Lesson10/solutions/sol1002.ipynb": {
-    "sol1002.html": "98fc3c8c"
+    "sol1002.html": "70b57459"
   },
   "Lesson10/solutions/sol1003.ipynb": {
-    "sol1003.html": "3d76d611"
+    "sol1003.html": "32bdae0d"
   },
   "Lesson10/solutions/sol1004.ipynb": {
-    "sol1004.html": "db228f54"
+    "sol1004.html": "7e19311b"
   },
   "Lesson10/solutions/sol1005.ipynb": {
-    "sol1005.html": "751a1398"
+    "sol1005.html": "d0562f1b"
   },
   "index.qmd": {
-    "index.html": "4746b911"
+    "index.html": "e926d01e"
+  },
+  "01-Python_Basics.qmd": {
+    "01-Python_Basics.html": "ec6896ed"
+  },
+  "02-Variables.qmd": {
+    "02-Variables.html": "785cc26d"
+  },
+  "03-Functions.qmd": {
+    "03-Functions.html": "e4f04895"
+  },
+  "04-If_and_While.qmd": {
+    "04-If_and_While.html": "81d45b3b"
+  },
+  "05-Lists-Dictionaries.qmd": {
+    "05-Lists-Dictionaries.html": "f6388b32"
+  },
+  "06-For_Loops.qmd": {
+    "06-For_Loops.html": "e7600d78"
+  },
+  "07-Numerical_Arrays.qmd": {
+    "07-Numerical_Arrays.html": "d3871b15"
+  },
+  "08-Data_Analysis.qmd": {
+    "08-Data_Analysis.html": "cda9283a"
+  },
+  "09-Debugging_Code.qmd": {
+    "09-Debugging_Code.html": "d1e04710"
+  },
+  "10-Writing_Programs.qmd": {
+    "10-Writing_Programs.html": "ab8fcf2c"
+  },
+  "Lesson01/01-Python_Basics.qmd": {
+    "01-Python_Basics.html": "2961f1ed"
+  },
+  "Lesson02/02-Variables.qmd": {
+    "02-Variables.html": "75f79e92"
+  },
+  "Lesson03/03-Functions.qmd": {
+    "03-Functions.html": "0d4ca80e"
+  },
+  "Lesson04/04-If_and_While.qmd": {
+    "04-If_and_While.html": "6177cd74"
+  },
+  "Lesson05/05-Lists-Dictionaries.qmd": {
+    "05-Lists-Dictionaries.html": "236f1f1a"
+  },
+  "Lesson06/06-For_Loops.qmd": {
+    "06-For_Loops.html": "5e175a36"
+  },
+  "Lesson07/07-Numerical_Arrays.qmd": {
+    "07-Numerical_Arrays.html": "13781d6d"
+  },
+  "Lesson08/08-Data_Analysis.qmd": {
+    "08-Data_Analysis.html": "fd2e3479"
+  },
+  "Lesson09/09-Debugging_Code.qmd": {
+    "09-Debugging_Code.html": "5d6da707"
+  },
+  "Lesson10/10-Writing_Programs.qmd": {
+    "10-Writing_Programs.html": "3c85a4dd"
   }
 }
